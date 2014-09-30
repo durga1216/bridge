@@ -307,7 +307,7 @@ public class TriggerAuth extends HttpServlet {
 		   	 st1.setString(1, aid);
 		   	 ResultSet rs=st1.executeQuery();
 		   	  while(rs.next()){
-		   		String authen=rs.getString("authen");
+		   		String authen=rs.getString("authen");String a1=rs.getString("a1");
 		   		String t1=rs.getString("t1");String rmethod=rs.getString("rmethod");String rformat=rs.getString("rformat");
 		   		String resformat=rs.getString("resformat");String p1=rs.getString("p1");String p2=rs.getString("p2");String p3=rs.getString("p3");
 		   		String p4=rs.getString("p4");String p5=rs.getString("p5");String p6=rs.getString("p6");String p7=rs.getString("p7");
@@ -463,10 +463,7 @@ public class TriggerAuth extends HttpServlet {
 		 	                    while((line=in.readLine())!=null){
 		 	                    	str+=line;
 		 	                    }//while
-			 	                   request.setAttribute("code", code);
-
-		 	                   request.setAttribute("code1", code1);
-		 	   	               request.getRequestDispatcher("check.jsp").forward(request, response);
+			 	                  
 		 	   	         	
 
 			   	 } //Basic
@@ -495,7 +492,7 @@ public class TriggerAuth extends HttpServlet {
 
 		   			
 		   		}
-		   		PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5) values ('"+tempid+"','"+aid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"')");
+		   		PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,alabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5) values ('"+tempid+"','"+aid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"')");
 	   			   	st2.executeUpdate();
 	   			   	st2.close();
 		   		request.setAttribute("code", code);

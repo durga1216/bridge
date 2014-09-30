@@ -279,7 +279,7 @@ try{
 	<br><%=atxt1 %><br><br><input type="text" name="uname" placeholder="UserName or ApiKey"><br><br><%=atxt2 %><br><br><input type="password" name="pwd" placeholder="Password or Secret Key"><br><br><br><input type="submit" name="submit" onclick="javascript:sub1('dis1')" value="Authenticate Action" ></div>
 	<%} 
 	else if(authen1.equals("API keys")){%>
-		<div id=inpop><h3>Enter the Authentication details:</h3><br>*ApiKey(required):<br><br><%=atxt3 %><br><br><input type="text" name="apkey"placeholder=" *ApiKey"><br><br><br>
+		<div id=inpop><h3>Enter the Authentication details:</h3><br>*ApiKey(required):<br><br><%=atxt3 %><br><br><input type="text" name="apkey" placeholder=" *ApiKey"><br><br><br>
 		<input type="submit" id="inp" name="submit" value="Authenticate Action" onclick="javascript:sub1('dis1')"></div>
 	
 	<%}}catch(Exception e){} %>
