@@ -289,11 +289,11 @@ try{
 		<div id=inpop><h3>Enter the Authentication details:</h3><br>*ApiKey(required):<br><br><%=atxt3 %><br><br><input type="text" name="apkey" placeholder=" *ApiKey"><br><br><br>
 		<input type="submit" id="inp" name="submit" value="Authenticate Action" onclick="javascript:sub1('dis1')"></div>
 	
-	<%}else if(authen.equals("Oauth2")){
+	<%}else if(authen1.equals("Oauth2")){
 	%>
 	<div id=inpop><h3>Oauth Authentication:</h3><br><br>
 	1,Login into Your account by clicking the Authenticate Button..
-	<br>2,Access the MindPulpy App to read the data..<br><br>
+	<br>2,Access the MindPulpy App to read the data..<br><br><br><br>
 		<input type="submit" name="submit" onclick="javascript:sub1('dis1')" value="Authenticate Action" ></div>
 	<%
 	}
@@ -342,7 +342,7 @@ else{%>
 
 <% }
 %>
-<br>
-<center><input type="submit" value="Continue" formAction="Index" formmethod="get"></center><br><br>
+<br><form>
+<center><input type="submit" value="Continue" formAction="Index" formmethod="get"></center><br><br></form>
 </body>
 </html>
