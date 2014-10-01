@@ -22,6 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.http.HttpRequest;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 
 @WebServlet("/TriggerAuth")
@@ -395,70 +400,80 @@ public class TriggerAuth extends HttpServlet {
 	  	               url1 = new URL (t1+"?"+eurl);}
 		              else
 		                   url1 =new URL(t1);
-		              HttpURLConnection conn1 = (HttpURLConnection) url1.openConnection();
-	                 conn1.setDoOutput(true);
-	                 conn1.setDoInput(true);
-	    	   	     if(rmethod.equals("Get")){
-		              conn1.setRequestMethod("GET");}
-	    	   	     else if(rmethod.equals("Post")){		             
-	    	   	  conn1.setRequestMethod("POST");
-	           	  conn1.connect();  
-	              DataOutputStream wr = new DataOutputStream(conn1.getOutputStream ());
-	              wr.writeBytes(eurl);
-	              wr.flush();
-	              wr.close();
-	}
-		              String encoding=null;
-		            	 if(!"null".equals(b2)&& "null".equals(b4)){
-		            		 encoding = new String(
-		                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
-		                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+""))
-		                    		  );
-		   	              conn1.setRequestProperty  ("Authorization", "Basic " + encoding);
-
-		            	 }
-		            	 else if(!"null".equals(b4) && "null".equals(b2)){encoding = new String(
-	       		 org.apache.commons.codec.binary.Base64.encodeBase64   
-	    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(""+":"+b4))
-	    		  );	              
-		            	 conn1.setRequestProperty  ("Authorization", "Basic " + encoding);
-	}
-		            	 else if(!"null".equals(b2) && !"null".equals(b4)){
-		            		 encoding = new String(
-		                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
-		                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
-		                    		  );
-		   	              conn1.setRequestProperty  ("Authorization", "Basic " + encoding);
-
-		   	            	 } // else if encoding
-		            	 else if("null".equals(b2) && "null".equals(b4)){
-		            		 encoding=null;
-		            	 }
-
-		            	 if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
-		 	            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2); conn1.setRequestProperty(h3, hv3);conn1.setRequestProperty(h4, hv4);conn1.setRequestProperty(h5, hv5);  
-		 	              }
-		 	              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4)){
-		 	            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2); conn1.setRequestProperty(h3, hv3);conn1.setRequestProperty(h4, hv4);  
-		 	              }
-		 	              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
-		 		            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2); conn1.setRequestProperty(h3, hv3);  
-		 		              }
-		 	              else if(!"".equals(h1) && !"".equals(h2)){
-		 		            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2);  
-		 		              }
-		 	              else if(!"".equals(h1)){
-		 		            	conn1.setRequestProperty(h1, hv1);  
-		 		              }
-		            	  code1 = conn1.getResponseCode();
-		            	 out.println(code1);
-		            	 conn1.disconnect();
-		 	              String line=null;
-		 	              InputStream content = (InputStream)conn1.getInputStream();
-		 	                 BufferedReader in   = new BufferedReader (new InputStreamReader (content));
-		 	                    while((line=in.readLine())!=null){
-		 	                    	str+=line;
-		 	                    }//while
+		              HttpClient httpClient = new DefaultHttpClient();
+		        	  HttpPost postRequest = new HttpPost(t1);
+		        	  String encoding = new String(
+		        		   		 org.apache.commons.codec.binary.Base64.encodeBase64   
+		        		   		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
+		        		   		  );
+		        	  postRequest.setHeader("Authorization","Basic " + encoding);
+		        	  HttpResponse response1 = httpClient.execute(postRequest);
+		        	  code1=response1.getStatusLine().getStatusCode();
+		        	  out.println(code1);
+//		              HttpURLConnection conn1 = (HttpURLConnection) url1.openConnection();
+//	                 conn1.setDoOutput(true);
+//	                 conn1.setDoInput(true);
+//	    	   	     if(rmethod.equals("Get")){
+//		              conn1.setRequestMethod("GET");}
+//	    	   	     else if(rmethod.equals("Post")){		             
+//	    	   	  conn1.setRequestMethod("POST");
+//	           	  conn1.connect();  
+//	              DataOutputStream wr = new DataOutputStream(conn1.getOutputStream ());
+//	              wr.writeBytes(eurl);
+//	              wr.flush();
+//	              wr.close();
+//	}
+//		              String encoding=null;
+//		            	 if(!"null".equals(b2)&& "null".equals(b4)){
+//		            		 encoding = new String(
+//		                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
+//		                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+""))
+//		                    		  );
+//		   	              conn1.setRequestProperty  ("Authorization", "Basic " + encoding);
+//
+//		            	 }
+//		            	 else if(!"null".equals(b4) && "null".equals(b2)){encoding = new String(
+//	       		 org.apache.commons.codec.binary.Base64.encodeBase64   
+//	    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(""+":"+b4))
+//	    		  );	              
+//		            	 conn1.setRequestProperty  ("Authorization", "Basic " + encoding);
+//	}
+//		            	 else if(!"null".equals(b2) && !"null".equals(b4)){
+//		            		 encoding = new String(
+//		                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
+//		                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
+//		                    		  );
+//		   	              conn1.setRequestProperty  ("Authorization", "Basic " + encoding);
+//
+//		   	            	 } // else if encoding
+//		            	 else if("null".equals(b2) && "null".equals(b4)){
+//		            		 encoding=null;
+//		            	 }
+//
+//		            	 if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
+//		 	            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2); conn1.setRequestProperty(h3, hv3);conn1.setRequestProperty(h4, hv4);conn1.setRequestProperty(h5, hv5);  
+//		 	              }
+//		 	              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4)){
+//		 	            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2); conn1.setRequestProperty(h3, hv3);conn1.setRequestProperty(h4, hv4);  
+//		 	              }
+//		 	              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
+//		 		            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2); conn1.setRequestProperty(h3, hv3);  
+//		 		              }
+//		 	              else if(!"".equals(h1) && !"".equals(h2)){
+//		 		            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2);  
+//		 		              }
+//		 	              else if(!"".equals(h1)){
+//		 		            	conn1.setRequestProperty(h1, hv1);  
+//		 		              }
+//		            	  code1 = conn1.getResponseCode();
+//		            	 out.println(code1);
+//		            	 conn1.disconnect();
+//		 	              String line=null;
+//		 	              InputStream content = (InputStream)conn1.getInputStream();
+//		 	                 BufferedReader in   = new BufferedReader (new InputStreamReader (content));
+//		 	                    while((line=in.readLine())!=null){
+//		 	                    	str+=line;
+//		 	                    }//while
 			 	                  
 		 	   	         	
 
