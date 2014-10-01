@@ -361,7 +361,7 @@ public class TriggerAuth extends HttpServlet {
 	       	     StringBuilder strb=new StringBuilder();
 	       	     code1=conn.getResponseCode();
 	       	     out.println(code1);
-		   				
+		   	     conn.disconnect();
 		   			}
 		   			//post
 		   		}	
@@ -395,15 +395,15 @@ public class TriggerAuth extends HttpServlet {
 	  	               url1 = new URL (t1+"?"+eurl);}
 		              else
 		                   url1 =new URL(t1);
-		              HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
-	                 connection.setDoOutput(true);
-	                 connection.setDoInput(true);
+		              HttpURLConnection conn1 = (HttpURLConnection) url1.openConnection();
+	                 conn1.setDoOutput(true);
+	                 conn1.setDoInput(true);
 	    	   	     if(rmethod.equals("Get")){
-		              connection.setRequestMethod("GET");}
+		              conn1.setRequestMethod("GET");}
 	    	   	     else if(rmethod.equals("Post")){		             
-	    	   	  connection.setRequestMethod("POST");
-	           	  connection.connect();  
-	              DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
+	    	   	  conn1.setRequestMethod("POST");
+	           	  conn1.connect();  
+	              DataOutputStream wr = new DataOutputStream(conn1.getOutputStream ());
 	              wr.writeBytes(eurl);
 	              wr.flush();
 	              wr.close();
@@ -414,21 +414,21 @@ public class TriggerAuth extends HttpServlet {
 		                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
 		                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+""))
 		                    		  );
-		   	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+		   	              conn1.setRequestProperty  ("Authorization", "Basic " + encoding);
 
 		            	 }
 		            	 else if(!"null".equals(b4) && "null".equals(b2)){encoding = new String(
 	       		 org.apache.commons.codec.binary.Base64.encodeBase64   
 	    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(""+":"+b4))
 	    		  );	              
-		            	 connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+		            	 conn1.setRequestProperty  ("Authorization", "Basic " + encoding);
 	}
 		            	 else if(!"null".equals(b2) && !"null".equals(b4)){
 		            		 encoding = new String(
 		                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
 		                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
 		                    		  );
-		   	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+		   	              conn1.setRequestProperty  ("Authorization", "Basic " + encoding);
 
 		   	            	 } // else if encoding
 		            	 else if("null".equals(b2) && "null".equals(b4)){
@@ -436,24 +436,25 @@ public class TriggerAuth extends HttpServlet {
 		            	 }
 
 		            	 if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
-		 	            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);connection.setRequestProperty(h5, hv5);  
+		 	            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2); conn1.setRequestProperty(h3, hv3);conn1.setRequestProperty(h4, hv4);conn1.setRequestProperty(h5, hv5);  
 		 	              }
 		 	              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4)){
-		 	            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);  
+		 	            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2); conn1.setRequestProperty(h3, hv3);conn1.setRequestProperty(h4, hv4);  
 		 	              }
 		 	              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
-		 		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
+		 		            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2); conn1.setRequestProperty(h3, hv3);  
 		 		              }
 		 	              else if(!"".equals(h1) && !"".equals(h2)){
-		 		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2);  
+		 		            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2);  
 		 		              }
 		 	              else if(!"".equals(h1)){
-		 		            	connection.setRequestProperty(h1, hv1);  
+		 		            	conn1.setRequestProperty(h1, hv1);  
 		 		              }
-		            	  code1 = connection.getResponseCode();
+		            	  code1 = conn1.getResponseCode();
 		            	 out.println(code1);
+		            	 conn1.disconnect();
 		 	              String line=null;
-		 	              InputStream content = (InputStream)connection.getInputStream();
+		 	              InputStream content = (InputStream)conn1.getInputStream();
 		 	                 BufferedReader in   = new BufferedReader (new InputStreamReader (content));
 		 	                    while((line=in.readLine())!=null){
 		 	                    	str+=line;
