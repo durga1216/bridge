@@ -256,7 +256,14 @@ try{
 	<%}else if(authen.equals("Basic Auth")){%>
 		<div id=inpop><h3>Enter the Authentication details:</h3><br>*Basic Authentication(required):<br><br><%=txt1 %><br><br><input type="text" name="uname" placeholder="UserName or ApiKey"><br><br><%=txt2 %><br><br><input type="password" name="pwd" placeholder="Password or Secret Key"><br><br><br>
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
-	<%}%></div>
+	<%}else if(authen.equals("Oauth2")){
+	%>
+	<div id=inpop><h3>Oauth Authentication:</h3><br><br><br><br>
+		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
+	<%
+	}
+	%>
+	</div>
 
 <div id="popUpAct" style="display:none;">
 	<a style='font-size:20px;color:#000;float:right;'onclick="popup('popUpAct')" ><img style='height:20px;width:20px'alt="close" src="images/close.png"></a><br>

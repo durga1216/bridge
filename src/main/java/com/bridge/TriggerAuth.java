@@ -279,13 +279,13 @@ public class TriggerAuth extends HttpServlet {
         	    session.setAttribute("rm1", rmethod1);
         
 	        	if(sname1.equals("") && el1.equals(""))
-          		  response.sendRedirect(aurl1+"?redirect_uri=https://mind-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1);
+          		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1);
                else if(!sname1.equals("")&& el1.equals(""))
-          		  response.sendRedirect(aurl1+"?redirect_uri=https://mind-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1);
+          		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1);
                else if(!sname1.equals("")&& !el1.equals(""))
-          		  response.sendRedirect(aurl1+"?redirect_uri=https://mind-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1+"&"+el1+"="+ev1);
+          		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1+"&"+el1+"="+ev1);
                else if(sname1.equals("")&& !el1.equals(""))
-          		  response.sendRedirect(aurl1+"?redirect_uri=https://mind-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+el1+"="+ev1);
+          		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1+"&"+el1+"="+ev1);
           	 
 
 	   		}
@@ -481,13 +481,13 @@ public class TriggerAuth extends HttpServlet {
 	        	    session.setAttribute("rm1", rmethod1);
 	        
 		        	if(sname1.equals("") && el1.equals(""))
-	          		  response.sendRedirect(aurl1+"?redirect_uri=https://mind-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1);
+	          		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1);
 	               else if(!sname1.equals("")&& el1.equals(""))
-	          		  response.sendRedirect(aurl1+"?redirect_uri=https://mind-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1);
+	          		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1);
 	               else if(!sname1.equals("")&& !el1.equals(""))
-	          		  response.sendRedirect(aurl1+"?redirect_uri=https://mind-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1+"&"+el1+"="+ev1);
+	          		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1+"&"+el1+"="+ev1);
 	               else if(sname1.equals("")&& !el1.equals(""))
-	          		  response.sendRedirect(aurl1+"?redirect_uri=https://mind-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+el1+"="+ev1);
+	          		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1+"&"+el1+"="+ev1);
 	          	 
 
 		   			
