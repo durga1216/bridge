@@ -268,14 +268,9 @@ public class TriggerAuth extends HttpServlet {
 	        else if(authen.equals("Oauth2")){
         	    session.setAttribute("ckey", ckey1);
         	    session.setAttribute("cseckey", cseckey1);
-        	    session.setAttribute("sname", sname1);
-        	    session.setAttribute("svalue", svalue1);
-        	    session.setAttribute("aurl", aurl1);
         	    session.setAttribute("tokenurl", tokenurl1);
-        	    session.setAttribute("tlabel", tlabel1);
-        	    session.setAttribute("treplace", treplace1);
-        	    session.setAttribute("el", el1);
-        	    session.setAttribute("ev", ev1);
+        	    session.setAttribute("tempid", tempid);
+        	    session.setAttribute("tid", tid);
         	    session.setAttribute("rm1", rmethod1);
         
 	        	if(sname1.equals("") && el1.equals(""))
@@ -495,9 +490,9 @@ public class TriggerAuth extends HttpServlet {
 		   		PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,alabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5) values ('"+tempid+"','"+aid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"')");
 	   			   	st2.executeUpdate();
 	   			   	st2.close();
-		   		request.setAttribute("code", code);
-	            request.setAttribute("code1", code1);
-		       request.getRequestDispatcher("check.jsp").forward(request, response);
+//		   		request.setAttribute("code", code);
+//	            request.setAttribute("code1", code1);
+//		       request.getRequestDispatcher("check.jsp").forward(request, response);
 	   	 } //Auth action 
 		   	  
 		   	  
@@ -507,6 +502,7 @@ public class TriggerAuth extends HttpServlet {
         }		//try 
 	   	 
 	
-  catch(Exception e){out.println(e);}
+  catch(Exception e){
+	  out.println(e);}
 }
 }

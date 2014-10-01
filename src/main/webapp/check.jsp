@@ -303,8 +303,6 @@ try{
 <%code=(Integer)request.getAttribute("code");
 if(code==200){%>
 	<div id="disp" style="margin-left:600px;color:#fff;"><img src="images/tick.jpg" width="20" height="20">&nbsp;&nbsp; Account is working</div><br><br>	
-
-
 <% }
 else if(code==0){%>
    	<div id="disp" style="margin-left:600px;color:#fff;">Please check your Account!!!</div><br><br>	

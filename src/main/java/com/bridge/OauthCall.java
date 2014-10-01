@@ -63,6 +63,8 @@ public class OauthCall extends HttpServlet {
 		String apikey=(String) session.getAttribute("ckey");
 		String apisecvalue=(String) session.getAttribute("cseckey");
 		String rm1=(String) session.getAttribute("rm1");
+		String tempid=(String) session.getAttribute("tempid");
+		String tid=(String) session.getAttribute("tid");
 		String code = request.getParameter(OAuthConstants.CODE);
 		String responseBody=null;
 		String responseMsg=null;
@@ -145,19 +147,24 @@ pw.println(responseBody);
 			
 			
 				   session.setAttribute("access_token", access_token);						
-//				             PreparedStatement st2=con.prepareStatement("insert into trig_all (tempid,tid,authen,rmethod,emethod,apkey,p1,pv1,p2,pv2,p3,pv3) values ('"+tempid+"','"+tid+"','Oauth2','"+rm1+"','"+emethod+"','"+access_token+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"')");
-//							   	st2.executeUpdate();
-//							   	st2.close();
-				   PreparedStatement ps=con.prepareStatement("insert into testing (data) values('"+access_token+"')");
-					ps.executeUpdate();
+				             PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken) values ('"+tempid+"','"+tid+"','"+access_token+"')");
+							   	st2.executeUpdate();
+							   	st2.close();
+//				   PreparedStatement ps=con.prepareStatement("insert into testing (data) values('"+access_token+"')");
+//					ps.executeUpdate();
 			   	if(access_token.equals(""))
-			            {pw.println("<br><br><center><b><h2><font color='white'>Authentication Error</font></center></h2></b>");}
+			            {pw.println("<br><br><center><b><h2><font color='white'>Authentication Error</font></center></h2></b>");
+			            request.setAttribute("code", 400);
+			            request.setAttribute("code1", 0);
+				       request.getRequestDispatcher("check.jsp").forward(request, response);}
 				   else{
 				    response.setContentType("text/html;charset=utf-8");
 		        	response.setCharacterEncoding("UTF-8");
 		            pw.println("<br><br><center><b><h2><font color='#ffffff;'>Sucessfully Authenticated</font></center></h2></b>");
-		            pw.println("<br><br><h3><center><a style='color:#ffffff;' href='check.jsp'>Continue with check</a></center></h3>");
-				   }
+		            request.setAttribute("code", 200);
+		            request.setAttribute("code1", 0);
+			       request.getRequestDispatcher("check.jsp").forward(request, response);	
+			       }
 		}
 		catch(Exception e){
 			pw.println(e);
