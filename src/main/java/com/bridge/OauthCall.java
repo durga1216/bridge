@@ -65,6 +65,7 @@ public class OauthCall extends HttpServlet {
 		String rm1=(String) session.getAttribute("rm1");
 		String tempid=(String) session.getAttribute("tempid");
 		String tid=(String) session.getAttribute("tid");
+		String but=(String) session.getAttribute("but");
 		String code = request.getParameter(OAuthConstants.CODE);
 		String responseBody=null;
 		String responseMsg=null;
@@ -154,16 +155,29 @@ pw.println(responseBody);
 //					ps.executeUpdate();
 			   	if(access_token.equals(""))
 			            {pw.println("<br><br><center><b><h2><font color='white'>Authentication Error</font></center></h2></b>");
-			            request.setAttribute("code", 400);
-			            request.setAttribute("code1", 0);
-				       request.getRequestDispatcher("check.jsp").forward(request, response);}
+			            if(but.equals("trig")){
+			            	request.setAttribute("code", 400);
+				            request.setAttribute("code1", 0);
+					       request.getRequestDispatcher("check.jsp").forward(request, response);
+			            }else if(but.equals("act")){
+			            	request.setAttribute("code", 200);
+				            request.setAttribute("code1", 400);
+					       request.getRequestDispatcher("check.jsp").forward(request, response);
+			            }
+			            }
 				   else{
 				    response.setContentType("text/html;charset=utf-8");
 		        	response.setCharacterEncoding("UTF-8");
 		            pw.println("<br><br><center><b><h2><font color='#ffffff;'>Sucessfully Authenticated</font></center></h2></b>");
-		            request.setAttribute("code", 200);
-		            request.setAttribute("code1", 0);
-			       request.getRequestDispatcher("check.jsp").forward(request, response);	
+		            if(but.equals("trig")){
+		            	request.setAttribute("code", 200);
+			            request.setAttribute("code1", 0);
+				       request.getRequestDispatcher("check.jsp").forward(request, response);
+		            }else if(but.equals("act")){
+		            	request.setAttribute("code", 200);
+			            request.setAttribute("code1", 200);
+				       request.getRequestDispatcher("check.jsp").forward(request, response);
+		            }
 			       }
 		}
 		catch(Exception e){

@@ -115,6 +115,7 @@ public class TriggerAuth extends HttpServlet {
 	   		String pv4=rs.getString("pv4");String pv5=rs.getString("pv5");String pv6=rs.getString("pv6");String pv7=rs.getString("p7");
 	   		String pv8=rs.getString("pv8");String pv9=rs.getString("pv9");String pv10=rs.getString("pv10");String b1=rs.getString("b1");
 	   		String b3=rs.getString("b3");
+	   		String treplace=rs.getString("treplace");String tlabel=rs.getString("tlabel");
 	   		String h1=rs.getString("h1"); String hv1=rs.getString("hv1");
 	   		String h2=rs.getString("h2"); String hv2=rs.getString("hv2");
 	   		String h3=rs.getString("h3"); String hv3=rs.getString("hv3");
@@ -277,7 +278,7 @@ public class TriggerAuth extends HttpServlet {
         	    session.setAttribute("tempid", tempid);
         	    session.setAttribute("tid", tid);
         	    session.setAttribute("rm1", rmethod1);
-        
+        	    session.setAttribute("but", "trig");
 	        	if(sname1.equals("") && el1.equals(""))
           		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1);
                else if(!sname1.equals("")&& el1.equals(""))
@@ -290,7 +291,7 @@ public class TriggerAuth extends HttpServlet {
 
 	   		}
 	   	   
-			   	PreparedStatement st2=con.prepareStatement("insert into trig_all (tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"')");
+			   	PreparedStatement st2=con.prepareStatement("insert into trig_all (tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+tlabel+"','"+treplace+"')");
 			   	st2.executeUpdate();
 			   	st2.close();
 			   	
@@ -316,6 +317,7 @@ public class TriggerAuth extends HttpServlet {
 		   		String pv4=rs.getString("pv4");String pv5=rs.getString("pv5");String pv6=rs.getString("pv6");String pv7=rs.getString("p7");
 		   		String pv8=rs.getString("pv8");String pv9=rs.getString("pv9");String pv10=rs.getString("pv10");String b1=rs.getString("b1");
 		   		String b3=rs.getString("b3");
+		   		String treplace=rs.getString("treplace");String tlabel=rs.getString("tlabel");
 		   		String h1=rs.getString("h1"); String hv1=rs.getString("hv1");
 		   		String h2=rs.getString("h2"); String hv2=rs.getString("hv2");
 		   		String h3=rs.getString("h3"); String hv3=rs.getString("hv3");
@@ -479,18 +481,13 @@ public class TriggerAuth extends HttpServlet {
 
 			   	 } //Basic
 		   		else if(authen.equals("Oauth2")){
-		   		 session.setAttribute("ckey", ckey1);
+	        	    session.setAttribute("ckey", ckey1);
 	        	    session.setAttribute("cseckey", cseckey1);
-	        	    session.setAttribute("sname", sname1);
-	        	    session.setAttribute("svalue", svalue1);
-	        	    session.setAttribute("aurl", aurl1);
 	        	    session.setAttribute("tokenurl", tokenurl1);
-	        	    session.setAttribute("tlabel", tlabel1);
-	        	    session.setAttribute("treplace", treplace1);
-	        	    session.setAttribute("el", el1);
-	        	    session.setAttribute("ev", ev1);
+	        	    session.setAttribute("tempid", tempid);
+	        	    session.setAttribute("tid", tid);
 	        	    session.setAttribute("rm1", rmethod1);
-	        
+	                session.setAttribute("but", "act");
 		        	if(sname1.equals("") && el1.equals(""))
 	          		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1);
 	               else if(!sname1.equals("")&& el1.equals(""))
@@ -501,9 +498,8 @@ public class TriggerAuth extends HttpServlet {
 	          		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1+"&"+el1+"="+ev1);
 	          	 
 
-		   			
 		   		}
-		   		PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5) values ('"+tempid+"','"+aid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"')");
+		   		PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,tlabel,treplace) values ('"+tempid+"','"+aid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+tlabel+"','"+treplace+"')");
 	   			   	st2.executeUpdate();
 	   			   	st2.close();
 		   		request.setAttribute("code", code);
