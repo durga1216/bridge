@@ -343,6 +343,6 @@ else{%>
 <% }
 %>
 <br>
-<center><input type="submit" value="Continue"></center><br><br>
+<center><input type="submit" value="Continue" formAction="Index" formmethod="get"></center><br><br>
 </body>
 </html>
