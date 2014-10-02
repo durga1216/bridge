@@ -19,7 +19,6 @@ margin-left:600px;
 #ful{
 width:100%;
 height:100%;
-border:solid 1px #fff;
 color:#fff;
 font-family:verdana; 
 font-weight:bold;
@@ -53,6 +52,12 @@ margin-left:60px;
 float:left;
 height:100%;
 }
+hr{
+color:#fff;
+height:3px;
+margin-left:70px;
+margin-right:70px;
+}
 #pa{
   font-family:verdana;
   font-size:18px;
@@ -66,7 +71,7 @@ function addParam(){
 	  var contentID = document.getElementById('content');
 	  var newTBDiv = document.createElement('div');
 	      newTBDiv.setAttribute('id','strText'+intTextBox);
-	  newTBDiv.innerHTML = "<input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='  xmltag'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder=' If Other'/><br>";
+	  newTBDiv.innerHTML = "<br><input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='  xmltag'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder=' If Other'/>";
 	  contentID.appendChild(newTBDiv);
 }
 function removeParam()
@@ -96,7 +101,7 @@ function removeParam()
 	 	   			actit=r.getString("actit");
 	 	   	 }
 		  PreparedStatement ps = conn.prepareStatement("select * from title t1 JOIN auth t2 on t1.appid=t2.appid JOIN triger t3 ON t1.appid=t3.appid where t1.appid=?");
-	      ps.setString(1,tid);
+	      ps.setString(1,aid);
 	      rs=ps.executeQuery();
 	      while(rs.next()){
 	    			rformat=rs.getString("rformat");
@@ -104,7 +109,9 @@ function removeParam()
 	      }
 %>
 <body>
+<form action="Parse" method="post">
 <br><br><div class="head">Mapping</div><br><br>
+<hr><br><br><a id='pa' href="javascript:addParam()">View Sample Trigger response</a><br><br>
 <div id=ful>
 <div id=para>
 		<br><br><h3>Action Parameter:</h3><br>
@@ -133,5 +140,7 @@ function removeParam()
 			out.println(e);
 		}
 %>
+<input type="submit" value="Continue">
+</form>
 </body>
 </html>

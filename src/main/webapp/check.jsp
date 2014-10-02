@@ -343,6 +343,6 @@ else{%>
 <% }
 %>
 <br><form>
-<center><input type="submit" value="Continue" formAction="Index" formmethod="get"></center><br><br></form>
+<center><input type="submit" value="Continue" formAction="res.jsp"></center><br><br></form>
 </body>
 </html>
