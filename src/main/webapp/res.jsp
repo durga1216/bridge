@@ -27,7 +27,7 @@ font-size:18px;
 }
 input[type="text"]{
 width:200px;
-height:23px;
+height:25px;
 font-family:verdana; 
 font-weight:bold;
 font-size:19px;
@@ -49,6 +49,7 @@ width:400px;
 height:150px;
 }
 #res{
+margin-left:60px;
 float:left;
 height:100%;
 }
@@ -106,12 +107,12 @@ function removeParam()
 <br><br><div class="head">Mapping</div><br><br>
 <div id=ful>
 <div id=para>
-		<h3>Action Parameter:</h3><br><br><br>
+		<br><br><h3>Action Parameter:</h3><br>
 <%
 	if(rformat.equals("rest")){
 		for(int i=1;i<5;i++){
 				if(!tp[i].equals("null")){
-						out.println("<br>*"+tp[i]+":&nbsp;&nbsp;&nbsp;&lt;&lt;----Map With Trigger node----&gt;&gt;<br>");
+						out.println("<br>*"+tp[i]+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;----Map With Trigger node----&gt;&gt;<br>");
 				}
 		}
 	}else{
@@ -123,7 +124,7 @@ function removeParam()
 	<h3>Trigger Response:</h3>
 	<input type="text" placeholder=" parant Tag"><br><br>
 	<a id='pa' href="javascript:addParam()">Add_Tag</a>&nbsp;
-    <a id='pa' href="javascript:removeParam()">Remove_Tags</a><br><br>
+    <a id='pa' href="javascript:removeParam()">Remove_Tags</a><br>
 	<div id="content"></div>
 </div>
 </div>
