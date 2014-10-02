@@ -51,7 +51,7 @@ public class Parse extends HttpServlet {
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
-			PreparedStatement ps=con.prepareStatement("select * from ");
+			PreparedStatement ps=con.prepareStatement("select * from home order by tempid desc limit 1");
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
 				tempid=rs.getString("tempid");

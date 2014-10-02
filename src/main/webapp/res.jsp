@@ -18,7 +18,7 @@ margin-left:600px;
 }
 #ful{
 width:100%;
-height:100%;
+height:700px;
 color:#fff;
 font-family:verdana; 
 font-weight:bold;
@@ -41,10 +41,9 @@ margin-left:200px;
 #txt1{
 font-family:verdana;
 font-size:15px;
-margin-left:100px;
 color:#FF9900;
 font-weight:bold;
-width:400px;
+width:300px;
 height:150px;
 }
 input[type="button"],input[type="submit"]{
@@ -121,7 +120,7 @@ function removeParam()
 %>
 <body>
 <form action="Parse" method="post">
-<br><br><div class="head">Mapping</div><br><br>
+<br><br><div class="head">Mapping</div><br>
 <hr><br><br><center><a id='pa' href="javascript:load()">View Sample Trigger response</a></center><br><br>
 <div id=ful>
 <div id=para>
@@ -134,7 +133,7 @@ function removeParam()
 				}
 		}
 	}else{
-		%><textarea name="exres" id="txt1"  placeholder="Give Sample xml or json structure"></textarea>&nbsp;&nbsp;&nbsp;&gt;----Map With Trigger node----&lt;&nbsp;&nbsp;&nbsp;Parse any thing<% 	
+		%><textarea name="exres" id="txt1"  placeholder="Give Sample xml or json structure"></textarea>&nbsp;&nbsp;&nbsp;&lt;&lt;----Map With sample order----&gt;&gt;<% 	
 	}
 %>
 </div>
