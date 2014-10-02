@@ -412,73 +412,6 @@ public class TriggerAuth extends HttpServlet {
 		        	  HttpResponse response1 = httpClient.execute(postRequest);
 		        	  code1=response1.getStatusLine().getStatusCode();
 		        	  out.println(code1);
-//		              HttpURLConnection conn1 = (HttpURLConnection) url1.openConnection();
-//	                 conn1.setDoOutput(true);
-//	                 conn1.setDoInput(true);
-//	    	   	     if(rmethod.equals("Get")){
-//		              conn1.setRequestMethod("GET");}
-//	    	   	     else if(rmethod.equals("Post")){		             
-//	    	   	  conn1.setRequestMethod("POST");
-//	           	  conn1.connect();  
-//	              DataOutputStream wr = new DataOutputStream(conn1.getOutputStream ());
-//	              wr.writeBytes(eurl);
-//	              wr.flush();
-//	              wr.close();
-//	}
-//		              String encoding=null;
-//		            	 if(!"null".equals(b2)&& "null".equals(b4)){
-//		            		 encoding = new String(
-//		                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
-//		                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+""))
-//		                    		  );
-//		   	              conn1.setRequestProperty  ("Authorization", "Basic " + encoding);
-//
-//		            	 }
-//		            	 else if(!"null".equals(b4) && "null".equals(b2)){encoding = new String(
-//	       		 org.apache.commons.codec.binary.Base64.encodeBase64   
-//	    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(""+":"+b4))
-//	    		  );	              
-//		            	 conn1.setRequestProperty  ("Authorization", "Basic " + encoding);
-//	}
-//		            	 else if(!"null".equals(b2) && !"null".equals(b4)){
-//		            		 encoding = new String(
-//		                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
-//		                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
-//		                    		  );
-//		   	              conn1.setRequestProperty  ("Authorization", "Basic " + encoding);
-//
-//		   	            	 } // else if encoding
-//		            	 else if("null".equals(b2) && "null".equals(b4)){
-//		            		 encoding=null;
-//		            	 }
-//
-//		            	 if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
-//		 	            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2); conn1.setRequestProperty(h3, hv3);conn1.setRequestProperty(h4, hv4);conn1.setRequestProperty(h5, hv5);  
-//		 	              }
-//		 	              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4)){
-//		 	            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2); conn1.setRequestProperty(h3, hv3);conn1.setRequestProperty(h4, hv4);  
-//		 	              }
-//		 	              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
-//		 		            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2); conn1.setRequestProperty(h3, hv3);  
-//		 		              }
-//		 	              else if(!"".equals(h1) && !"".equals(h2)){
-//		 		            	conn1.setRequestProperty(h1, hv1);conn1.setRequestProperty(h2, hv2);  
-//		 		              }
-//		 	              else if(!"".equals(h1)){
-//		 		            	conn1.setRequestProperty(h1, hv1);  
-//		 		              }
-//		            	  code1 = conn1.getResponseCode();
-//		            	 out.println(code1);
-//		            	 conn1.disconnect();
-//		 	              String line=null;
-//		 	              InputStream content = (InputStream)conn1.getInputStream();
-//		 	                 BufferedReader in   = new BufferedReader (new InputStreamReader (content));
-//		 	                    while((line=in.readLine())!=null){
-//		 	                    	str+=line;
-//		 	                    }//while
-			 	                  
-		 	   	         	
-
 			   	 } //Basic
 		   		else if(authen.equals("Oauth2")){
 	        	    session.setAttribute("ckey", ckey1);
@@ -488,6 +421,9 @@ public class TriggerAuth extends HttpServlet {
 	        	    session.setAttribute("tid", tid);
 	        	    session.setAttribute("rm1", rmethod1);
 	                session.setAttribute("but", "act");
+	                PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,tlabel,treplace) values ('"+tempid+"','"+aid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+tlabel+"','"+treplace+"')");
+	   			   	st2.executeUpdate();
+	   			   	st2.close();
 		        	if(sname1.equals("") && el1.equals(""))
 	          		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1);
 	               else if(!sname1.equals("")&& el1.equals(""))
@@ -505,10 +441,10 @@ public class TriggerAuth extends HttpServlet {
 		   		request.setAttribute("code", code);
 	            request.setAttribute("code1", code1);
 		       request.getRequestDispatcher("check.jsp").forward(request, response);
-	   	 } //Auth action 
+	   	 } //While
 		   	  
 		   	  
-	   	 }	  //while*/
+	   	 }	  //action
         
         
         }		//try 
