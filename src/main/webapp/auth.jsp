@@ -5,7 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<script src="js/jquery-latest.js"></script>
-<title>Insert title here</title>
+<title>Mind Connectors</title>
+<link rel="shortcut icon" href="favicon.ico" />
 <script type="text/javascript">
 var intTextBox=0;
 function addParent(){

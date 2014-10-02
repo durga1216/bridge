@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Mind Connectors</title>
+<link rel="shortcut icon" href="favicon.ico" />
 <script type="text/javascript" src="js/jquery-latest.js"></script>
 <script type="text/javascript"></script>
 <style>
