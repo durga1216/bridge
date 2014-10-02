@@ -26,16 +26,15 @@ font-weight:bold;
 font-size:18px;
 }
 input[type="text"]{
-width:250px;
-height:20px;
+width:200px;
+height:23px;
 font-family:verdana; 
 font-weight:bold;
-font-size:15px;
+font-size:19px;
 color:#FF9900;
 border-radius:5px;
 }
 #para{
-width:55%;
 height:100%;
 margin-left:200px;
 border:solid 1px #fff;
@@ -50,7 +49,7 @@ width:400px;
 height:150px;
 }
 #res{
-width:40%;
+float:left;
 height:100%;
 border:solid 1px #fff;
 }
@@ -67,7 +66,7 @@ function addParam(){
 	  var contentID = document.getElementById('content');
 	  var newTBDiv = document.createElement('div');
 	      newTBDiv.setAttribute('id','strText'+intTextBox);
-	  newTBDiv.innerHTML = "<input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='Label(Give any name)'/>" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder='Tag_Value(Refer Eg)'/>";
+	  newTBDiv.innerHTML = "<input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='path of xmltag'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder='If Other'/>";
 	  contentID.appendChild(newTBDiv);
 }
 function removeParam()
@@ -122,10 +121,10 @@ function removeParam()
 %>
 </div>
 <div id=res>
-	<h3>Trigger Response:</h3><br>
-	<br><input type="text" palceholder="parant Tag"><br>
+	<h3>Trigger Response:</h3>
+	<input type="text" palceholder="parant Tag"><br><br>
 	<a id='pa' href="javascript:addParam()">Add_Tag</a>&nbsp;
-    <a id='pa' href="javascript:removeParam()">Remove_Tags</a><br>
+    <a id='pa' href="javascript:removeParam()">Remove_Tags</a><br><br>
 	<div id="content"></div>
 </div>
 </div>
