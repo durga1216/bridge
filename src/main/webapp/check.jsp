@@ -139,11 +139,13 @@ color:#FFFFFF;
 select{
 font-family:verdana;
 font-size:17px;
+background-color:#fff;
 color:#FF9900;
 font-weight:bold;
-width:350px;
-height:50px;
-margin-left:250px;
+width:300px;
+height:40px;
+border-radius:5px;
+margin-left:200px;
 
 }
 
@@ -307,7 +309,7 @@ try{
 <option>Choose Exisiting Account</option>
 <option>Choose Different New Account</option>
 </select><br><br><br>
-<input type="button" Onclick="javascript:popup('popUpDiv')" name="con_trig" id="con_trig" value="Connect a <%=tgtit %> account" margin-left:500px;">	
+<input type="button" Onclick="javascript:popup('popUpDiv')" name="con_trig" id="con_trig" value="Connect a <%=tgtit %> account" style="margin-left:300px;">	
 <%code=(Integer)request.getAttribute("code");
 if(code==200){%>
 	<div id="disp" style="margin-left:600px;color:#fff;"><img src="images/tick.jpg" width="20" height="20">&nbsp;&nbsp; Account is working</div><br><br>	
@@ -326,7 +328,7 @@ else{%>
 <option>Choose Exisiting Account</option>
 <option>Choose Different New Account</option>
 </select><br><br><br>
-<input type="button" Onclick="javascript:popup('popUpAct')" name="con_act" id="con_act" value="Connect an <%= actit %> account" margin-left:500px;"><div id="disp1" style="display:none;margin-left:300px;color:#fff;">Account is working</div>
+<input type="button" Onclick="javascript:popup('popUpAct')" name="con_act" id="con_act" value="Connect an <%= actit %> account" style="margin-left:300px;"><div id="disp1" style="display:none;margin-left:300px;color:#fff;">Account is working</div>
 <%code1=(Integer)request.getAttribute("code1");
 if(code1==200){%>
 	<div id="disp1" style="margin-left:600px;color:#fff;"><img src="images/tick.jpg" width="20" height="20">&nbsp;&nbsp; Account is working</div><br><br>	

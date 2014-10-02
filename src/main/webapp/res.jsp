@@ -47,6 +47,16 @@ font-weight:bold;
 width:400px;
 height:150px;
 }
+input[type="button"],input[type="submit"]{
+padding:7px;
+border:solid 1px #fff;
+border-radius:5px;
+background-color:#fff;
+font-family:verdana;
+font-size:17px;
+color:#ff9900;
+font-weight:bold;
+}
 #res{
 margin-left:60px;
 float:left;
@@ -54,6 +64,7 @@ height:100%;
 }
 hr{
 color:#fff;
+background-color:#fff;
 height:3px;
 margin-left:70px;
 margin-right:70px;
@@ -111,7 +122,7 @@ function removeParam()
 <body>
 <form action="Parse" method="post">
 <br><br><div class="head">Mapping</div><br><br>
-<hr><br><br><a id='pa' href="javascript:addParam()">View Sample Trigger response</a><br><br>
+<hr><br><br><center><a id='pa' href="javascript:load()">View Sample Trigger response</a></center><br><br>
 <div id=ful>
 <div id=para>
 		<br><br><h3>Action Parameter:</h3><br>
@@ -123,18 +134,18 @@ function removeParam()
 				}
 		}
 	}else{
-		%><textarea name="descr" id="txt1"  placeholder="Give Sample xml or json structure"></textarea>&nbsp;&nbsp;&nbsp;&gt;----Map With Trigger node----&lt;&nbsp;&nbsp;&nbsp;Parse any thing<% 	
+		%><textarea name="exres" id="txt1"  placeholder="Give Sample xml or json structure"></textarea>&nbsp;&nbsp;&nbsp;&gt;----Map With Trigger node----&lt;&nbsp;&nbsp;&nbsp;Parse any thing<% 	
 	}
 %>
 </div>
 <div id=res>
 	<h3>Trigger Response:</h3>
-	<input type="text" placeholder=" parant Tag"><br><br>
+	<input type="text" name="ptag" placeholder=" parant Tag"><br><br>
 	<a id='pa' href="javascript:addParam()">Add_Tag</a>&nbsp;
     <a id='pa' href="javascript:removeParam()">Remove_Tags</a><br>
 	<div id="content"></div>
 </div>
-</div>
+</div><br><br>
 <%		}
 		catch(Exception e){
 			out.println(e);
