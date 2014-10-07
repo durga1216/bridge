@@ -302,46 +302,107 @@ public class Final extends HttpServlet {
       	     int tot=nodes.getLength();String res="";
       	     String[] data=new String[tot];
       	     for (int i = 0,j=1; i < nodes.getLength(); i++,j++) {
-      	       Element element = (Element) nodes.item(i);
-
-      	       NodeList name = element.getElementsByTagName(x1);
-      	       Element line = (Element) name.item(0);
-      	       xx1=getCharacterDataFromElement(line);
-      	       //res=res+"\t\t\tName: " + getCharacterDataFromElement(line);
+	      	       Element element = (Element) nodes.item(i);
+	      	       NodeList name = element.getElementsByTagName(x1);
+	      	       Element line = (Element) name.item(0);
+	      	       xx1=getCharacterDataFromElement(line);
       	     }
-      	     xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;
-      	   String[] slt=exres.split("@@");
+      	    xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;
+      	    String[] slt=exres.split("@@");
       		int nn=slt.length;String orurl="";
       		if(!(nn==0)){
-      		for(int i=1,j=1;i<nn;i=i+2,j++){
-      			slt[i]=xx[j];
+	      		for(int i=1,j=1;i<nn;i=i+2,j++){
+	      			slt[i]=xx[j];
+	      		}
+	      		for(int k=0;k<nn;k++){
+	      			orurl=orurl+slt[k];
+	      		}
       		}
-      		for(int k=0;k<nn;k++){
-      			orurl=orurl+slt[k];
-      		}
-      		}
-  		  //System.out.println(blt);
- HttpClient httpClient = new DefaultHttpClient();
-HttpPost postRequest = new HttpPost("https://minddots.cloudant.com/crud");
-StringEntity input = new StringEntity(orurl);
-input.setContentType("application/json");
-postRequest.setEntity(input);
-String encoding = new String(
-  		 org.apache.commons.codec.binary.Base64.encodeBase64   
-  		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8("minddots:MindTest12"))
-  		  );
-postRequest.setHeader("Authorization","Basic " + encoding);
-HttpResponse response1 = httpClient.execute(postRequest);
-BufferedReader in1 = new BufferedReader(
-     new InputStreamReader(response1.getEntity().getContent()));
-String line1="";String str1="";
-     while((line1=in1.readLine())!=null){
-     	str1+=line1;
-     }
-			   PreparedStatement ps=con.prepareStatement("insert into testing (data) values('"+str1+"')");
-				ps.executeUpdate();
-			   		out.println(str);
-				}
+      			PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");
+			    st3.setString(1, da);
+			    ResultSet rs2=st3.executeQuery();
+			   while(rs2.next()){
+				   String authen=rs.getString("authen");String apkey=rs.getString("apkey");
+			   		String ak1=rs.getString("aplabel");
+			   		String tempid=rs.getString("tempid");String aid=rs.getString("aid");
+			   		String rmethod=rs.getString("rmethod");String rformat=rs.getString("rformat");
+			   		String resformat=rs.getString("resformat");String endurl1=rs.getString("emethod");
+			   		String dn=rs.getString("dn");String dn1=rs.getString("dn1");
+			   		String p1=rs.getString("p1");String p2=rs.getString("p2");
+			   		String p3=rs.getString("p3");String p4=rs.getString("p4");
+			   		String p5=rs.getString("p5");String p6=rs.getString("p6");
+			   		String p7=rs.getString("p7");
+			   		String tlabel=rs.getString("tlabel");String treplace=rs.getString("treplace");
+			   		String pv1=rs.getString("pv1");String pv2=rs.getString("pv2");
+			   		String pv3=rs.getString("pv3");String pv4=rs.getString("pv4");
+			   		String pv5=rs.getString("pv5");String pv6=rs.getString("pv6");
+			   		String pv7=rs.getString("p7");
+			   		String h1=rs.getString("h1"); String hv1=rs.getString("hv1");
+			   		String h2=rs.getString("h2"); String hv2=rs.getString("hv2");
+			   		String h3=rs.getString("h3"); String hv3=rs.getString("hv3");
+			   		String h4=rs.getString("h4"); String hv4=rs.getString("hv4");
+			   		String h5=rs.getString("h5"); String hv5=rs.getString("hv5");
+			   		String b2=rs.getString("b2"); String b4=rs.getString("b4");
+			   		String str1="";
+			   		if(authen.equals("API keys")){
+			   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
+			        		 eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+xx1+"&"+p2+"="+xx2+"&"+p3+"="+xx3+"&"+p4+"="+xx4+"&"+p5+"="+xx5;}
+		        		 
+		        		 else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4)){
+			        		 eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+xx1+"&"+p2+"="+xx2+"&"+p3+"="+xx3+"&"+p4+"="+xx4;}
+		        		 
+		        		 else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3)){
+			        		 eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+xx1+"&"+p2+"="+xx2+"&"+p3+"="+xx3;}
+		        		 
+		        		 else if(!"null".equals(p1) && !"null".equals(p2)){
+			        		 eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+xx1+"&"+p2+"="+xx2;}
+		        		 
+		        		 else if(!"null".equals(p1)){
+			        		 eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+xx1;}
+		        		 else if("null".equals(p1))
+		        			eurl=endurl1+"?"+ak1+"="+apkey;
+		        		 
+		        		 else if("null".equals(ak1) && "null".equals(apkey))
+		        			 eurl=endurl1;	        		
+		        		
+		        			eurl=eurl.replaceAll(" ", "%20"); 
+		        		 URL eurl1=new URL(eurl);
+		        		 URLConnection uconn = eurl1.openConnection();
+		        	     HttpURLConnection conn = (HttpURLConnection) uconn;
+		        	     conn.connect();
+		        	     Object content = conn.getContent();
+		        	     InputStream stream = (InputStream) content;
+		        	     String line=null;
+		        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+		        	     while((line=br.readLine())!=null){
+	    	  	       	 		str+=line;
+	    	  	       	 }
+		   			}
+			   		if (authen.equals("Basic Auth")){
+			   			
+							HttpClient httpClient = new DefaultHttpClient();
+							HttpPost postRequest = new HttpPost(endurl1);
+							StringEntity input = new StringEntity(orurl);
+							input.setContentType("application/json");
+							postRequest.setEntity(input);
+							String encoding = new String(
+							  		 org.apache.commons.codec.binary.Base64.encodeBase64   
+							  		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
+							  		  );
+							postRequest.setHeader("Authorization","Basic " + encoding);
+							HttpResponse response1 = httpClient.execute(postRequest);
+							BufferedReader in1 = new BufferedReader(
+							     new InputStreamReader(response1.getEntity().getContent()));
+							String line1="";
+							     while((line1=in1.readLine())!=null){
+							     	 	str1+=line1;
+							     }
+			   		}
+					    PreparedStatement ps=con.prepareStatement("insert into testing (data) values('"+str1+"')");
+						ps.executeUpdate();
+				   		out.println(str);
+			   		}//while
+				}//try
 				catch(Exception e)
 				{
 					try {

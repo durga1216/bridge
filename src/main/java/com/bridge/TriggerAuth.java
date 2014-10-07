@@ -133,8 +133,7 @@ public class TriggerAuth extends HttpServlet {
            String str="";
            String eurl="null";
 	   		if(authen.equals("API keys")){  
-	   		
-	   			if(rmethod.equals("GET")){
+	   
 	   			 if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
 	        		 eurl=t1+"?"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
       		 
@@ -153,25 +152,20 @@ public class TriggerAuth extends HttpServlet {
       		 else if("null".equals(p1))
       			     eurl=t1;
       		 
-	   		 eurl=eurl.replaceAll(" ", "%20"); 
+	   			eurl=eurl.replaceAll(" ", "%20"); 
        		 URL eurl1=new URL(eurl);
        		 URLConnection uconn = eurl1.openConnection();
        	     HttpURLConnection conn = (HttpURLConnection) uconn;
        	     conn.connect();
        	     Object content = conn.getContent();
        	     InputStream stream = (InputStream) content;
-       	     String line=null; String strcon=null;
+       	     String line=null;
        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-       	     StringBuilder strb=new StringBuilder();
-       	     code=conn.getResponseCode();
-       	     while((line=br.readLine()) != null){
-       	    	 str+=line;
+       	     while((line=br.readLine())!=null){
+	  	       	 str+=line;
        	     }
-       	     out.println(code);
+       	     out.println(200);
        	     session.setAttribute("xml1", str);
-	   			}//get
-	   			
-	   			//post
 	   			
 	   			
 	   		}	//api keys

@@ -29,7 +29,6 @@ input[type="text"]{
 width:200px;
 height:25px;
 font-family:verdana; 
-font-weight:bold;
 font-size:19px;
 color:#FF9900;
 border-radius:5px;
@@ -82,7 +81,7 @@ function addParam(){
 	  var contentID = document.getElementById('content');
 	  var newTBDiv = document.createElement('div');
 	      newTBDiv.setAttribute('id','strText'+intTextBox);
-	  newTBDiv.innerHTML = "<br><input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='  xmltag'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder=' If Other'/>";
+	  newTBDiv.innerHTML = "<br><input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='  xmltag (x"+intTextBox+")'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder=' If Other'/>";
 	  contentID.appendChild(newTBDiv);
 }
 function removeParam()
@@ -133,7 +132,7 @@ function load(){
 	if(rformat.equals("rest")){
 		for(int i=1;i<5;i++){
 				if(!tp[i].equals("null")){
-						out.println("<br>*"+tp[i]+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;----Map With Trigger node----&gt;&gt;<br>");
+						out.println("<br>*"+tp[i]+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;----Map With Trigger (x"+i+") Tag----&gt;&gt;<br>");
 				}
 		}
 	}else{
