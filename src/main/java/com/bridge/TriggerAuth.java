@@ -166,7 +166,7 @@ public class TriggerAuth extends HttpServlet {
        	     while((line=br.readLine())!=null){
 	  	       	 str+=line;
        	     }
-       	     out.println(200);
+       	     code=200;
        	     session.setAttribute("xml1", str);
 	   			
 	   			
