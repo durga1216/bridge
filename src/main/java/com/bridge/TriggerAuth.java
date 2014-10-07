@@ -91,6 +91,8 @@ public class TriggerAuth extends HttpServlet {
         String pv1=request.getParameter("pv1");String pv2=request.getParameter("pv2");String pv3=request.getParameter("pv3");
         String pv4=request.getParameter("pv4");String pv5=request.getParameter("pv5");String pv6=request.getParameter("pv6");
         String p7=request.getParameter("p7");String pv7=request.getParameter("pv7");*/
+        String[] tdm={request.getParameter("tdm1"),request.getParameter("tdm2"),request.getParameter("tdm3"),request.getParameter("tdm4"),request.getParameter("tdm5")};
+        String[] adm={request.getParameter("adm1"),request.getParameter("adm2"),request.getParameter("adm3"),request.getParameter("adm4"),request.getParameter("adm5")};
         out.println(action);
         int code=0;int code1=0;
         try{
@@ -191,8 +193,17 @@ public class TriggerAuth extends HttpServlet {
       		 else if("null".equals(p1)){
       			     eurl="null";
       		 }
-	   	 t1=t1.replaceAll("@@", "");
-
+			   	String[] slt=t1.split("@@");
+		  		int nn=slt.length;String orurl="";
+		  		if(!(nn==0)){
+		      		for(int i=1,j=1;i<nn;i=i+2,j++){
+		      			slt[i]=tdm[j];
+		      		}
+		      		for(int k=0;k<nn;k++){
+		      			orurl=orurl+slt[k];
+		      		}
+		      		t1=orurl;
+		  		}
 	   	    	 URL url1;
 	              if(!"null".equals(eurl)){
 
@@ -396,7 +407,17 @@ public class TriggerAuth extends HttpServlet {
 	      			     eurl="null";
 	      		 }
 
-		   	 t1=t1.replaceAll("@@", "");
+				   	 String[] slt=t1.split("@@");
+				  		int nn=slt.length;String orurl="";
+				  		if(!(nn==0)){
+				      		for(int i=1,j=1;i<nn;i=i+2,j++){
+				      			slt[i]=tdm[j];
+				      		}
+				      		for(int k=0;k<nn;k++){
+				      			orurl=orurl+slt[k];
+				      		}
+				      		t1=orurl;
+				  		}
 		   	    	 URL url1;
 		              if(!"null".equals(eurl)){
 		            
