@@ -318,22 +318,27 @@ public class Final extends HttpServlet {
 		      	     String[] data=new String[tot];
 		      	     for (int i = 0,j=1; i < nodes.getLength(); i++,j++) {
 			      	       Element element = (Element) nodes.item(i);
-		      	         NodeList name = element.getElementsByTagName(x1);
-			      	       Element line = (Element) name.item(0);
-			      	     NodeList name1 = element.getElementsByTagName(x2);
-			      	       Element line1 = (Element) name1.item(0);
-			      	     NodeList name2 = element.getElementsByTagName(x3);
-			      	       Element line2 = (Element) name2.item(0);
-			      	     NodeList name3 = element.getElementsByTagName(x4);
-			      	       Element line3 = (Element) name3.item(0);
-			      	     NodeList name4 = element.getElementsByTagName(x5);
-			      	       Element line4 = (Element) name4.item(0);
-			      	       xx1=getCharacterDataFromElement(line);
-			      	       xx2=getCharacterDataFromElement(line1);
-			      	       xx3=getCharacterDataFromElement(line2);
-			      	       xx4=getCharacterDataFromElement(line3);
-			      	       xx5=getCharacterDataFromElement(line4);
-			      	
+			      	       if(!x1.equals("null")){
+					      	       NodeList name = element.getElementsByTagName(x1);
+					      	       Element line = (Element) name.item(0);
+					      	       xx1=getCharacterDataFromElement(line);
+			      	       }if(!x2.equals("null")){
+					      	     NodeList name1 = element.getElementsByTagName(x2);
+					      	       Element line1 = (Element) name1.item(0);
+					      	     xx2=getCharacterDataFromElement(line1);
+			      	       }if(!x3.equals("null")){
+					      	     NodeList name2 = element.getElementsByTagName(x3);
+					      	       Element line2 = (Element) name2.item(0);
+					      	     xx3=getCharacterDataFromElement(line2);
+			      	       }if(!x4.equals("null")){
+					      	     NodeList name3 = element.getElementsByTagName(x4);
+					      	       Element line3 = (Element) name3.item(0);
+					      	     xx4=getCharacterDataFromElement(line3);
+			      	       }if(!x5.equals("null")){
+					      	     NodeList name4 = element.getElementsByTagName(x5);
+					      	       Element line4 = (Element) name4.item(0);
+					      	     xx5=getCharacterDataFromElement(line4);
+			      	       }
 		      	     }
 			 }
       	    xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
