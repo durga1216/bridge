@@ -281,6 +281,7 @@ public class Final extends HttpServlet {
 			   		}
 			   		}//while
 			   String x1="";String x2="";String x3="";String x4="";String x5="";
+			   String xx1="";String xx2="";String xx3="";String xx4="";String xx5="";
 			   String[] xx=new String[6];
 			   String ptag="";String exres="";
 			   PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
@@ -305,9 +306,10 @@ public class Final extends HttpServlet {
 
       	       NodeList name = element.getElementsByTagName(x1);
       	       Element line = (Element) name.item(0);
-      	       xx[j]=getCharacterDataFromElement(line);
+      	       xx1=getCharacterDataFromElement(line);
       	       //res=res+"\t\t\tName: " + getCharacterDataFromElement(line);
       	     }
+      	     xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;
       	   String[] slt=exres.split("@@");
       		int nn=slt.length;String orurl="";
       		if(!(nn==0)){
