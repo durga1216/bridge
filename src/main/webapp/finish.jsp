@@ -30,8 +30,8 @@ color:#fff;
 </head>
 <body>
 <br><br><center><div id="head">Mind-Pulpy</div></center>
-<br><br><br><br><center><div id="tit">Configuration Completed..!!</div><br><br>
-<div id="tit"><a href="title.jsp">Go to Configure other Connector</a></div><br><br>
+<br><br><br><br><center><div id="tit">Configuration Completed..!!</div><br><br><br>
+<div id="tit"><a href="title.jsp">Go to Configure other Connector</a></div><br><br><br>
 <div id="tit"><a href="index.jsp">Go to Cloud Connectors</a></div></center>
 </body>
 </html>
