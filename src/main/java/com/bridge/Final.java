@@ -140,20 +140,24 @@ public class Final extends HttpServlet {
 	    	  	       	 }
 			   			}
 			   		else if(authen.equals("Basic Auth")){
-					   			HttpClient httpClient = new DefaultHttpClient();
-								HttpGet postRequest = new HttpGet(endurl1);
-								String encoding = new String(
-								  		 org.apache.commons.codec.binary.Base64.encodeBase64   
-								  		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
-								  		  );
-								postRequest.setHeader("Authorization","Basic " + encoding);
-								HttpResponse response1 = httpClient.execute(postRequest);
-								BufferedReader in1 = new BufferedReader(
-								     new InputStreamReader(response1.getEntity().getContent()));
-								String line1="";
-								     while((line1=in1.readLine())!=null){
-								     	 	str+=line1;
-								     }
+			   			URL url1=new URL(endurl1);
+		                  HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
+		                 connection.setDoOutput(true);
+		                 connection.setDoInput(true);
+		                  connection.setRequestMethod("GET");
+		                  String encoding=null;
+		                		 encoding = new String(
+		                        		 org.apache.commons.codec.binary.Base64.encodeBase64   
+		                        		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
+		                        		  );
+		       	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+		       	              connection.setRequestProperty("Content-Type", "application/json");
+		    	              InputStream stream = (InputStream)connection.getInputStream();
+		    	        	     BufferedReader bf=new BufferedReader(new InputStreamReader(stream));
+		    				String lin="";
+		    				while((lin=bf.readLine())!=null){
+		    					str+=lin;
+		    				}
 			   			}
 			   		else if(authen.equals("Oauth2")){
 			   			PreparedStatement st=con.prepareStatement("select * from token where tempid=?");
