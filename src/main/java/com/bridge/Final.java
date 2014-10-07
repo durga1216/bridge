@@ -593,6 +593,7 @@ public class Final extends HttpServlet {
 		} catch (Exception e1) {
 			out.println(e1);
 		}
+		response.sendRedirect("final.jsp");
 	}
 
 	/**
