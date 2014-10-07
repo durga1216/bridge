@@ -164,7 +164,11 @@ public class TriggerAuth extends HttpServlet {
        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
        	     StringBuilder strb=new StringBuilder();
        	     code=conn.getResponseCode();
+       	     while((line=br.readLine()) != null){
+       	    	 str+=line;
+       	     }
        	     out.println(code);
+       	     session.setAttribute("xml1", str);
 	   			}//get
 	   			
 	   			//post
@@ -265,7 +269,7 @@ public class TriggerAuth extends HttpServlet {
 	 	                    	str+=line;
 	 	                    }//while
 	   	     
-	 	                   
+	 	                   session.setAttribute("xml1", str);
 
 	   		}//basic auth
 	   		
@@ -367,6 +371,9 @@ public class TriggerAuth extends HttpServlet {
 	       	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
 	       	     StringBuilder strb=new StringBuilder();
 	       	     code1=conn.getResponseCode();
+	       	     while((line=br.readLine())!= null){
+	       	    	 str+=line;
+	       	     }
 	       	     out.println(code1);
 		   	     conn.disconnect();
 		   			}

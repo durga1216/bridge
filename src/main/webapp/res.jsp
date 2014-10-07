@@ -19,7 +19,7 @@ margin-left:600px;
 }
 #ful{
 width:100%;
-height:700px;
+height:500px;
 color:#fff;
 font-family:verdana; 
 font-weight:bold;
@@ -91,6 +91,9 @@ function removeParam()
     contentID.removeChild(document.getElementById('strText'+intTextBox));
     intTextBox = intTextBox-1;
 	}
+function load(){
+	window.open("<%=request.getContextPath()%>/Loadres", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+}
 </script>
 </head>
 <%@ page import="java.sql.*" %>
@@ -145,13 +148,13 @@ function removeParam()
     <a id='pa' href="javascript:removeParam()">Remove_Tags</a><br>
 	<div id="content"></div>
 </div>
-</div><br><br>
+</div>
 <%		}
 		catch(Exception e){
 			out.println(e);
 		}
 %>
-<input type="submit" value="Continue">
+<center><input type="submit" value="Continue"></center>
 </form>
 </body>
 </html>

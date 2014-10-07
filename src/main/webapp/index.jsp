@@ -36,7 +36,9 @@ color:#ff9900;
 font-weight:bold;
 margin-left:500px;
 }
-
+#ifm{
+background-color:#ff9900;
+}
 select{
 font-family:verdana;
 font-size:17px;
@@ -103,6 +105,9 @@ $(document).ready(function(){
 	$('#con_trig').click(function(){
 	});
 });
+function load(){
+		window.open("https://docs.google.com/forms/d/1mULCyQRpHS3IBRaoKOuKg8cGrR6o8i0QyfcW4bXfeO0/viewform?embedded=true",'_blank');
+}
 </script>
 </head>
 <body>
@@ -121,8 +126,8 @@ ResultSet rs2=null; ResultSet rs3=null;%>
 String id="";String id1="";
 %>
 
-<br><br><center><div id="head">Mind-Bridge</div></center>
-<br><br><br><div id='tit'>1.Choose trigger and action</div>
+<br><br><center><div id="head">Mind-Pulpy<br><br>Popular Cloud Connectors</div></center>
+<br><br><br><div id='tit'>1.Choose trigger and action &nbsp;&nbsp;&nbsp; (OR) &nbsp;&nbsp;&nbsp; <a style="color:#fff;" href="javascript:load()">Click here to Submit New Cloud Connect Request</a></div>
 <br><br>
 <div id="ins">a.Choose a trigger -> b. Choose an action -> c.Choose Trigger Method -> d.Choose Action Method</div><br><br>
 <select name="select1" id="select1"  style="margin-left:250px;" >
@@ -179,7 +184,7 @@ String id="";String id1="";
     	        <%}}%></select><input type="text" name="app1" value="<%=app1%>" style="display:none"><input type="text" name="app" value="<%=app %>" style="display:none">      <br><br>  <br><br>
     	  
     	        
-  <br><br><input type="submit" name="con_trig" id="con_trig" value="Continue" style="display:none">  <br><br>	
+  <br><br><input type="submit" name="con_trig" id="con_trig" value="Continue" style="display:none"><br><br>	
   
    <% 
        
