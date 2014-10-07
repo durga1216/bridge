@@ -20,14 +20,18 @@ color:#FFFFFF;
 font-family:verdana;
 font-size:25px;
 font-weight:bold;
-margin-left:500px;
 color:#FFFFFF;
 font-weight:bold;
+}
+a{
+color:#fff;
 }
 </style>
 </head>
 <body>
-<br><br><center><div id="head">Mind-Bridge</div></center>
-<br><br><br><br><div id="tit">Configuration Completed</div><br>
+<br><br><center><div id="head">Mind-Pulpy</div></center>
+<br><br><br><br><center><div id="tit">Configuration Completed..!!</div><br><br>
+<div id="tit"><a href="title.jsp">Go to Configure other Connector</a></div><br><br>
+<div id="tit"><a href="index.jsp">Go to Cloud Connectors</a></div></center>
 </body>
 </html>
