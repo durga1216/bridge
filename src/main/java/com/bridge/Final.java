@@ -312,7 +312,10 @@ public class Final extends HttpServlet {
 				   exres=rs1.getString("exres");
 				   
 			   } 
-			 if(resformat.equals("xml")){
+			   if(resformat.equals("json")){
+				   xx1=str;
+			   }
+			   else if(resformat.equals("xml")){
 					 DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		      	     InputSource is = new InputSource();
 		      	     is.setCharacterStream(new StringReader(str));
