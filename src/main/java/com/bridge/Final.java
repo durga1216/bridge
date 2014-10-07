@@ -322,27 +322,27 @@ public class Final extends HttpServlet {
 			    st3.setString(1, da);
 			    ResultSet rs2=st3.executeQuery();
 			   while(rs2.next()){
-				   String authen=rs.getString("authen");String apkey=rs.getString("apkey");
-			   		String ak1=rs.getString("aplabel");
-			   		String tempid=rs.getString("tempid");String aid=rs.getString("aid");
-			   		String rmethod=rs.getString("rmethod");String rformat=rs.getString("rformat");
-			   		String resformat=rs.getString("resformat");String endurl1=rs.getString("emethod");
-			   		String dn=rs.getString("dn");String dn1=rs.getString("dn1");
-			   		String p1=rs.getString("p1");String p2=rs.getString("p2");
-			   		String p3=rs.getString("p3");String p4=rs.getString("p4");
-			   		String p5=rs.getString("p5");String p6=rs.getString("p6");
-			   		String p7=rs.getString("p7");
-			   		String tlabel=rs.getString("tlabel");String treplace=rs.getString("treplace");
-			   		String pv1=rs.getString("pv1");String pv2=rs.getString("pv2");
-			   		String pv3=rs.getString("pv3");String pv4=rs.getString("pv4");
-			   		String pv5=rs.getString("pv5");String pv6=rs.getString("pv6");
-			   		String pv7=rs.getString("p7");
-			   		String h1=rs.getString("h1"); String hv1=rs.getString("hv1");
-			   		String h2=rs.getString("h2"); String hv2=rs.getString("hv2");
-			   		String h3=rs.getString("h3"); String hv3=rs.getString("hv3");
-			   		String h4=rs.getString("h4"); String hv4=rs.getString("hv4");
-			   		String h5=rs.getString("h5"); String hv5=rs.getString("hv5");
-			   		String b2=rs.getString("b2"); String b4=rs.getString("b4");
+				   String authen=rs2.getString("authen");String apkey=rs2.getString("apkey");
+			   		String ak1=rs2.getString("aplabel");
+			   		String tempid=rs2.getString("tempid");String aid=rs2.getString("aid");
+			   		String rmethod=rs2.getString("rmethod");String rformat=rs2.getString("rformat");
+			   		String resformat=rs2.getString("resformat");String endurl1=rs2.getString("emethod");
+			   		String dn=rs2.getString("dn");String dn1=rs2.getString("dn1");
+			   		String p1=rs2.getString("p1");String p2=rs2.getString("p2");
+			   		String p3=rs2.getString("p3");String p4=rs2.getString("p4");
+			   		String p5=rs2.getString("p5");String p6=rs2.getString("p6");
+			   		String p7=rs2.getString("p7");
+			   		String tlabel=rs2.getString("tlabel");String treplace=rs2.getString("treplace");
+			   		String pv1=rs2.getString("pv1");String pv2=rs2.getString("pv2");
+			   		String pv3=rs2.getString("pv3");String pv4=rs2.getString("pv4");
+			   		String pv5=rs2.getString("pv5");String pv6=rs2.getString("pv6");
+			   		String pv7=rs2.getString("p7");
+			   		String h1=rs2.getString("h1"); String hv1=rs2.getString("hv1");
+			   		String h2=rs2.getString("h2"); String hv2=rs2.getString("hv2");
+			   		String h3=rs2.getString("h3"); String hv3=rs2.getString("hv3");
+			   		String h4=rs2.getString("h4"); String hv4=rs2.getString("hv4");
+			   		String h5=rs2.getString("h5"); String hv5=rs2.getString("hv5");
+			   		String b2=rs2.getString("b2"); String b4=rs2.getString("b4");
 			   		String str1="";
 			   		if(authen.equals("API keys")){
 			   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
@@ -378,7 +378,7 @@ public class Final extends HttpServlet {
 	    	  	       	 		str+=line;
 	    	  	       	 }
 		   			}
-			   		if (authen.equals("Basic Auth")){
+			   		else if (authen.equals("Basic Auth")){
 			   			
 							HttpClient httpClient = new DefaultHttpClient();
 							HttpPost postRequest = new HttpPost(endurl1);
