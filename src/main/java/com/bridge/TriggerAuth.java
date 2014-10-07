@@ -91,8 +91,8 @@ public class TriggerAuth extends HttpServlet {
         String pv1=request.getParameter("pv1");String pv2=request.getParameter("pv2");String pv3=request.getParameter("pv3");
         String pv4=request.getParameter("pv4");String pv5=request.getParameter("pv5");String pv6=request.getParameter("pv6");
         String p7=request.getParameter("p7");String pv7=request.getParameter("pv7");*/
-        String[] tdm={request.getParameter("tdm1"),request.getParameter("tdm2"),request.getParameter("tdm3"),request.getParameter("tdm4"),request.getParameter("tdm5")};
-        String[] adm={request.getParameter("adm1"),request.getParameter("adm2"),request.getParameter("adm3"),request.getParameter("adm4"),request.getParameter("adm5")};
+        String[] tdm={"Test",request.getParameter("tdm1"),request.getParameter("tdm2"),request.getParameter("tdm3"),request.getParameter("tdm4"),request.getParameter("tdm5")};
+        String[] adm={"Test",request.getParameter("adm1"),request.getParameter("adm2"),request.getParameter("adm3"),request.getParameter("adm4"),request.getParameter("adm5")};
         out.println(action);
         int code=0;int code1=0;
         try{
@@ -137,22 +137,22 @@ public class TriggerAuth extends HttpServlet {
 	   		if(authen.equals("API keys")){  
 	   
 	   			 if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
-	        		 eurl=t1+"?"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
+	        		 eurl=t1+"?"+a1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
       		 
       		 else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4)){
-	        		 eurl=t1+"?"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4;}
+	        		 eurl=t1+"?"+a1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4;}
       		 
       		 else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3)){
-	        		 eurl=t1+"?"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3;}
+	        		 eurl=t1+"?"+a1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3;}
       		 
       		 else if(!"null".equals(p1) && !"null".equals(p2)){
-	        		 eurl=t1+"?"+p1+"="+pv1+"&"+p2+"="+pv2;}
+	        		 eurl=t1+"?"+a1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2;}
       		 
       		 else if(!"null".equals(p1)){
-	        		 eurl=t1+"?"+p1+"="+pv1;}
+	        		 eurl=t1+"?"+a1+"="+apkey+"&"+p1+"="+pv1;}
 	   	   
       		 else if("null".equals(p1))
-      			     eurl=t1;
+      			     eurl=t1+"?"+a1+"="+apkey+"&";
       		 
 	   			eurl=eurl.replaceAll(" ", "%20"); 
        		 URL eurl1=new URL(eurl);
@@ -411,7 +411,7 @@ public class TriggerAuth extends HttpServlet {
 				  		int nn=slt.length;String orurl="";
 				  		if(!(nn==0)){
 				      		for(int i=1,j=1;i<nn;i=i+2,j++){
-				      			slt[i]=tdm[j];
+				      			slt[i]=adm[j];
 				      		}
 				      		for(int k=0;k<nn;k++){
 				      			orurl=orurl+slt[k];

@@ -254,7 +254,7 @@ try{
 	int nn=slt.length;String orurl="";
 	if(!(nn==0)){
 	for(int i=1,j=1;i<nn;i=i+2,j++){
-		slt[i]="&nbsp;&nbsp;<input style='width:100px;border-radius:5px;'name='tdm"+j+"' type='text'>&nbsp;&nbsp;";
+		slt[i]="&nbsp;<input style='width:100px;border-radius:5px;'name='tdm"+j+"' type='text'>&nbsp;";
 	}
 	for(int k=0;k<nn;k++){
 		orurl=orurl+slt[k];
@@ -283,7 +283,7 @@ try{
 	int nn=slt.length;String orurl="";
 	if(!(nn==0)){
 	for(int i=1,j=1;i<nn;i=i+2,j++){
-		slt[i]="&nbsp;&nbsp;<input style='width:100px;border-radius:5px;'name='adm"+j+"' type='text'>&nbsp;&nbsp;";
+		slt[i]="&nbsp;<input style='width:100px;border-radius:5px;'name='adm"+j+"' type='text'>&nbsp;";
 	}
 	for(int k=0;k<nn;k++){
 		orurl=orurl+slt[k];
