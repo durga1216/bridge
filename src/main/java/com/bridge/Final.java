@@ -78,7 +78,7 @@ public class Final extends HttpServlet {
 			th[i]=new Thread(){
 				public void run(){
 				try{
-			   String str="";String eurl="";
+			   String str="";String eurl="";String resformat="";
 			   PreparedStatement st1=con.prepareStatement("select * from trig_all where tempid=?");
 			   st1.setString(1, da);
 			   ResultSet rs=st1.executeQuery();
@@ -87,7 +87,7 @@ public class Final extends HttpServlet {
 			   		String ak1=rs.getString("aplabel");
 			   		String tempid=rs.getString("tempid");String tid=rs.getString("tid");
 			   		String rmethod=rs.getString("rmethod");String rformat=rs.getString("rformat");
-			   		String resformat=rs.getString("resformat");String endurl1=rs.getString("emethod");
+			   		resformat=rs.getString("resformat");String endurl1=rs.getString("emethod");
 			   		String dn=rs.getString("dn");String dn1=rs.getString("dn1");
 			   		String p1=rs.getString("p1");String p2=rs.getString("p2");
 			   		String p3=rs.getString("p3");String p4=rs.getString("p4");
@@ -295,8 +295,8 @@ public class Final extends HttpServlet {
 			   		}
 			   		}//while
 			   String x1="";String x2="";String x3="";String x4="";String x5="";
-			   String xx1="";String xx2="";String xx3="";String xx4="";String xx5="";
-			   String[] xx=new String[6];
+			   String xx1="mind";String xx2="mind";String xx3="mind";String xx4="";String xx5="";
+			   String[] xx=new String[10];
 			   String ptag="";String exres="";
 			   PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
 			   st2.setString(1, da);
@@ -308,20 +308,35 @@ public class Final extends HttpServlet {
 				   exres=rs1.getString("exres");
 				   
 			   } 
-			 DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-      	     InputSource is = new InputSource();
-      	     is.setCharacterStream(new StringReader(str));
-      	     Document doc = db.parse(is);
-      	     NodeList nodes = doc.getElementsByTagName(ptag);
-      	     int tot=nodes.getLength();String res="";
-      	     String[] data=new String[tot];
-      	     for (int i = 0,j=1; i < nodes.getLength(); i++,j++) {
-	      	       Element element = (Element) nodes.item(i);
-	      	       NodeList name = element.getElementsByTagName(x1);
-	      	       Element line = (Element) name.item(0);
-	      	       xx1=getCharacterDataFromElement(line);
-      	     }
-      	    xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;
+			 if(resformat.equals("xml")){
+					 DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+		      	     InputSource is = new InputSource();
+		      	     is.setCharacterStream(new StringReader(str));
+		      	     Document doc = db.parse(is);
+		      	     NodeList nodes = doc.getElementsByTagName(ptag);
+		      	     int tot=nodes.getLength();String res="";
+		      	     String[] data=new String[tot];
+		      	     for (int i = 0,j=1; i < nodes.getLength(); i++,j++) {
+			      	       Element element = (Element) nodes.item(i);
+		      	         NodeList name = element.getElementsByTagName(x1);
+			      	       Element line = (Element) name.item(0);
+			      	     NodeList name1 = element.getElementsByTagName(x2);
+			      	       Element line1 = (Element) name1.item(0);
+			      	     NodeList name2 = element.getElementsByTagName(x3);
+			      	       Element line2 = (Element) name2.item(0);
+			      	     NodeList name3 = element.getElementsByTagName(x4);
+			      	       Element line3 = (Element) name3.item(0);
+			      	     NodeList name4 = element.getElementsByTagName(x5);
+			      	       Element line4 = (Element) name4.item(0);
+			      	       xx1=getCharacterDataFromElement(line);
+			      	       xx2=getCharacterDataFromElement(line1);
+			      	       xx3=getCharacterDataFromElement(line2);
+			      	       xx4=getCharacterDataFromElement(line3);
+			      	       xx5=getCharacterDataFromElement(line4);
+			      	
+		      	     }
+			 }
+      	    xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
       	    String[] slt=exres.split("@@");
       		int nn=slt.length;String orurl="";
       		if(!(nn==0)){
@@ -340,7 +355,7 @@ public class Final extends HttpServlet {
 			   		String ak1=rs2.getString("aplabel");
 			   		String tempid=rs2.getString("tempid");String aid=rs2.getString("aid");
 			   		String rmethod=rs2.getString("rmethod");String rformat=rs2.getString("rformat");
-			   		String resformat=rs2.getString("resformat");String endurl1=rs2.getString("emethod");
+			   		String resformat1=rs2.getString("resformat");String endurl1=rs2.getString("emethod");
 			   		String dn=rs2.getString("dn");String dn1=rs2.getString("dn1");
 			   		String p1=rs2.getString("p1");String p2=rs2.getString("p2");
 			   		String p3=rs2.getString("p3");String p4=rs2.getString("p4");
