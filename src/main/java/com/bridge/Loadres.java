@@ -30,7 +30,7 @@ public class Loadres extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setHeader("Content-Type","text/xml; charset=UTF-8");
+		//response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		HttpSession session=request.getSession(true);
 		String xml=(String)session.getAttribute("xml1");
 		PrintWriter out=response.getWriter();

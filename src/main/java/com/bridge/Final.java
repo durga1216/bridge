@@ -280,33 +280,48 @@ public class Final extends HttpServlet {
 					     	}
 			   		}
 			   		}//while
-			   DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			   String x1="";String x2="";String x3="";String x4="";String x5="";
+			   String[] xx=new String[6];
+			   String ptag="";String exres="";
+			   PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
+			   st2.setString(1, da);
+			   ResultSet rs1=st2.executeQuery();
+			   while(rs1.next()){
+				   x1=rs1.getString("x1");x2=rs1.getString("x2");
+				   x3=rs1.getString("x3");x4=rs1.getString("x4");
+				   x5=rs1.getString("x5");ptag=rs1.getString("ptag");
+				   exres=rs1.getString("exres");
+				   
+			   } 
+			 DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
       	     InputSource is = new InputSource();
       	     is.setCharacterStream(new StringReader(str));
       	     Document doc = db.parse(is);
-      	     NodeList nodes = doc.getElementsByTagName("event");
+      	     NodeList nodes = doc.getElementsByTagName(ptag);
       	     int tot=nodes.getLength();String res="";
       	     String[] data=new String[tot];
-      	     for (int i = 0; i < nodes.getLength(); i++) {
+      	     for (int i = 0,j=1; i < nodes.getLength(); i++,j++) {
       	       Element element = (Element) nodes.item(i);
 
-      	       NodeList name = element.getElementsByTagName("title");
+      	       NodeList name = element.getElementsByTagName(x1);
       	       Element line = (Element) name.item(0);
-      	       data[i]=getCharacterDataFromElement(line);
+      	       xx[j]=getCharacterDataFromElement(line);
       	       //res=res+"\t\t\tName: " + getCharacterDataFromElement(line);
       	     }
-      	   String blt="{";String name="Event-Title";
-	        //out.println(data[1]+"---"+data[2]+"---"+data[3]);
-   	     int nn=data.length;
-	        for(int i=0;i<nn;i++){
-  			  blt=blt+"\""+name+"\":\""+data[i]+"\",";
-  		  }
-  		  blt=method(blt);
-  		  blt=blt+"}";
+      	   String[] slt=exres.split("@@");
+      		int nn=slt.length;String orurl="";
+      		if(!(nn==0)){
+      		for(int i=1,j=1;i<nn;i=i+2,j++){
+      			slt[i]=xx[j];
+      		}
+      		for(int k=0;k<nn;k++){
+      			orurl=orurl+slt[k];
+      		}
+      		}
   		  //System.out.println(blt);
  HttpClient httpClient = new DefaultHttpClient();
 HttpPost postRequest = new HttpPost("https://minddots.cloudant.com/crud");
-StringEntity input = new StringEntity(blt);
+StringEntity input = new StringEntity(orurl);
 input.setContentType("application/json");
 postRequest.setEntity(input);
 String encoding = new String(
