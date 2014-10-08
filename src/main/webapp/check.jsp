@@ -183,12 +183,17 @@ font-size:15px;
 color:#FFFFFF;
 
 }
+hr{
+color:#fff;
+background-color:#fff;
+height:1px;
+}
 </style>
 </head>
 <body>
 
-<br><br><center><div id="head">Mind-Bridge</div></center>
-<br><br><br><div id='tit'>2.Authenticate your Account</div>
+<br><br><center><div id="head">Mind-Pulpy Authentication</div></center><br><hr>
+<br><br><div id='tit'>2.Authenticate your Account</div>
 <%@ page import="java.sql.*" %>
 <%@include file="conn.jsp" %>
 <%ResultSet r=null;ResultSet rs1 =null;ResultSet rs=null;String authen="";String txt1="";String txt2="";String txt3="";String txt4="";String a1="";String b1="";String b3="";

@@ -49,7 +49,11 @@ height:50px;
 background-color:#fff;
 border-radius:5px;
 }
-
+hr{
+color:#fff;
+background-color:#fff;
+height:1px;
+}
 #ins{
 font-family:verdana;
 font-size:15px;
@@ -126,7 +130,7 @@ ResultSet rs2=null; ResultSet rs3=null;%>
 String id="";String id1="";
 %>
 
-<br><br><center><div id="head">Mind-Pulpy<br><br>Popular Cloud Connectors</div></center>
+<br><br><center><div id="head">Mind-Pulpy Cloud Connectors</div></center><br><hr>
 <br><br><br><div id='tit'>1.Choose trigger and action &nbsp;&nbsp;&nbsp; (OR) &nbsp;&nbsp;&nbsp; <a style="color:#fff;" href="javascript:load()">Click here to Submit New Cloud Connect Request</a></div>
 <br><br>
 <div id="ins">a.Choose a trigger -> b. Choose an action -> c.Choose Trigger Method -> d.Choose Action Method</div><br><br>
