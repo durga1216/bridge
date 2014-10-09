@@ -227,7 +227,7 @@ try{
       while(rs1.next()){
     	authen1=rs1.getString("authen");
     	aurl=rs1.getString("t1");
-    	hd[1]=rs.getString("j1");hd[2]=rs.getString("j2");hd[3]=rs.getString("j3");hd[4]=rs.getString("j4");
+    	hd[1]=rs.getString("h1");hd[2]=rs.getString("h2");hd[3]=rs.getString("h3");hd[4]=rs.getString("h4");
     	atxt1=rs1.getString("txt1");atxt2=rs1.getString("txt2"); atxt3=rs1.getString("txt3");atxt4=rs1.getString("txt4");
       }
      HttpSession session1=request.getSession();
