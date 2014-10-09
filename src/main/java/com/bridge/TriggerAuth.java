@@ -85,12 +85,12 @@ public class TriggerAuth extends HttpServlet {
         String aid=(String)session.getAttribute("aid");
         String action=request.getParameter("submit");
         String dn=request.getParameter("dn");String apkey=request.getParameter("apkey");String b2=request.getParameter("uname");String b4=request.getParameter("pwd");
-        String dn1=request.getParameter("dn1");String pa1=request.getParameter("p1");String pa2=request.getParameter("pa2");String pa3=request.getParameter("p3");
-      /*  String p1=request.getParameter("p1");String p2=request.getParameter("p2");String p3=request.getParameter("p3");
-        String p4=request.getParameter("p4");String p5=request.getParameter("p5");String p6=request.getParameter("p6");
+        String dn1=request.getParameter("dn1");
+        String hd1=request.getParameter("hd1");String hd2=request.getParameter("hd2");String hd3=request.getParameter("hd3");
+        String hd4=request.getParameter("hd4");String hd5=request.getParameter("hd5");
         String pv1=request.getParameter("pv1");String pv2=request.getParameter("pv2");String pv3=request.getParameter("pv3");
         String pv4=request.getParameter("pv4");String pv5=request.getParameter("pv5");String pv6=request.getParameter("pv6");
-        String p7=request.getParameter("p7");String pv7=request.getParameter("pv7");*/
+        String pv7=request.getParameter("pv7");
         String[] tdm={"Test",request.getParameter("tdm1"),request.getParameter("tdm2"),request.getParameter("tdm3"),request.getParameter("tdm4"),request.getParameter("tdm5")};
         String[] adm={"Test",request.getParameter("adm1"),request.getParameter("adm2"),request.getParameter("adm3"),request.getParameter("adm4"),request.getParameter("adm5")};
         out.println(action);
@@ -113,9 +113,10 @@ public class TriggerAuth extends HttpServlet {
 	   		String resformat=rs.getString("resformat");String p1=rs.getString("p1");String p2=rs.getString("p2");String p3=rs.getString("p3");
 	   		String p4=rs.getString("p4");String p5=rs.getString("p5");String p6=rs.getString("p6");String p7=rs.getString("p7");
 	   		String p8=rs.getString("p8");String p9=rs.getString("p9");String p10=rs.getString("p10");
-	   		String pv1=rs.getString("pv1");String pv2=rs.getString("pv2");String pv3=rs.getString("pv3");
-	   		String pv4=rs.getString("pv4");String pv5=rs.getString("pv5");String pv6=rs.getString("pv6");String pv7=rs.getString("p7");
-	   		String pv8=rs.getString("pv8");String pv9=rs.getString("pv9");String pv10=rs.getString("pv10");String b1=rs.getString("b1");
+//	   		String pv1=rs.getString("pv1");String pv2=rs.getString("pv2");String pv3=rs.getString("pv3");
+//	   		String pv4=rs.getString("pv4");String pv5=rs.getString("pv5");String pv6=rs.getString("pv6");String pv7=rs.getString("p7");
+//	   		String pv8=rs.getString("pv8");String pv9=rs.getString("pv9");String pv10=rs.getString("pv10");
+	   		String b1=rs.getString("b1");
 	   		String b3=rs.getString("b3");
 	   		String treplace=rs.getString("treplace");String tlabel=rs.getString("tlabel");
 	   		String h1=rs.getString("h1"); String hv1=rs.getString("hv1");
@@ -300,7 +301,7 @@ public class TriggerAuth extends HttpServlet {
 
 	   		}
 	   	   
-			   	PreparedStatement st2=con.prepareStatement("insert into trig_all (tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+tlabel+"','"+treplace+"')");
+			   	PreparedStatement st2=con.prepareStatement("insert into trig_all (tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
 			   	st2.executeUpdate();
 			   	st2.close();
 			   	
@@ -322,9 +323,10 @@ public class TriggerAuth extends HttpServlet {
 		   		String resformat=rs.getString("resformat");String p1=rs.getString("p1");String p2=rs.getString("p2");String p3=rs.getString("p3");
 		   		String p4=rs.getString("p4");String p5=rs.getString("p5");String p6=rs.getString("p6");String p7=rs.getString("p7");
 		   		String p8=rs.getString("p8");String p9=rs.getString("p9");String p10=rs.getString("p10");
-		   		String pv1=rs.getString("pv1");String pv2=rs.getString("pv2");String pv3=rs.getString("pv3");
-		   		String pv4=rs.getString("pv4");String pv5=rs.getString("pv5");String pv6=rs.getString("pv6");String pv7=rs.getString("p7");
-		   		String pv8=rs.getString("pv8");String pv9=rs.getString("pv9");String pv10=rs.getString("pv10");String b1=rs.getString("b1");
+//		   		String pv1=rs.getString("pv1");String pv2=rs.getString("pv2");String pv3=rs.getString("pv3");
+//		   		String pv4=rs.getString("pv4");String pv5=rs.getString("pv5");String pv6=rs.getString("pv6");String pv7=rs.getString("p7");
+//		   		String pv8=rs.getString("pv8");String pv9=rs.getString("pv9");String pv10=rs.getString("pv10");
+		   		String b1=rs.getString("b1");
 		   		String b3=rs.getString("b3");
 		   		String treplace=rs.getString("treplace");String tlabel=rs.getString("tlabel");
 		   		String h1=rs.getString("h1"); String hv1=rs.getString("hv1");
@@ -426,11 +428,20 @@ public class TriggerAuth extends HttpServlet {
 		                   url1 =new URL(t1);
 		              HttpClient httpClient = new DefaultHttpClient();
 		        	  HttpPost postRequest = new HttpPost(t1);
-		        	  String encoding = new String(
-		        		   		 org.apache.commons.codec.binary.Base64.encodeBase64   
-		        		   		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
-		        		   		  );
-		        	  postRequest.setHeader("Authorization","Basic " + encoding);
+		        	  if(!b2.equals("") && !b2.equals("null")){
+				        	  String encoding = new String(
+				        		   		 org.apache.commons.codec.binary.Base64.encodeBase64   
+				        		   		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
+				        		   		  );
+				        	  postRequest.setHeader("Authorization","Basic " + encoding);
+		        	  }
+		        	  if(!h1.equals("null") && !h2.equals("null") && !h3.equals("null")){
+		        		  postRequest.setHeader(h1, hd1);postRequest.setHeader(h2, hd2);postRequest.setHeader(h3,hd3);
+		        	  }else if(!h1.equals("null") && !h2.equals("null")){
+		        		  postRequest.setHeader(h1, hd1);postRequest.setHeader(h2, hd2);
+		        	  }else if(!h1.equals("null")){
+		        		  postRequest.setHeader(h1, hd1);
+		        	  }
 		        	  HttpResponse response1 = httpClient.execute(postRequest);
 		        	  code1=response1.getStatusLine().getStatusCode();
 		        	  out.println(code1);
@@ -454,7 +465,7 @@ public class TriggerAuth extends HttpServlet {
 	          	 
 
 		   		}
-		   		PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+tlabel+"','"+treplace+"')");
+		   		PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
 	   			   	st2.executeUpdate();
 	   			   	st2.close();
 		   		request.setAttribute("code", code);

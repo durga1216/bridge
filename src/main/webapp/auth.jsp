@@ -31,6 +31,7 @@ $(document).ready(function(){
 				  $('#divid').hide();
 				  $('#apiid').hide();			
 				  $('#oauth2').hide();
+				  $('#oauth1').hide();
 
 			    }
 		    else if($('input:radio[name=authen]:checked').val() == "Basic Auth"){
@@ -38,6 +39,7 @@ $(document).ready(function(){
 		  $('#apiid').hide();
 		  $('#oauth2').hide();
 			$('#req').hide();
+			$('#oauth1').hide();
 			
 
 		    }
@@ -46,20 +48,22 @@ $(document).ready(function(){
 			$('#divid').hide();
 			$('#req').hide();
 			$('#oauth2').hide();
-
+			$('#oauth1').hide();
 		    }
 
 else if($('input:radio[name=authen]:checked').val() == "Oauth1"){
 	 $('#apiid').hide();
 		$('#divid').hide();
-		$('#req').hide();			$('#oauth2').hide();
-
+		$('#req').hide();			
+		$('#oauth2').hide();
+		$('#oauth1').show();
 	}
 
 else if($('input:radio[name=authen]:checked').val() == "Oauth2"){
 	 $('#apiid').hide();
 		$('#divid').hide();
 		$('#req').hide();
+		$('#oauth1').hide();
 		$('#oauth2').show();
 		$('.rmethod').show();
 		$('#select2').show();	}
@@ -165,13 +169,13 @@ margin-left:100px;}
   }
  .redirect{
  font-family:verdana;
- font-size:15px;
+ font-size:16px;
  color:#FFFFFF;
  } 
   select{color:#FF9900;
 font-size:15px;
 background-color:#FFFFFF;
-margin-left:70px;
+margin-left:100px;
 font-family:verdana;
 width:200px;
 height:40px;
@@ -218,7 +222,7 @@ color:#FFFFFF;
 
 <input type="radio" name="authen"  value="Digest">
 <label for="rd1">Digest Auth</label>
-<br><div id="req" style="display:none">Fine! Go ahead</div>
+<br></div><div id="req" style="display:none">Fine! Go ahead</div>
 
 <div id="divid" style="display:none"><br>
 <br><br><div id="desc">Add Description</div><br><br>
@@ -238,20 +242,34 @@ color:#FFFFFF;
 <div id="desc">Add Description</div><br><br>
 <textarea name="txt3" id="txt3" placeholder="Description About Auth"></textarea>
 <textarea name="txt4" id="txt4" placeholder="Description about App"></textarea><br><br>
-<br><br><input type="text" name="a1" value="" placeholder="APIkey_Label" >
-<input type="text" name="a2" value="" placeholder="API_Key" ><br/><br/>
+<br><br><input type="text" name="a1" value="" placeholder=" APIkey_Label" >
+<input type="text" name="a2" value="" placeholder=" API_Key" ><br/><br/>
 </div>
-
-
-<br><br><div id="oauth2" style="display:none"><br>
-<center><div class='redirect'>Redirect URI=/OauthCallBackServlet</div></center><br>
-<input type="text" name="ckey" value="" placeholder="Client_ID_KEY">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="cseckey" value="" placeholder="Client_Secret_Key"><br><br>
-<input type="text" name="sname" value="" placeholder="Scope_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="svalue" value="" placeholder="Scope_Value"><br><br>
-<input type="text" name="aurl" value="" placeholder="Authorization_URL">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="tokenurl" value="" placeholder="Access_Token_URL"><br><br>
-<input type="text" name="tlabel" value="" placeholder="Access_Token_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br><br>
+<br><br><div id="oauth1" style="display:none"><br>
+<center><div class='redirect'>*Put Redirect Url As <b><u>https://bridge-minddotss.rhcloud.com/OauthCall</u></b> in Your App</div></center><br>
+<input type="text" name="ockey" value="" placeholder=" Oauth_consumer_key">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="oskey" value="" placeholder=" Oauth_secret_key"><br><br>
+<input type="text" name="ourl1" value="" placeholder=" Request_token_Url">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="ourl2" value="" placeholder=" Authorization_Url"><br><br>
+<input type="text" name="ourl3" value="" placeholder=" Access_Token_Url">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="osmeth" value="HMAC-SHA1" placeholder=" Signature_Method"><br><br>
+<select name="oreq">
+<option value="dummy"> Request Method</option>
+    <option value="GET"> GET</option>
+    <option value="POST"> POST</option>
+    <option value="PUT"> PUT</option>
+    <option value="DELETE"> DELETE</option>
+</select><br/>
+</div>
+<br><div id="oauth2" style="display:none"><br>
+<center><div class='redirect'>*Put Redirect Url As <b><u>https://bridge-minddotss.rhcloud.com/OauthCall</u></b> in Your App</div></center><br>
+<input type="text" name="ckey" value="" placeholder=" Client_ID_KEY">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="cseckey" value="" placeholder=" Client_Secret_Key"><br><br>
+<input type="text" name="sname" value="" placeholder=" Scope_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="svalue" value="" placeholder=" Scope_Value"><br><br>
+<input type="text" name="aurl" value="" placeholder=" Authorization_URL">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="tokenurl" value="" placeholder=" Access_Token_URL"><br><br>
+<input type="text" name="tlabel" value="" placeholder=" Access_Token_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br><br>
 <div class="rmethod">Token Replacement</div><br>
 <input type="radio" name="treplace"  value="Authorization:Bearer">
 <label for="rd2">Authorization:Bearer</label>

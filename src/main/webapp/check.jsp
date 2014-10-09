@@ -199,7 +199,7 @@ height:1px;
 <%ResultSet r=null;ResultSet rs1 =null;ResultSet rs=null;String authen="";String txt1="";String txt2="";String txt3="";String txt4="";String a1="";String b1="";String b3="";
 String authen1="";String atxt1="";String atxt2="";String atxt3="";String atxt4="";String tgtit="hh";
 String actit="hh";String tid="hh";String aid="hh";int code=0;int code1=0;String tempid="";
-String turl="";String aurl="";String[] tp=new String[5]; 
+String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5];
 
 try{
      	 PreparedStatement st1=conn.prepareStatement("select * from home order by tempid desc limit 1");
@@ -227,6 +227,7 @@ try{
       while(rs1.next()){
     	authen1=rs1.getString("authen");
     	aurl=rs1.getString("t1");
+    	hd[1]=rs.getString("j1");hd[2]=rs.getString("j2");hd[3]=rs.getString("j3");hd[4]=rs.getString("j4");
     	atxt1=rs1.getString("txt1");atxt2=rs1.getString("txt2"); atxt3=rs1.getString("txt3");atxt4=rs1.getString("txt4");
       }
      HttpSession session1=request.getSession();
@@ -296,7 +297,16 @@ try{
 	out.println("<br>"+orurl+"<br>");
 	}
 	%>
-	<br><%=atxt1 %><br><br><input type="text" name="uname" placeholder="UserName or ApiKey"><br><br><%=atxt2 %><br><br><input type="password" name="pwd" placeholder="Password or Secret Key"><br><br><br><input type="submit" name="submit" onclick="javascript:sub1('dis1')" value="Authenticate Action" ></div>
+	<br><%=atxt1 %><br><br><input type="text" name="uname" placeholder=" UserName or ApiKey"><br><br><%=atxt2 %><br><br><input type="password" name="pwd" placeholder="Password or Secret Key"><br><br>
+	Header:<br><br>
+	<%
+	for(int i=1;i<5;i++){
+		if(!hd[i].equals("null")){
+			out.println("<br>*"+hd[i]+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style='width:200px;border-radius:5px;'name='hd"+i+"' type='text'><br>");
+		}
+	}
+	%>
+	<br><br><input type="submit" name="submit" onclick="javascript:sub1('dis1')" value="Authenticate Action" ></div>
 	<%} 
 	else if(authen1.equals("API keys")){%>
 		<div id=inpop><h3>Enter the Authentication details:</h3><br>*ApiKey(required):<br><br><%=atxt3 %><br><br><input type="text" name="apkey" placeholder=" *ApiKey"><br><br><br>
