@@ -152,6 +152,7 @@ public class Final extends HttpServlet {
 		                        		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
 		                        		  );
 		       	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+		                  }
 		       	           if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
 				            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
 				              }
