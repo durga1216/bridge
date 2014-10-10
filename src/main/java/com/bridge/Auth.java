@@ -57,6 +57,10 @@ public class Auth extends HttpServlet {
     String h5=request.getParameter("h5"); String hv5=request.getParameter("hv5");
     String h6=request.getParameter("h6"); String hv6=request.getParameter("hv6");
     String h7=request.getParameter("h7"); String hv7=request.getParameter("hv7");
+    String ockey=request.getParameter("ockey");String ourl1=request.getParameter("ourl1");
+    String oskey=request.getParameter("oskey");String ourl2=request.getParameter("ourl2");
+    String osmeth=request.getParameter("osmeth");String ourl3=request.getParameter("ourl3");
+    String oreq=request.getParameter("oreq");
 	  String a1=request.getParameter("a1");String a2=request.getParameter("a2");
 	  String select2=request.getParameter("select2"); String ckey=request.getParameter("ckey");
 		 HttpSession session=request.getSession();
@@ -67,7 +71,7 @@ public class Auth extends HttpServlet {
     try{
    	 Class.forName("com.mysql.jdbc.Driver").newInstance();
    	 con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
-    PreparedStatement st=con.prepareStatement("insert into auth(appid,authen,txt1,txt2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,h6,hv6,h7,hv7,txt3,txt4,a1,a2,ckey,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,select2) values ('"+id+"','"+authen+"','"+txt1+"','"+txt2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+h6+"','"+hv6+"','"+h7+"','"+hv7+"','"+txt3+"','"+txt4+"','"+a1+"','"+a2+"','"+ckey+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+select2+"')");				 
+    PreparedStatement st=con.prepareStatement("insert into auth(appid,authen,txt1,txt2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,h6,hv6,h7,hv7,txt3,txt4,a1,a2,ckey,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,select2,ockey,oskey,ourl1,ourl2,ourl3,osmeth,oreq) values ('"+id+"','"+authen+"','"+txt1+"','"+txt2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+h6+"','"+hv6+"','"+h7+"','"+hv7+"','"+txt3+"','"+txt4+"','"+a1+"','"+a2+"','"+ckey+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+select2+"','"+ockey+"','"+oskey+"','"+ourl1+"','"+ourl2+"','"+ourl3+"','"+osmeth+"','"+oreq+"')");				 
    	 st.executeUpdate();
    	 out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
          		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");

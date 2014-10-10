@@ -52,6 +52,17 @@ padding-left:5px;
 border:solid 1px #fff;
 background-color:#fff;
 }
+input[type="button"],input[type="submit"]{
+padding-right:5px;
+padding-left:5px;
+border:solid 1px #fff;
+border-radius:5px;
+background-color:#fff;
+font-family:verdana;
+font-size:17px;
+color:#ff9900;
+font-weight:bold;
+}
 hr{
 color:#fff;
 background-color:#fff;
@@ -84,7 +95,8 @@ height:1px;
 							<h4><%=i%>, From: <img src="Title?appid=<%=tid%>"> <%=tt%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To: 
 							<img src="Title?appid=<%=aid%>"> <%=aa%>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select><option value=on>On</option><option value=off>Off</select>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select><option value=15>15 Minutes</option><option value=10>10 Minutes</select></h4>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select><option value=15>15 Minutes</option><option value=10>10 Minutes</select>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value=" Apply " name=but<%=i %>></h4>
 						<%
 				}
 				i++;

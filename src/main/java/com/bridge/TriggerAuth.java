@@ -5,15 +5,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.UUID;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,9 +28,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -40,39 +50,6 @@ public class TriggerAuth extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-/*	PrintWriter out=response.getWriter();
-		try{
-		URL url = new URL ("https://minddotss.freshservice.com/helpdesk/tickets.json");
-	
-    String encoding = new String(
-   		 org.apache.commons.codec.binary.Base64.encodeBase64   
-   		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8("QquZIyp23YptsoWpBO7P:X"))
-   		  );
-   HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-  HttpRequest httprequest;
-   
-   connection.setRequestMethod("GET");
-   connection.setDoOutput(true);
-   connection.setRequestProperty  ("Authorization", "Basic " + encoding);
-   InputStream content = (InputStream)connection.getInputStream();
-   BufferedReader in   = 
-       new BufferedReader (new InputStreamReader (content));
-  
-   String line=null;String res="";
-   while((line=in.readLine())!=null){
-	   res+=line;
-   }
-   String id="";
-   JSONArray array=new JSONArray(res);
-   for(int i=0;i<array.length();i++){
-	   JSONObject obj=array.getJSONObject(i);
-	    id=obj.getString("id");
-
-   }
-   out.println(res);
-
-		}
-	catch(Exception e){}*/
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -126,12 +103,16 @@ public class TriggerAuth extends HttpServlet {
 	   		String h5=rs.getString("h5"); String hv5=rs.getString("hv5");
 	   		String h6=rs.getString("h6"); String hv6=rs.getString("hv6");
 	   		String h7=rs.getString("h7"); String hv7=rs.getString("hv7");
-	   	 String ckey1=rs.getString("ckey");String cseckey1=rs.getString("cseckey");
-    	 String sname1=rs.getString("sname");String svalue1=rs.getString("svalue");
-    	 String aurl1=rs.getString("aurl");String tokenurl1=rs.getString("tokenurl");
-    	 String tlabel1=rs.getString("tlabel");String treplace1=rs.getString("treplace");
-    	 String el1=rs.getString("el");String ev1=rs.getString("ev");String rmethod1=rs.getString("select2");
-    
+	   		String ockey=rs.getString("ockey");String oskey=rs.getString("oskey");
+	   		String ourl1=rs.getString("ourl1");String ourl2=rs.getString("ourl2");
+	   		String ourl3=rs.getString("ourl3");String osmeth=rs.getString("osmeth");
+	   		String oreq=rs.getString("oreq");
+		   	 String ckey1=rs.getString("ckey");String cseckey1=rs.getString("cseckey");
+	    	 String sname1=rs.getString("sname");String svalue1=rs.getString("svalue");
+	    	 String aurl1=rs.getString("aurl");String tokenurl1=rs.getString("tokenurl");
+	    	 String tlabel1=rs.getString("tlabel");String treplace1=rs.getString("treplace");
+	    	 String el1=rs.getString("el");String ev1=rs.getString("ev");String rmethod1=rs.getString("select2");
+	    
 	   		out.println(authen);
            String str="";
            String eurl="null";
@@ -278,9 +259,116 @@ public class TriggerAuth extends HttpServlet {
 	 	                   session.setAttribute("xml1", str);
 
 	   		}//basic auth
-	   		
-	   		
-	            
+	   		else if(authen.equals("Oauth1")){
+	   			if(oreq.equals("GET")){
+			   			 String uuid_string = UUID.randomUUID().toString();
+		                 uuid_string = uuid_string.replaceAll("-", "");
+		                 String oauth_nonce = uuid_string; 
+		                 String eurl1 = URLEncoder.encode(ourl1, "UTF-8");
+		                 int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
+		                 String oauth_timestamp = (new Long(millis/1000)).toString(); // get current time in milliseconds, then divide by 1000 to get seconds
+		                 String parameter_string = "oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + osmeth + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
+		                 String signature_base_string = oreq+"&"+eurl1+"&" + URLEncoder.encode(parameter_string, "UTF-8");
+		                 String oauth_signature = "";String oauth_signature1 = "";
+		                 try {
+		                       oauth_signature = computeSignature(signature_base_string, oskey+"&");  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
+		                       oauth_signature1 =URLEncoder.encode(oauth_signature, "UTF-8");
+		                 }catch (GeneralSecurityException e) {
+		                     // TODO Auto-generated catch block
+		                     e.printStackTrace();
+		                 }
+		                 session.setAttribute("oauth_signature1", oauth_signature1);
+		                 session.setAttribute("parameter_string", parameter_string);
+		                 String authorization_header_string = "OAuth oauth_consumer_key=\"" + ockey + "\","
+		                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
+		                            oauth_timestamp + "\",oauth_version=\"1.0\"";
+		                 String uurl=ourl1+"?"+parameter_string+"&oauth_signature="+URLEncoder.encode(oauth_signature, "UTF-8");
+		                 System.out.println(uurl);
+		                 String oauth_token = "";
+		                 HttpClient httpclient = new DefaultHttpClient();
+		                 HttpResponse response1=null;
+		                 try {
+	 	                 	    HttpGet get1=new HttpGet(uurl);
+	 	                 	    response1=httpclient.execute(get1);
+				                BufferedReader rd = new BufferedReader(
+				                                new InputStreamReader(response1.getEntity().getContent()));
+				         		StringBuffer result = new StringBuffer();
+				         		String line = "";
+				         		while ((line = rd.readLine()) != null) {
+				         			result.append(line);
+				         		}
+				         		String tok=result.toString();
+				         		//out.println("dsdsdsdsssssdf"+tok);
+				         		String[] tok1=tok.split("&");
+				         		oauth_token=tok1[1];
+				         		String sec1=tok1[2];
+				         		session.setAttribute("secret1", sec1);                       
+		                 }catch(ClientProtocolException cpe)  {  
+		                	  	System.out.println(cpe.getMessage());  }
+		                  catch(IOException ioe) {   
+		                	  	System.out.println(ioe.getMessage());  }
+		                  finally { 
+		                	  	httpclient.getConnectionManager().shutdown();  } 
+	                    String author=ourl2+"?"+oauth_token+"&perms=write";
+	                    response.sendRedirect(author);
+   				}
+            	 else {
+            		 String uuid_string = UUID.randomUUID().toString();
+	                 uuid_string = uuid_string.replaceAll("-", "");
+	                 String oauth_nonce = uuid_string; 
+	                 String eurl1 = URLEncoder.encode(ourl1, "UTF-8");
+	                 int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
+	                 String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
+	                 String parameter_string = "oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oskey + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
+	                 String signature_base_string = oreq+"&"+eurl1+"&" + URLEncoder.encode(parameter_string, "UTF-8");
+	                 System.out.println("signature_base_string=" + signature_base_string);
+	                 String oauth_signature = "";String oauth_signature1 = "";
+	                 try {
+	                       oauth_signature = computeSignature(signature_base_string, oskey+"&");  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
+	                       oauth_signature1 =URLEncoder.encode(oauth_signature, "UTF-8");
+	                 } catch (GeneralSecurityException e) {
+	                     // TODO Auto-generated catch block
+	                     e.printStackTrace();
+	                 }
+	                 session.setAttribute("oauth_signature1", oauth_signature1);
+	                 session.setAttribute("parameter_string", parameter_string);
+	                 String authorization_header_string = "OAuth oauth_consumer_key=\"" + ockey + "\","
+	                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
+	                            oauth_timestamp + "\",oauth_version=\"1.0\"";
+	                 String uurl=ourl1+"?"+parameter_string+"&oauth_signature="+URLEncoder.encode(oauth_signature, "UTF-8");
+	                 System.out.println(uurl);
+	                 String oauth_token = "";
+	                 HttpClient httpclient = new DefaultHttpClient();
+	                 HttpResponse response1=null;
+	                 try {
+			            		 HttpPost post = new HttpPost(ourl1);
+			                     post.setHeader("Authorization", authorization_header_string);
+			      				 response1 = httpclient.execute(post);       	
+      				 			 BufferedReader rd = new BufferedReader(
+                                             new InputStreamReader(response1.getEntity().getContent()));
+					       		StringBuffer result = new StringBuffer();
+					       		String line = "";
+					       		while ((line = rd.readLine()) != null) {
+					       			 	result.append(line);
+					       		}
+					       		String tok=result.toString();
+					       		out.println("dsdsdsdsssssdf"+tok);
+					       		String[] tok1=tok.split("&");
+					       		oauth_token=tok1[0];
+					       		String sec1=tok1[1];
+					       		session.setAttribute("secret1", sec1);         
+	                } 
+	                  catch(ClientProtocolException cpe)  {   
+	                	  System.out.println(cpe.getMessage());  }
+	                  catch(IOException ioe) {   
+	                	  System.out.println(ioe.getMessage());  }
+	                  finally { 
+	                	  httpclient.getConnectionManager().shutdown();  } 
+	                  
+	                  String author=ourl2+"?"+oauth_token+"&perms=write";
+	                  response.sendRedirect(author);
+            	 }
+	   		}
 	        else if(authen.equals("Oauth2")){
         	    session.setAttribute("ckey", ckey1);
         	    session.setAttribute("cseckey", cseckey1);
@@ -336,13 +424,17 @@ public class TriggerAuth extends HttpServlet {
 		   		String h5=rs.getString("h5"); String hv5=rs.getString("hv5");
 		   		String h6=rs.getString("h6"); String hv6=rs.getString("hv6");
 		   		String h7=rs.getString("h7"); String hv7=rs.getString("hv7");
+		   		String ockey=rs.getString("ockey");String oskey=rs.getString("oskey");
+		   		String ourl1=rs.getString("ourl1");String ourl2=rs.getString("ourl2");
+		   		String ourl3=rs.getString("ourl3");String osmeth=rs.getString("osmeth");
+		   		String oreq=rs.getString("oreq");
 		   		String ckey1=rs.getString("ckey");String cseckey1=rs.getString("cseckey");
 		       	 String sname1=rs.getString("sname");String svalue1=rs.getString("svalue");
 		       	 String aurl1=rs.getString("aurl");String tokenurl1=rs.getString("tokenurl");
 		       	 String tlabel1=rs.getString("tlabel");String treplace1=rs.getString("treplace");
 		       	 String el1=rs.getString("el");String ev1=rs.getString("ev");String rmethod1=rs.getString("select2");
 	           String str="";
-	String eurl="null";
+	           String eurl="null";
 		   		if(authen.equals("API keys")){  
 			  		 out.println("api inside");
 
@@ -446,6 +538,116 @@ public class TriggerAuth extends HttpServlet {
 		        	  code1=response1.getStatusLine().getStatusCode();
 		        	  out.println(code1);
 			   	 } //Basic
+		   		else if(authen.equals("Oauth1")){
+		   			if(oreq.equals("GET")){
+				   			 String uuid_string = UUID.randomUUID().toString();
+			                 uuid_string = uuid_string.replaceAll("-", "");
+			                 String oauth_nonce = uuid_string; 
+			                 String eurl1 = URLEncoder.encode(ourl1, "UTF-8");
+			                 int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
+			                 String oauth_timestamp = (new Long(millis/1000)).toString(); // get current time in milliseconds, then divide by 1000 to get seconds
+			                 String parameter_string = "oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + osmeth + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
+			                 String signature_base_string = oreq+"&"+eurl1+"&" + URLEncoder.encode(parameter_string, "UTF-8");
+			                 String oauth_signature = "";String oauth_signature1 = "";
+			                 try {
+			                       oauth_signature = computeSignature(signature_base_string, oskey+"&");  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
+			                       oauth_signature1 =URLEncoder.encode(oauth_signature, "UTF-8");
+			                 }catch (GeneralSecurityException e) {
+			                     // TODO Auto-generated catch block
+			                     e.printStackTrace();
+			                 }
+			                 session.setAttribute("oauth_signature1", oauth_signature1);
+			                 session.setAttribute("parameter_string", parameter_string);
+			                 String authorization_header_string = "OAuth oauth_consumer_key=\"" + ockey + "\","
+			                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
+			                            oauth_timestamp + "\",oauth_version=\"1.0\"";
+			                 String uurl=ourl1+"?"+parameter_string+"&oauth_signature="+URLEncoder.encode(oauth_signature, "UTF-8");
+			                 System.out.println(uurl);
+			                 String oauth_token = "";
+			                 HttpClient httpclient = new DefaultHttpClient();
+			                 HttpResponse response1=null;
+			                 try {
+		 	                 	    HttpGet get1=new HttpGet(uurl);
+		 	                 	    response1=httpclient.execute(get1);
+					                BufferedReader rd = new BufferedReader(
+					                                new InputStreamReader(response1.getEntity().getContent()));
+					         		StringBuffer result = new StringBuffer();
+					         		String line = "";
+					         		while ((line = rd.readLine()) != null) {
+					         			result.append(line);
+					         		}
+					         		String tok=result.toString();
+					         		//out.println("dsdsdsdsssssdf"+tok);
+					         		String[] tok1=tok.split("&");
+					         		oauth_token=tok1[1];
+					         		String sec1=tok1[2];
+					         		session.setAttribute("secret1", sec1);                       
+			                 }catch(ClientProtocolException cpe)  {  
+			                	  	System.out.println(cpe.getMessage());  }
+			                  catch(IOException ioe) {   
+			                	  	System.out.println(ioe.getMessage());  }
+			                  finally { 
+			                	  	httpclient.getConnectionManager().shutdown();  } 
+		                    String author=ourl2+"?"+oauth_token+"&perms=write";
+		                    response.sendRedirect(author);
+	   				}
+	            	 else {
+	            		 String uuid_string = UUID.randomUUID().toString();
+		                 uuid_string = uuid_string.replaceAll("-", "");
+		                 String oauth_nonce = uuid_string; 
+		                 String eurl1 = URLEncoder.encode(ourl1, "UTF-8");
+		                 int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
+		                 String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
+		                 String parameter_string = "oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oskey + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
+		                 String signature_base_string = oreq+"&"+eurl1+"&" + URLEncoder.encode(parameter_string, "UTF-8");
+		                 System.out.println("signature_base_string=" + signature_base_string);
+		                 String oauth_signature = "";String oauth_signature1 = "";
+		                 try {
+		                       oauth_signature = computeSignature(signature_base_string, oskey+"&");  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
+		                       oauth_signature1 =URLEncoder.encode(oauth_signature, "UTF-8");
+		                 } catch (GeneralSecurityException e) {
+		                     // TODO Auto-generated catch block
+		                     e.printStackTrace();
+		                 }
+		                 session.setAttribute("oauth_signature1", oauth_signature1);
+		                 session.setAttribute("parameter_string", parameter_string);
+		                 String authorization_header_string = "OAuth oauth_consumer_key=\"" + ockey + "\","
+		                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
+		                            oauth_timestamp + "\",oauth_version=\"1.0\"";
+		                 String uurl=ourl1+"?"+parameter_string+"&oauth_signature="+URLEncoder.encode(oauth_signature, "UTF-8");
+		                 System.out.println(uurl);
+		                 String oauth_token = "";
+		                 HttpClient httpclient = new DefaultHttpClient();
+		                 HttpResponse response1=null;
+		                 try {
+				            		 HttpPost post = new HttpPost(ourl1);
+				                     post.setHeader("Authorization", authorization_header_string);
+				      				 response1 = httpclient.execute(post);       	
+	      				 			 BufferedReader rd = new BufferedReader(
+                                                 new InputStreamReader(response1.getEntity().getContent()));
+						       		StringBuffer result = new StringBuffer();
+						       		String line = "";
+						       		while ((line = rd.readLine()) != null) {
+						       			 	result.append(line);
+						       		}
+						       		String tok=result.toString();
+						       		out.println("dsdsdsdsssssdf"+tok);
+						       		String[] tok1=tok.split("&");
+						       		oauth_token=tok1[0];
+						       		String sec1=tok1[1];
+						       		session.setAttribute("secret1", sec1);         
+		                } 
+		                  catch(ClientProtocolException cpe)  {   
+		                	  System.out.println(cpe.getMessage());  }
+		                  catch(IOException ioe) {   
+		                	  System.out.println(ioe.getMessage());  }
+		                  finally { 
+		                	  httpclient.getConnectionManager().shutdown();  } 
+		                  
+		                  String author=ourl2+"?"+oauth_token+"&perms=write";
+		                  response.sendRedirect(author);
+	            	 }
+		   		}
 		   		else if(authen.equals("Oauth2")){
 	        	    session.setAttribute("ckey", ckey1);
 	        	    session.setAttribute("cseckey", cseckey1);
@@ -483,4 +685,19 @@ public class TriggerAuth extends HttpServlet {
   catch(Exception e){
 	  out.println(e);}
 }
+	private static String computeSignature(String baseString, String keyString) throws GeneralSecurityException, UnsupportedEncodingException {
+		 
+        SecretKey secretKey = null;
+ 
+       byte[] keyBytes = keyString.getBytes();
+        secretKey = new SecretKeySpec(keyBytes, "HmacSHA1");
+ 
+        Mac mac = Mac.getInstance("HmacSHA1");
+ 
+      mac.init(secretKey);
+ 
+      byte[] text = baseString.getBytes();
+ 
+      return new String(Base64.encodeBase64(mac.doFinal(text))).trim();
+  }
 }
