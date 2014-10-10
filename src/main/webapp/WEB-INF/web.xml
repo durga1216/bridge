@@ -9,4 +9,13 @@
     <servlet-name>Title</servlet-name>
     <url-pattern>/Title</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <display-name>TriggerAccount</display-name>
+    <servlet-name>TriggerAccount</servlet-name>
+    <servlet-class>com.bridge.TriggerAccount</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TriggerAccount</servlet-name>
+    <url-pattern>/TriggerAccount</url-pattern>
+  </servlet-mapping>
 </web-app>

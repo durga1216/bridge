@@ -6,26 +6,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Parse</title>
 </head>
+<%@ page import="java.sql.*" %>
+<%@ include file="conn.jsp" %>
 <body>
+<form action="Temp" method="post" enctype="multipart/form-data">
+<br><br><center><select name=no><option value=dummy>choose the id</option>
 <%
-String url="https://@@minddots@@.cloudant.com/@@crud@@/sbfhjfb/@@mmm@@";
-//String url="https://fasfasdf/sfdasdf";
-String[] slt=url.split("@@");
-int nn=slt.length;String orurl="";
-if(!(nn==0)){
-String n[]={"mind","data","sfdasfasdfasdf"};
-int mm=n.length;
-for(int i=1,j=0;i<nn;i=i+2,j++){
-	slt[i]="<input type='text'>";
-}
-for(int k=0;k<nn;k++){
-	orurl=orurl+slt[k];
-}
-}else
-{
-	orurl=url;
+try{
+	PreparedStatement ps=conn.prepareStatement("select * from title");
+	ResultSet rs=ps.executeQuery();
+	while(rs.next()){
+		String id=rs.getString("appid");
+		%>
+		<option value="<%=id%>"><%=id%></option>
+		<%
 	}
-out.println(orurl);
+}catch(Exception e){
+	out.println();
+}
 %>
+</select><br><br><input type="file" name="logo">
+<br><br><input type="submit"></center>
+</form>
 </body>
 </html>
