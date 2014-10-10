@@ -102,15 +102,11 @@ public class Oauth1call extends HttpServlet {
 	                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
 	                            oauth_timestamp + "\",oauth_version=\"1.0\"";
 	                  String actok=ourl31+"?"+parameter_string+"&oauth_signature="+oauth_signature1;
-	            	// out.println(actok);
+	            	 out.println(actok);
 	            	 HttpClient httpclient1 = new DefaultHttpClient();
 	                 HttpResponse response1=null;
 	                 	   HttpGet get1=new HttpGet(ourl31);
 	                 	    response1=httpclient1.execute(get1);
-	                      HttpPost post = new HttpPost(url1);
-	                      post.setHeader("Authorization", authorization_header_string);
-	      				 response1 = httpclient1.execute(post);
-	                    	
 	                       		BufferedReader rd = new BufferedReader(
 	                                new InputStreamReader(response1.getEntity().getContent()));
 	          
