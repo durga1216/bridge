@@ -302,7 +302,9 @@ public class TriggerAuth extends HttpServlet {
 				         		String[] tok1=tok.split("&");
 				         		oauth_token=tok1[1];
 				         		String sec1=tok1[2];
-				         		session.setAttribute("secret1", sec1);                       
+				         		session.setAttribute("secret1", sec1);  
+				         		session.setAttribute("tempid", tempid);
+				        	    session.setAttribute("tid", tid);
 		                 }catch(ClientProtocolException cpe)  {  
 		                	  	System.out.println(cpe.getMessage());  }
 		                  catch(IOException ioe) {   
@@ -356,7 +358,9 @@ public class TriggerAuth extends HttpServlet {
 					       		String[] tok1=tok.split("&");
 					       		oauth_token=tok1[0];
 					       		String sec1=tok1[1];
-					       		session.setAttribute("secret1", sec1);         
+					       		session.setAttribute("secret1", sec1);
+					       		session.setAttribute("tempid", tempid);
+				        	    session.setAttribute("tid", tid);
 	                } 
 	                  catch(ClientProtocolException cpe)  {   
 	                	  System.out.println(cpe.getMessage());  }
@@ -581,7 +585,9 @@ public class TriggerAuth extends HttpServlet {
 					         		String[] tok1=tok.split("&");
 					         		oauth_token=tok1[1];
 					         		String sec1=tok1[2];
-					         		session.setAttribute("secret1", sec1);                       
+					         		session.setAttribute("secret1", sec1);  
+					         		session.setAttribute("tempid", tempid);
+					        	    session.setAttribute("tid", aid);
 			                 }catch(ClientProtocolException cpe)  {  
 			                	  	System.out.println(cpe.getMessage());  }
 			                  catch(IOException ioe) {   
@@ -635,7 +641,9 @@ public class TriggerAuth extends HttpServlet {
 						       		String[] tok1=tok.split("&");
 						       		oauth_token=tok1[0];
 						       		String sec1=tok1[1];
-						       		session.setAttribute("secret1", sec1);         
+						       		session.setAttribute("secret1", sec1);    
+						       		session.setAttribute("tempid", tempid);
+					        	    session.setAttribute("tid", aid);
 		                } 
 		                  catch(ClientProtocolException cpe)  {   
 		                	  System.out.println(cpe.getMessage());  }
@@ -653,7 +661,7 @@ public class TriggerAuth extends HttpServlet {
 	        	    session.setAttribute("cseckey", cseckey1);
 	        	    session.setAttribute("tokenurl", tokenurl1);
 	        	    session.setAttribute("tempid", tempid);
-	        	    session.setAttribute("tid", tid);
+	        	    session.setAttribute("tid", aid);
 	        	    session.setAttribute("rm1", rmethod1);
 	                session.setAttribute("but", "act");
 		        	if(sname1.equals("") && el1.equals(""))

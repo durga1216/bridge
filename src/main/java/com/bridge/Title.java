@@ -22,7 +22,6 @@ import javax.servlet.http.Part;
  * Servlet implementation class Title
  */
 @MultipartConfig(maxFileSize = 16177215)
-@WebServlet("/Title")  // upload file up to 16MB  
 public class Title extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
