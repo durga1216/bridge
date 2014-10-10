@@ -90,13 +90,13 @@ box-shadow:1px 1px 2px 1px #000;
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img name=nn data-original-title="<%=nam[a] %>" src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="#"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;<a href="#"><img  src='Title?appid=<%=data[c]%>'></a>&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
   	    	} 
-  	    	if((b+1)==i){
+  	    	if((b+2)==i){
   	    		%>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img name=nn data-original-title="<%=nam[a] %>" src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="#"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
-  	    	}else if((a+1)==i){
+  	    	}else if((a+2)==i){
   	    		%>
-	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img name=nn data-original-title="<%=nam[a] %>" src="Title?appid=<%=data[a]%>"></div><br></li>
+	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img name=nn data-original-title="<%=nam[a] %>" src="Title?appid=<%=data[a]%>"></a></div><br></li>
 	  	    	<%
   	    	}
 	  	}catch(Exception e){
@@ -137,11 +137,11 @@ box-shadow:1px 1px 2px 1px #000;
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img name=nn data-original-title="<%=nam[a] %>" src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="#"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;<a href="#"><img  src='Title?appid=<%=data[c]%>'></a>&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
   	    	}
-  	    	if((b+1)==i){
+  	    	if((b+2)==i){
   	    		%>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img name=nn data-original-title="<%=nam[a] %>" src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="#"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
-  	    	}else if((a+1)==i){
+  	    	}else if((a+2)==i){
   	    		%>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img name=nn data-original-title="<%=nam[a] %>" src="Title?appid=<%=data[a]%>"></div><br></li>
 	  	    	<%

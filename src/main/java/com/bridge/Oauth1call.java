@@ -51,7 +51,6 @@ public class Oauth1call extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Connection con=null;  
 	   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
 	   	InputStream inputStream=null;
 	   	PrintWriter out=response.getWriter();
@@ -68,8 +67,8 @@ public class Oauth1call extends HttpServlet {
 	    //String oauth_signature1=(String) session.getAttribute("oauth_signature1");
 	   // String parameter_string=(String) session.getAttribute("parameter_string");
 	    try{
-			  Class.forName("com.mysql.jdbc.Driver").newInstance();
-			  con = (Connection) DriverManager.getConnection(Util.url,Util.user,Util.pass);
+	    	Class.forName("com.mysql.jdbc.Driver").newInstance();
+		    final Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
 	             PreparedStatement st=null;
 	             st=con.prepareStatement("SELECT * From auth where appid=?");
 	             st.setString(1, appid);
