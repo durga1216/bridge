@@ -309,8 +309,6 @@ public class TriggerAuth extends HttpServlet {
 		                	  	System.out.println(cpe.getMessage());  }
 		                  catch(IOException ioe) {   
 		                	  	System.out.println(ioe.getMessage());  }
-		                  finally { 
-		                	  	httpclient.getConnectionManager().shutdown();  } 
 	                    String author=ourl2+"?"+oauth_token+"&perms=write";
 	                    response.sendRedirect(author);
    				}
@@ -366,8 +364,6 @@ public class TriggerAuth extends HttpServlet {
 	                	  System.out.println(cpe.getMessage());  }
 	                  catch(IOException ioe) {   
 	                	  System.out.println(ioe.getMessage());  }
-	                  finally { 
-	                	  httpclient.getConnectionManager().shutdown();  } 
 	                  
 	                  String author=ourl2+"?"+oauth_token+"&perms=write";
 	                  response.sendRedirect(author);
