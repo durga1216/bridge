@@ -45,11 +45,13 @@ border-radius:20px;
 	  		int i=1;int k=0;
 	  	    PreparedStatement ps = conn.prepareStatement("select * from title");
 	  	    ResultSet rs =ps.executeQuery() ;
+	  	    PreparedStatement ps1 = conn.prepareStatement("select * from title");
+	  	    ResultSet rs1 =ps1.executeQuery() ;
 		  	while(rs.next()){
 		  		i++;	  
 		    }String [] data=new String[i];
-	  	    while(rs.next()){
-	  	    	String appid=rs.getString("appid");
+	  	    while(rs1.next()){
+	  	    	String appid=rs1.getString("appid");
 	  	    	data[k]=appid;
 	  	    	k++;
 	  	    	for(int a=0,b=1,c=2;c>i;a=a+3,b=b+3,c=c+3){
