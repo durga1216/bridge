@@ -34,6 +34,7 @@ img{
 width:80px;
 height:80px;
 border-radius:8px;
+box-shadow:1px 1px 2px 1px #000;
 }
 </style>
 <script>
@@ -67,7 +68,7 @@ border-radius:8px;
   <ul class="dropdown-menu" role="menu">
   	<%
 	  	try{
-	  		int i=1;int k=0;
+	  		int i=1;int k=0;int a,b,c;
 	  	    PreparedStatement ps = conn.prepareStatement("select * from title where mode='Trigger'");
 	  	    ResultSet rs =ps.executeQuery() ;
 	  	    PreparedStatement ps1 = conn.prepareStatement("select * from title where mode='Trigger'");
@@ -84,11 +85,20 @@ border-radius:8px;
 	  	    	nam[k]=name;
 	  	    	k++;
 	  	    }
-  	    	for(int a=0,b=1,c=2;c<i;a=a+3,b=b+3,c=c+3){
+  	    	for(a=0,b=1,c=2;c<i;a=a+3,b=b+3,c=c+3){
   	    		%>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img name=nn data-original-title="<%=nam[a] %>" src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="#"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;<a href="#"><img  src='Title?appid=<%=data[c]%>'></a>&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
   	    	} 
+  	    	if((b+1)==i){
+  	    		%>
+	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img name=nn data-original-title="<%=nam[a] %>" src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="#"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;</div><br></li>
+	  	    	<%
+  	    	}else if((a+1)==i){
+  	    		%>
+	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img name=nn data-original-title="<%=nam[a] %>" src="Title?appid=<%=data[a]%>"></div><br></li>
+	  	    	<%
+  	    	}
 	  	}catch(Exception e){
 	  		out.println(e);
 	  	}	 
@@ -105,7 +115,7 @@ border-radius:8px;
   <ul class="dropdown-menu" role="menu">
   	<%
 	  	try{
-	  		int i=1;int k=0;
+	  		int i=1;int k=0;int a,b,c;
 	  	    PreparedStatement ps = conn.prepareStatement("select * from title where mode='Action'");
 	  	    ResultSet rs =ps.executeQuery() ;
 	  	    PreparedStatement ps1 = conn.prepareStatement("select * from title where mode='Action'");
@@ -122,11 +132,20 @@ border-radius:8px;
 	  	    	nam[k]=name;
 	  	    	k++;
 	  	    }
-  	    	for(int a=0,b=1,c=2;c<i;a=a+3,b=b+3,c=c+3){
+  	    	for(a=0,b=1,c=2;c<i;a=a+3,b=b+3,c=c+3){
   	    		%>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img name=nn data-original-title="<%=nam[a] %>" src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="#"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;<a href="#"><img  src='Title?appid=<%=data[c]%>'></a>&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
-  	    	} 
+  	    	}
+  	    	if((b+1)==i){
+  	    		%>
+	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img name=nn data-original-title="<%=nam[a] %>" src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="#"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;</div><br></li>
+	  	    	<%
+  	    	}else if((a+1)==i){
+  	    		%>
+	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img name=nn data-original-title="<%=nam[a] %>" src="Title?appid=<%=data[a]%>"></div><br></li>
+	  	    	<%
+  	    	}
 	  	}catch(Exception e){
 	  		out.println(e);
 	  	}	 
@@ -134,7 +153,7 @@ border-radius:8px;
   </ul>
 </div>
 </div>
-<br><br>Check<input type="submit" value="check">
+<br><br>
 </form>
 </body>
 </html>

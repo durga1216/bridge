@@ -274,6 +274,10 @@ try{
 	%>
 	<div id=inpop><h3>Oauth Authentication:</h3><br><br><br><br>
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
+	<%}else if(authen.equals("Oauth1")){
+	%>
+	<div id=inpop><h3>Oauth Authentication:</h3><br><br><br><br>
+		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
 	<%
 	}
 	%>
@@ -318,6 +322,13 @@ try{
 	1,Login into Your account by clicking the Authenticate Button..
 	<br>2,Access the MindPulpy App to read the data..<br><br><br><br>
 		<input type="submit" name="submit" onclick="javascript:sub1('dis1')" value="Authenticate Action" ></div>
+	<%}else if(authen1.equals("Oauth1")){
+	%>
+	<div id=inpop><h3>Oauth Authentication:</h3><br><br>
+	1,Login into Your account by clicking the Authenticate Button..
+	<br>2,Access the MindPulpy App to read the data..<br><br><br><br>
+		<input type="submit" name="submit" onclick="javascript:sub1('dis1')" value="Authenticate Action" ></div>
+	
 	<%
 	}
 	}catch(Exception e){} %>
