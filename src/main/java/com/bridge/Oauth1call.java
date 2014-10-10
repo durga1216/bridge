@@ -105,7 +105,7 @@ public class Oauth1call extends HttpServlet {
 	            	 out.println(actok);
 	            	 HttpClient httpclient1 = new DefaultHttpClient();
 	                 HttpResponse response1=null;
-	                 	   HttpGet get1=new HttpGet(ourl31);
+	                 	   HttpGet get1=new HttpGet(actok);
 	                 	    response1=httpclient1.execute(get1);
 	                       		BufferedReader rd = new BufferedReader(
 	                                new InputStreamReader(response1.getEntity().getContent()));
@@ -117,7 +117,7 @@ public class Oauth1call extends HttpServlet {
 	         		}
 	         		String tok=result.toString();
 	         		 
-	         		//out.println(tok);
+	         		out.println(tok);
 	         		String[] acctok=tok.split("&");
 	         		
 	         		session.setAttribute("access_token1", acctok[1]);
