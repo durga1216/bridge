@@ -90,9 +90,8 @@ public class TriggerAuth extends HttpServlet {
 	   		String resformat=rs.getString("resformat");String p1=rs.getString("p1");String p2=rs.getString("p2");String p3=rs.getString("p3");
 	   		String p4=rs.getString("p4");String p5=rs.getString("p5");String p6=rs.getString("p6");String p7=rs.getString("p7");
 	   		String p8=rs.getString("p8");String p9=rs.getString("p9");String p10=rs.getString("p10");
-//	   		String pv1=rs.getString("pv1");String pv2=rs.getString("pv2");String pv3=rs.getString("pv3");
-//	   		String pv4=rs.getString("pv4");String pv5=rs.getString("pv5");String pv6=rs.getString("pv6");String pv7=rs.getString("p7");
-//	   		String pv8=rs.getString("pv8");String pv9=rs.getString("pv9");String pv10=rs.getString("pv10");
+	   		String pav1=rs.getString("pv1");String pav2=rs.getString("pv2");String pav3=rs.getString("pv3");
+	   		String pav4=rs.getString("pv4");String pav5=rs.getString("pv5");String pav6=rs.getString("pv6");String pav7=rs.getString("p7");
 	   		String b1=rs.getString("b1");
 	   		String b3=rs.getString("b3");
 	   		String treplace=rs.getString("treplace");String tlabel=rs.getString("tlabel");
@@ -150,7 +149,9 @@ public class TriggerAuth extends HttpServlet {
        	     }
        	     code=200;
        	     session.setAttribute("xml1", str);
-	   			
+       	    PreparedStatement st2=con.prepareStatement("insert into trig_all (tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
+		   	st2.executeUpdate();
+		   	st2.close();
 	   			
 	   		}	//api keys
 	   			
@@ -257,7 +258,9 @@ public class TriggerAuth extends HttpServlet {
 	 	                    }//while
 	   	     
 	 	                   session.setAttribute("xml1", str);
-
+	 	                  PreparedStatement st2=con.prepareStatement("insert into trig_all (tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
+	 	 			   	st2.executeUpdate();
+	 	 			   	st2.close();
 	   		}//basic auth
 	   		else if(authen.equals("Oauth1")){
 	   			if(oreq.equals("GET")){
@@ -368,6 +371,9 @@ public class TriggerAuth extends HttpServlet {
 	                  String author=ourl2+"?"+oauth_token+"&perms=write";
 	                  response.sendRedirect(author);
             	 }
+	   			PreparedStatement st2=con.prepareStatement("insert into trig_all (tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace,ockey,oskey,osmeth) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pav1+"','"+p2+"','"+pav2+"','"+p3+"','"+pav3+"','"+p4+"','"+pav4+"','"+p5+"','"+pav5+"','"+p6+"','"+pav6+"','"+p7+"','"+pav7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"','"+ockey+"','"+oskey+"','"+osmeth+"')");
+			   	st2.executeUpdate();
+			   	st2.close();
 	   		}
 	        else if(authen.equals("Oauth2")){
         	    session.setAttribute("ckey", ckey1);
@@ -385,14 +391,11 @@ public class TriggerAuth extends HttpServlet {
           		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1+"&"+el1+"="+ev1);
                else if(sname1.equals("")&& !el1.equals(""))
           		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1+"&"+el1+"="+ev1);
-          	 
-
-	   		}
-	   	   
-			   	PreparedStatement st2=con.prepareStatement("insert into trig_all (tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
+	        	PreparedStatement st2=con.prepareStatement("insert into trig_all (tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pav1+"','"+p2+"','"+pav2+"','"+p3+"','"+pav3+"','"+p4+"','"+pav4+"','"+p5+"','"+pav5+"','"+p6+"','"+pav6+"','"+p7+"','"+pav7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
 			   	st2.executeUpdate();
 			   	st2.close();
-			   	
+
+	   		}
 			   	request.setAttribute("code", code);
 	            request.setAttribute("code1", code1);
 		       request.getRequestDispatcher("check.jsp").forward(request, response);	
@@ -411,9 +414,8 @@ public class TriggerAuth extends HttpServlet {
 		   		String resformat=rs.getString("resformat");String p1=rs.getString("p1");String p2=rs.getString("p2");String p3=rs.getString("p3");
 		   		String p4=rs.getString("p4");String p5=rs.getString("p5");String p6=rs.getString("p6");String p7=rs.getString("p7");
 		   		String p8=rs.getString("p8");String p9=rs.getString("p9");String p10=rs.getString("p10");
-//		   		String pv1=rs.getString("pv1");String pv2=rs.getString("pv2");String pv3=rs.getString("pv3");
-//		   		String pv4=rs.getString("pv4");String pv5=rs.getString("pv5");String pv6=rs.getString("pv6");String pv7=rs.getString("p7");
-//		   		String pv8=rs.getString("pv8");String pv9=rs.getString("pv9");String pv10=rs.getString("pv10");
+		   		String pav1=rs.getString("pv1");String pav2=rs.getString("pv2");String pav3=rs.getString("pv3");
+		   		String pav4=rs.getString("pv4");String pav5=rs.getString("pv5");String pav6=rs.getString("pv6");String pav7=rs.getString("p7");
 		   		String b1=rs.getString("b1");
 		   		String b3=rs.getString("b3");
 		   		String treplace=rs.getString("treplace");String tlabel=rs.getString("tlabel");
@@ -477,6 +479,9 @@ public class TriggerAuth extends HttpServlet {
 		   	     conn.disconnect();
 		   			}
 		   			//post
+		   			PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
+		   			st2.executeUpdate();
+		   			st2.close();
 		   		}	
 		   			
 		   		
@@ -537,6 +542,9 @@ public class TriggerAuth extends HttpServlet {
 		        	  HttpResponse response1 = httpClient.execute(postRequest);
 		        	  code1=response1.getStatusLine().getStatusCode();
 		        	  out.println(code1);
+		        	  PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
+			   			st2.executeUpdate();
+			   			st2.close();
 			   	 } //Basic
 		   		else if(authen.equals("Oauth1")){
 		   			if(oreq.equals("GET")){
@@ -651,6 +659,9 @@ public class TriggerAuth extends HttpServlet {
 		                  String author=ourl2+"?"+oauth_token+"&perms=write";
 		                  response.sendRedirect(author);
 	            	 }
+		   			PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace,ockey,oskey,osmeth) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"','"+ockey+"','"+oskey+"','"+osmeth+"')");
+		   			st2.executeUpdate();
+		   			st2.close();
 		   		}
 		   		else if(authen.equals("Oauth2")){
 	        	    session.setAttribute("ckey", ckey1);
@@ -668,12 +679,12 @@ public class TriggerAuth extends HttpServlet {
 	          		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1+"&"+el1+"="+ev1);
 	               else if(sname1.equals("")&& !el1.equals(""))
 	          		  response.sendRedirect(aurl1+"?redirect_uri=https://bridge-minddotss.rhcloud.com/OauthCall&response_type=code&client_id="+ckey1+"&"+el1+"="+ev1);
-	          	 
+		        	PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
+		   			st2.executeUpdate();
+		   			st2.close();
 
 		   		}
-		   		PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
-	   			   	st2.executeUpdate();
-	   			   	st2.close();
+		   		
 		   		request.setAttribute("code", code);
 	            request.setAttribute("code1", code1);
 		       request.getRequestDispatcher("check.jsp").forward(request, response);

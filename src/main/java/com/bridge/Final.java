@@ -179,6 +179,173 @@ public class Final extends HttpServlet {
 		    					str+=lin;
 		    				}
 			   			}
+			   		else if(authen.equals("Oauth1")){
+			        	 String res="";
+			        	 out.println("in Oauth");
+			        	 String oauth_signature_method=rs.getString("osmeth");
+		            	 String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
+		            	 String oauth_token="";
+		            	 String access_secret1="";
+		            	 PreparedStatement st4=con.prepareStatement("select * from token where tempid=?");
+			   			 st4.setString(1, da);
+					     ResultSet rs4=st4.executeQuery();
+					     while(rs4.next()){
+					    	 oauth_token=rs4.getString("oauthtoken");
+					    	access_secret1=rs4.getString("secret");
+					     }
+		            	 String[] tok11=oauth_token.split("=");
+		            	 String oauthtk=tok11[1];
+		         	    String[] tok1=access_secret1.split("=");
+		         	    String sec1=tok1[1];
+			        	 
+			        		 if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){
+			        		 eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5+"&"+p6+"="+pv6;}
+			        		 
+			        		 else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
+				        		 eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
+			        		 
+			        		 else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4)){
+				        		 eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4;}
+			        		 
+			        		 else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3)){
+				        		 eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3;}
+			        		 
+			        		 else if(!"null".equals(p1) && !"null".equals(p2)){
+				        		 eurl=p1+"="+pv1+"&"+p2+"="+pv2;}
+			        		 
+			        		 else if(!"null".equals(p1)){
+				        		 eurl=p1+"="+pv1;}
+			        		 else if("null".equals(p1))
+			        			eurl="null";
+			        		// out.println(eurl);
+			        		 //=========================
+			        		 if(rmethod.equals ("GET")){
+			            	 //========initial=========
+			            	 String uuid_string = UUID.randomUUID().toString();
+			                 uuid_string = uuid_string.replaceAll("-", "");
+			                 String oauth_nonce = uuid_string; 
+			                 String enurl = URLEncoder.encode(endurl1, "UTF-8");
+			                 String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
+			                 String parameter_string ="";
+			                   if(eurl.equals("null")){
+			                    parameter_string ="oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
+			                  }
+			                  else{
+				                   parameter_string = eurl+"&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
+			                  }
+			                   String[] tst1=parameter_string.split("&");Arrays.sort(tst1);
+			          		int no=tst1.length;String tst3="";
+			          		for(int i=1;i<no;i++){
+			          			tst3=tst3+"&"+tst1[i];
+			          		}
+			          		String tst4=tst1[0]+tst3;
+			                  String signature_base_string = rmethod+"&"+enurl+"&" + URLEncoder.encode(tst4, "UTF-8");
+			                 //  System.out.println("signature_base_string=" + signature_base_string);
+			                    String oauth_signature = "";String oauth_signature1 = "";
+			                    try {
+				                      oauth_signature = computeSignature(signature_base_string, secret+"&"+sec1);  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
+				                       oauth_signature1 = URLEncoder.encode(oauth_signature, "UTF-8");
+				                  } catch (GeneralSecurityException e) {
+				                     // TODO Auto-generated catch block
+				                     out.println(e);
+				                   }
+				                  String actok=endurl1+"?"+tst4+"&oauth_signature="+oauth_signature1;
+				                  //out.println(actok);
+			        		 HttpClient httpclient = new DefaultHttpClient();
+		               	   HttpGet get1=new HttpGet(actok);
+		               	   HttpResponse response1=httpclient.execute(get1);
+		                  BufferedReader rd = new BufferedReader(
+		                              new InputStreamReader(response1.getEntity().getContent()));
+		        
+		       		StringBuffer result = new StringBuffer();
+		       		String line = "";
+		       		while ((line = rd.readLine()) != null) {
+		       			result.append(line);
+		       		}
+		       		str=result.toString();
+			        	 }
+			        	 else if(rmethod.equals ("POST")){
+			        		 out.println("in post");
+			        		 String exhead="";
+			        		 if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6) && !"null".equals(p7)){
+				        		 exhead=p1+"=\""+pv1+"\","+p2+"=\""+pv2+"\","+p3+"=\""+pv3+"\","+p4+"=\""+pv4+"\","+p5+"=\""+pv5+"\","+p6+"=\""+pv6+"\","+p7+"=\""+pv7+"\"";}
+			        		 
+			        		 else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){
+			        		 exhead=p1+"=\""+pv1+"\","+p2+"=\""+pv2+"\","+p3+"=\""+pv3+"\","+p4+"=\""+pv4+"\","+p5+"=\""+pv5+"\","+p6+"=\""+pv6+"\"";}
+			        		 
+			        		 else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
+				        		 exhead=p1+"=\""+pv1+"\","+p2+"=\""+pv2+"\","+p3+"=\""+pv3+"\","+p4+"=\""+pv4+"\","+p5+"=\""+pv5+"\"";}
+			        		 
+			        		 else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4)){
+				        		 exhead=p1+"=\""+pv1+"\","+p2+"=\""+pv2+"\","+p3+"=\""+pv3+"\","+p4+"=\""+pv4+"\"";}
+			        		 
+			        		 else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3)){
+				        		 exhead=p1+"=\""+pv1+"\","+p2+"=\""+pv2+"\","+p3+"=\""+pv3+"\"";}
+			        		 
+			        		 else if(!"null".equals(p1) && !"null".equals(p2)){
+				        		 exhead=p1+"=\""+pv1+"\","+p2+"=\""+pv2+"\"";}
+			        		 
+			        		 else if(!"null".equals(p1)){
+				        		 exhead=p1+"=\""+pv1+"\"";}
+			        		 else if("null".equals(p1))
+			        			exhead="null";
+			        		 
+			        		 out.println("inside"+exhead);
+			        		 String uuid_string = UUID.randomUUID().toString();
+			                 uuid_string = uuid_string.replaceAll("-", "");
+			                 String oauth_nonce = uuid_string; 
+			                 String enurl = URLEncoder.encode(endurl1, "UTF-8");
+			                 String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
+			                   String parameter_string ="";
+			                   if(eurl.equals("null")){
+			                    parameter_string ="oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
+			                  }
+			                  else{
+				                   parameter_string = eurl+"&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
+			                  }
+			                   String[] tst1=parameter_string.split("&");Arrays.sort(tst1);
+			          		int no=tst1.length;String tst3="";
+			          		for(int i=1;i<no;i++){
+			          			tst3=tst3+"&"+tst1[i];
+			          		}
+			          		String tst4=tst1[0]+tst3;
+			                  String signature_base_string = rmethod+"&"+enurl+"&" + URLEncoder.encode(tst4, "UTF-8");
+			                 //  System.out.println("signature_base_string=" + signature_base_string);
+			                    String oauth_signature = "";String oauth_signature1 = "";
+			                    try {
+				                      oauth_signature = computeSignature(signature_base_string, secret+"&"+sec1);  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
+				                       oauth_signature1 = URLEncoder.encode(oauth_signature, "UTF-8");
+				                  } catch (GeneralSecurityException e) {
+				                     // TODO Auto-generated catch block
+				                     out.println(e);
+				                   }
+			                    String authorization_header_string="";
+			                    if(exhead.equals("null")){
+			                     authorization_header_string = "OAuth oauth_consumer_key=\"" + oauth_consumer_key + "\","
+			                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_token=\""+oauthtk+"\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
+			                            oauth_timestamp + "\",oauth_version=\"1.0\"";}
+			                    else{
+			                    	authorization_header_string = "OAuth "+exhead+",oauth_consumer_key=\"" + oauth_consumer_key + "\","
+				                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_access_token=\""+oauthtk+"\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
+				                            oauth_timestamp + "\",oauth_version=\"1.0\"";
+			                    }
+			                    out.println(authorization_header_string);
+			        		 HttpClient httpclient = new DefaultHttpClient();
+			        		 HttpResponse response1=null;
+			                 HttpPost post = new HttpPost(endurl1);
+		                     post.setHeader("Authorization", authorization_header_string);
+		     				 response1 = httpclient.execute(post);
+		                  BufferedReader rd = new BufferedReader(
+		                              new InputStreamReader(response1.getEntity().getContent()));
+		        
+		       		StringBuffer result = new StringBuffer();
+		       		String line = "";
+		       		while ((line = rd.readLine()) != null) {
+		       			result.append(line);
+		       		}
+		       		str=result.toString();
+			 	        	 } 
+			         }
 			   		else if(authen.equals("Oauth2")){
 			   			PreparedStatement st=con.prepareStatement("select * from token where tempid=?");
 			   			st.setString(1, da);
