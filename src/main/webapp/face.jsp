@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<script src="js/jquery-latest.js"></script>
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <title>Mind Connectors</title>
 <link rel="shortcut icon" href="favicon.ico" />
 <style>
@@ -16,6 +16,30 @@ font-family:verdana;
 font-weight:bold;
 font-size:25px;
 color:#FFFFFF;
+}
+.dropdown-menu{
+width:320px;
+height:300px;
+overflow:auto;
+background-color:#ff9900;
+}
+.container{
+float:left;
+margin-left:240px;
+}
+#tst{
+width:320px;
+font-family:verdana;
+font-size:15px;
+color:#FF9900;
+font-weight:bold;
+background-color:#fff;
+}
+img{
+width:80px;
+height:80px;
+border-radius:8px;
+box-shadow:1px 1px 2px 1px #000;
 }
 #tit{
 font-family:verdana;
@@ -36,18 +60,30 @@ color:#ff9900;
 font-weight:bold;
 margin-left:500px;
 }
-
+#ifm{
+background-color:#ff9900;
+}
 select{
 font-family:verdana;
 font-size:17px;
 color:#FF9900;
 font-weight:bold;
 width:350px;
-height:50px;
+height:70px;
 background-color:#fff;
 border-radius:5px;
 }
-
+#actmeth option{
+     font-family:verdana;
+font-size:18px;
+color:#FF9900;
+font-weight:bold;
+   }
+hr{
+color:#fff;
+background-color:#fff;
+height:1px;
+}
 #ins{
 font-family:verdana;
 font-size:15px;
@@ -81,7 +117,7 @@ $(document).ready(function(){
 		 app=$("#select1 option:selected").val();
 		 var app1=$("#select2 option:selected").val();
 		 
-		 window.location.replace("face.jsp?app="+app+"&app1="+app1);
+		 window.location.replace("index.jsp?app="+app+"&app1="+app1);
 
 		
 	});	
@@ -103,48 +139,123 @@ $(document).ready(function(){
 	$('#con_trig').click(function(){
 	});
 });
+function load(){
+		window.open("https://docs.google.com/forms/d/1mULCyQRpHS3IBRaoKOuKg8cGrR6o8i0QyfcW4bXfeO0/viewform?embedded=true",'_blank');
+}
 </script>
 </head>
 <body>
 <form action="MethodStorage" method="get">
 <%@ page import="java.sql.*" %>
 <%@include file="conn.jsp" %>
-<%ResultSet resultset =null;ResultSet rs=null;
+<%
 ResultSet rs2=null; ResultSet rs3=null;%>
 <%
     try{
-    PreparedStatement ps = conn.prepareStatement("select * from title");
-       resultset =ps.executeQuery() ;
-       PreparedStatement ps1 = conn.prepareStatement("select * from title");
-       rs =ps1.executeQuery() ;
        String appid="";String title="";String mode="";String title1="";String appid1="";String mode1="";String app="";String app1="";
 String id="";String id1="";
 %>
-
-<br><br><center><div id="head">Mind-Bridge</div></center>
-<br><br><br><div id='tit'>1.Choose trigger and action</div>
+<div id="head"><a href="http://minddotss.com"><img style="margin-left:100px;box-shadow:0px 0px 0px 0px;width:150px;height:70px;" alt="MindDots" src="images/log.png"></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mind-Pulpy Cloud Connectors</div><br><hr>
+<br><div id='tit'>1.Choose trigger and action &nbsp;&nbsp;&nbsp; (OR) &nbsp;&nbsp;&nbsp; <a style="color:#fff;" href="javascript:load()">Click here to Submit New Cloud Connect Request</a></div>
 <br><br>
-<div id="ins">a.Choose a trigger -> b. Choose an action -> c.Choose Trigger Method -> d.Choose Action Method</div><br><br>
-<select name="select1" id="select1"  style="margin-left:250px;" >
-       <option><center>Choose Trigger app here...</center></option>
-        <%  while(resultset.next()){ 
-        appid=resultset.getString("appid");
-        title=resultset.getString("tit");
-        mode=resultset.getString("mode");
-        if("Trigger".equals(mode)){%>
-            <option value="<%=appid%>"><%=title%>&nbsp;&nbsp;</option>
-        <%}} %></select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        
-   <select name="select2" id="select2">
-      <option><center>Choose an Action app here...</center></option> 
-       <% while(rs.next()){ 
-        appid1=rs.getString("appid");
-        title1=rs.getString("tit");
-        mode1=rs.getString("mode");
-        if("Action".equals(mode1)){%>
-            <option value="<%=appid1%>"><%=title1%>&nbsp;&nbsp;</option>
-        <%}} %>
-   </select> <br><br>     
+<div id="ins">a.Choose a trigger -> b. Choose an action -> c.Choose Trigger Method -> d.Choose Action Method</div><br>
+<br><div class="container">
+	<div class="btn-group">
+	<button type="button" id="tst" class="btn btn-danger">Choose any Trigger from the list</button>
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+  	<%
+	  	try{
+	  		int i=1;int k=0;int a,b,c;
+	  	    PreparedStatement ps = conn.prepareStatement("select * from title where mode='Trigger'");
+	  	    ResultSet rs =ps.executeQuery() ;
+	  	    PreparedStatement ps1 = conn.prepareStatement("select * from title where mode='Trigger'");
+	  	    ResultSet rs1 =ps1.executeQuery() ;
+		  	while(rs.next()){
+		  		i++;	  
+		    }
+		  	String [] data=new String[i];
+		  	String [] nam=new String[i];
+	  	    while(rs1.next()){
+	  	        appid=rs1.getString("appid");
+	  	    	String name=rs1.getString("tit");
+	  	    	data[k]=appid;
+	  	    	nam[k]=name;
+	  	    	k++;
+	  	    }
+  	    	for(a=0,b=1,c=2;c<i;a=a+3,b=b+3,c=c+3){
+  	    		%>
+	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="face.jsp?app=<%=data[a] %>"><img name=nn  src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="face.jsp?app=<%=data[b] %>"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;<a href="face.jsp?app=<%=data[c] %>"><img  src='Title?appid=<%=data[c]%>'></a>&nbsp;&nbsp;&nbsp;</div><br></li>
+	  	    	<%
+  	    	} 
+  	    	if((b+2)==i){
+  	    		%>
+	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="face.jsp?app=<%=data[a] %>"><img name=nn  src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="face.jsp?app=<%=data[b] %>"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;</div><br></li>
+	  	    	<%
+  	    	}else if((a+2)==i){
+  	    		%>
+	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="face.jsp?app=<%=data[a] %>"><img name=nn  src="Title?appid=<%=data[a]%>"></a></div><br></li>
+	  	    	<%
+  	    	}
+	  	}catch(Exception e){
+	  		out.println(e);
+	  	}	 
+  	%>
+  </ul>
+</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<div class="btn-group">
+	<button type="button" id="tst" class="btn btn-danger">Choose any Action from the list</button>
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+  	<%  String chk=request.getParameter("app");
+	  	try{
+	  		int i=1;int k=0;int a,b,c;
+	  	    PreparedStatement ps = conn.prepareStatement("select * from title where mode='Action'");
+	  	    ResultSet rs =ps.executeQuery() ;
+	  	    PreparedStatement ps1 = conn.prepareStatement("select * from title where mode='Action'");
+	  	    ResultSet rs1 =ps1.executeQuery() ;
+		  	while(rs.next()){
+		  		i++;	  
+		    }
+		  	String [] data=new String[i];
+		  	String [] nam=new String[i];
+	  	    while(rs1.next()){
+	  	        appid=rs1.getString("appid");
+	  	    	String name=rs1.getString("tit");
+	  	    	data[k]=appid;
+	  	    	nam[k]=name;
+	  	    	k++;
+	  	    }
+  	    	for(a=0,b=1,c=2;c<i;a=a+3,b=b+3,c=c+3){
+  	    		%>
+	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="face.jsp?app1=<%=data[a]%>&app=<%=chk%>"><img name=nn  src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="face.jsp?app1=<%=data[b]%>&app=<%=chk%>"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;<a href="face.jsp?app1=<%=data[c]%>&app=<%=chk%>"><img  src='Title?appid=<%=data[c]%>'></a>&nbsp;&nbsp;&nbsp;</div><br></li>
+	  	    	<%
+  	    	}
+  	    	if((b+2)==i){
+  	    		%>
+	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="face.jsp?app1=<%=data[a]%>&app=<%=chk%>"><img name=nn  src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="face.jsp?app1=<%=data[b]%>&app=<%=chk%>"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;</div><br></li>
+	  	    	<%
+  	    	}else if((a+2)==i){
+  	    		%>
+	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="face.jsp?app1=<%=data[a]%>&app=<%=chk%>"><img name=nn  src="Title?appid=<%=data[a]%>"></a></div><br></li>
+	  	    	<%
+  	    	}
+	  	}catch(Exception e){
+	  		out.println(e);
+	  	}	 
+  	%>
+  </ul>
+</div>
+</div>
+<br>
+<br><br>     
 
   <% 
        app=request.getParameter("app");
@@ -157,29 +268,33 @@ String id="";String id1="";
        rs3=st1.executeQuery();
        String t1="";String mode2="";String act_t1="";String mode3="";String accname="";String dis="";String dis1="";
   %>    
-<br><br><select name="tgmeth" id="tgmeth" onchange="change()" style="margin-left:250px;height:40px;" >
-    <option><center>Choose Trigger Method</center></option>
+<br><select name="tgmeth" id="tgmeth" onchange="change()" style="margin-left:250px;height:40px;" >
+    <option>&nbsp;&nbsp;&nbsp;&nbsp;Choose Any Trigger Method from the list</option>
+    <option disabled="disabled" ></option>
     <% while(rs2.next()){
         id=rs2.getString("appid");
         dis=rs2.getString("tit");
     	t1=rs2.getString("name");
         mode2=rs2.getString("mode");
         if("Trigger".equals(mode2)){ %>
-   <option value="<%=t1 %>" ><%=t1 %></option>
+   <option value="<%=t1 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=t1%></option>
+   <option disabled="disabled" ></option>
     	        <%}} %></select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <select name="actmeth" id="actmeth" onchange="change()" style="height:40px;" >
-    <option><center>Choose Action Method</center></option>
+    <option>&nbsp;&nbsp;&nbsp;&nbsp;Choose any Action Method from the list</option>
+    <option disabled="disabled" ></option>
     <% while(rs3.next()){
     	id1=rs3.getString("appid");
     	dis1=rs3.getString("tit");
     	act_t1=rs3.getString("name");
     	mode3=rs3.getString("mode");
     	 if("Action".equals(mode3)){%>
-   <option value="<%=act_t1 %>" ><%=act_t1%></option>
+   <option value="<%=act_t1 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=act_t1%></option>
+   <option disabled="disabled" ></option>
     	        <%}}%></select><input type="text" name="app1" value="<%=app1%>" style="display:none"><input type="text" name="app" value="<%=app %>" style="display:none">      <br><br>  <br><br>
     	  
     	        
-  <br><br><input type="submit" name="con_trig" id="con_trig" value="Continue" style="display:none">  <br><br>	
+  <br><br><input type="submit" name="con_trig" id="con_trig" value="Continue" style="display:none"><br><br>	
   
    <% 
        
