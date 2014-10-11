@@ -181,7 +181,7 @@ public class Final extends HttpServlet {
 			   			}
 			   		else if(authen.equals("Oauth1")){
 			        	 String res="";
-			        	 out.println("in Oauth");
+			        	 //out.println("in Oauth");
 			        	 String oauth_signature_method=rs.getString("osmeth");
 		            	 String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
 		            	 String oauth_token="";
@@ -240,7 +240,7 @@ public class Final extends HttpServlet {
 			          		}
 			          		String tst4=tst1[0]+tst3;
 			                  String signature_base_string = rmethod+"&"+enurl+"&" + URLEncoder.encode(tst4, "UTF-8");
-			                 //  System.out.println("signature_base_string=" + signature_base_string);
+			                 out.println("signature_base_string=" + signature_base_string);
 			                    String oauth_signature = "";String oauth_signature1 = "";
 			                    try {
 				                      oauth_signature = computeSignature(signature_base_string, secret+"&"+sec1);  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
@@ -250,7 +250,7 @@ public class Final extends HttpServlet {
 				                     out.println(e);
 				                   }
 				                  String actok=endurl1+"?"+tst4+"&oauth_signature="+oauth_signature1;
-				                  //out.println(actok);
+				                  out.println(actok+"---"+secret+"---"+sec1);
 			        		 HttpClient httpclient = new DefaultHttpClient();
 		               	   HttpGet get1=new HttpGet(actok);
 		               	   HttpResponse response1=httpclient.execute(get1);
