@@ -186,8 +186,9 @@ public class Final extends HttpServlet {
 		            	 String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
 		            	 String oauth_token="";
 		            	 String access_secret1="";
-		            	 PreparedStatement st4=con.prepareStatement("select * from token where tempid=?");
+		            	 PreparedStatement st4=con.prepareStatement("select * from token where tempid=? && tid=?");
 			   			 st4.setString(1, da);
+			   			 st4.setString(2, tid);
 					     ResultSet rs4=st4.executeQuery();
 					     while(rs4.next()){
 					    	 oauth_token=rs4.getString("oauthtoken");
@@ -347,8 +348,9 @@ public class Final extends HttpServlet {
 			 	        	 } 
 			         }
 			   		else if(authen.equals("Oauth2")){
-			   			PreparedStatement st=con.prepareStatement("select * from token where tempid=?");
+			   			PreparedStatement st=con.prepareStatement("select * from token where tempid=? && tid=?");
 			   			st.setString(1, da);
+			   			st.setString(2, tid);
 					    ResultSet rs1=st.executeQuery();String access_token="";
 					    while(rs1.next()){
 					    	access_token=rs1.getString("oauthtoken");
@@ -644,8 +646,9 @@ public class Final extends HttpServlet {
 		            	 String oreq1=rs.getString("oreq");
 		            	 String oauth_token="";
 		            	 String access_secret1="";
-		            	 PreparedStatement st4=con.prepareStatement("select * from token where tempid=?");
+		            	 PreparedStatement st4=con.prepareStatement("select * from token where tempid=? && tid=?");
 			   			 st4.setString(1, da);
+			   			st4.setString(2, aid);
 					     ResultSet rs4=st4.executeQuery();
 					     while(rs4.next()){
 					    	 oauth_token=rs4.getString("oauthtoken");
@@ -805,8 +808,9 @@ public class Final extends HttpServlet {
 			 	        	 } 
 			         }
 			   		else if(authen.equals("Oauth2")){
-			   			PreparedStatement st4=con.prepareStatement("select * from token where tempid=?");
+			   			PreparedStatement st4=con.prepareStatement("select * from token where tempid=? && tid=?");
 			   			st4.setString(1, da);
+			   			st4.setString(2, aid);
 					    ResultSet rs4=st4.executeQuery();String access_token="";
 					    while(rs4.next()){
 					    	access_token=rs4.getString("oauthtoken");
