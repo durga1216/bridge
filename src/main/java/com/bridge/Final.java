@@ -219,7 +219,7 @@ public class Final extends HttpServlet {
 			        			eurl="null";
 			        		// out.println(eurl);
 			        		 //=========================
-			        		 if(rmethod.equals ("GET")){
+			        		 if(rmethod.equals ("Get")){
 			            	 //========initial=========
 			            	 String uuid_string = UUID.randomUUID().toString();
 			                 uuid_string = uuid_string.replaceAll("-", "");
@@ -264,7 +264,7 @@ public class Final extends HttpServlet {
 		       		}
 		       		str=result.toString();
 			        	 }
-			        	 else if(rmethod.equals ("POST")){
+			        	 else if(rmethod.equals ("Post")){
 			        		 out.println("in post");
 			        		 String exhead="";
 			        		 if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6) && !"null".equals(p7)){
@@ -677,7 +677,7 @@ public class Final extends HttpServlet {
 			        			eurl="null";
 			        		// out.println(eurl);
 			        		 //=========================
-			        		 if(rmethod.equals ("GET")){
+			        		 if(rmethod.equals ("Get")){
 			            	 //========initial=========
 			            	 String uuid_string = UUID.randomUUID().toString();
 			                 uuid_string = uuid_string.replaceAll("-", "");
@@ -722,7 +722,7 @@ public class Final extends HttpServlet {
 		       		}
 		       		str1=result.toString();
 			        	 }
-			        	 else if(rmethod.equals ("POST")){
+			        	 else if(rmethod.equals ("Post")){
 			        		 out.println("in post");
 			        		 String exhead="";
 			        		 if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6) && !"null".equals(p7)){
