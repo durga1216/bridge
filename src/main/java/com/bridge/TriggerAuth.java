@@ -322,11 +322,10 @@ public class TriggerAuth extends HttpServlet {
 	                 uuid_string = uuid_string.replaceAll("-", "");
 	                 String oauth_nonce = uuid_string; 
 	                 String eurl1 = URLEncoder.encode(ourl1, "UTF-8");
-	                 int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
 	                 String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
 	                 String parameter_string = "oauth_callback=" + callback +"&oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oskey + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
 	                 String signature_base_string = oreq+"&"+eurl1+"&" + URLEncoder.encode(parameter_string, "UTF-8");
-	                 System.out.println("signature_base_string=" + signature_base_string);
+	                 out.println("signature_base_string=" + signature_base_string);
 	                 String oauth_signature = "";String oauth_signature1 = "";
 	                 try {
 	                       oauth_signature = computeSignature(signature_base_string, oskey+"&");  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
@@ -337,11 +336,11 @@ public class TriggerAuth extends HttpServlet {
 	                 }
 	                 session.setAttribute("oauth_signature1", oauth_signature1);
 	                 session.setAttribute("parameter_string", parameter_string);
-	                 String authorization_header_string = "OAuth oauth_consumer_key=\"" + ockey + "\",oauth_callback=\"" + oauth_callback + "\","
-	                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
+	                 String authorization_header_string = "OAuth oauth_callback=\"" + oauth_callback + "\",oauth_consumer_key=\"" + ockey + "\","
+	                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"" + 
 	                            oauth_timestamp + "\",oauth_version=\"1.0\"";
 	                 String uurl=ourl1+"?"+parameter_string+"&oauth_signature="+URLEncoder.encode(oauth_signature, "UTF-8");
-	                 System.out.println(uurl);
+	                 out.println(authorization_header_string);
 	                 String oauth_token = "";
 	                 HttpClient httpclient = new DefaultHttpClient();
 	                 HttpResponse response1=null;

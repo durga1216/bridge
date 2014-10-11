@@ -176,7 +176,7 @@ String id="";String id1="";
 	  	    ResultSet rs1 =ps1.executeQuery() ;
 		  	while(rs.next()){
 		  		i++;	  
-		    }
+		    }out.println(i);
 		  	String [] data=new String[i];
 		  	String [] nam=new String[i];
 	  	    while(rs1.next()){
@@ -186,11 +186,11 @@ String id="";String id1="";
 	  	    	nam[k]=name;
 	  	    	k++;
 	  	    }
-  	    	for(a=0,b=1,c=2;c<i;a=a+3,b=b+3,c=c+3){
+  	    	for(a=0,b=1,c=2;c<k;a=a+3,b=b+3,c=c+3){
   	    		%>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="face.jsp?app=<%=data[a] %>"><img name=nn  src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="face.jsp?app=<%=data[b] %>"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;<a href="face.jsp?app=<%=data[c] %>"><img  src='Title?appid=<%=data[c]%>'></a>&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
-  	    	} 
+  	    	} out.println(i+"----"+c+"---"+k);
   	    	if((b+2)==i){
   	    		%>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="face.jsp?app=<%=data[a] %>"><img name=nn  src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="face.jsp?app=<%=data[b] %>"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;</div><br></li>
@@ -233,7 +233,7 @@ String id="";String id1="";
 	  	    	nam[k]=name;
 	  	    	k++;
 	  	    }
-  	    	for(a=0,b=1,c=2;c<i;a=a+3,b=b+3,c=c+3){
+  	    	for(a=0,b=1,c=2;c<k;a=a+3,b=b+3,c=c+3){
   	    		%>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="face.jsp?app1=<%=data[a]%>&app=<%=chk%>"><img name=nn  src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="face.jsp?app1=<%=data[b]%>&app=<%=chk%>"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;<a href="face.jsp?app1=<%=data[c]%>&app=<%=chk%>"><img  src='Title?appid=<%=data[c]%>'></a>&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
