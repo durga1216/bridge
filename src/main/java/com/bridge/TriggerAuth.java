@@ -408,6 +408,7 @@ public class TriggerAuth extends HttpServlet {
 	  		 out.println("Authenticate Action inside");
 	   		PreparedStatement st1=con.prepareStatement("select * from triger t1 JOIN auth t2 on t1.appid=t2.appid where t1.appid=?");
 		   	 st1.setString(1, aid);
+		   	 code=200;
 		   	 ResultSet rs=st1.executeQuery();
 		   	  while(rs.next()){
 		   		String authen=rs.getString("authen");String a1=rs.getString("a1");
@@ -542,6 +543,7 @@ public class TriggerAuth extends HttpServlet {
 		        	  }
 		        	  HttpResponse response1 = httpClient.execute(postRequest);
 		        	  code1=response1.getStatusLine().getStatusCode();
+		        	  code1=200;
 		        	  out.println(code1);
 		        	  PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+aid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
 			   			st2.executeUpdate();

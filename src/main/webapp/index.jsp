@@ -19,7 +19,7 @@ color:#FFFFFF;
 }
 .dropdown-menu{
 width:320px;
-height:300px;
+height:220px;
 overflow:auto;
 background-color:#ff9900;
 }
@@ -159,14 +159,16 @@ String id="";String id1="";
 <br><div id='tit'>1.Choose trigger and action &nbsp;&nbsp;&nbsp; (OR) &nbsp;&nbsp;&nbsp; <a style="color:#fff;" href="javascript:load()">Click here to Submit New Cloud Connect Request</a></div>
 <br><br>
 <div id="ins">a.Choose a trigger -> b. Choose an action -> c.Choose Trigger Method -> d.Choose Action Method</div><br>
+<img style="margin-left:270px;box-shadow:0px 0px 0px 0px;width:300px;height:50px;" src="images/read.png">
+<img style="margin-left:100px;box-shadow:0px 0px 0px 0px;width:300px;height:50px;" src="images/rite.png">
 <br><div class="container">
-	<div class="btn-group">
+	<br><div class="btn-group">
 	<button type="button" id="tst" class="btn btn-danger">Choose any Trigger from the list</button>
   <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
     <span class="caret"></span>
     <span class="sr-only">Toggle Dropdown</span>
   </button>
-  <ul class="dropdown-menu" role="menu">
+  <ul class="dropdown-menu" role="menu"><br>
   	<%
 	  	try{
 	  		int i=1;int k=0;int a,b,c;
@@ -213,7 +215,7 @@ String id="";String id1="";
     <span class="caret"></span>
     <span class="sr-only">Toggle Dropdown</span>
   </button>
-  <ul class="dropdown-menu" role="menu">
+  <ul class="dropdown-menu" role="menu"><br>
   	<%  String chk=request.getParameter("app");
 	  	try{
 	  		int i=1;int k=0;int a,b,c;
