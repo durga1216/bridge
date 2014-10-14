@@ -263,8 +263,6 @@ public class TriggerAuth extends HttpServlet {
 	 	 			   	st2.close();
 	   		}//basic auth
 	   		else if(authen.equals("Oauth1")){
-	   			String callback="https://bridge-minddotss.rhcloud.com/Oauth1call";
-	   			String oauth_callback=URLEncoder.encode(callback, "UTF-8");
 	   			if(oreq.equals("GET")){
 			   			 String uuid_string = UUID.randomUUID().toString();
 		                 uuid_string = uuid_string.replaceAll("-", "");
@@ -324,8 +322,8 @@ public class TriggerAuth extends HttpServlet {
 	                 String eurl1 = URLEncoder.encode(ourl1, "UTF-8");
 	                 String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
 	                 String parameter_string = "oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + osmeth + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
-	                 String signature_base_string = oreq+"&"+eurl1+"&" + URLEncoder.encode(parameter_string, "UTF-8");
-	                 out.println("signature_base_string=" + signature_base_string);
+	                 String signature_base_string = oreq+"&"+eurl1+"&" + URLEncoder.encode(parameter_string, "UTF-8");out.println("signature_base_string=" + signature_base_string);
+	                 out.println(signature_base_string);
 	                 String oauth_signature = "";String oauth_signature1 = "";
 	                 try {
 	                       oauth_signature = computeSignature(signature_base_string, oskey+"&");  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
@@ -334,10 +332,8 @@ public class TriggerAuth extends HttpServlet {
 	                     // TODO Auto-generated catch block
 	                     e.printStackTrace();
 	                 }
-	                 session.setAttribute("oauth_signature1", oauth_signature1);
-	                 session.setAttribute("parameter_string", parameter_string);
 	                 String authorization_header_string = "OAuth oauth_consumer_key=\"" + ockey + "\","
-	                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"" + 
+	                 		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
 	                            oauth_timestamp + "\",oauth_version=\"1.0\"";
 	                 out.println(authorization_header_string);
 	                 String oauth_token = "";
