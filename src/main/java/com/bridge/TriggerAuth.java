@@ -323,7 +323,7 @@ public class TriggerAuth extends HttpServlet {
 	                 String oauth_nonce = uuid_string; 
 	                 String eurl1 = URLEncoder.encode(ourl1, "UTF-8");
 	                 String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
-	                 String parameter_string = "oauth_callback=" + callback +"&oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oskey + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
+	                 String parameter_string = "oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + osmeth + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
 	                 String signature_base_string = oreq+"&"+eurl1+"&" + URLEncoder.encode(parameter_string, "UTF-8");
 	                 out.println("signature_base_string=" + signature_base_string);
 	                 String oauth_signature = "";String oauth_signature1 = "";
@@ -336,10 +336,9 @@ public class TriggerAuth extends HttpServlet {
 	                 }
 	                 session.setAttribute("oauth_signature1", oauth_signature1);
 	                 session.setAttribute("parameter_string", parameter_string);
-	                 String authorization_header_string = "OAuth oauth_callback=\"" + oauth_callback + "\",oauth_consumer_key=\"" + ockey + "\","
+	                 String authorization_header_string = "OAuth oauth_consumer_key=\"" + ockey + "\","
 	                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"" + 
 	                            oauth_timestamp + "\",oauth_version=\"1.0\"";
-	                 String uurl=ourl1+"?"+parameter_string+"&oauth_signature="+URLEncoder.encode(oauth_signature, "UTF-8");
 	                 out.println(authorization_header_string);
 	                 String oauth_token = "";
 	                 HttpClient httpclient = new DefaultHttpClient();
