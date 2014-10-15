@@ -43,12 +43,25 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
 import org.w3c.dom.CharacterData;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson.JacksonFactory;
+import com.google.gdata.client.spreadsheet.SpreadsheetService;
+import com.google.gdata.data.spreadsheet.CellEntry;
+import com.google.gdata.data.spreadsheet.CellFeed;
+import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
+import com.google.gdata.data.spreadsheet.WorksheetEntry;
+import com.google.gdata.data.spreadsheet.WorksheetFeed;
 
 /**
  * Servlet implementation class Final
@@ -357,7 +370,44 @@ public class Final extends HttpServlet {
 					    }
 			   			HttpClient client = new DefaultHttpClient();
 			   			String line="";
-			   			if(rmethod.equals("GET")){ 
+			   			if(rmethod.equals("GOOGLE")){
+			   				String CLIENT_ID = "758153664645-n04dc4ki6pr383jdnrq6hmgjsvbsibls";
+			   				String CLIENT_SECRET = "YsLu7TgD4q_NmheHjx4W2Okf";
+			   				HttpTransport transport = new NetHttpTransport();
+			   			    JacksonFactory jsonFactory = new JacksonFactory();
+			   				Credential credencial = new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
+			   		        .setJsonFactory(jsonFactory).setTransport(transport).build()
+			   		     .setAccessToken(access_token).setRefreshToken(null);
+			   			 SpreadsheetService service =
+			   	            new SpreadsheetService("Aplication-name");
+			   	     service.setOAuth2Credentials(credencial);
+			   	    URL SPREADSHEET_FEED_URL = new URL(
+			   	        "https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+			   	    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,
+			   	        SpreadsheetFeed.class);
+			   	    List<com.google.gdata.data.spreadsheet.SpreadsheetEntry> spreadsheets = feed.getEntries();
+			   	     if (spreadsheets.isEmpty()) {
+			   	      // TODO: There were no spreadsheets, act accordingly.
+			   	    }
+			   	com.google.gdata.data.spreadsheet.SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+			   	    WorksheetFeed worksheetFeed = service.getFeed(
+			   	        spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+			   	    List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
+			   	    WorksheetEntry worksheet = worksheets.get(0);
+			   	    URL cellFeedUrl = worksheet.getCellFeedUrl();
+			   	    CellFeed cellFeed = service.getFeed(cellFeedUrl, CellFeed.class);
+			   	    JSONObject obj = new JSONObject();
+			   	    JSONObject obj1 = new JSONObject();
+			   	    String title=spreadsheet.getTitle().getPlainText();
+			   	    for (CellEntry cell : cellFeed.getEntries()) {
+			   	      String name=cell.getTitle().getPlainText();
+			   	      String value=cell.getCell().getValue();
+			   	      obj.put(name, value);
+			   	    }
+			   	    obj1.put(title, obj);
+			   	    str=obj1.toString();
+			   	    }
+			   			else if(rmethod.equals("GET")){ 
 				     		if("Authorization:Bearer".equals(treplace)){
 
 			     			HttpGet get=new HttpGet(endurl1);
@@ -1003,4 +1053,5 @@ public class Final extends HttpServlet {
 	 
 	      return new String(Base64.encodeBase64(mac.doFinal(text))).trim();
 	  }
+	  
 }
