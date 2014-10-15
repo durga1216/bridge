@@ -99,7 +99,6 @@ public class GauthCall extends HttpServlet {
 		    URL cellFeedUrl = worksheet.getCellFeedUrl();
 		    CellFeed cellFeed = service.getFeed(cellFeedUrl, CellFeed.class);
 
-		    // Iterate through each cell, printing its value.
 		    JSONObject obj = new JSONObject();
 		    JSONObject obj1 = new JSONObject();
 		    String title=spreadsheet.getTitle().getPlainText();
