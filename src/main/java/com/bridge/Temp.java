@@ -42,36 +42,36 @@ public class Temp extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setHeader("Content-Type","text/html;charset=UTF-8");
-		String no=request.getParameter("no");
-		InputStream inputStream=null;
-   Part filePart = request.getPart("logo"); 
-	if (filePart != null) {  
-   inputStream = filePart.getInputStream();}
-	Connection con=null;
-	PrintWriter out=response.getWriter();
-	out.println("came");
-	try
-	{
-		Class.forName("com.mysql.jdbc.Driver").newInstance();
-       con = (Connection) DriverManager.getConnection(Util.url,Util.user,Util.pass);
-        PreparedStatement st=null;
-		 st=con.prepareStatement("update title set img=? where appid=?");
-		 if (inputStream != null) {  
-		        st.setBlob(1, inputStream);  
-		}
-		 st.setString(2, no);
-		 st.executeUpdate();
-		 st.close();
-	     out.println("<br><br><br><br><html><body bgcolor='#FF9900'><center><h2 style='color:#ffffff'>UPDATE SUCCESSFULLY</h2></center></body></html>");
-		 response.setHeader("Refresh", "1; URL=parse.jsp");
-		
-	}
-	catch(Exception e)
-	{
-		out.println(e);
-	}
-	
+//		response.setHeader("Content-Type","text/html;charset=UTF-8");
+//		String no=request.getParameter("no");
+//		InputStream inputStream=null;
+//   Part filePart = request.getPart("logo"); 
+//	if (filePart != null) {  
+//   inputStream = filePart.getInputStream();}
+//	Connection con=null;
+//	PrintWriter out=response.getWriter();
+//	out.println("came");
+//	try
+//	{
+//		Class.forName("com.mysql.jdbc.Driver").newInstance();
+//       con = (Connection) DriverManager.getConnection(Util.url,Util.user,Util.pass);
+//        PreparedStatement st=null;
+//		 st=con.prepareStatement("update title set img=? where appid=?");
+//		 if (inputStream != null) {  
+//		        st.setBlob(1, inputStream);  
+//		}
+//		 st.setString(2, no);
+//		 st.executeUpdate();
+//		 st.close();
+//	     out.println("<br><br><br><br><html><body bgcolor='#FF9900'><center><h2 style='color:#ffffff'>UPDATE SUCCESSFULLY</h2></center></body></html>");
+//		 response.setHeader("Refresh", "1; URL=parse.jsp");
+//		
+//	}
+//	catch(Exception e)
+//	{
+//		out.println(e);
+//	}
+//	
 	}
 
 }

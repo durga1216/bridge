@@ -83,9 +83,11 @@ public class Title extends HttpServlet {
    String mode=request.getParameter("mode");
    System.out.println("test"+appname+"--"+descr);
    InputStream inputStream=null;
-   Part filePart = request.getPart("logo"); 
+   //Part filePart = request.getPart("logo"); 
+   String filePart =request.getParameter("logo");
 		if (filePart != null) {  
-   inputStream = filePart.getInputStream();}
+  // inputStream = filePart.getInputStream();
+			}
 	 HttpSession session=request.getSession();
    try{
   	 Class.forName("com.mysql.jdbc.Driver").newInstance();
