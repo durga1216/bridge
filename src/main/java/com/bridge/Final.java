@@ -405,7 +405,9 @@ public class Final extends HttpServlet {
 			   	      obj.put(name, value);
 			   	    }
 			   	    obj1.put(title, obj);
-			   	    str=obj1.toString();
+			   	    String cng=obj1.toString();
+			   	    cng=cng.replaceAll(" ", "_");
+			   	    str=cng;
 			   	    }
 			   			else if(rmethod.equals("GET")){ 
 				     		if("Authorization:Bearer".equals(treplace)){
