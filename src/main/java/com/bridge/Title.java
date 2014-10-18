@@ -83,18 +83,19 @@ public class Title extends HttpServlet {
    String mode=request.getParameter("mode");
    System.out.println("test"+appname+"--"+descr);
    InputStream inputStream=null;
-   Part filePart = request.getPart("logo"); 
-   //String filePart =request.getParameter("logo");
-		if (filePart != null) {  
-   inputStream = filePart.getInputStream();
-			}
+   //Part filePart = request.getPart("logo"); 
+   String filePart =request.getParameter("logo");
+//		if (filePart != null) {  
+//   inputStream = filePart.getInputStream();
+//			}
 	 HttpSession session=request.getSession();
    try{
   	 Class.forName("com.mysql.jdbc.Driver").newInstance();
   	 con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
-  	 PreparedStatement st=con.prepareStatement("insert into title (tit,des,img,mode) values ('"+appname+"','"+descr+"',?,'"+mode+"')");
-  	 if (filePart != null) {  
-  	 st.setBlob(1, inputStream);}
+  	 //PreparedStatement st=con.prepareStatement("insert into title (tit,des,img,mode) values ('"+appname+"','"+descr+"',?,'"+mode+"')");
+  	PreparedStatement st=con.prepareStatement("insert into title (tit,des,mode) values ('"+appname+"','"+descr+"','"+mode+"')");
+//  	 if (filePart != null) {  
+//  	 st.setBlob(1, inputStream);}
   	 st.executeUpdate();
   	 PreparedStatement st1=con.prepareStatement("select * from title ORDER BY appid DESC LIMIT 1");
   	 ResultSet rs=st1.executeQuery();
