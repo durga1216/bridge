@@ -30,16 +30,18 @@ public class Oauth1 {
 		public static void main(String args[]){
 			try{
 				String url1="https://api.twitter.com/oauth/request_token";
-				String endurl1="https://api.twitter.com/1.1/statuses/update.json";
+				//String endurl1="https://api.twitter.com/1.1/statuses/update.json";
+				String endurl1="https://api.twitter.com/1.1/users/show.json";
 				String oauth_consumer_key="Hv3OScz3A90OTg2TI56wmfl9j";
 				String secret="NwxL4KegyzbRlGSvkhzdKx5VqDl8HWThb7NlJBJfzviuCXZ4Z6";
 				String ourl2="https://api.twitter.com/oauth/authorize";
 				String callback="";
 				String oauth_signature_method="HMAC-SHA1";
-				String oreq1="POST";
+				String oreq1="GET";
 				String status="auto Testt hjhhjsssreply4";
 				String stat=status.replaceAll(" ", "%20");
-				String eurl="status="+stat+"&in_reply_to_user_id=268370644&in_reply_to_status_id=521932749725122561&in_reply_to_screen_name=minddotss";
+				//String eurl="status="+stat+"&in_reply_to_user_id=268370644&in_reply_to_status_id=521932749725122561&in_reply_to_screen_name=minddotss";
+				String eurl="screen_name=TechCrunch";
 				String oauth_token="oauth_token=497155949-yO17YQwC0FyOpDjniU6aSJ2NAOHWq710j8BzNrWS";
 				String access_secret1="oauth_token_secret=bNrlZtJmkLC8i3qxHKN9zXpx4QiUMJ5etoGYdZfzZw7UK";
 				String[] tok11=oauth_token.split("=");
@@ -80,15 +82,17 @@ public class Oauth1 {
 	                            oauth_timestamp + "\",oauth_version=\"1.0\"";
 	                  System.out.println(authorization_header_string);
 			     		 HttpClient httpclient = new DefaultHttpClient();
-			     		 HttpPost post = new HttpPost(endurl1);
-			     		List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
-        				urlParameters.add(new BasicNameValuePair("in_reply_to_user_id","268370644"));
-        				urlParameters.add(new BasicNameValuePair("in_reply_to_status_id","521932749725122561"));
-        				urlParameters.add(new BasicNameValuePair("in_reply_to_screen_name","minddotss"));
-        				urlParameters.add(new BasicNameValuePair("status", status));
-        				post.setEntity(new UrlEncodedFormEntity(urlParameters));
-        				post.setHeader("Authorization", authorization_header_string);
-	     				HttpResponse response1 = httpclient.execute(post);
+//			     		 HttpPost post = new HttpPost(endurl1);
+//			     		List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
+//        				urlParameters.add(new BasicNameValuePair("in_reply_to_user_id","268370644"));
+//        				urlParameters.add(new BasicNameValuePair("in_reply_to_status_id","521932749725122561"));
+//        				urlParameters.add(new BasicNameValuePair("in_reply_to_screen_name","minddotss"));
+//        				urlParameters.add(new BasicNameValuePair("status", status));
+//        				post.setEntity(new UrlEncodedFormEntity(urlParameters));
+//        				post.setHeader("Authorization", authorization_header_string);
+//	     				HttpResponse response1 = httpclient.execute(post);
+			     		 HttpGet post=new HttpGet(actok);
+			     		 HttpResponse response1=httpclient.execute(post);
 			           BufferedReader rd = new BufferedReader(
 			                       new InputStreamReader(response1.getEntity().getContent()));
 				 
