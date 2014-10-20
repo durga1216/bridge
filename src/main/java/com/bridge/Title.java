@@ -21,7 +21,7 @@ import javax.servlet.http.Part;
 /**
  * Servlet implementation class Title
  */
-@WebServlet("/Title")
+
 @MultipartConfig(maxFileSize = 16177215)
 public class Title extends HttpServlet {
 	private static final long serialVersionUID = 1L;
