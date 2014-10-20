@@ -252,7 +252,23 @@ try{
 	}
 	%>
 	<br><br><input type="submit" id="inp" name="submit" value="Authenticate Trigger" onclick="javascript:sub('dis')"></div>
-	
+	<%}else if(authen.equals("No Auth")){%>
+			<div id=inpop><h3>Enter the Parameter details:</h3><br>No Authentication(required):<br>
+				<%
+			String[] slt=turl.split("@@");
+			int nn=slt.length;String orurl="";
+			if(!(nn==0)){
+			for(int i=1,j=1;i<nn;i=i+2,j++){
+				slt[i]="&nbsp;<input style='width:100px;border-radius:5px;'name='ndm"+j+"' type='text'>&nbsp;";
+			}
+			for(int k=0;k<nn;k++){
+				orurl=orurl+slt[k];
+			}
+			out.println("<br>"+orurl+"<br>");
+			}
+			%>
+				<br><br><br><br><br>
+				<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
 	<%}else if(authen.equals("Basic Auth")){%>
 		<div id=inpop><h3>Enter the Authentication details:</h3><br>*Basic Authentication(required):<br>
 		<%

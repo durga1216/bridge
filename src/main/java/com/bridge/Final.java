@@ -126,7 +126,16 @@ public class Final extends HttpServlet {
 			   		String h3=rs.getString("h3"); String hv3=rs.getString("hv3");
 			   		String h4=rs.getString("h4"); String hv4=rs.getString("hv4");
 			   		String h5=rs.getString("h5"); String hv5=rs.getString("hv5");
-			   		
+		            if(authen.equals("No Auth")){
+		            	HttpClient cli=new DefaultHttpClient();
+		            	HttpGet get=new HttpGet(endurl1);
+		            	HttpResponse res=cli.execute(get);
+		            	BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
+		            	String line="";
+		            	while((line=bf.readLine())!=null){
+		            		str+=line;
+		            	}
+		            }else
 			   		if(authen.equals("API keys")){
 			   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
 			        		 eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
