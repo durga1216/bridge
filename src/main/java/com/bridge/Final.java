@@ -910,8 +910,8 @@ public class Final extends HttpServlet {
 			   			      break;
 			   			    }
 						    ListEntry row = new ListEntry();
-						    row.getCustomElements().setValueLocal(ar.get(1), "Bobby");
-						    row.getCustomElements().setValueLocal(ar.get(2), "26");
+						    row.getCustomElements().setValueLocal(ar.get(0), "Minddotss");
+						    row.getCustomElements().setValueLocal(ar.get(1), "Testing");
 						    // Sending the new row for insertion into worksheet.
 						    row = service.insert(listFeedUrl, row);
 					   	}else
