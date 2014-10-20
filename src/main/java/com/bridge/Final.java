@@ -59,6 +59,8 @@ import com.google.api.client.json.jackson.JacksonFactory;
 import com.google.gdata.client.spreadsheet.SpreadsheetService;
 import com.google.gdata.data.spreadsheet.CellEntry;
 import com.google.gdata.data.spreadsheet.CellFeed;
+import com.google.gdata.data.spreadsheet.ListEntry;
+import com.google.gdata.data.spreadsheet.ListFeed;
 import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
@@ -878,6 +880,41 @@ public class Final extends HttpServlet {
 					    }
 			   			HttpClient client = new DefaultHttpClient();
 			   			String line="";
+			   			if(rmethod.equals("GOOGLE")){
+			   				String CLIENT_ID = "758153664645-n04dc4ki6pr383jdnrq6hmgjsvbsibls";
+			   				String CLIENT_SECRET = "YsLu7TgD4q_NmheHjx4W2Okf";
+			   				HttpTransport transport = new NetHttpTransport();
+			   			    JacksonFactory jsonFactory = new JacksonFactory();
+			   				Credential credencial = new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
+			   										.setJsonFactory(jsonFactory).setTransport(transport).build()
+			   										.setAccessToken(access_token).setRefreshToken(null);
+			   				SpreadsheetService service = new SpreadsheetService("Aplication-name");
+			   				service.setOAuth2Credentials(credencial);
+			   				URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+			   				SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,SpreadsheetFeed.class);
+			   				List<com.google.gdata.data.spreadsheet.SpreadsheetEntry> spreadsheets = feed.getEntries();
+			   				if (spreadsheets.isEmpty()) {
+			   	      // TODO: There were no spreadsheets, act accordingly.
+			   				}
+			   				com.google.gdata.data.spreadsheet.SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+			   				URL listFeedUrl = ((WorksheetEntry) spreadsheet.getWorksheets().get(0)).getListFeedUrl();
+			   				ListFeed feed1 = (ListFeed) service.getFeed(listFeedUrl, ListFeed.class);
+			   				ArrayList<String > ar=new ArrayList<String>();
+			   			    for(ListEntry entry : feed1.getEntries())
+			   			    {
+			   			      for(String tag : entry.getCustomElements().getTags())
+			   			      {
+			   			    	  //System.out.println("     "+tag + ": " + entry.getCustomElements().getValue(tag));
+			   			    	  ar.add(tag);
+			   			      }
+			   			      break;
+			   			    }
+						    ListEntry row = new ListEntry();
+						    row.getCustomElements().setValueLocal(ar.get(1), "Bobby");
+						    row.getCustomElements().setValueLocal(ar.get(2), "26");
+						    // Sending the new row for insertion into worksheet.
+						    row = service.insert(listFeedUrl, row);
+					   	}else
 			   			if(rmethod.equals("GET")){ 
 				     		if("Authorization:Bearer".equals(treplace)){
 
