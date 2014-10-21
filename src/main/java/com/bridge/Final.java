@@ -565,7 +565,6 @@ public class Final extends HttpServlet {
 				   
 			   } 
 			   if(resformat.equals("json")){
-				   out.println(str);
 				   try{
 				   JSONObject js=new JSONObject(str);
 				   if(!x1.equals("null")){
@@ -579,7 +578,7 @@ public class Final extends HttpServlet {
 				   if(!x5.equals("null")){
 					   xx5=(String)js.getString(x5);}
 				   }catch(Exception e){
-					   out.println(e);
+					  // out.println(e);
 				   }
 			   }
 			   else if(resformat.equals("xml")){
@@ -626,7 +625,6 @@ public class Final extends HttpServlet {
 	      			orurl=orurl+slt[k];
 	      		}
       		}
-      		out.println(str+"--------------"+xx1);
       			PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");
 			    st3.setString(1, da);
 			    ResultSet rs2=st3.executeQuery();
@@ -805,7 +803,7 @@ public class Final extends HttpServlet {
 		       		str1=result.toString();
 			        	 }
 			        	 else if(rmethod.equals ("Post")){
-			        		 out.println("in post");
+			        		 //out.println("in post");
 			        		 String exhead="";
 			        		 if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6) && !"null".equals(p7)){
 				        		 exhead=p1+"=\""+pv1+"\","+p2+"=\""+pv2+"\","+p3+"=\""+pv3+"\","+p4+"=\""+pv4+"\","+p5+"=\""+pv5+"\","+p6+"=\""+pv6+"\","+p7+"=\""+pv7+"\"";}
@@ -830,7 +828,7 @@ public class Final extends HttpServlet {
 			        		 else if("null".equals(p1))
 			        			exhead="null";
 			        		 
-			        		 out.println("inside"+exhead);
+			        		 //out.println("inside"+exhead);
 			        		 String uuid_string = UUID.randomUUID().toString();
 			                 uuid_string = uuid_string.replaceAll("-", "");
 			                 String oauth_nonce = uuid_string; 
@@ -869,7 +867,7 @@ public class Final extends HttpServlet {
 				                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_access_token=\""+oauthtk+"\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
 				                            oauth_timestamp + "\",oauth_version=\"1.0\"";
 			                    }
-			                    out.println(authorization_header_string);
+			                    //out.println(authorization_header_string);
 			        		 HttpClient httpclient = new DefaultHttpClient();
 			        		 HttpResponse response1=null;
 			                 HttpPost post = new HttpPost(endurl1);

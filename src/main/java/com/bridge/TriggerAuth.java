@@ -709,7 +709,7 @@ public class TriggerAuth extends HttpServlet {
 		   		else if(authen.equals("Oauth2")){
 		        	if(rmethod1.equals("GOOGLE")){
 		        		session.setAttribute("tempid", tempid);
-		        	    session.setAttribute("tid", tid);
+		        	    session.setAttribute("tid", aid);
 		        		String CLIENT_ID = "758153664645-n04dc4ki6pr383jdnrq6hmgjsvbsibls";
 		    			String CLIENT_SECRET = "YsLu7TgD4q_NmheHjx4W2Okf";
 		    			String REDIRECT_URI = "https://bridge-minddotss.rhcloud.com/GauthCall";
