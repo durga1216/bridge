@@ -592,13 +592,31 @@ public class Final extends HttpServlet {
 		      	     for (int i = 0,j=1; i < nodes.getLength(); i++,j++) {
 			      	       Element element = (Element) nodes.item(i);
 			      	       if(!x1.equals("null")){
-					      	       NodeList name = element.getElementsByTagName(x1);
-					      	       Element line = (Element) name.item(0);
-					      	       xx1=getCharacterDataFromElement(line);
+			      	    	   	   String[] temp=x1.split("@");
+			      	    	   	   if(temp.length!=0){
+						      	       NodeList name = element.getElementsByTagName(x1);
+						      	       Element line = (Element) name.item(0);
+						      	       xx1=getCharacterDataFromElement(line);}
+			      	    	   	   else{
+			      	    	   		   String tmp1=temp[0];
+			      	    	   		   String tmp2=temp[1];
+			      	    	   		   NodeList name = element.getElementsByTagName(tmp1);
+						      	       Element line = (Element) name.item(0);
+						      	       xx1=line.getAttribute(tmp2);
+			      	    	   	   }
 			      	       }if(!x2.equals("null")){
-					      	     NodeList name1 = element.getElementsByTagName(x2);
-					      	       Element line1 = (Element) name1.item(0);
-					      	     xx2=getCharacterDataFromElement(line1);
+			      	    	 String[] temp=x2.split("@");
+		      	    	   	   if(temp.length!=0){
+					      	       NodeList name = element.getElementsByTagName(x2);
+					      	       Element line = (Element) name.item(0);
+					      	       xx2=getCharacterDataFromElement(line);}
+		      	    	   	   else{
+		      	    	   		   String tmp1=temp[0];
+		      	    	   		   String tmp2=temp[1];
+		      	    	   		   NodeList name = element.getElementsByTagName(tmp1);
+					      	       Element line = (Element) name.item(0);
+					      	       xx2=line.getAttribute(tmp2);
+		      	    	   	   }
 			      	       }if(!x3.equals("null")){
 					      	     NodeList name2 = element.getElementsByTagName(x3);
 					      	       Element line2 = (Element) name2.item(0);
