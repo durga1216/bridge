@@ -551,7 +551,7 @@ public class Final extends HttpServlet {
 			   		}
 			   		}//while
 			   String x1="";String x2="";String x3="";String x4="";String x5="";
-			   String xx1="mind";String xx2="mind";String xx3="mind";String xx4="";String xx5="";
+			   String xx1="mind";String xx2="mind";String xx3="mind";String xx4="mind";String xx5="mind";
 			   String[] xx=new String[10];
 			   String ptag="";String exres="";
 			   PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
@@ -566,6 +566,17 @@ public class Final extends HttpServlet {
 			   } 
 			   if(resformat.equals("json")){
 				   xx1=str;
+				   JSONObject js=new JSONObject(str);
+				   if(!x1.equals("null")){
+					   xx1=(String)js.getString(x1);}
+				   if(!x2.equals("null")){
+					   xx2=(String)js.getString(x2);}
+				   if(!x3.equals("null")){
+					   xx3=(String)js.getString(x3);}
+				   if(!x4.equals("null")){
+					   xx4=(String)js.getString(x4);}
+				   if(!x5.equals("null")){
+					   xx5=(String)js.getString(x5);}
 			   }
 			   else if(resformat.equals("xml")){
 					 DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
@@ -910,8 +921,16 @@ public class Final extends HttpServlet {
 			   			      break;
 			   			    }
 						    ListEntry row = new ListEntry();
-						    row.getCustomElements().setValueLocal(ar.get(0), "Minddotss");
-						    row.getCustomElements().setValueLocal(ar.get(1), "Testing");
+						    if(!xx1.equals("mind")){
+						    	row.getCustomElements().setValueLocal(ar.get(0), xx1);}
+						    if(!xx2.equals("mind")){
+							    row.getCustomElements().setValueLocal(ar.get(1), xx2);}
+						    if(!xx3.equals("mind")){
+							    row.getCustomElements().setValueLocal(ar.get(2), xx3);}
+						    if(!xx4.equals("mind")){
+							    row.getCustomElements().setValueLocal(ar.get(3), xx4);}
+						    if(!xx5.equals("mind")){
+							    row.getCustomElements().setValueLocal(ar.get(4), xx5);}
 						    // Sending the new row for insertion into worksheet.
 						    row = service.insert(listFeedUrl, row);
 					   	}else

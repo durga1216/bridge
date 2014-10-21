@@ -108,12 +108,12 @@ public class GauthCall extends HttpServlet {
 		      obj.put(name, value);
 		    }
 		    obj1.put(title, obj);
-		    session.setAttribute("xml1", obj1.toString());
+		    //session.setAttribute("xml1", obj1.toString());
 		  }catch(Exception e){
 			  out.println(e);
 		  }
 		request.setAttribute("code", 200);
-        request.setAttribute("code1", 0);
+        request.setAttribute("code1", 200);
         request.getRequestDispatcher("check.jsp").forward(request, response);
 	  }
 	/**
