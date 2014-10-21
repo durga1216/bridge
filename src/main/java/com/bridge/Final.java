@@ -565,7 +565,8 @@ public class Final extends HttpServlet {
 				   
 			   } 
 			   if(resformat.equals("json")){
-				   xx1=str;
+				   out.println(str);
+				   try{
 				   JSONObject js=new JSONObject(str);
 				   if(!x1.equals("null")){
 					   xx1=(String)js.getString(x1);}
@@ -577,6 +578,9 @@ public class Final extends HttpServlet {
 					   xx4=(String)js.getString(x4);}
 				   if(!x5.equals("null")){
 					   xx5=(String)js.getString(x5);}
+				   }catch(Exception e){
+					   out.println(e);
+				   }
 			   }
 			   else if(resformat.equals("xml")){
 					 DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
@@ -622,6 +626,7 @@ public class Final extends HttpServlet {
 	      			orurl=orurl+slt[k];
 	      		}
       		}
+      		out.println(str+"--------------"+xx1);
       			PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");
 			    st3.setString(1, da);
 			    ResultSet rs2=st3.executeQuery();
