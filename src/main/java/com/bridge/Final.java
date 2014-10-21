@@ -593,7 +593,7 @@ public class Final extends HttpServlet {
 			      	       Element element = (Element) nodes.item(i);
 			      	       if(!x1.equals("null")){
 			      	    	   	   String[] temp=x1.split("@");
-			      	    	   	   if(temp.length!=0){
+			      	    	   	   if(temp.length!=1){
 						      	       NodeList name = element.getElementsByTagName(x1);
 						      	       Element line = (Element) name.item(0);
 						      	       xx1=getCharacterDataFromElement(line);}
@@ -606,7 +606,7 @@ public class Final extends HttpServlet {
 			      	    	   	   }
 			      	       }if(!x2.equals("null")){
 			      	    	 String[] temp=x2.split("@");
-		      	    	   	   if(temp.length!=0){
+		      	    	   	   if(temp.length!=1){
 					      	       NodeList name = element.getElementsByTagName(x2);
 					      	       Element line = (Element) name.item(0);
 					      	       xx2=getCharacterDataFromElement(line);}
