@@ -30,6 +30,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -86,6 +87,7 @@ public class Final extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		final PrintWriter out=response.getWriter();
+		final HttpSession session=request.getSession(true);
 		ArrayList<String> ar=new ArrayList<String>();
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -370,6 +372,8 @@ public class Final extends HttpServlet {
 		       		}
 		       		str=result.toString();
 			 	        	 } 
+			        		 session.setAttribute("samp", str);	 
+			        		 
 			         }
 			   		else if(authen.equals("Oauth2")){
 			   			PreparedStatement st=con.prepareStatement("select * from token where tempid=? && tid=?");
@@ -550,6 +554,7 @@ public class Final extends HttpServlet {
 					     	}
 			   		}
 			   		}//while
+			   session.setAttribute("samp", str);	 
 			   String x1="";String x2="";String x3="";String x4="";String x5="";
 			   String xx1="mind";String xx2="mind";String xx3="mind";String xx4="mind";String xx5="mind";
 			   String[] xx=new String[10];

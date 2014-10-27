@@ -288,15 +288,23 @@ try{
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
 	<%}else if(authen.equals("Oauth2")){
 	%>
-	<div id=inpop><h3>Oauth Authentication:</h3><br><br>
+	<div id=inpop><h3>Oauth 2 Authentication:</h3><br><br>
 	1,Login into Your account by clicking the Authenticate Button..
 	<br>2,Access the MindPulpy App to read the data..<br><br><br><br>
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
 	<%}else if(authen.equals("Oauth1")){
 	%>
-	<div id=inpop><h3>Oauth Authentication:</h3><br><br>
+	<div id=inpop><h3>Oauth 1 Authentication:</h3><br><br>
 	1,Login into Your account by clicking the Authenticate Button..
-	<br>2,Access the MindPulpy App to read the data..<br><br><br><br>
+	<br>2,Access the MindPulpy App to read the data..<br><br>
+	*Parameter(required):<br><br>
+	<%
+	for(int i=1;i<5;i++){
+		if(!tp[i].equals("null")){
+			out.println("<br>*"+tp[i]+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style='width:100px;border-radius:5px;'name='pv"+i+"' type='text'><br>");
+		}
+	}
+	%><br><br>
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
 	<%
 	}
