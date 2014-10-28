@@ -409,7 +409,7 @@ public class TriggerAuth extends HttpServlet {
 	        		String CLIENT_ID = "758153664645-n04dc4ki6pr383jdnrq6hmgjsvbsibls";
 	    			String CLIENT_SECRET = "YsLu7TgD4q_NmheHjx4W2Okf";
 	    			String REDIRECT_URI = "https://bridge-minddotss.rhcloud.com/GauthCall";
-	    		    List<String> SCOPES = Arrays.asList("https://spreadsheets.google.com/feeds");
+	    		    List<String> SCOPES = Arrays.asList(svalue1);
 	        		String authorizationUrl =
 	        		        new GoogleAuthorizationCodeRequestUrl(CLIENT_ID, REDIRECT_URI, SCOPES).build();
 	        		response.sendRedirect(authorizationUrl);
