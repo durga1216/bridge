@@ -65,57 +65,51 @@ public class GauthCall extends HttpServlet {
 			HttpTransport transport = new NetHttpTransport();
 		    JacksonFactory jsonFactory = new JacksonFactory();
 			String code=request.getParameter("code");
-			GoogleTokenResponse response1 =
-				 new GoogleAuthorizationCodeTokenRequest(transport, jsonFactory, CLIENT_ID, CLIENT_SECRET,
-			    		code, REDIRECT_URI).execute();
+			GoogleTokenResponse response1 = new GoogleAuthorizationCodeTokenRequest(transport, jsonFactory,
+					CLIENT_ID, CLIENT_SECRET,code, REDIRECT_URI).execute();
 			Credential credential =  new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
-			    .setJsonFactory(jsonFactory).setTransport(transport).build()
-			    		.setAccessToken(response1.getAccessToken()).setRefreshToken(response1.getRefreshToken());
-			//===========================
+					.setJsonFactory(jsonFactory).setTransport(transport).build()
+			    	.setAccessToken(response1.getAccessToken()).setRefreshToken(response1.getRefreshToken());
+			//TODO Store the access_token in database
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
 			PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken) values ('"+tempid+"','"+tid+"','"+response1.getAccessToken()+"')");
 		   	st2.executeUpdate();
 		   	st2.close();
-			//===========================
-			SpreadsheetService service =
-		            new SpreadsheetService("Aplication-name");
-		     service.setOAuth2Credentials(credential);
-		    URL SPREADSHEET_FEED_URL = new URL(
-		        "https://spreadsheets.google.com/feeds/spreadsheets/private/full");
-		    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,
-		        SpreadsheetFeed.class);
+			//TODO continue with spreadsheet services
+			SpreadsheetService service = new SpreadsheetService("Aplication-name");
+		    service.setOAuth2Credentials(credential);
+		    URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+		    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,SpreadsheetFeed.class);
 		    List<com.google.gdata.data.spreadsheet.SpreadsheetEntry> spreadsheets = feed.getEntries();
-		     if (spreadsheets.isEmpty()) {
+		    if (spreadsheets.isEmpty()) {
+		    	//TODO no spreadsheeet
 		    }
 		    com.google.gdata.data.spreadsheet.SpreadsheetEntry spreadsheet = spreadsheets.get(0);
-		    System.out.println(spreadsheet.getTitle().getPlainText());
-		    WorksheetFeed worksheetFeed = service.getFeed(
-		        spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+		    //System.out.println(spreadsheet.getTitle().getPlainText());
+		    WorksheetFeed worksheetFeed = service.getFeed(spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
 		    List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
 		    WorksheetEntry worksheet = worksheets.get(0);
-
-		    // Fetch the cell feed of the worksheet.
+		    //TODO Fetch the cell feed of the worksheet.
 		    URL cellFeedUrl = worksheet.getCellFeedUrl();
 		    CellFeed cellFeed = service.getFeed(cellFeedUrl, CellFeed.class);
-
 		    JSONObject obj = new JSONObject();
 		    JSONObject obj1 = new JSONObject();
 		    String title=spreadsheet.getTitle().getPlainText();
 		    for (CellEntry cell : cellFeed.getEntries()) {
-		      String name=cell.getTitle().getPlainText();
-		      String value=cell.getCell().getValue();
-		      obj.put(name, value);
+		    	String name=cell.getTitle().getPlainText();
+		    	String value=cell.getCell().getValue();
+		    	obj.put(name, value);
 		    }
 		    obj1.put(title, obj);
 		    //session.setAttribute("xml1", obj1.toString());
-		  }catch(Exception e){
+		}catch(Exception e){
 			  out.println(e);
-		  }
+		}
 		request.setAttribute("code", 200);
         request.setAttribute("code1", 200);
         request.getRequestDispatcher("check.jsp").forward(request, response);
-	  }
+    }
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
