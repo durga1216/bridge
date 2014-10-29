@@ -382,7 +382,7 @@ public class Final extends HttpServlet {
 				   			}
 				   			HttpClient client = new DefaultHttpClient();
 				   			String line="";
-				   			if(rmethod.equals("GOOGLE")){
+				   			if(rmethod.equals("DELETE")){
 				   				String CLIENT_ID = "758153664645-n04dc4ki6pr383jdnrq6hmgjsvbsibls";
 				   				String CLIENT_SECRET = "YsLu7TgD4q_NmheHjx4W2Okf";
 				   				HttpTransport transport = new NetHttpTransport();
@@ -888,7 +888,7 @@ public class Final extends HttpServlet {
 					   			}
 					   			HttpClient client = new DefaultHttpClient();
 					   			String line="";
-					   			if(rmethod.equals("GOOGLE")){
+					   			if(rmethod.equals("DELETE")){
 					   				String CLIENT_ID = "758153664645-n04dc4ki6pr383jdnrq6hmgjsvbsibls";
 					   				String CLIENT_SECRET = "YsLu7TgD4q_NmheHjx4W2Okf";
 					   				HttpTransport transport = new NetHttpTransport();

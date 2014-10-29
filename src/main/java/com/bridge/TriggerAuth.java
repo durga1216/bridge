@@ -46,7 +46,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeReque
 @WebServlet("/TriggerAuth")
 public class TriggerAuth extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+     
    
     public TriggerAuth() {
         super();
@@ -395,7 +395,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 				st2.close();
 	   	 			}
 	   	 			else if(authen.equals("Oauth2")){
-	   	 				if(rmethod1.equals("GOOGLE")){
+	   	 				if(rmethod1.equals("DELETE")){
 	   	 					session.setAttribute("tempid", tempid);
 	   	 					session.setAttribute("tid", tid);
 	   	 					String CLIENT_ID = "758153664645-n04dc4ki6pr383jdnrq6hmgjsvbsibls";
@@ -405,7 +405,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 					String authorizationUrl =
 	   	 							new GoogleAuthorizationCodeRequestUrl(CLIENT_ID, REDIRECT_URI, SCOPES).build();
 	   	 					response.sendRedirect(authorizationUrl);
-	   	 					PreparedStatement st2=con.prepareStatement("insert into trig_all (tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','GOOGLE','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pav1+"','"+p2+"','"+pav2+"','"+p3+"','"+pav3+"','"+p4+"','"+pav4+"','"+p5+"','"+pav5+"','"+p6+"','"+pav6+"','"+p7+"','"+pav7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
+	   	 					PreparedStatement st2=con.prepareStatement("insert into trig_all (tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+tid+"','"+authen+"','DELETE','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pav1+"','"+p2+"','"+pav2+"','"+p3+"','"+pav3+"','"+p4+"','"+pav4+"','"+p5+"','"+pav5+"','"+p6+"','"+pav6+"','"+p7+"','"+pav7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
 	   	 					st2.executeUpdate();
 	   	 					st2.close();
 	   	 				}else{
@@ -701,7 +701,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 					st2.close();
 	   	 				}
 	   	 				else if(authen.equals("Oauth2")){
-	   	 					if(rmethod1.equals("GOOGLE")){
+	   	 					if(rmethod1.equals("DELETE")){
 	   	 						session.setAttribute("tempid", tempid);
 	   	 						session.setAttribute("tid", aid);
 	   	 						String CLIENT_ID = "758153664645-n04dc4ki6pr383jdnrq6hmgjsvbsibls";
@@ -711,7 +711,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 						String authorizationUrl =
 	   	 								new GoogleAuthorizationCodeRequestUrl(CLIENT_ID, REDIRECT_URI, SCOPES).build();
 	   	 						response.sendRedirect(authorizationUrl);
-	   	 						PreparedStatement st2=con.prepareStatement("insert into act_all(tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+aid+"','"+authen+"','GOOGLE','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pav1+"','"+p2+"','"+pav2+"','"+p3+"','"+pav3+"','"+p4+"','"+pav4+"','"+p5+"','"+pav5+"','"+p6+"','"+pav6+"','"+p7+"','"+pav7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
+	   	 						PreparedStatement st2=con.prepareStatement("insert into act_all(tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+tempid+"','"+aid+"','"+authen+"','DELETE','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pav1+"','"+p2+"','"+pav2+"','"+p3+"','"+pav3+"','"+p4+"','"+pav4+"','"+p5+"','"+pav5+"','"+p6+"','"+pav6+"','"+p7+"','"+pav7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
 	   	 						st2.executeUpdate();
 	   	 						st2.close();
 	   	 					}
