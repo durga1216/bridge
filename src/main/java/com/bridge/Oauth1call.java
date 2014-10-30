@@ -187,6 +187,7 @@ public class Oauth1call extends HttpServlet {
 		   			String oauthtk=tok11[1];
 		   			String[] tok2=sectk1.split("=");
 		   			String sectk=tok2[1];
+		   			
    					uuid_string = uuid_string.replaceAll("-", "");
    					String oauth_nonce = uuid_string; 
    					String enurl = URLEncoder.encode(endurl1, "UTF-8");
@@ -227,6 +228,7 @@ public class Oauth1call extends HttpServlet {
                     	result.append(line);
                     }
                     str=result.toString();
+                    session.setAttribute("samp", "tok---"+oauth_token+"--sec---"+sectk1+"---eurl--"+eurl1+"---res---"+str+"----act--"+actok);
 	   			}
 	   			else if(rmethod.equals ("Post")){
 	   				out.println("in post");

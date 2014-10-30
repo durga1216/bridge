@@ -301,7 +301,6 @@ public class TriggerAuth extends HttpServlet {
 			   			
 			   			else if("null".equals(p1))
 			   				eurl="null";
-		   	 			
 	   	 				if(oreq.equals("GET")){
 	   	 					String uuid_string = UUID.randomUUID().toString();
 	   	 					uuid_string = uuid_string.replaceAll("-", "");
