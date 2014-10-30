@@ -120,12 +120,13 @@ public class Oauth1call extends HttpServlet {
 	         		 String tok=result.toString();
 	         		 out.println(tok);
 	         		 String[] acctok=tok.split("&");
-	         		 oauthtk1=acctok[1];sectk1=acctok[2];
+	         		 
 	         		 session.setAttribute("access_token1", acctok[1]);
 	         		 session.setAttribute("access_secret1", acctok[2]);
 	         		 PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken,secret) values ('"+tempid+"','"+appid+"','"+acctok[1]+"','"+acctok[2]+"')");
 				   	 st2.executeUpdate();
 				   	 st2.close();
+				   	 oauthtk1=acctok[1];sectk1=acctok[2];
 	         		 request.setAttribute("code", 200);
 		             request.setAttribute("code1", 200);
 			         request.getRequestDispatcher("check.jsp").forward(request, response);
@@ -169,7 +170,7 @@ public class Oauth1call extends HttpServlet {
 		       		 //out.println(tok);
 		       		 String[] acctok=tok.split("&");
 		       		 session.setAttribute("xml1", tok);
-		       		 oauthtk1=acctok[1];sectk1=acctok[2];
+		       		 oauthtk1=acctok[0];sectk1=acctok[1];
 		       		 session.setAttribute("access_token1", acctok[0]);
 		       		 session.setAttribute("access_secret1", acctok[1]);
 		       		 PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken,secret) values ('"+tempid+"','"+appid+"','"+acctok[0]+"','"+acctok[1]+"')");
