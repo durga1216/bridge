@@ -17,6 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
 
 import com.google.api.client.auth.oauth2.Credential;
@@ -62,21 +66,39 @@ public class GauthCall extends HttpServlet {
 			HttpSession session=request.getSession(true);
 			String tempid=(String) session.getAttribute("tempid");
 			String tid=(String) session.getAttribute("tid");
+			String type=(String) session.getAttribute("rtype");
+			String Gurl=(String) session.getAttribute("Gurl");
 			HttpTransport transport = new NetHttpTransport();
 		    JacksonFactory jsonFactory = new JacksonFactory();
 			String code=request.getParameter("code");
 			GoogleTokenResponse response1 = new GoogleAuthorizationCodeTokenRequest(transport, jsonFactory,
 					CLIENT_ID, CLIENT_SECRET,code, REDIRECT_URI).execute();
-			Credential credential =  new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
-					.setJsonFactory(jsonFactory).setTransport(transport).build()
-			    	.setAccessToken(response1.getAccessToken()).setRefreshToken(response1.getRefreshToken());
 			//TODO Store the access_token in database
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
 			PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken) values ('"+tempid+"','"+tid+"','"+response1.getAccessToken()+"')");
 		   	st2.executeUpdate();
 		   	st2.close();
+		   	if(type.equals("trigger")){
+			   	//TODO For google analytics
+			   	//String url="https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A85990559&start-date=2014-01-01&end-date=today&metrics=ga%3Apageviews";
+				HttpClient cli=new DefaultHttpClient();
+				HttpGet get=new HttpGet(Gurl);
+				get.addHeader("Authorization","Bearer "+response1.getAccessToken());
+				get.addHeader("X-JavaScript-User-Agent","Google APIs Explorer");
+				HttpResponse response2=cli.execute(get);
+				BufferedReader bf=new BufferedReader(new InputStreamReader(response2.getEntity().getContent()));
+				String line="";String str="";
+				while((line=bf.readLine())!=null){
+						str=str+line;
+				}
+				session.setAttribute("xml1", str);
+		   	}
 			//TODO continue with spreadsheet services
+		   	
+/*			Credential credential =  new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
+					.setJsonFactory(jsonFactory).setTransport(transport).build()
+			    	.setAccessToken(response1.getAccessToken()).setRefreshToken(response1.getRefreshToken());
 			SpreadsheetService service = new SpreadsheetService("Aplication-name");
 		    service.setOAuth2Credentials(credential);
 		    URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
@@ -101,8 +123,8 @@ public class GauthCall extends HttpServlet {
 		    	String value=cell.getCell().getValue();
 		    	obj.put(name, value);
 		    }
-		    obj1.put(title, obj);
-		    //session.setAttribute("xml1", obj1.toString());
+		    obj1.put(title, obj); */
+			
 		}catch(Exception e){
 			  out.println(e);
 		}

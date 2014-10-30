@@ -373,6 +373,25 @@ public class Final extends HttpServlet {
 				   			session.setAttribute("samp", str);	  
 				   		}
 				   		else if(authen.equals("Oauth2")){
+				   			
+				   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
+				   				eurl=endurl1+"?"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
+		        		 
+				   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4)){
+				   				eurl=endurl1+"?"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4;}
+		        		 
+				   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3)){
+				   				eurl=endurl1+"?"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3;}
+		        		 
+				   			else if(!"null".equals(p1) && !"null".equals(p2)){
+				   				eurl=endurl1+"?"+p1+"="+pv1+"&"+p2+"="+pv2;}
+		        		 
+				   			else if(!"null".equals(p1)){
+				   				eurl=endurl1+"?"+p1+"="+pv1;}
+				   			
+				   			else if("null".equals(p1))
+				   				eurl=endurl1;      
+				   			
 				   			PreparedStatement st=con.prepareStatement("select * from token where tempid=? && tid=?");
 				   			st.setString(1, da);
 				   			st.setString(2, tid);
@@ -383,39 +402,50 @@ public class Final extends HttpServlet {
 				   			HttpClient client = new DefaultHttpClient();
 				   			String line="";
 				   			if(rmethod.equals("DELETE")){
-				   				String CLIENT_ID = "758153664645-n04dc4ki6pr383jdnrq6hmgjsvbsibls";
-				   				String CLIENT_SECRET = "YsLu7TgD4q_NmheHjx4W2Okf";
-				   				HttpTransport transport = new NetHttpTransport();
-				   			    JacksonFactory jsonFactory = new JacksonFactory();
-				   				Credential credencial = new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
-				   						.setJsonFactory(jsonFactory).setTransport(transport).build()
-				   						.setAccessToken(access_token).setRefreshToken(null);
-				   				SpreadsheetService service =new SpreadsheetService("Aplication-name");
-				   				service.setOAuth2Credentials(credencial);
-				   				URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
-				   				SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,SpreadsheetFeed.class);
-				   				List<com.google.gdata.data.spreadsheet.SpreadsheetEntry> spreadsheets = feed.getEntries();
-				   				if (spreadsheets.isEmpty()) {
-				   					// TODO: There were no spreadsheets, act accordingly.
-				   				}
-				   				com.google.gdata.data.spreadsheet.SpreadsheetEntry spreadsheet = spreadsheets.get(0);
-				   				WorksheetFeed worksheetFeed = service.getFeed(spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
-				   				List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
-				   				WorksheetEntry worksheet = worksheets.get(0);
-				   				URL cellFeedUrl = worksheet.getCellFeedUrl();
-				   				CellFeed cellFeed = service.getFeed(cellFeedUrl, CellFeed.class);
-				   				JSONObject obj = new JSONObject();
-				   				JSONObject obj1 = new JSONObject();
-				   				String title=spreadsheet.getTitle().getPlainText();
-				   				for (CellEntry cell : cellFeed.getEntries()) {
-				   					String name=cell.getTitle().getPlainText();
-				   					String value=cell.getCell().getValue();
-				   					obj.put(name, value);
-				   				}
-				   				obj1.put(title, obj);
-				   				String cng=obj1.toString();
-				   				cng=cng.replaceAll(" ", "_");
-				   				str=cng;
+				   				//String url="https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A85990559&start-date=2014-01-01&end-date=today&metrics=ga%3Apageviews";
+								HttpClient cli=new DefaultHttpClient();
+								HttpGet get=new HttpGet(eurl);
+								get.addHeader("Authorization","Bearer "+access_token);
+								get.addHeader("X-JavaScript-User-Agent","Google APIs Explorer");
+								HttpResponse response=cli.execute(get);
+								BufferedReader bf=new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+								while((line=bf.readLine())!=null){
+										str=str+line;
+								}
+								//TODO For getting spread sheet elements
+//				   				String CLIENT_ID = "758153664645-n04dc4ki6pr383jdnrq6hmgjsvbsibls";
+//				   				String CLIENT_SECRET = "YsLu7TgD4q_NmheHjx4W2Okf";
+//				   				HttpTransport transport = new NetHttpTransport();
+//				   			    JacksonFactory jsonFactory = new JacksonFactory();
+//				   				Credential credencial = new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
+//				   						.setJsonFactory(jsonFactory).setTransport(transport).build()
+//				   						.setAccessToken(access_token).setRefreshToken(null);
+//				   				SpreadsheetService service =new SpreadsheetService("Aplication-name");
+//				   				service.setOAuth2Credentials(credencial);
+//				   				URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+//				   				SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,SpreadsheetFeed.class);
+//				   				List<com.google.gdata.data.spreadsheet.SpreadsheetEntry> spreadsheets = feed.getEntries();
+//				   				if (spreadsheets.isEmpty()) {
+//				   					// TODO: There were no spreadsheets, act accordingly.
+//				   				}
+//				   				com.google.gdata.data.spreadsheet.SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+//				   				WorksheetFeed worksheetFeed = service.getFeed(spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+//				   				List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
+//				   				WorksheetEntry worksheet = worksheets.get(0);
+//				   				URL cellFeedUrl = worksheet.getCellFeedUrl();
+//				   				CellFeed cellFeed = service.getFeed(cellFeedUrl, CellFeed.class);
+//				   				JSONObject obj = new JSONObject();
+//				   				JSONObject obj1 = new JSONObject();
+//				   				String title=spreadsheet.getTitle().getPlainText();
+//				   				for (CellEntry cell : cellFeed.getEntries()) {
+//				   					String name=cell.getTitle().getPlainText();
+//				   					String value=cell.getCell().getValue();
+//				   					obj.put(name, value);
+//				   				}
+//				   				obj1.put(title, obj);
+//				   				String cng=obj1.toString();
+//				   				cng=cng.replaceAll(" ", "_");
+//				   				str=cng;
 				   			}
 				   			else if(rmethod.equals("GET")){ 
 				   				if("Authorization:Bearer".equals(treplace)){

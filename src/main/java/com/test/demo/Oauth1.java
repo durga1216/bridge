@@ -27,7 +27,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 public class Oauth1 {
-		public static void main(String args[]){
+	public static void main(String args[]){
 			try{
 				String url1="https://api.twitter.com/oauth/request_token";
 				//String endurl1="https://api.twitter.com/1.1/statuses/update.json";
@@ -106,20 +106,15 @@ public class Oauth1 {
 			}catch(Exception e){
 				System.out.println(e);
 			}
-   	 }
-		private static String computeSignature(String baseString, String keyString) throws GeneralSecurityException, UnsupportedEncodingException {
-			 
-	        SecretKey secretKey = null;
-	 
-	       byte[] keyBytes = keyString.getBytes();
-	        secretKey = new SecretKeySpec(keyBytes, "HmacSHA1");
-	 
-	        Mac mac = Mac.getInstance("HmacSHA1");
-	 
-	      mac.init(secretKey);
-	 
-	      byte[] text = baseString.getBytes();
-	 
-	      return new String(Base64.encodeBase64(mac.doFinal(text))).trim();
-	  }
+   	}
+	private static String computeSignature(String baseString, String keyString) throws GeneralSecurityException, UnsupportedEncodingException {
+		SecretKey secretKey = null;
+		byte[] keyBytes = keyString.getBytes();
+		secretKey = new SecretKeySpec(keyBytes, "HmacSHA1");
+		Mac mac = Mac.getInstance("HmacSHA1");
+		mac.init(secretKey);
+		byte[] text = baseString.getBytes();
+		
+		return new String(Base64.encodeBase64(mac.doFinal(text))).trim();
+  	}
 }
