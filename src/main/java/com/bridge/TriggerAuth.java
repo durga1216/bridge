@@ -281,6 +281,27 @@ public class TriggerAuth extends HttpServlet {
 	 	 			   	st2.close();
 	   	 			}//basic auth
 	   	 			else if(authen.equals("Oauth1")){
+		   	 			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){
+			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5+"&"+p6+"="+pv6;}
+			   			
+			   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
+			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
+		        		 
+			   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4)){
+			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4;}
+		        		 
+			   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3)){
+			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3;}
+		        		 
+			   			else if(!"null".equals(p1) && !"null".equals(p2)){
+			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2;}
+		        		 
+			   			else if(!"null".equals(p1)){
+			   				eurl=p1+"="+pv1;}
+			   			
+			   			else if("null".equals(p1))
+			   				eurl="null";
+		   	 			
 	   	 				if(oreq.equals("GET")){
 	   	 					String uuid_string = UUID.randomUUID().toString();
 	   	 					uuid_string = uuid_string.replaceAll("-", "");
@@ -326,6 +347,7 @@ public class TriggerAuth extends HttpServlet {
 				         		session.setAttribute("secret1", sec1);  
 				         		session.setAttribute("tempid", tempid);
 				        	    session.setAttribute("tid", tid);
+				        	    session.setAttribute("ourl", eurl);
 	   	 					}
 	   	 					catch(ClientProtocolException cpe)  {  
 	   	 						System.out.println(cpe.getMessage());  
@@ -379,6 +401,7 @@ public class TriggerAuth extends HttpServlet {
 					       		session.setAttribute("secret1", sec1);
 					       		session.setAttribute("tempid", tempid);
 				        	    session.setAttribute("tid", tid);
+				        	    session.setAttribute("ourl", eurl);
 	   	 					} 
 	   	 					catch(ClientProtocolException cpe)  {   
 	   	 						System.out.println(cpe.getMessage());  
@@ -730,6 +753,8 @@ public class TriggerAuth extends HttpServlet {
 	   	 					if(rmethod1.equals("DELETE")){
 	   	 						session.setAttribute("tempid", tempid);
 	   	 						session.setAttribute("tid", aid);
+	   	 						session.setAttribute("rtype", "action");
+	   	 						session.setAttribute("Gurl", t1);
 	   	 						String CLIENT_ID = "758153664645-n04dc4ki6pr383jdnrq6hmgjsvbsibls";
 	   	 						String CLIENT_SECRET = "YsLu7TgD4q_NmheHjx4W2Okf";
 	   	 						String REDIRECT_URI = "https://bridge-minddotss.rhcloud.com/GauthCall";

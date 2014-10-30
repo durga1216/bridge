@@ -402,6 +402,7 @@ public class Final extends HttpServlet {
 				   			HttpClient client = new DefaultHttpClient();
 				   			String line="";
 				   			if(rmethod.equals("DELETE")){
+				   				//TODO for getting analytics data
 				   				//String url="https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A85990559&start-date=2014-01-01&end-date=today&metrics=ga%3Apageviews";
 								HttpClient cli=new DefaultHttpClient();
 								HttpGet get=new HttpGet(eurl);
