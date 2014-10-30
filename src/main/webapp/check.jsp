@@ -306,10 +306,10 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
 	<%}else if(authen.equals("Oauth2")){
 	%>
-	<div id=inpop><h3>Oauth 2 Authentication:</h3><br><br>
+	<div id=inpop><h3>Oauth 2 Authentication:</h3><br>
 	1,Login into Your account by clicking the Authenticate Button..
 	<br>2,Access the MindPulpy App to read the data..<br><br>
-	*Parameter(required):<br><br>
+	*Parameter(required):<br>
 	<%
 	for(int i=1;i<5;i++){
 		if(!tp[i].equals("null")){

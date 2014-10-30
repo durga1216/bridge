@@ -81,9 +81,9 @@ public class GauthCall extends HttpServlet {
 		   	st2.close();
 		   	if(type.equals("trigger")){
 			   	//TODO For google analytics
-			   	//String url="https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A85990559&start-date=2014-01-01&end-date=today&metrics=ga%3Apageviews";
+			   	String url="https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A85990559&start-date=2014-01-01&end-date=today&metrics=ga%3Apageviews";
 				HttpClient cli=new DefaultHttpClient();
-				HttpGet get=new HttpGet(Gurl);
+				HttpGet get=new HttpGet(url);
 				get.addHeader("Authorization","Bearer "+response1.getAccessToken());
 				get.addHeader("X-JavaScript-User-Agent","Google APIs Explorer");
 				HttpResponse response2=cli.execute(get);
