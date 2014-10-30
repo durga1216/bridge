@@ -62,7 +62,7 @@ public class Oauth1call extends HttpServlet {
 	    String tempid=(String) session.getAttribute("tempid");
 	    String eurl1=(String) session.getAttribute("ourl");
 	    String secret11=(String ) session.getAttribute("secret1");
-	    String str="";String oauthtk="";String sectk="";
+	    String str="";String oauthtk1="";String sectk1="";
 	    //out.println(secret11);
 	    String[] tok1=secret11.split("=");
 	    String sec1=tok1[1];
@@ -120,7 +120,7 @@ public class Oauth1call extends HttpServlet {
 	         		 String tok=result.toString();
 	         		 out.println(tok);
 	         		 String[] acctok=tok.split("&");
-	         		 oauthtk=acctok[1];sectk=acctok[2];
+	         		 oauthtk1=acctok[1];sectk1=acctok[2];
 	         		 session.setAttribute("access_token1", acctok[1]);
 	         		 session.setAttribute("access_secret1", acctok[2]);
 	         		 PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken,secret) values ('"+tempid+"','"+appid+"','"+acctok[1]+"','"+acctok[2]+"')");
@@ -169,7 +169,7 @@ public class Oauth1call extends HttpServlet {
 		       		 //out.println(tok);
 		       		 String[] acctok=tok.split("&");
 		       		 session.setAttribute("xml1", tok);
-		       		 oauthtk=acctok[1];sectk=acctok[2];
+		       		 oauthtk1=acctok[1];sectk1=acctok[2];
 		       		 session.setAttribute("access_token1", acctok[0]);
 		       		 session.setAttribute("access_secret1", acctok[1]);
 		       		 PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken,secret) values ('"+tempid+"','"+appid+"','"+acctok[0]+"','"+acctok[1]+"')");
@@ -182,6 +182,11 @@ public class Oauth1call extends HttpServlet {
             	 if(rmethod.equals ("Get")){
 					//========initial=========
    					String uuid_string = UUID.randomUUID().toString();
+   					oauth_token=oauthtk1;
+   					String[] tok11=oauth_token.split("=");
+		   			String oauthtk=tok11[1];
+		   			String[] tok2=sectk1.split("=");
+		   			String sectk=tok2[1];
    					uuid_string = uuid_string.replaceAll("-", "");
    					String oauth_nonce = uuid_string; 
    					String enurl = URLEncoder.encode(endurl1, "UTF-8");
@@ -226,6 +231,11 @@ public class Oauth1call extends HttpServlet {
 	   			else if(rmethod.equals ("Post")){
 	   				out.println("in post");
 	   				String exhead="";
+	   				oauth_token=oauthtk1;
+   					String[] tok11=oauth_token.split("=");
+		   			String oauthtk=tok11[1];
+		   			String[] tok2=sectk1.split("=");
+		   			String sectk=tok2[1];
 	   				out.println("inside"+exhead);
 	   				String uuid_string = UUID.randomUUID().toString();
 	   				uuid_string = uuid_string.replaceAll("-", "");
