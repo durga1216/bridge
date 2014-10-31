@@ -87,9 +87,9 @@ public class Title extends HttpServlet {
 	   	response.setHeader("Content-Type","text/html;charset=UTF-8");
 	   	PrintWriter out=response.getWriter();
 	   	System.out.println("test");
-	   	String appname=request.getParameter("app1"); 
-	   	String descr=request.getParameter("descr");  
-	   	String mode=request.getParameter("mode");
+	   	String appname="";
+	   	String descr=""; 
+	   	String mode="";
 	   	System.out.println("teggst"+appname+"--"+descr);
 	   	InputStream is = null;
 	   	HashMap<String, String> formParams = new HashMap<String, String>();  
@@ -104,8 +104,11 @@ public class Title extends HttpServlet {
  				Iterator<FileItem> iter = items.iterator();  
  				while (iter.hasNext()) {  
  					System.out.println("inside");
+ 					appname=iter.next().getName();
+ 					descr=iter.next().getName();
  					FileItem item = (FileItem) iter.next();  
  					is=item.getInputStream();
+ 					mode=iter.next().getName();
  				}
  			}
 		}catch(FileUploadException fue){  
