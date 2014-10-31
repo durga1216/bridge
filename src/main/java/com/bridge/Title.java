@@ -102,13 +102,16 @@ public class Title extends HttpServlet {
  				ServletFileUpload upload = new ServletFileUpload(factory);    
  				List<FileItem> items = upload.parseRequest(request);  
  				Iterator<FileItem> iter = items.iterator();  
+ 				int k=0;
  				while (iter.hasNext()) {  
- 					System.out.println("inside");
- 					appname=iter.next().getName();
- 					descr=iter.next().getName();
+ 					k++;
+ 					out.println("inside");
+ 					//appname=iter.next().getName();
+ 					//descr=iter.next().getName();
  					FileItem item = (FileItem) iter.next();  
  					is=item.getInputStream();
- 					mode=iter.next().getName();
+ 					out.println("calue---"+k);
+ 					//mode=iter.next().getName();
  				}
  			}
 		}catch(FileUploadException fue){  
@@ -128,9 +131,9 @@ public class Title extends HttpServlet {
  				String apid=rs.getString("appid");
  				session.setAttribute("apid", apid);
  			}
- 			out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
- 					+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
-	     	response.setHeader("Refresh", "1; URL=auth.jsp");
+ 			//out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+ 				//	+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
+	     	//response.setHeader("Refresh", "1; URL=auth.jsp");
 		}catch(Exception e){
  			out.println(e);
  		}
