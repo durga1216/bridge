@@ -553,8 +553,12 @@ public class Final extends HttpServlet {
 					     		}
 				   			}//oauth2
 			   			}//while
+					
+	/**   Trigger Block ends   ------  Parsing the trigger response and mapping with action starts    **/
+					
 						session.setAttribute("samp", str);	 
 						String x1="";String x2="";String x3="";String x4="";String x5="";
+						//TODO For Checking xx value purpose I take mind
 						String xx1="mind";String xx2="mind";String xx3="mind";String xx4="mind";String xx5="mind";
 						String[] xx=new String[10];
 						String ptag="";String exres="";
@@ -653,6 +657,9 @@ public class Final extends HttpServlet {
 								orurl=orurl+slt[k];
 							}
 						}
+						
+	/**   Parsing and mapping ends  ------ Action block starts from here	  **/
+						
 						PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");
 						st3.setString(1, da);
 						ResultSet rs2=st3.executeQuery();
