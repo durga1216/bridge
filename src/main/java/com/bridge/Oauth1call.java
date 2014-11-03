@@ -126,7 +126,6 @@ public class Oauth1call extends HttpServlet {
 	         		 }
 	         		 String tok=result.toString();
 	         		 out.println(tok);
-	         		 String[] acctok=tok.split("&");
 	         		String secrt="";String tokn="";
 	         		String[] chk1=tok.split("&");
 	        		for(int i=0;i<chk1.length;i++){
@@ -137,12 +136,12 @@ public class Oauth1call extends HttpServlet {
 	        				secrt=chk1[i];
 	        			}
 	        		}
-	         		 session.setAttribute("access_token1", acctok[1]);
-	         		 session.setAttribute("access_secret1", acctok[2]);
+	         		 session.setAttribute("access_token1", tokn);
+	         		 session.setAttribute("access_secret1", secrt);
 	         		 PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken,secret) values ('"+tempid+"','"+appid+"','"+tokn+"','"+secrt+"')");
 				   	 st2.executeUpdate();
 				   	 st2.close();
-				   	 oauthtk1=acctok[1];sectk1=acctok[2];
+				   	 oauthtk1=tokn;sectk1=secrt;
 	         		 request.setAttribute("code", 200);
 		             request.setAttribute("code1", 200);
 			         request.getRequestDispatcher("check.jsp").forward(request, response);
@@ -245,6 +244,7 @@ public class Oauth1call extends HttpServlet {
                     	result.append(line);
                     }
                     str=result.toString();
+                    session.setAttribute("xml1", str);
                     session.setAttribute("samp", "tok---"+oauth_token+"--sec---"+sectk1+"---eurl--"+eurl1+"---res---"+str+"----act--"+actok);
 	   			}
 	   			else if(rmethod.equals ("Post")){
@@ -309,8 +309,9 @@ public class Oauth1call extends HttpServlet {
                     	result.append(line);
                     }
                     str=result.toString();
+                    session.setAttribute("xml1", str);
 	   			}
-            	session.setAttribute("xml1", str);
+            	
 	         }
 	    }
 	    catch(Exception e){

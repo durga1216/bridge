@@ -905,6 +905,9 @@ public class Final extends HttpServlet {
 					   				HttpResponse response1=null;
 					   				HttpPost post = new HttpPost(endurl1);
 					   				post.setHeader("Authorization", authorization_header_string);
+					   				StringEntity input = new StringEntity(orurl);
+					   				input.setContentType("application/xml");
+					   				post.setEntity(input);
 					   				response1 = httpclient.execute(post);
 					   				BufferedReader rd = new BufferedReader(
 					   						new InputStreamReader(response1.getEntity().getContent()));
