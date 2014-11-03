@@ -97,9 +97,9 @@ public class Title extends HttpServlet {
  				int k=0;
  				for (FileItem item : items) {
  				    // processes only fields that are not form fields
- 					k++;out.println(k+"--"+item.isFormField());
+ 					k++;//out.println(k+"--"+item.isFormField());
  				    if (!item.isFormField()) {
- 				    	out.println("in in");
+ 				    	//out.println("in in");
  	 					is=item.getInputStream();
  				    } else {
  				        //here...
@@ -114,7 +114,7 @@ public class Title extends HttpServlet {
  				        }
  				    }
  				}
- 				out.println(appname+"---"+descr+"----"+mode);
+ 				//out.println(appname+"---"+descr+"----"+mode);
  			}
 		}catch(FileUploadException fue){  
 			out.println(fue);  
@@ -132,9 +132,9 @@ public class Title extends HttpServlet {
  				String apid=rs.getString("appid");
  				session.setAttribute("apid", apid);
  			}
- 			//out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
- 				//	+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
-	     	//response.setHeader("Refresh", "1; URL=auth.jsp");
+ 			out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+ 					+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
+	     	response.setHeader("Refresh", "1; URL=auth.jsp");
 		}catch(Exception e){
  			out.println(e);
  		}
