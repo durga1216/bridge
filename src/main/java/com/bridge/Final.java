@@ -657,9 +657,6 @@ public class Final extends HttpServlet {
 								orurl=orurl+slt[k];
 							}
 						}
-						else{
-							orurl=exres;
-						}
 						
 	/**   Parsing and mapping ends  ------ Action block starts from here	  **/
 						
@@ -837,7 +834,7 @@ public class Final extends HttpServlet {
 					   				str1=result.toString();
 					   			}
 					   			else if(rmethod.equals ("Post")){
-					   				//out.println("in post");
+					   				out.println("in post");
 					   				String exhead="";
 					   				if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6) && !"null".equals(p7)){
 					   					exhead=p1+"=\""+pv1+"\","+p2+"=\""+pv2+"\","+p3+"=\""+pv3+"\","+p4+"=\""+pv4+"\","+p5+"=\""+pv5+"\","+p6+"=\""+pv6+"\","+p7+"=\""+pv7+"\"";}
@@ -883,7 +880,7 @@ public class Final extends HttpServlet {
 					   				}
 					   				String tst4=tst1[0]+tst3;
 					   				String signature_base_string = rmethod+"&"+enurl+"&" + URLEncoder.encode(tst4, "UTF-8");
-					   				//  System.out.println("signature_base_string=" + signature_base_string);
+					   				System.out.println("signature_base_string=" + signature_base_string);
 					   				String oauth_signature = "";String oauth_signature1 = "";
 					   				try {
 					   					oauth_signature = computeSignature(signature_base_string, secret+"&"+sec1);  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
@@ -908,7 +905,7 @@ public class Final extends HttpServlet {
 					   				HttpResponse response1=null;
 					   				HttpPost post = new HttpPost(endurl1);
 					   				post.setHeader("Authorization", authorization_header_string);
-					   				StringEntity input = new StringEntity(orurl);
+					   				StringEntity input = new StringEntity(exres);
 					   				input.setContentType("application/xml");
 					   				post.setEntity(input);
 					   				response1 = httpclient.execute(post);
@@ -920,6 +917,7 @@ public class Final extends HttpServlet {
 					   					result.append(line);
 					   				}
 					   				str1=result.toString();
+					   				session.setAttribute("samp", str1);	  
 					   			} 
 					   		}
 					   		else if(authen.equals("Oauth2")){
