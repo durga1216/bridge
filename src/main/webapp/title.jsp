@@ -100,7 +100,7 @@ margin-left:26px;
 <form action="Title" method="post" enctype="multipart/form-data">
 <br><br><center><div id="head">Mind-Bridge</div></center>
 <br><br><br><div id="tit1">1.Trigger App Details</div>
-<br><br><br><div id="tit">Title*</div><br><input type="text" name="app1" placeholder="Enter the App title">
+<br><br><br><div id="tit">Title*</div><br><input type="text" name="app1" id="app1" placeholder="Enter the App title">
 <br><br><br><div id="desc">Description*</div><br><textarea name="descr" id="txt1"  placeholder="Min 3 sentence of description"></textarea>
 <br><br><br><div id="tit">Logo</div><br><input type="file"  name="selectFile">
 <input type="radio" name="mode"  value="Trigger">

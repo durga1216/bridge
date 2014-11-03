@@ -87,7 +87,8 @@ public class Title extends HttpServlet {
 		appname=request.getParameter("app1");
 		descr=request.getParameter("descr");
 		mode=request.getParameter("mode");
-		out.println(appname+"---"+descr+"----"+mode);
+		String selectFile=request.getParameter("selectFile");
+		out.println(appname+"---"+descr+"----"+mode+"-----"+selectFile);
 	   	//System.out.println("teggst"+appname+"--"+descr);
 	   	InputStream is = null;
 //	   	HashMap<String, String> formParams = new HashMap<String, String>();  
