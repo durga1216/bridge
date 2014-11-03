@@ -1,6 +1,7 @@
 package com.bridge;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -30,7 +31,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 /**
  * Servlet implementation class Title
  */
-@MultipartConfig(maxFileSize = 16177215)
 public class Title extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     /**
@@ -85,44 +85,41 @@ public class Title extends HttpServlet {
 	   	String appname="";
 	   	String descr=""; 
 	   	String mode="";
-		appname=request.getParameter("app1");
-		descr=request.getParameter("descr");
-		mode=request.getParameter("mode");
-		String selectFile=request.getParameter("selectFile");
-		out.println(appname+"---"+descr+"----"+mode+"-----"+selectFile);
-	   	//System.out.println("teggst"+appname+"--"+descr);
 	   	InputStream is = null;
 	   	HashMap<String, String> formParams = new HashMap<String, String>();  
  		boolean isMultipart = ServletFileUpload.isMultipartContent(request); 
- 		System.out.println("valkkue"+isMultipart);
  		try{  
  			if (isMultipart){  
- 				System.out.println("inside part");
  				FileItemFactory factory = new DiskFileItemFactory();  
  				ServletFileUpload upload = new ServletFileUpload(factory);    
  				List<FileItem> items = upload.parseRequest(request);  
- 				Iterator<FileItem> iter = items.iterator();  
+ 				//Iterator<FileItem> iter = items.iterator(); 
  				int k=0;
- 				while (iter.hasNext()) {  
- 					k++;
- 					out.println("inside");
- 					appname=iter.next().getName();
- 					descr=iter.next().getName();
- 					FileItem item = (FileItem) iter.next();  
- 					is=item.getInputStream();
- 					mode=iter.next().getName();
- 					mode=iter.next().getName();
- 					out.println("calue---"+k+appname+descr+mode);
+ 				for (FileItem item : items) {
+ 				    // processes only fields that are not form fields
+ 					k++;out.println(k+"--"+item.isFormField());
+ 				    if (!item.isFormField()) {
+ 				    	out.println("in in");
+ 	 					is=item.getInputStream();
+ 				    } else {
+ 				        //here...
+ 				        String fieldname = item.getFieldName();
+ 				        String fieldvalue = item.getString();
+ 				        if (fieldname.equals("app1")) {
+ 				        	appname=fieldvalue;
+ 				        }else if(fieldname.equals("descr")) {
+ 				        	descr=fieldvalue;
+ 				        }else if(fieldname.equals("mode")){
+ 				        	mode=fieldvalue;
+ 				        }
+ 				    }
  				}
+ 				out.println(appname+"---"+descr+"----"+mode);
  			}
 		}catch(FileUploadException fue){  
 			out.println(fue);  
 		}
  		try{
- 			appname=request.getParameter("app1");
- 			descr=request.getParameter("descr");
- 			mode=request.getParameter("mode");
- 			out.println(appname+"---"+descr+"----"+mode);
  			HttpSession session=request.getSession();
  			Class.forName("com.mysql.jdbc.Driver").newInstance();
  			con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
