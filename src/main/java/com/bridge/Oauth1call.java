@@ -80,7 +80,7 @@ public class Oauth1call extends HttpServlet {
 	        	 String oauth_signature_method=rs.getString("osmeth");String url1=rs.getString("ourl1");
             	 String ourl21=rs.getString("ourl2");String ourl31=rs.getString("ourl3");
             	 String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
-            	 String oreq1=rs.getString("oreq");
+            	 String oreq1=rs.getString("oreq");String rmethod1=rs.getString("select2");
             	 String rmethod=rs.getString("rmethod");String endurl1=rs.getString("t1");
             	 //========initial=========
             	 if(oreq1.equals("GET")){
@@ -88,9 +88,16 @@ public class Oauth1call extends HttpServlet {
 	                 uuid_string = uuid_string.replaceAll("-", "");
 	                 String oauth_nonce = uuid_string; 
 	                 String eurl = URLEncoder.encode(ourl31, "UTF-8");
-	                 int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
+	                 int millis = (int) System.currentTimeMillis() * 1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
 	                 String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
-	                 String parameter_string = "oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&oauth_token="+oauth_token+"&oauth_verifier="+oauth_verifier+"&oauth_version=1.0";        
+	                 String parameter_string="";
+	 				 String call="https://bridge-minddotss.rhcloud.com/Oauth1call";
+	                 if(rmethod1.equals("DELETE")){
+	                	 parameter_string = "oauth_callback="+URLEncoder.encode(call, "UTF-8")+"&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&oauth_token="+oauth_token+"&oauth_verifier="+oauth_verifier+"&oauth_version=1.0";        
+	                 }
+	                 else{
+	                	 parameter_string = "oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&oauth_token="+oauth_token+"&oauth_verifier="+oauth_verifier+"&oauth_version=1.0";        
+	                 }
 	                 String signature_base_string = oreq1+"&"+eurl+"&" + URLEncoder.encode(parameter_string, "UTF-8");
 	                 System.out.println("signature_base_string=" + signature_base_string);
 	                 String oauth_signature = "";String oauth_signature1 = "";
@@ -120,10 +127,19 @@ public class Oauth1call extends HttpServlet {
 	         		 String tok=result.toString();
 	         		 out.println(tok);
 	         		 String[] acctok=tok.split("&");
-	         		 
+	         		String secrt="";String tokn="";
+	         		String[] chk1=tok.split("&");
+	        		for(int i=0;i<chk1.length;i++){
+	        			String[] stest=chk1[i].split("=");
+	        			if(stest[0].equals("oauth_token")){
+	        				tokn=chk1[i];
+	        			}else if(stest[0].equals("oauth_token_secret")){
+	        				secrt=chk1[i];
+	        			}
+	        		}
 	         		 session.setAttribute("access_token1", acctok[1]);
 	         		 session.setAttribute("access_secret1", acctok[2]);
-	         		 PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken,secret) values ('"+tempid+"','"+appid+"','"+acctok[1]+"','"+acctok[2]+"')");
+	         		 PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken,secret) values ('"+tempid+"','"+appid+"','"+tokn+"','"+secrt+"')");
 				   	 st2.executeUpdate();
 				   	 st2.close();
 				   	 oauthtk1=acctok[1];sectk1=acctok[2];
