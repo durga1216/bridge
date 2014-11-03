@@ -33,6 +33,18 @@ public class Parse extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Connection con=null;  
+	   	response.setHeader("Content-Type","text/html;charset=UTF-8");
+	   	PrintWriter out=response.getWriter();
+	   	System.out.println("test");
+	   	String appname="";
+	   	String descr=""; 
+	   	String mode="";
+		appname=request.getParameter("app1");
+		descr=request.getParameter("descr");
+		mode=request.getParameter("mode");
+		String selectFile=request.getParameter("selectFile");
+		out.println(appname+"---"+descr+"----"+mode+"-----"+selectFile);
 	}
 
 	/**
