@@ -90,7 +90,11 @@ public class Title extends HttpServlet {
 	   	String appname="";
 	   	String descr=""; 
 	   	String mode="";
-	   	System.out.println("teggst"+appname+"--"+descr);
+		appname=request.getParameter("app1");
+		descr=request.getParameter("descr");
+		mode=request.getParameter("mode");
+		out.println(appname+"---"+descr+"----"+mode);
+	   	//System.out.println("teggst"+appname+"--"+descr);
 	   	InputStream is = null;
 	   	HashMap<String, String> formParams = new HashMap<String, String>();  
  		boolean isMultipart = ServletFileUpload.isMultipartContent(request); 
