@@ -106,11 +106,11 @@ public class Title extends HttpServlet {
  				while (iter.hasNext()) {  
  					k++;
  					out.println("inside");
- 					//appname=iter.next().getName();
+ 					appname=iter.next().getName();
  					//descr=iter.next().getName();
- 					FileItem item = (FileItem) iter.next();  
- 					is=item.getInputStream();
- 					out.println("calue---"+k);
+ 					//FileItem item = (FileItem) iter.next();  
+ 					//is=item.getInputStream();
+ 					out.println("calue---"+k+appname);
  					//mode=iter.next().getName();
  				}
  			}
