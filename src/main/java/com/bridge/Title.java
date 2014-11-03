@@ -111,12 +111,12 @@ public class Title extends HttpServlet {
  					FileItem item = (FileItem) iter.next();  
  					is=item.getInputStream();
  					mode=iter.next().getName();
+ 					mode=iter.next().getName();
  					out.println("calue---"+k+appname+descr+mode);
  				}
  			}
 		}catch(FileUploadException fue){  
-			System.out.println(fue);  
-			throw new ServletException(fue.getMessage());
+			out.println(fue);  
 		}
  		try{
  			appname=request.getParameter("app1");
