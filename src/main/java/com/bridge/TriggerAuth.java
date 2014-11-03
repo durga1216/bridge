@@ -709,7 +709,7 @@ public class TriggerAuth extends HttpServlet {
    	 							} 
 	   	 						String author=ourl2+"?"+oauth_token+"&perms=write";
 	   	 						out.println(author);
-	   	 						//response.sendRedirect(author);
+	   	 						response.sendRedirect(author);
 	   	 					}
 	   	 					else {
 	   	 						String uuid_string = UUID.randomUUID().toString();
