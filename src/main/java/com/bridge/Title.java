@@ -107,11 +107,11 @@ public class Title extends HttpServlet {
  					k++;
  					out.println("inside");
  					appname=iter.next().getName();
- 					//descr=iter.next().getName();
- 					//FileItem item = (FileItem) iter.next();  
- 					//is=item.getInputStream();
- 					out.println("calue---"+k+appname);
- 					//mode=iter.next().getName();
+ 					descr=iter.next().getName();
+ 					FileItem item = (FileItem) iter.next();  
+ 					is=item.getInputStream();
+ 					mode=iter.next().getName();
+ 					out.println("calue---"+k+appname+descr+mode);
  				}
  			}
 		}catch(FileUploadException fue){  
@@ -119,6 +119,10 @@ public class Title extends HttpServlet {
 			throw new ServletException(fue.getMessage());
 		}
  		try{
+ 			appname=request.getParameter("app1");
+ 			descr=request.getParameter("descr");
+ 			mode=request.getParameter("mode");
+ 			out.println(appname+"---"+descr+"----"+mode);
  			HttpSession session=request.getSession();
  			Class.forName("com.mysql.jdbc.Driver").newInstance();
  			con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
