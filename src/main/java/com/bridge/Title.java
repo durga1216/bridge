@@ -32,15 +32,9 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  */
 public class Title extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private String folderLocation=null;
     /**
      * @see HttpServlet#HttpServlet()
      */
-	@Override  
-	 public void init() throws ServletException {  
-	  super.init();  
-	  this.folderLocation = getServletContext().getInitParameter("FILE");  
-	 } 
     public Title() {
         super();
         // TODO Auto-generated constructor stub
@@ -96,32 +90,32 @@ public class Title extends HttpServlet {
 		out.println(appname+"---"+descr+"----"+mode);
 	   	//System.out.println("teggst"+appname+"--"+descr);
 	   	InputStream is = null;
-	   	HashMap<String, String> formParams = new HashMap<String, String>();  
- 		boolean isMultipart = ServletFileUpload.isMultipartContent(request); 
- 		System.out.println("valkkue"+isMultipart);
- 		try{  
- 			if (isMultipart){  
- 				System.out.println("inside part");
- 				FileItemFactory factory = new DiskFileItemFactory();  
- 				ServletFileUpload upload = new ServletFileUpload(factory);    
- 				List<FileItem> items = upload.parseRequest(request);  
- 				Iterator<FileItem> iter = items.iterator();  
- 				int k=0;
- 				while (iter.hasNext()) {  
- 					k++;
- 					out.println("inside");
- 					appname=iter.next().getName();
- 					descr=iter.next().getName();
- 					FileItem item = (FileItem) iter.next();  
- 					is=item.getInputStream();
- 					mode=iter.next().getName();
- 					mode=iter.next().getName();
- 					out.println("calue---"+k+appname+descr+mode);
- 				}
- 			}
-		}catch(FileUploadException fue){  
-			out.println(fue);  
-		}
+//	   	HashMap<String, String> formParams = new HashMap<String, String>();  
+// 		boolean isMultipart = ServletFileUpload.isMultipartContent(request); 
+// 		System.out.println("valkkue"+isMultipart);
+// 		try{  
+// 			if (isMultipart){  
+// 				System.out.println("inside part");
+// 				FileItemFactory factory = new DiskFileItemFactory();  
+// 				ServletFileUpload upload = new ServletFileUpload(factory);    
+// 				List<FileItem> items = upload.parseRequest(request);  
+// 				Iterator<FileItem> iter = items.iterator();  
+// 				int k=0;
+// 				while (iter.hasNext()) {  
+// 					k++;
+// 					out.println("inside");
+// 					appname=iter.next().getName();
+// 					descr=iter.next().getName();
+// 					FileItem item = (FileItem) iter.next();  
+// 					is=item.getInputStream();
+// 					mode=iter.next().getName();
+// 					mode=iter.next().getName();
+// 					out.println("calue---"+k+appname+descr+mode);
+// 				}
+// 			}
+//		}catch(FileUploadException fue){  
+//			out.println(fue);  
+//		}
  		try{
  			appname=request.getParameter("app1");
  			descr=request.getParameter("descr");
