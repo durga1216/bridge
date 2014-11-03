@@ -642,7 +642,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 						uuid_string = uuid_string.replaceAll("-", "");
 	   	 						String oauth_nonce = uuid_string; 
 	   	 						String eurl1 = URLEncoder.encode(ourl1, "UTF-8");
-	   	 						int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
+	   	 						int millis = (int) System.currentTimeMillis() * 1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
 	   	 						String oauth_timestamp = (new Long(millis/1000)).toString(); // get current time in milliseconds, then divide by 1000 to get seconds
 		   	 					String parameter_string="";
 		   	 					String call="https://bridge-minddotss.rhcloud.com/GauthCall";
@@ -707,7 +707,8 @@ public class TriggerAuth extends HttpServlet {
 	   	 						finally { 
 	   	 							httpclient.getConnectionManager().shutdown();  
    	 							} 
-	   	 						//String author=ourl2+"?"+oauth_token+"&perms=write";
+	   	 						String author=ourl2+"?"+oauth_token+"&perms=write";
+	   	 						out.println(author);
 	   	 						//response.sendRedirect(author);
 	   	 					}
 	   	 					else {
