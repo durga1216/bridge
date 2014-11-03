@@ -657,6 +657,9 @@ public class Final extends HttpServlet {
 								orurl=orurl+slt[k];
 							}
 						}
+						else{
+							orurl=exres;
+						}
 						
 	/**   Parsing and mapping ends  ------ Action block starts from here	  **/
 						
