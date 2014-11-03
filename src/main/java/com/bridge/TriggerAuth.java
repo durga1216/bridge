@@ -653,6 +653,7 @@ public class TriggerAuth extends HttpServlet {
 		   	 					}
 	   	 						String signature_base_string = oreq+"&"+eurl1+"&" + URLEncoder.encode(parameter_string, "UTF-8");
 	   	 						String oauth_signature = "";String oauth_signature1 = "";
+	   	 						out.println(parameter_string+"\n"+signature_base_string);
 	   	 						try {
 	   	 							oauth_signature = computeSignature(signature_base_string, oskey+"&");  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
 	   	 							oauth_signature1 =URLEncoder.encode(oauth_signature, "UTF-8");
@@ -667,7 +668,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 								+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
 			                            oauth_timestamp + "\",oauth_version=\"1.0\"";
 	   	 						String uurl=ourl1+"?"+parameter_string+"&oauth_signature="+URLEncoder.encode(oauth_signature, "UTF-8");
-	   	 						System.out.println(uurl);
+	   	 						out.println(uurl);
 	   	 						String oauth_token = "";
 	   	 						HttpClient httpclient = new DefaultHttpClient();
 	   	 						HttpResponse response1=null;
@@ -682,7 +683,7 @@ public class TriggerAuth extends HttpServlet {
 					         			result.append(line);
 					         		}
 					         		String tok=result.toString();
-					         		//out.println("dsdsdsdsssssdf"+tok);
+					         		out.println("dsdsdsdsssssdf"+tok);
 					         		String sec1="";
 					         		String[] chk1=tok.split("&");
 					        		for(int i=0;i<chk1.length;i++){
@@ -706,8 +707,8 @@ public class TriggerAuth extends HttpServlet {
 	   	 						finally { 
 	   	 							httpclient.getConnectionManager().shutdown();  
    	 							} 
-	   	 						String author=ourl2+"?"+oauth_token+"&perms=write";
-	   	 						response.sendRedirect(author);
+	   	 						//String author=ourl2+"?"+oauth_token+"&perms=write";
+	   	 						//response.sendRedirect(author);
 	   	 					}
 	   	 					else {
 	   	 						String uuid_string = UUID.randomUUID().toString();
