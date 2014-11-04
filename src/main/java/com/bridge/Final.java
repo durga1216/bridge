@@ -879,7 +879,7 @@ public class Final extends HttpServlet {
 					   					tst3=tst3+"&"+tst1[i];
 					   				}
 					   				String tst4=tst1[0]+tst3;
-					   				String signature_base_string = rmethod+"&"+enurl+"&" + URLEncoder.encode(tst4, "UTF-8");
+					   				String signature_base_string = "POST&"+enurl+"&" + URLEncoder.encode(tst4, "UTF-8");
 					   				System.out.println("signature_base_string=" + signature_base_string);
 					   				String oauth_signature = "";String oauth_signature1 = "";
 					   				try {
