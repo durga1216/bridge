@@ -903,6 +903,8 @@ public class Final extends HttpServlet {
 					   				//out.println(authorization_header_string);
 					   				HttpClient httpclient = new DefaultHttpClient();
 					   				HttpResponse response1=null;
+					   				session.setAttribute("samp", oauth_consumer_key+"\n"+secret+oauth_token+"\n"+access_secret1+"\n"
+					   						+ endurl1+"\n"+authorization_header_string+"\n"+parameter_string);
 					   				HttpPost post = new HttpPost(endurl1);
 					   				post.setHeader("Authorization", authorization_header_string);
 					   				StringEntity input = new StringEntity(exres);
