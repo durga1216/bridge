@@ -904,7 +904,7 @@ public class Final extends HttpServlet {
 					   				HttpClient httpclient = new DefaultHttpClient();
 					   				HttpResponse response1=null;
 					   				session.setAttribute("samp", oauth_consumer_key+"\n"+secret+oauth_token+"\n"+access_secret1+"\n"
-					   						+ endurl1+"\n"+authorization_header_string+"\n"+parameter_string);
+					   						+ endurl1+"\n"+authorization_header_string+"\n"+parameter_string+"\n"+exres);
 					   				HttpPost post = new HttpPost(endurl1);
 					   				post.setHeader("Authorization", authorization_header_string);
 					   				StringEntity input = new StringEntity(exres);
@@ -919,7 +919,7 @@ public class Final extends HttpServlet {
 					   					result.append(line);
 					   				}
 					   				str1=result.toString();
-					   				session.setAttribute("samp", str1);	  
+					   				//session.setAttribute("samp", str1);	  
 					   			} 
 					   		}
 					   		else if(authen.equals("Oauth2")){
