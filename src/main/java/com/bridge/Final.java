@@ -755,13 +755,13 @@ public class Final extends HttpServlet {
 					   			String oreq1=rs.getString("oreq");
 					   			String oauth_token="";
 					   			String access_secret1="";
-					   			PreparedStatement st4=con.prepareStatement("select * from token where tempid=? && tid=?");
-					   			st4.setString(1, da);
-					   			st4.setString(2, aid);
-					   			ResultSet rs4=st4.executeQuery();
-					   			while(rs4.next()){
-					   				oauth_token=rs4.getString("oauthtoken");
-					   				access_secret1=rs4.getString("secret");
+					   			PreparedStatement st5=con.prepareStatement("select * from token where tempid=? && tid=?");
+					   			st5.setString(1, da);
+					   			st5.setString(2, aid);
+					   			ResultSet rs5=st5.executeQuery();
+					   			while(rs5.next()){
+					   				oauth_token=rs5.getString("oauthtoken");
+					   				access_secret1=rs5.getString("secret");
 					   			}
 					   			String[] tok11=oauth_token.split("=");
 					   			String oauthtk=tok11[1];
