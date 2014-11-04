@@ -749,8 +749,8 @@ public class Final extends HttpServlet {
 					   		else if(authen.equals("Oauth1")){
 					   			String res="";
 					   			out.println("in Oauth");
-					   			String oauth_signature_method=rs.getString("osmeth");
-					   			String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
+					   			String oauth_signature_method=rs2.getString("osmeth");
+					   			String oauth_consumer_key=rs2.getString("ockey"); String secret=rs2.getString("oskey");
 					   			String oauth_token="";
 					   			String access_secret1="";
 					   			PreparedStatement st4=con.prepareStatement("select * from token where tempid=? && tid=?");
@@ -761,11 +761,12 @@ public class Final extends HttpServlet {
 					   				oauth_token=rs4.getString("oauthtoken");
 					   				access_secret1=rs4.getString("secret");
 					   			}
+					   			rs4.close();
 					   			String[] tok11=oauth_token.split("=");
 					   			String oauthtk=tok11[1];
 					   			String[] tok1=access_secret1.split("=");
 					   			String sec1=tok1[1];
-					   			out.println(sec1);
+					   			//out.println(sec1);
 					   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){
 					   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5+"&"+p6+"="+pv6;}
 			        		 
