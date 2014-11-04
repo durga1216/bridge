@@ -749,25 +749,23 @@ public class Final extends HttpServlet {
 					   		else if(authen.equals("Oauth1")){
 					   			String res="";
 					   			out.println("in Oauth");
-					   			String oauth_signature_method=rs.getString("osmeth");String url1=rs.getString("ourl1");
-					   			String ourl21=rs.getString("ourl2");String ourl31=rs.getString("ourl3");
+					   			String oauth_signature_method=rs.getString("osmeth");
 					   			String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
-					   			String oreq1=rs.getString("oreq");
 					   			String oauth_token="";
 					   			String access_secret1="";
-					   			PreparedStatement st5=con.prepareStatement("select * from token where tempid=? && tid=?");
-					   			st5.setString(1, da);
-					   			st5.setString(2, aid);
-					   			ResultSet rs5=st5.executeQuery();
-					   			while(rs5.next()){
-					   				oauth_token=rs5.getString("oauthtoken");
-					   				access_secret1=rs5.getString("secret");
+					   			PreparedStatement st4=con.prepareStatement("select * from token where tempid=? && tid=?");
+					   			st4.setString(1, da);
+					   			st4.setString(2, aid);
+					   			ResultSet rs4=st4.executeQuery();
+					   			while(rs4.next()){
+					   				oauth_token=rs4.getString("oauthtoken");
+					   				access_secret1=rs4.getString("secret");
 					   			}
 					   			String[] tok11=oauth_token.split("=");
 					   			String oauthtk=tok11[1];
 					   			String[] tok1=access_secret1.split("=");
 					   			String sec1=tok1[1];
-			        	 
+					   			out.println(sec1);
 					   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){
 					   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5+"&"+p6+"="+pv6;}
 			        		 
@@ -792,6 +790,7 @@ public class Final extends HttpServlet {
 				   				//=========================
 					   			if(rmethod.equals ("Get")){
 					   				//========initial=========
+					   				out.println("in Get");
 					   				String uuid_string = UUID.randomUUID().toString();
 					   				uuid_string = uuid_string.replaceAll("-", "");
 					   				String oauth_nonce = uuid_string; 
