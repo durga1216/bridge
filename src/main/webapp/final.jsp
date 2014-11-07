@@ -121,9 +121,9 @@ height:1px;
 							<img src="Title?appid=<%=aid%>"> <%=aa%>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<%if(state.equals("Active")){ %>
-							<input id=gn type="button" value=" <%=state%> ">
+								<input id=gn type="button" value=" <%=state%> ">
 							<%}else{ %>
-							<input id=rd type="button" value=" <%=state%> ">
+								<input id=rd type="button" value=" <%=state%> ">
 							<%} %>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<select name="state"><option value=Active>Active</option><option value=Inactive>Inactive</select>
