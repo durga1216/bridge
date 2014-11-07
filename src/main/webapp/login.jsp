@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Mind Connectors</title>
+<link rel="shortcut icon" href="favicon.ico" />
 <style type="text/css">
 body{
 background-color:#ff9900;
@@ -49,15 +50,31 @@ color:#FFF;
 font-size:18px;
 font-family:verdana;
 }
+#tit{
+font-family:verdana;
+font-size:20px;
+font-weight:bold;
+margin-left:70px;
+color:#FFFFFF;
+font-weight:bold;
+}
 hr{
 color:#fff;
-background-color:#fff
+background-color:#fff;
+height:1px;
+}
+#head{
+font-family:verdana;
+font-weight:bold;
+font-size:25px;
+color:#FFFFFF;
 }
 </style>
 </head>
 <body><br>
-<center><h1>Mind Connectors</h1></center>
-<br><br><br><br>
+<div id="head"><a href="http://minddotss.com"><img style="margin-left:100px;box-shadow:0px 0px 0px 0px;width:150px;height:70px;" alt="MindDots" src="images/log.png"></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mind-Pulpy Cloud Connectors</div><br><hr>
+<br><br><div id=tit>Login with MindPulpy Credentials:</div><br><br>
+<br>
 <form action="Login" method="post">
 <center>
 <div class="result">${alert}</div><br>
