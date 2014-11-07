@@ -63,7 +63,9 @@ font-size:17px;
 color:#ff9900;
 font-weight:bold;
 }
-input[type="button"]{
+gn{
+border:solid 1px #0f0;
+background-color:#0f0;
 padding-right:5px;
 padding-left:5px;
 border-radius:5px;
@@ -72,13 +74,16 @@ font-size:17px;
 color:#fff;
 font-weight:bold;
 }
-gn{
-border:solid 1px #0f0;
-background-color:#0f0;
-}
 rd{
 border:solid 1px #f00;
 background-color:#f00;
+padding-right:5px;
+padding-left:5px;
+border-radius:5px;
+font-family:verdana;
+font-size:17px;
+color:#fff;
+font-weight:bold;
 }
 hr{
 color:#fff;
