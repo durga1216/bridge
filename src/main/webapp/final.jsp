@@ -52,7 +52,7 @@ padding-left:5px;
 border:solid 1px #fff;
 background-color:#fff;
 }
-input[type="button"],input[type="submit"]{
+input[type="submit"]{
 padding-right:5px;
 padding-left:5px;
 border:solid 1px #fff;
@@ -61,6 +61,17 @@ background-color:#fff;
 font-family:verdana;
 font-size:17px;
 color:#ff9900;
+font-weight:bold;
+}
+input[type="button"]{
+padding-right:5px;
+padding-left:5px;
+border:solid 1px #0f0;
+border-radius:5px;
+background-color:#0f0;
+font-family:verdana;
+font-size:17px;
+color:#fff;
 font-weight:bold;
 }
 hr{
@@ -76,10 +87,10 @@ height:1px;
 <center><div id=head>Mind-Pulpy</div><br><hr><br>
 <h2>Your Connecters is Running successfully..!! <a id=lin href="index.jsp">&lt;----Click here for Connect More----&gt;</a></h2>
 </center>
-<%
+<%	String id = (String) request.getSession().getAttribute("id");
 	try{
 		 int i=1;
-		 PreparedStatement st1=conn.prepareStatement("select tempid from trig_all");
+		 PreparedStatement st1=conn.prepareStatement("select tempid from trig_all where userid='"+id+"'");
 		 ResultSet rs1=st1.executeQuery();
 		 while(rs1.next()){
 				String tempid=rs1.getString("tempid");
@@ -91,12 +102,22 @@ height:1px;
 						String aa=rs2.getString("actit");
 						String tid=rs2.getString("tid");
 						String aid=rs2.getString("aid");
+						String userid=rs2.getString("userid");
+						String state=rs2.getString("state");
 						%>
-							<h4><%=i%>, From: <img src="Title?appid=<%=tid%>"> <%=tt%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To: 
+							<form action="ThreadHandler" method="get">
+							<h4><%=i%>, &nbsp; <img src="Title?appid=<%=tid%>"> <%=tt%> &nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;
 							<img src="Title?appid=<%=aid%>"> <%=aa%>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select><option value=on>On</option><option value=off>Off</select>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select><option value=15>15 Minutes</option><option value=10>10 Minutes</select>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value=" Apply " name=but<%=i %>></h4>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" value=" <%=state%> ">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<select name="state"><option value=Active>Active</option><option value=Active>Inactive</select>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<select name="time"><option value=15>15 Minutes</option><option value=10>10 Minutes</select>
+							<input style="display:none;" type=text name=tempid value=<%=tempid%>>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="submit" value=" Apply "></h4>
+							</form>
 						<%
 				}
 				i++;

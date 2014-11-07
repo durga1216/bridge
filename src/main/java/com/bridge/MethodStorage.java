@@ -35,7 +35,8 @@ public class MethodStorage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		PrintWriter out=response.getWriter();
-		  
+        HttpSession session=request.getSession();
+		String id=(String) session.getAttribute("id");
 	    String app=request.getParameter("app");
 	    String app1=request.getParameter("app1");
 	    String tgmeth="";
@@ -68,7 +69,7 @@ public class MethodStorage extends HttpServlet {
 	           }
 	           st3.close();
 	           
-	           PreparedStatement st=con.prepareStatement("insert into home(tid,aid,tgtit,actit,tgmeth,actmeth) values ('"+tid+"','"+aid+"','"+tgtit+"','"+actit+"','"+tgmeth+"','"+actmeth+"')");
+	           PreparedStatement st=con.prepareStatement("insert into home(userid,tid,aid,tgtit,actit,tgmeth,actmeth,state) values ('"+id+"','"+tid+"','"+aid+"','"+tgtit+"','"+actit+"','"+tgmeth+"','"+actmeth+"','Inactive')");
 	           st.executeUpdate();
 	           st.close();
 	           request.setAttribute("code1", code1);

@@ -93,7 +93,7 @@ public class Final extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 		    final Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);	
 		    //Get all the valid Trigger data
-		    PreparedStatement st=con.prepareStatement("select tempid from trig_all");
+		    PreparedStatement st=con.prepareStatement("select t1.tempid from trig_all t1 join home t2 on t1.tempid=t2.tempid where t2.state='Active'");
 		    ResultSet rs1=st.executeQuery();
 		    while(rs1.next()){
 		    	ar.add(rs1.getString("tempid"));
