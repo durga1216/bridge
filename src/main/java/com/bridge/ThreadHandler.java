@@ -41,7 +41,7 @@ public class ThreadHandler extends HttpServlet {
 			Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
 			PreparedStatement ps=con.prepareStatement("update home set state='"+state+"' where  tempid='"+tempid+"'");
 			ps.executeUpdate();
-			response.sendRedirect("final");
+			response.sendRedirect("final.jsp");
 		}catch(Exception e){
 			out.println(e);
 		}

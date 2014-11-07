@@ -66,13 +66,19 @@ font-weight:bold;
 input[type="button"]{
 padding-right:5px;
 padding-left:5px;
-border:solid 1px #0f0;
 border-radius:5px;
-background-color:#0f0;
 font-family:verdana;
 font-size:17px;
 color:#fff;
 font-weight:bold;
+}
+gn{
+border:solid 1px #0f0;
+background-color:#0f0;
+}
+rd{
+border:solid 1px #f00;
+background-color:#f00;
 }
 hr{
 color:#fff;
@@ -109,9 +115,13 @@ height:1px;
 							<h4><%=i%>, &nbsp; <img src="Title?appid=<%=tid%>"> <%=tt%> &nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;
 							<img src="Title?appid=<%=aid%>"> <%=aa%>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="button" value=" <%=state%> ">
+							<%if(state.equals("Active")){ %>
+							<input id=gn type="button" value=" <%=state%> ">
+							<%}else{ %>
+							<input id=rd type="button" value=" <%=state%> ">
+							<%} %>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<select name="state"><option value=Active>Active</option><option value=Active>Inactive</select>
+							<select name="state"><option value=Active>Active</option><option value=Inactive>Inactive</select>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<select name="time"><option value=15>15 Minutes</option><option value=10>10 Minutes</select>
 							<input style="display:none;" type=text name=tempid value=<%=tempid%>>
