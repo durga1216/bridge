@@ -69,6 +69,16 @@ font-size:17px;
 color:#ff9900;
 font-weight:bold;
 }
+#butt{
+border:solid 1px #fff;
+background-color:#fff;
+padding:8px;
+border-radius:5px;
+font-family:verdana;
+font-size:18px;
+color:#ff9900;
+font-weight:bold;
+}
 #gn{
 border:solid 1px #0f0;
 background-color:#0f0;
@@ -96,19 +106,30 @@ color:#fff;
 background-color:#fff;
 height:1px;
 }
+#sout{
+float:right;
+margin-right:100px;
+}
+
 </style>
+<script type="text/javascript">
+function log()
+{
+	window.location="logout.jsp";
+	}
+</script>
 </head>
 <%@ page import="java.sql.*" %>
 <%@include file="conn.jsp" %>
-<body><br><br><br>
+<body><br><br>
 <%
 	String u = (String) request.getSession().getAttribute("id");
     if (u != null ) {
     }else{
-    	response.sendRedirect("login.jsp");
+    	response.sendRedirect("logout.jsp");
     }
 %>
-<center><div id=head>Mind-Pulpy</div><br><hr><br>
+<center><div id=sout><input id=butt type="button" value="Signout" Onclick="javascript:log()"></div><div id=head>Mind-Connectors</div><br><br><hr><br>
 <h2>Your Connecters is Running successfully..!! <a id=lin href="index.jsp">&lt;----Click here for Connect More----&gt;</a></h2>
 </center>
 <%	String id = (String) request.getSession().getAttribute("id");

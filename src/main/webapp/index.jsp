@@ -156,7 +156,7 @@ function load(){
 	String u = (String) request.getSession().getAttribute("id");
     if (u != null ) {
     }else{
-    	response.sendRedirect("login.jsp");
+    	response.sendRedirect("logout.jsp");
     }
 %>
 <form action="MethodStorage" method="get">

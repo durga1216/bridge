@@ -222,7 +222,7 @@
 	String u = (String) request.getSession().getAttribute("id");
     if (u != null ) {
     }else{
-    	response.sendRedirect("login.jsp");
+    	response.sendRedirect("logout.jsp");
     }
 %>
 <br><br><center><div id="head">Mind-Pulpy Authentication</div></center><br><hr>
