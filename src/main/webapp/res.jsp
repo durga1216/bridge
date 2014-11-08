@@ -6,8 +6,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Mind Connectors</title>
 <link rel="shortcut icon" href="favicon.ico" />
-	<script src="js/jquery-latest.js"></script>
-	<style>
+	<%
+		response.setHeader("Cache-Control", "no-cache");
+	    response.setHeader("Cache-Control", "no-store");
+	    response.setHeader("Pragma", "no-cache");
+	    response.setDateHeader("Expires", 0);
+    %>
+<script src="js/jquery-latest.js"></script>
+<style>
 body{
 background-color:#FF9900;}
 .head{
@@ -92,6 +98,13 @@ function load(){
 }
 </script>
 </head>
+<%
+	String u = (String) request.getSession().getAttribute("id");
+    if (u != null ) {
+    }else{
+    	response.sendRedirect("login.jsp");
+    }
+%>
 <%@ page import="java.sql.*" %>
 <%@include file="conn.jsp" %>
 <%

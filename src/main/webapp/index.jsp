@@ -6,6 +6,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <title>Mind Connectors</title>
+	<%
+		response.setHeader("Cache-Control", "no-cache");
+	    response.setHeader("Cache-Control", "no-store");
+	    response.setHeader("Pragma", "no-cache");
+	    response.setDateHeader("Expires", 0);
+    %>
 <link rel="shortcut icon" href="favicon.ico" />
 <style>
 body{
@@ -146,6 +152,13 @@ function load(){
 </script>
 </head>
 <body>
+<%
+	String u = (String) request.getSession().getAttribute("id");
+    if (u != null ) {
+    }else{
+    	response.sendRedirect("login.jsp");
+    }
+%>
 <form action="MethodStorage" method="get">
 <%@ page import="java.sql.*" %>
 <%@include file="conn.jsp" %>

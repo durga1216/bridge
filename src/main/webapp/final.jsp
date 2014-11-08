@@ -6,6 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<script src="js/jquery-latest.js"></script>
 <title>Mind Connectors</title>
+	<%
+		response.setHeader("Cache-Control", "no-cache");
+	    response.setHeader("Cache-Control", "no-store");
+	    response.setHeader("Pragma", "no-cache");
+	    response.setDateHeader("Expires", 0);
+    %>
 <link rel="shortcut icon" href="favicon.ico" />
 <style type="text/css">
 body{
@@ -95,6 +101,13 @@ height:1px;
 <%@ page import="java.sql.*" %>
 <%@include file="conn.jsp" %>
 <body><br><br><br>
+<%
+	String u = (String) request.getSession().getAttribute("id");
+    if (u != null ) {
+    }else{
+    	response.sendRedirect("login.jsp");
+    }
+%>
 <center><div id=head>Mind-Pulpy</div><br><hr><br>
 <h2>Your Connecters is Running successfully..!! <a id=lin href="index.jsp">&lt;----Click here for Connect More----&gt;</a></h2>
 </center>

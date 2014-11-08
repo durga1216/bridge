@@ -7,6 +7,12 @@
 	<title>Mind Connectors</title>
 	<link rel="shortcut icon" href="favicon.ico" />
 	<script src="js/jquery-latest.js"></script>
+	<%
+		response.setHeader("Cache-Control", "no-cache");
+	    response.setHeader("Cache-Control", "no-store");
+	    response.setHeader("Pragma", "no-cache");
+	    response.setDateHeader("Expires", 0);
+    %>
 	<script type="text/javascript">
 	function toggle(div_id) {
 		var el = document.getElementById(div_id);
@@ -212,6 +218,13 @@
 	</style>
 </head>
 <body>
+<%
+	String u = (String) request.getSession().getAttribute("id");
+    if (u != null ) {
+    }else{
+    	response.sendRedirect("login.jsp");
+    }
+%>
 <br><br><center><div id="head">Mind-Pulpy Authentication</div></center><br><hr>
 <br><br><div id='tit'>2.Authenticate your Account</div>
 <%@ page import="java.sql.*" %>
