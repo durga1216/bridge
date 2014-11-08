@@ -455,7 +455,7 @@ public class Final extends HttpServlet {
 				   					HttpResponse response1 = client.execute(get);
 				   					BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 					     			while ((line = rd.readLine()) != null) {
-					     				str=line;		     			
+					     				str+=line;		     			
 				     				}
 				   				}
 				   				else if("QueryString".equals(treplace)){
@@ -489,7 +489,7 @@ public class Final extends HttpServlet {
 				   					HttpResponse response1=client.execute(get);
 				   					BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));   
 						    		while ((line = rd.readLine()) != null) {
-						    			str=line;
+						    			str+=line;
 						    		}    			
 				   				} // query string
 				   			}//get
@@ -500,7 +500,7 @@ public class Final extends HttpServlet {
 									HttpResponse response1=client.execute(post);
 									BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 				     				while ((line = rd.readLine()) != null) {
-				     					str=line;		     			}
+				     					str+=line;		     			}
 									}
 				     			else if("QueryString".equals(treplace)){	
 				     				List <NameValuePair> cod = new ArrayList <NameValuePair>();
@@ -547,7 +547,7 @@ public class Final extends HttpServlet {
 								        HttpResponse response1 = client.execute(post);
 								        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 								        while ((line = rd.readLine()) != null) {
-								        	str=line;	        
+								        	str+=line;	        
 							        	}
 					     			}			 
 					     		}
@@ -983,7 +983,7 @@ public class Final extends HttpServlet {
 					   						BufferedReader rd = new BufferedReader(
 					   								new InputStreamReader(response1.getEntity().getContent()));
 					   						while ((line = rd.readLine()) != null) {
-					   							str=line;		     			
+					   							str1+=line;		     			
 					   						}
 					   					}
 					   					else if("QueryString".equals(treplace)){
@@ -1015,7 +1015,7 @@ public class Final extends HttpServlet {
 					   						BufferedReader rd = new BufferedReader
 					   								(new InputStreamReader(response1.getEntity().getContent())); 
 					   						while ((line = rd.readLine()) != null) {
-					   							str=line;
+					   							str1+=line;
 					   						}		
 					   					} // query string
 					   				}//get
@@ -1027,7 +1027,7 @@ public class Final extends HttpServlet {
 					   						BufferedReader rd = new BufferedReader(
 					   								new InputStreamReader(response1.getEntity().getContent()));
 					   						while ((line = rd.readLine()) != null) {
-					   							str=line;		     			
+					   							str1+=line;		     			
 				   							}
 					   					}
 					   					else if("QueryString".equals(treplace)){
@@ -1076,7 +1076,7 @@ public class Final extends HttpServlet {
 					   						HttpResponse response1 = client.execute(post);
 					   						BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 					   						while ((line = rd.readLine()) != null) {
-					   							str1=line;	        
+					   							str1+=line;	        
 				   							}
 					   					}			 
 					   				}

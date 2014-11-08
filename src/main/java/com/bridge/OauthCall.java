@@ -161,7 +161,7 @@ public class OauthCall extends HttpServlet {
 	   						BufferedReader rd = new BufferedReader(
 	   								new InputStreamReader(response1.getEntity().getContent()));
 	   						while ((line = rd.readLine()) != null) {
-	   							str=line;		     			
+	   							str+=line;		     			
 	   						}
 	   					}
 	   					else if("QueryString".equals(treplace)){
@@ -173,7 +173,7 @@ public class OauthCall extends HttpServlet {
 	   						BufferedReader rd = new BufferedReader
 	   								(new InputStreamReader(response1.getEntity().getContent())); 
 	   						while ((line = rd.readLine()) != null) {
-	   							str=line;
+	   							str+=line;
 	   						}		
 	   					} // query string
 	   				}//get
@@ -185,7 +185,7 @@ public class OauthCall extends HttpServlet {
 	   						BufferedReader rd = new BufferedReader(
 	   								new InputStreamReader(response1.getEntity().getContent()));
 	   						while ((line = rd.readLine()) != null) {
-	   							str=line;		     			
+	   							str+=line;		     			
    							}
 	   					}
 	   					else if("QueryString".equals(treplace)){
@@ -195,7 +195,7 @@ public class OauthCall extends HttpServlet {
 	   						HttpResponse response1 = client.execute(post);
 	   						BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 	   						while ((line = rd.readLine()) != null) {
-	   							str=line;	        
+	   							str+=line;	        
    							}
 	   					}	
 	   				}
