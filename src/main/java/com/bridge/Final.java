@@ -448,7 +448,7 @@ public class Final extends HttpServlet {
 //				   				cng=cng.replaceAll(" ", "_");
 //				   				str=cng;
 				   			}
-				   			else if(rmethod.equals("GET")){ 
+				   			else if(rmethod.equals("Get")){ 
 				   				if("Authorization:Bearer".equals(treplace)){
 				   					HttpGet get=new HttpGet(endurl1);
 				   					get.addHeader("Authorization", "Bearer "+access_token);
@@ -493,7 +493,7 @@ public class Final extends HttpServlet {
 						    		}    			
 				   				} // query string
 				   			}//get
-					    	else if(rmethod.equals("POST")){
+					    	else if(rmethod.equals("Post")){
 					     		HttpPost post=new HttpPost(endurl1);
 					     		if("Authorization:Bearer".equals(treplace)){
 					     			post.addHeader("Authorization", "Bearer "+access_token);
@@ -975,7 +975,7 @@ public class Final extends HttpServlet {
 					   				// 	Sending the new row for insertion into worksheet.
 					   				row = service.insert(listFeedUrl, row);
 					   			}else
-					   				if(rmethod.equals("GET")){ 
+					   				if(rmethod.equals("Get")){ 
 					   					if("Authorization:Bearer".equals(treplace)){
 					   						HttpGet get=new HttpGet(endurl1);
 					   						get.addHeader("Authorization", "Bearer "+access_token);

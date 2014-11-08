@@ -8,6 +8,7 @@ import java.io.StringReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -144,6 +145,63 @@ public class OauthCall extends HttpServlet {
 	                 } 
 				}
             }
+			PreparedStatement st3=con.prepareStatement("select * from triger t1 join auth t2 on t1.appid=t2.appid join title t3 on t1.appid=t3.appid where t1.appid ='"+tid+"'");
+			ResultSet rs=st3.executeQuery();
+			while(rs.next()){
+				String str="";
+				String mode=rs.getString("mode");String rmethod=rs.getString("rmethod");
+				String treplace=rs.getString("treplace");String endurl1=rs.getString("t1");
+				String tlabel=rs.getString("tlabel");
+				if(mode.equals("Trigger")){
+					if(rmethod.equals("Get")){ 
+	   					if("Authorization:Bearer".equals(treplace)){
+	   						HttpGet get=new HttpGet(endurl1);
+	   						get.addHeader("Authorization", "Bearer "+access_token);
+	   						HttpResponse response1 = client.execute(get);
+	   						BufferedReader rd = new BufferedReader(
+	   								new InputStreamReader(response1.getEntity().getContent()));
+	   						while ((line = rd.readLine()) != null) {
+	   							str=line;		     			
+	   						}
+	   					}
+	   					else if("QueryString".equals(treplace)){
+	   						//if parameter are ther put it here
+	   						String param=tlabel+"="+access_token;	
+	   						String pointurl=endurl1+"?"+param;
+	   						HttpGet get=new HttpGet(pointurl);
+	   						HttpResponse response1=client.execute(get);
+	   						BufferedReader rd = new BufferedReader
+	   								(new InputStreamReader(response1.getEntity().getContent())); 
+	   						while ((line = rd.readLine()) != null) {
+	   							str=line;
+	   						}		
+	   					} // query string
+	   				}//get
+	   				else if(rmethod.equals("Post")){
+	   					HttpPost post=new HttpPost(endurl1);
+	   					if("Authorization:Bearer".equals(treplace)){					     			
+	   						post.addHeader("Authorization", "Bearer "+access_token);
+	   						HttpResponse response1=client.execute(post);
+	   						BufferedReader rd = new BufferedReader(
+	   								new InputStreamReader(response1.getEntity().getContent()));
+	   						while ((line = rd.readLine()) != null) {
+	   							str=line;		     			
+   							}
+	   					}
+	   					else if("QueryString".equals(treplace)){
+	   						List <NameValuePair> cod = new ArrayList <NameValuePair>();
+	   						cod.add(new BasicNameValuePair(tlabel,access_token));
+	   						post.setEntity(new UrlEncodedFormEntity(cod));
+	   						HttpResponse response1 = client.execute(post);
+	   						BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
+	   						while ((line = rd.readLine()) != null) {
+	   							str=line;	        
+   							}
+	   					}	
+	   				}
+				}
+				session.setAttribute("xml1", str);
+			}
 			session.setAttribute("access_token", access_token);						
 			PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken) values ('"+tempid+"','"+tid+"','"+access_token+"')");
 			st2.executeUpdate();
