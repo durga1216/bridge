@@ -69,7 +69,7 @@ public class MethodStorage extends HttpServlet {
 	           }
 	           st3.close();
 	           
-	           PreparedStatement st=con.prepareStatement("insert into home(userid,tid,aid,tgtit,actit,tgmeth,actmeth,state) values ('"+id+"','"+tid+"','"+aid+"','"+tgtit+"','"+actit+"','"+tgmeth+"','"+actmeth+"','Inactive')");
+	           PreparedStatement st=con.prepareStatement("insert into home(userid,tid,aid,tgtit,actit,tgmeth,actmeth,state) values ('"+id+"','"+tid+"','"+aid+"','"+tgtit+"','"+actit+"','"+tgmeth+"','"+actmeth+"','Active')");
 	           st.executeUpdate();
 	           st.close();
 	           request.setAttribute("code1", code1);

@@ -163,6 +163,7 @@ public class OauthCall extends HttpServlet {
 	   						while ((line = rd.readLine()) != null) {
 	   							str+=line;		     			
 	   						}
+	   						session.setAttribute("xml1", str);
 	   					}
 	   					else if("QueryString".equals(treplace)){
 	   						//if parameter are ther put it here
@@ -175,6 +176,7 @@ public class OauthCall extends HttpServlet {
 	   						while ((line = rd.readLine()) != null) {
 	   							str+=line;
 	   						}		
+	   						session.setAttribute("xml1", str);
 	   					} // query string
 	   				}//get
 	   				else if(rmethod.equals("Post")){
@@ -187,6 +189,7 @@ public class OauthCall extends HttpServlet {
 	   						while ((line = rd.readLine()) != null) {
 	   							str+=line;		     			
    							}
+	   						session.setAttribute("xml1", str);
 	   					}
 	   					else if("QueryString".equals(treplace)){
 	   						List <NameValuePair> cod = new ArrayList <NameValuePair>();
@@ -197,10 +200,10 @@ public class OauthCall extends HttpServlet {
 	   						while ((line = rd.readLine()) != null) {
 	   							str+=line;	        
    							}
+	   						session.setAttribute("xml1", str);
 	   					}	
 	   				}
 				}
-				session.setAttribute("xml1", str);
 			}
 			session.setAttribute("access_token", access_token);						
 			PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken) values ('"+tempid+"','"+tid+"','"+access_token+"')");
