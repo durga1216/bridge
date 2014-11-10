@@ -121,8 +121,8 @@ public class OauthCall extends HttpServlet {
 				if(line.startsWith("{") || line.startsWith("[{")){
 					JSONObject json = null;
 					//PrintWriter out=response.getWriter();
-					pw.println(responseBody);
-					json = new JSONObject(responseBody);
+					pw.println(res);
+					json = new JSONObject(res);
 					access_token = json.getString("access_token"); 
 				}
 				else if(line.startsWith("<?") || line.endsWith("?>")){

@@ -15,8 +15,8 @@ public class Hget {
 		try{
 			HttpClient client=new DefaultHttpClient();
 			String str=" ";String line="";
-			HttpGet get=new HttpGet("https://api.linkedin.com/v1/people/~");
-			get.addHeader("Authorization", "Bearer "+"ya29.ugCYLoqEnOpEPfSj98ETsxvRjwVos12bU9PK0zGJxfagDX7Do2WIx4Yc");
+			HttpGet get=new HttpGet("https://mail.google.com/mail/feed/atom");
+			get.addHeader("Authorization", "Bearer "+"ya29.ugBuJPDD-_FiYVns-Cjwer9X0LyF9k9Ovb6aFWpJnC0NPAfv-Av9JoMNcXDglHsEH3j8hezJQ_nMmg");
 			HttpResponse response1 = client.execute(get);
 			BufferedReader rd = new BufferedReader(
 					new InputStreamReader(response1.getEntity().getContent()));
