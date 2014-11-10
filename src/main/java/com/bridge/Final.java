@@ -644,6 +644,7 @@ public class Final extends HttpServlet {
 					      	       	Element line4 = (Element) name4.item(0);
 					      	       	xx5=getCharacterDataFromElement(line4);
 								}
+								break;
 							}
 						}
 						xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
