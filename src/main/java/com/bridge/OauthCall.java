@@ -87,7 +87,7 @@ public class OauthCall extends HttpServlet {
 					HttpResponse response1 = client.execute(post);
 					BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 					while ((responseMsg = rd.readLine()) != null) {
-						responseBody=responseMsg;		        
+						responseBody+=responseMsg;		        
 					}
 					//session.setAttribute("xml1", responseBody);
 				}
@@ -107,7 +107,7 @@ public class OauthCall extends HttpServlet {
 				HttpResponse response1 = client.execute(get);
 				BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));   		    
 				while ((responseMsg = rd.readLine()) != null) {
-					responseBody=responseMsg;				    		
+					responseBody+=responseMsg;				    		
 				} 
 				pw.println(responseBody);
 				//session.setAttribute("xml1", responseBody);   
