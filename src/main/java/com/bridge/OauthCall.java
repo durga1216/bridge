@@ -68,9 +68,10 @@ public class OauthCall extends HttpServlet {
 			String tid=(String) session.getAttribute("tid");
 			String but=(String) session.getAttribute("but");
 			String code = request.getParameter(OAuthConstants.CODE);
-			String responseBody=null;
+			String res=null;
 			String responseMsg=null;
 			String access_token=null;
+			StringBuilder responseBody=new StringBuilder();
 	        String line = "";
 			HttpClient client=new DefaultHttpClient();
 	        pw.println("<body style='background-color:#ff9900;'>");
@@ -87,8 +88,9 @@ public class OauthCall extends HttpServlet {
 					HttpResponse response1 = client.execute(post);
 					BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 					while ((responseMsg = rd.readLine()) != null) {
-						responseBody+=responseMsg;		        
+						responseBody.append(responseMsg);	        
 					}
+						res=responseBody.toString();
 					//session.setAttribute("xml1", responseBody);
 				}
 				catch(Exception e){
@@ -107,13 +109,14 @@ public class OauthCall extends HttpServlet {
 				HttpResponse response1 = client.execute(get);
 				BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));   		    
 				while ((responseMsg = rd.readLine()) != null) {
-					responseBody+=responseMsg;				    		
-				} 
-				pw.println(responseBody);
+					responseBody.append(responseMsg);	        
+				}
+					res=responseBody.toString();
 				//session.setAttribute("xml1", responseBody);   
 		 	}
 			pw.println("zcvdsfgsergsedt");
-			BufferedReader br=new BufferedReader(new StringReader(responseBody));
+			pw.println(res);
+			BufferedReader br=new BufferedReader(new StringReader(res));
 			while ((line = br.readLine()) != null) {
 				if(line.startsWith("{") || line.startsWith("[{")){
 					JSONObject json = null;
@@ -125,7 +128,7 @@ public class OauthCall extends HttpServlet {
 				else if(line.startsWith("<?") || line.endsWith("?>")){
 					DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 					DocumentBuilder builder = factory.newDocumentBuilder();
-					org.w3c.dom.Document document = builder.parse(new InputSource(new StringReader(responseBody)));  
+					org.w3c.dom.Document document = builder.parse(new InputSource(new StringReader(res)));  
 					NodeList nl = document.getElementsByTagName("access_token"); 
 					Node n = nl.item(0);
 					access_token = n.getFirstChild().getNodeValue();
