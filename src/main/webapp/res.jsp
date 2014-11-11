@@ -41,7 +41,7 @@ border-radius:5px;
 #para{
 float:left;
 height:100%;
-margin-left:200px;
+margin-left:150px;
 }
 #txt1{
 font-family:verdana;
@@ -62,7 +62,7 @@ color:#ff9900;
 font-weight:bold;
 }
 #res{
-margin-left:60px;
+margin-left:30px;
 float:left;
 height:100%;
 }
@@ -70,6 +70,21 @@ hr{
 color:#fff;
 background-color:#fff;
 height:1px;
+}
+#txt2{
+font-family:verdana;
+font-size:15px;
+margin-left:150px;
+color:#FF9900;
+font-weight:bold;
+width:600px;
+height:120px;
+}
+#name{
+font-family:verdana;
+font-size:18px;
+margin-left:150px;
+color:#FFFFFF;
 }
 #pa{
   font-family:verdana;
@@ -81,18 +96,18 @@ height:1px;
 var intTextBox=0;
 function addParam(){
 	intTextBox = intTextBox + 1;
-	  var contentID = document.getElementById('content');
-	  var newTBDiv = document.createElement('div');
-	      newTBDiv.setAttribute('id','strText'+intTextBox);
-	  newTBDiv.innerHTML = "<br><input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='  xmltag (x"+intTextBox+")'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder=' If Other'/>";
-	  contentID.appendChild(newTBDiv);
+	var contentID = document.getElementById('content');
+	var newTBDiv = document.createElement('div');
+	newTBDiv.setAttribute('id','strText'+intTextBox);
+	newTBDiv.innerHTML = "<br><input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='  xmltag (x"+intTextBox+")'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder=' If Other'/>";
+	contentID.appendChild(newTBDiv);
 }
 function removeParam()
 {
 	var contentID = document.getElementById('content');
-    contentID.removeChild(document.getElementById('strText'+intTextBox));
-    intTextBox = intTextBox-1;
-	}
+	contentID.removeChild(document.getElementById('strText'+intTextBox));
+	intTextBox = intTextBox-1;
+}
 function load(){
 	window.open("<%=request.getContextPath()%>/Loadres", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
 }
@@ -102,7 +117,7 @@ function load(){
 	String u = (String) request.getSession().getAttribute("id");
     if (u != null ) {
     }else{
-    	response.sendRedirect("logout.jsp");
+    	//response.sendRedirect("logout.jsp");
     }
 %>
 <%@ page import="java.sql.*" %>
@@ -111,6 +126,7 @@ function load(){
 		ResultSet r=null;ResultSet rs =null; 
 		String actit="";String tgtit="";String tid="";String aid="";String tempid="";
 		String rformat="";String[] tp=new String[5]; 
+		String note="Guide";
 %>
 <%
 	try{
@@ -129,6 +145,7 @@ function load(){
 	      while(rs.next()){
 	    			rformat=rs.getString("rformat");
 	    			tp[1]=rs.getString("p1");tp[2]=rs.getString("p2");tp[3]=rs.getString("p3");tp[4]=rs.getString("p4");
+	    			//note=rs.getString("note");
 	      }
 %>
 <body>
@@ -165,6 +182,9 @@ Xml Example:
 	<div id="content"></div>
 </div>
 </div>
+<div id="name">User Guide:</div><br>
+<textarea name="note" id="txt2" value="<%=note%>" readonly></textarea>
+<br><br><br>
 <%		}
 		catch(Exception e){
 			out.println(e);

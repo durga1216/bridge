@@ -391,12 +391,13 @@ public class Final extends HttpServlet {
 				   			
 				   			else if("null".equals(p1))
 				   				eurl=endurl1;      
-				   			
+				   			String refresh=null;
 				   			PreparedStatement st=con.prepareStatement("select * from token where tempid=? && tid=?");
 				   			st.setString(1, da);
 				   			st.setString(2, tid);
 				   			ResultSet rs1=st.executeQuery();String access_token="";
 				   			while(rs1.next()){
+				   				refresh=rs1.getString("secret");
 				   				access_token=rs1.getString("oauthtoken");
 				   			}
 				   			HttpClient client = new DefaultHttpClient();
@@ -420,7 +421,7 @@ public class Final extends HttpServlet {
 //				   			    JacksonFactory jsonFactory = new JacksonFactory();
 //				   				Credential credencial = new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
 //				   						.setJsonFactory(jsonFactory).setTransport(transport).build()
-//				   						.setAccessToken(access_token).setRefreshToken(null);
+//				   						.setAccessToken(access_token).setRefreshToken(refresh);
 //				   				SpreadsheetService service =new SpreadsheetService("Aplication-name");
 //				   				service.setOAuth2Credentials(credencial);
 //				   				URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
@@ -924,12 +925,14 @@ public class Final extends HttpServlet {
 					   			} 
 					   		}
 					   		else if(authen.equals("Oauth2")){
+					   			String refresh=null;
 					   			PreparedStatement st4=con.prepareStatement("select * from token where tempid=? && tid=?");
 					   			st4.setString(1, da);
 					   			st4.setString(2, aid);
 					   			ResultSet rs4=st4.executeQuery();String access_token="";
 					   			while(rs4.next()){
 					   				access_token=rs4.getString("oauthtoken");
+					   				refresh=rs4.getString("secret");
 					   			}
 					   			HttpClient client = new DefaultHttpClient();
 					   			String line="";
@@ -940,7 +943,7 @@ public class Final extends HttpServlet {
 					   				JacksonFactory jsonFactory = new JacksonFactory();
 					   				Credential credencial = new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
 	   												.setJsonFactory(jsonFactory).setTransport(transport).build()
-			   										.setAccessToken(access_token).setRefreshToken(null);
+			   										.setAccessToken(access_token).setRefreshToken(refresh);
 					   				SpreadsheetService service = new SpreadsheetService("Aplication-name");
 					   				service.setOAuth2Credentials(credencial);
 					   				URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");

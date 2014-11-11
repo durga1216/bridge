@@ -22,53 +22,47 @@ function removeParent()
 	var contentID = document.getElementById('content');
     contentID.removeChild(document.getElementById('strText'+intTextBox));
     intTextBox = intTextBox-1;
-	}
-	
+}	
 $(document).ready(function(){
-	 $('input[name=authen]').click(function(){
-		    if($('input:radio[name=authen]:checked').val() == "No Auth"){
-				$('#req').show();
-				  $('#divid').hide();
-				  $('#apiid').hide();			
-				  $('#oauth2').hide();
-				  $('#oauth1').hide();
-
-			    }
-		    else if($('input:radio[name=authen]:checked').val() == "Basic Auth"){
-		 $('#divid').show();
-		  $('#apiid').hide();
-		  $('#oauth2').hide();
+	$('input[name=authen]').click(function(){
+	   	if($('input:radio[name=authen]:checked').val() == "No Auth"){
+			$('#req').show();
+		  	$('#divid').hide();
+		  	$('#apiid').hide();			
+		  	$('#oauth2').hide();
+	  		$('#oauth1').hide();
+		}
+	    else if($('input:radio[name=authen]:checked').val() == "Basic Auth"){
+	 		$('#divid').show();
+		  	$('#apiid').hide();
+		  	$('#oauth2').hide();
 			$('#req').hide();
 			$('#oauth1').hide();
-			
-
-		    }
-	    else if($('input:radio[name=authen]:checked').val() == "API keys"){
-	    	$('#apiid').show();
+	   	}
+		else if($('input:radio[name=authen]:checked').val() == "API keys"){
+			$('#apiid').show();
 			$('#divid').hide();
 			$('#req').hide();
 			$('#oauth2').hide();
 			$('#oauth1').hide();
-		    }
-
-else if($('input:radio[name=authen]:checked').val() == "Oauth1"){
-	 $('#apiid').hide();
-		$('#divid').hide();
-		$('#req').hide();			
-		$('#oauth2').hide();
-		$('#oauth1').show();
-	}
-
-else if($('input:radio[name=authen]:checked').val() == "Oauth2"){
-	 $('#apiid').hide();
-		$('#divid').hide();
-		$('#req').hide();
-		$('#oauth1').hide();
-		$('#oauth2').show();
-		$('.rmethod').show();
-		$('#select2').show();	}
-
-		});
+		}
+		else if($('input:radio[name=authen]:checked').val() == "Oauth1"){
+			$('#apiid').hide();
+			$('#divid').hide();
+			$('#req').hide();			
+			$('#oauth2').hide();
+			$('#oauth1').show();
+		}
+		else if($('input:radio[name=authen]:checked').val() == "Oauth2"){
+		 	$('#apiid').hide();
+			$('#divid').hide();
+			$('#req').hide();
+			$('#oauth1').hide();
+			$('#oauth2').show();
+			$('.rmethod').show();
+			$('#select2').show();	
+		}
+	});
 });
 
 </script>

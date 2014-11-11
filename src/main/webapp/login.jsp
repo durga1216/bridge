@@ -69,7 +69,20 @@ font-weight:bold;
 font-size:25px;
 color:#FFFFFF;
 }
+#lnk{
+font-family:verdana;
+font-size:18px;
+color:#FFFFFF;
+}
 </style>
+<script type="text/javascript">
+function load1(){
+	window.open("https://mindapp-pulpy.rhcloud.com/index.jsp", '_blank');
+}
+function load2(){
+	window.open("https://mindapp-pulpy.rhcloud.com/fgtpass.jsp", '_blank');
+}
+</script>
 </head>
 <body><br>
 <div id="head"><a href="http://minddotss.com"><img style="margin-left:100px;box-shadow:0px 0px 0px 0px;width:150px;height:70px;" alt="MindDots" src="images/log.png"></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mind-Pulpy Cloud Connectors</div><br><hr>
@@ -80,7 +93,8 @@ color:#FFFFFF;
 <div class="result">${alert}</div><br>
 <input type="text" placeholder="UserName" name="user"><br><br>
 <input type="password" placeholder="Password" name="pass"><br><br>
-<input type=submit value="login">
+<input type=submit value="login"><br><br>
+<a id=lnk href="javascript:load1()">Mindpulpy Signup</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id=lnk href="javascript:load2()">Forgot Password?</a>
 </center>
 </form>
 </body>

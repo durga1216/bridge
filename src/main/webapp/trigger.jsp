@@ -10,43 +10,38 @@
 <script type="text/javascript">
 var TextBox=0;
 var intTextBox=0;
-
 function addTrigger(){
-
 	TextBox = TextBox + 1;
-	  if(TextBox==1){
-	  var contentID = document.getElementById('content1');
-	  var newTBDiv = document.createElement('div');
-	  newTBDiv.setAttribute('id','strText'+TextBox);
-	  newTBDiv.innerHTML = "<br><br><input type='text' style='width:400px;margin-left:350px;' id='t" + TextBox + "'    name='t" + TextBox + "' placeholder='Enter the Trigger Method Url here'/>&nbsp;<a id='pa' href='javascript:addParent();'>Add Parameter</a><a id='pa' href='javascript:removeParent();'>Remove Parameter</a><br><br><br><div id='cont"+TextBox+"'></div><br>";
-	  contentID.appendChild(newTBDiv);
-	  }
-	  else
-		  {
-		  alert("Configure Trigger Method One by One");
-		  }
+  	if(TextBox==1){
+  		var contentID = document.getElementById('content1');
+  		var newTBDiv = document.createElement('div');
+  		newTBDiv.setAttribute('id','strText'+TextBox);
+  		newTBDiv.innerHTML = "<br><br><input type='text' style='width:400px;margin-left:350px;' id='t" + TextBox + "'    name='t" + TextBox + "' placeholder='Enter the Trigger Method Url here'/>&nbsp;<a id='pa' href='javascript:addParent();'>Add Parameter</a><a id='pa' href='javascript:removeParent();'>Remove Parameter</a><br><br><br><div id='cont"+TextBox+"'></div><br>";
+  		contentID.appendChild(newTBDiv);
+  	}
+  	else{
+  		alert("Configure Trigger Method One by One");
+  	}
 }
-
 function removeTrigger(){
 	var contentID = document.getElementById('content1');
     contentID.removeChild(document.getElementById('strText'+intTextBox));
     TextBox = TextBox-1;
-	
 }
 function addParent(){
-	  intTextBox = intTextBox + 1;
-	  var contentID = document.getElementById("cont"+TextBox);
-	  var newTBDiv = document.createElement('div');
-	  newTBDiv.setAttribute('id','strText'+intTextBox);
-      newTBDiv.innerHTML = "<input type='text' id='p" + intTextBox + "'    name='p" + intTextBox + "' placeholder='Param_Label'/>" + "<input type='text' id='pv"+ intTextBox + " ' name='pv"+intTextBox +"' placeholder='Param_Value'/><br>";
-	  contentID.appendChild(newTBDiv);
+	intTextBox = intTextBox + 1;
+	var contentID = document.getElementById("cont"+TextBox);
+	var newTBDiv = document.createElement('div');
+	newTBDiv.setAttribute('id','strText'+intTextBox);
+   	newTBDiv.innerHTML = "<input type='text' id='p" + intTextBox + "'    name='p" + intTextBox + "' placeholder='Param_Label'/>" + "<input type='text' id='pv"+ intTextBox + " ' name='pv"+intTextBox +"' placeholder='Param_Value'/><br>";
+	contentID.appendChild(newTBDiv);
 }
 function removeParent()
 {
 	var contentID = document.getElementById('cont'+TextBox);
     contentID.removeChild(document.getElementById('strText'+intTextBox));
     intTextBox = intTextBox-1;
-	}
+}
 </script>
 <style>
 body{
@@ -119,6 +114,15 @@ font-size: 16px;
 color:#FFFFFF;
 margin-left:30px;
 }
+#txt1{
+font-family:verdana;
+font-size:15px;
+margin-left:200px;
+color:#FF9900;
+font-weight:bold;
+width:600px;
+height:120px;
+}
 #pa{
   font-family:verdana;
   font-size:15px;
@@ -168,10 +172,12 @@ font-family:verdana;
 <option value="rest">REST</option>
 <option value="xml">XML</option>
 <option value="json">JSON</option>
-</select><br><br><br>
+</select><br><br>
+<div id="name">Notes:</div><br>
+<textarea name="note" id="txt1"  placeholder="Add notes for guide the users" required></textarea>
+<br><br><br>
 <input type="submit" name="new" value="Add New">
 <input type="submit" name="finish" value="Finish">
-
 </form>
 </body>
 </html>

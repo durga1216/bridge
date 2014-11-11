@@ -76,7 +76,7 @@ public class GauthCall extends HttpServlet {
 			//TODO Store the access_token in database
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
-			PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken) values ('"+tempid+"','"+tid+"','"+response1.getAccessToken()+"')");
+			PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken,secret) values ('"+tempid+"','"+tid+"','"+response1.getAccessToken()+"','"+response1.getRefreshToken()+"')");
 		   	st2.executeUpdate();
 		   	st2.close();
 		   	if(type.equals("trigger")){
