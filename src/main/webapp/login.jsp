@@ -91,8 +91,8 @@ function load2(){
 <form action="Login" method="post">
 <center>
 <div class="result">${alert}</div><br>
-<input type="text" placeholder="UserName" name="user"><br><br>
-<input type="password" placeholder="Password" name="pass"><br><br>
+<input type="text" placeholder="UserName" name="user" required><br><br>
+<input type="password" placeholder="Password" name="pass" required><br><br>
 <input type=submit value="login"><br><br>
 <a id=lnk href="javascript:load1()">Mindpulpy Signup</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id=lnk href="javascript:load2()">Forgot Password?</a>
 </center>

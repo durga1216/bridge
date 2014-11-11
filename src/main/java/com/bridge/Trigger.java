@@ -55,11 +55,12 @@ public class Trigger extends HttpServlet {
     String p20=request.getParameter("p20");String pv20=request.getParameter("pv20");
     String rmethod=request.getParameter("rmethod");String rformat=request.getParameter("rformat");
     String resformat=request.getParameter("resformat");
+    String note=request.getParameter("note");
 
     try{
       	 Class.forName("com.mysql.jdbc.Driver").newInstance();
       	 con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
-         PreparedStatement st=con.prepareStatement("insert into triger(appid,name,t1,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,p11,pv11,p12,pv12,p13,pv13,p14,pv14,p15,pv15,p16,pv16,p17,pv17,p18,pv18,p19,pv19,p20,pv20,rmethod,rformat,resformat) values ('"+appid+"','"+name+"','"+t1+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+p11+"','"+pv11+"','"+p12+"','"+pv12+"','"+p13+"','"+pv13+"','"+p14+"','"+pv14+"','"+p15+"','"+pv15+"','"+p16+"','"+pv16+"','"+p17+"','"+pv17+"','"+p18+"','"+pv18+"','"+p19+"','"+pv19+"','"+p20+"','"+pv20+"','"+rmethod+"','"+rformat+"','"+resformat+"')");				 
+         PreparedStatement st=con.prepareStatement("insert into triger(appid,name,t1,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,p11,pv11,p12,pv12,p13,pv13,p14,pv14,p15,pv15,p16,pv16,p17,pv17,p18,pv18,p19,pv19,p20,pv20,rmethod,rformat,resformat,note) values ('"+appid+"','"+name+"','"+t1+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+p11+"','"+pv11+"','"+p12+"','"+pv12+"','"+p13+"','"+pv13+"','"+p14+"','"+pv14+"','"+p15+"','"+pv15+"','"+p16+"','"+pv16+"','"+p17+"','"+pv17+"','"+p18+"','"+pv18+"','"+p19+"','"+pv19+"','"+p20+"','"+pv20+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+note+"')");				 
          st.executeUpdate();
       	 st.close();
       	 out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"

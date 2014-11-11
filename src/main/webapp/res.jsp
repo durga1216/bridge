@@ -117,7 +117,7 @@ function load(){
 	String u = (String) request.getSession().getAttribute("id");
     if (u != null ) {
     }else{
-    	//response.sendRedirect("logout.jsp");
+    	response.sendRedirect("logout.jsp");
     }
 %>
 <%@ page import="java.sql.*" %>
