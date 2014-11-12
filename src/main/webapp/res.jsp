@@ -38,6 +38,14 @@ font-size:19px;
 color:#FF9900;
 border-radius:5px;
 }
+select{
+width:200px;
+height:25px;
+font-family:verdana; 
+font-size:19px;
+color:#FF9900;
+border-radius:5px;
+}
 #para{
 float:left;
 height:100%;
@@ -92,15 +100,18 @@ color:#FFFFFF;
   color:#FFFFFF;  
   }
 </style>
+<%
+String respo= (String) request.getSession().getAttribute("xml1");
+%>
 <script type="text/javascript">
 var num=0;
 function addParam(){
 	num=num+1;
-	String response= (String) request.getSession().getAttribute("xml1");
+	var respo1=<%=respo%>;
     var combo = $("<select></select>").attr("id","x"+num).attr("name", "x"+num);
 	var inp=$("<input type=text name=xv"+num+"><br><br>");
-	console.log(response);
-	var xml=JSON.parse(response);
+	console.log(respo1);
+	var xml=JSON.parse(respo1);
 	for(var key in xml){
 		var s= document.getElementById('nod');
 		s.options[s.options.length]= new Option(""+key+"",""+key+"");
@@ -170,7 +181,7 @@ function load(){
 	      while(rs.next()){
 	    			rformat=rs.getString("rformat");
 	    			tp[1]=rs.getString("p1");tp[2]=rs.getString("p2");tp[3]=rs.getString("p3");tp[4]=rs.getString("p4");
-	    			//note=rs.getString("note");
+	    			note=rs.getString("note");
 	      }
 %>
 <body>
