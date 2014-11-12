@@ -103,46 +103,47 @@ color:#FFFFFF;
 </style>
 <%
 String respo= (String) request.getSession().getAttribute("xml1");
+//String respo="{\"name\":\"name\",\"age\":\"name\"}";
 %>
 <script type="text/javascript">
 var num=0;
 function addParam(){
-	num=num+1;
-	
-    var combo = $("<select></select> ").attr("id","x"+num).attr("name", "x"+num);
-	var inp=$("<input type=text placeholder=other id=xv"+num+" name=xv"+num+"><br><br>");
+	num = num + 1;
+	var contentID = document.getElementById('content');
+	var newTBDiv = document.createElement('div');
+	newTBDiv.setAttribute('id','strText'+num);
+	var hm="";
+    hm +="<select name=x"+num+" id=x"+num+">";
 	var respo1=<%=respo%>;
 	console.log(respo1);
 	var xml=respo1;
 	for(var key in xml){
 		var key1=JSON.stringify(xml[""+key+""]);
 		if(key1.charAt(0)=='"'){
-			combo.append("<option value="+key+">" + key + "</option>");
+			hm +="<option value="+key+">" + key + "</option>";
 		}else if(key1.charAt(0)=='{'){
-			$('#nod1').show();
 			var xml1=JSON.parse(key1);
 			for(var key2 in xml1){
-				combo.append("<option value="+key2+">" + key + "--"+key2+"</option>");
+				hm +="<option value="+key2+">" + key + "--"+key2+"</option>";
 			}
 		}else if(key1.charAt(0)=='['){
-			$('#nod1').show();
 			var xml2=JSON.parse(key1);
 			var xml1=xml2[0];
 			for(var aky in xml1){
-				combo.append("<option value="+aky+">" + key + "--"+aky+"</option>");
+				hm +="<option value="+aky+">" + key + "--"+aky+"</option>";
 			}
 		}else{
-			combo.append("<option value="+key+">" + key + "</option>");			
+			hm +="<option value="+key+">" + key + "</option>";			
 		}
 	}
-	$("#content").append(combo);
-	$("#content").append(inp);
+	hm +="</select>&nbsp;&nbsp;&nbsp;<input type=text placeholder=other id=xv"+num+" name=xv"+num+"><br><br>";
+	newTBDiv.innerHTML = hm;
+	contentID.appendChild(newTBDiv);
 }
 function removeParam()
 {
 	var contentID = document.getElementById('content');
-	contentID.removeChild(document.getElementById('x'+num));
-	contentID.removeChild(document.getElementById('xv'+num));
+	contentID.removeChild(document.getElementById('strText'+num));
 	num=num-1;
 }
 function load(){
