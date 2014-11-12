@@ -93,14 +93,39 @@ color:#FFFFFF;
   }
 </style>
 <script type="text/javascript">
-var intTextBox=0;
+var num=0;
 function addParam(){
-	intTextBox = intTextBox + 1;
-	var contentID = document.getElementById('content');
-	var newTBDiv = document.createElement('div');
-	newTBDiv.setAttribute('id','strText'+intTextBox);
-	newTBDiv.innerHTML = "<br><input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='  xmltag (x"+intTextBox+")'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder=' If Other'/>";
-	contentID.appendChild(newTBDiv);
+	num=num+1;
+	String response= (String) request.getSession().getAttribute("xml1");
+    var combo = $("<select></select>").attr("id","x"+num).attr("name", "x"+num);
+	var inp=$("<input type=text name=xv"+num+"><br><br>");
+	console.log(response);
+	var xml=JSON.parse(response);
+	for(var key in xml){
+		var s= document.getElementById('nod');
+		s.options[s.options.length]= new Option(""+key+"",""+key+"");
+		var key1=JSON.stringify(xml[""+key+""]);
+		if(key1.charAt(0)=='"'){
+			combo.append("<option value="+key+">" + key + "</option>");
+		}else if(key1.charAt(0)=='{'){
+			$('#nod1').show();
+			var xml1=JSON.parse(key1);
+			for(var key2 in xml1){
+				combo.append("<option value="+key2+">" + key + "--"+key2+"</option>");
+			}
+		}else if(key1.charAt(0)=='['){
+			$('#nod1').show();
+			var xml2=JSON.parse(key1);
+			var xml1=xml2[0];
+			for(var aky in xml1){
+				combo.append("<option value="+aky+">" + key + "--"+aky+"</option>");
+			}
+		}else{
+			combo.append("<option value="+key+">" + key + "</option>");			
+		}
+	}
+	$("#content").append(combo);
+	$("#content").append(inp);
 }
 function removeParam()
 {
