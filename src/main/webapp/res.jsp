@@ -40,7 +40,8 @@ border-radius:5px;
 }
 select{
 width:200px;
-height:25px;
+height:30px;
+background-color:#fff;
 font-family:verdana; 
 font-size:19px;
 color:#FF9900;
@@ -107,14 +108,13 @@ String respo= (String) request.getSession().getAttribute("xml1");
 var num=0;
 function addParam(){
 	num=num+1;
+	
+    var combo = $("<select></select> ").attr("id","x"+num).attr("name", "x"+num);
+	var inp=$("<input type=text placeholder=other id=xv"+num+" name=xv"+num+"><br><br>");
 	var respo1=<%=respo%>;
-    var combo = $("<select></select>").attr("id","x"+num).attr("name", "x"+num);
-	var inp=$("<input type=text name=xv"+num+"><br><br>");
 	console.log(respo1);
-	var xml=JSON.parse(respo1);
+	var xml=respo1;
 	for(var key in xml){
-		var s= document.getElementById('nod');
-		s.options[s.options.length]= new Option(""+key+"",""+key+"");
 		var key1=JSON.stringify(xml[""+key+""]);
 		if(key1.charAt(0)=='"'){
 			combo.append("<option value="+key+">" + key + "</option>");
@@ -141,8 +141,9 @@ function addParam(){
 function removeParam()
 {
 	var contentID = document.getElementById('content');
-	contentID.removeChild(document.getElementById('strText'+intTextBox));
-	intTextBox = intTextBox-1;
+	contentID.removeChild(document.getElementById('x'+num));
+	contentID.removeChild(document.getElementById('xv'+num));
+	num=num-1;
 }
 function load(){
 	window.open("<%=request.getContextPath()%>/Loadres", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
