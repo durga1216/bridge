@@ -104,6 +104,8 @@ color:#FFFFFF;
 <%
 String respo= (String) request.getSession().getAttribute("xml1");
 //String respo="{\"name\":\"name\",\"age\":\"name\"}";
+//String respo="<?xml version=\"1.0\" encoding=\"UTF-8\"?><search><total_items>115</total_items><page_size><page_count11>12</page_count11></page_size><page_count>12</page_count><page_number>1</page_number></search>";
+char chfirst=respo.charAt(0);
 %>
 <script type="text/javascript">
 var num=0;
@@ -112,32 +114,38 @@ function addParam(){
 	var contentID = document.getElementById('content');
 	var newTBDiv = document.createElement('div');
 	newTBDiv.setAttribute('id','strText'+num);
-	var hm="";
-    hm +="<select name=x"+num+" id=x"+num+">";
-	var respo1=<%=respo%>;
-	console.log(respo1);
-	var xml=respo1;
-	for(var key in xml){
-		var key1=JSON.stringify(xml[""+key+""]);
-		if(key1.charAt(0)=='"'){
-			hm +="<option value="+key+">" + key + "</option>";
-		}else if(key1.charAt(0)=='{'){
-			var xml1=JSON.parse(key1);
-			for(var key2 in xml1){
-				hm +="<option value="+key2+">" + key + "--"+key2+"</option>";
-			}
-		}else if(key1.charAt(0)=='['){
-			var xml2=JSON.parse(key1);
-			var xml1=xml2[0];
-			for(var aky in xml1){
-				hm +="<option value="+aky+">" + key + "--"+aky+"</option>";
-			}
-		}else{
-			hm +="<option value="+key+">" + key + "</option>";			
-		}
+	var hm="";var i;var z;
+	var respo2='<%=respo%>';
+	if('<%=chfirst%>'=='<'){
+		newTBDiv.innerHTML = "<br><input type='text' id='x" + num + "'    name='x" + num + "' placeholder='  xmltag (x"+num+")'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<input type='text' id='xv"+ num + " ' name='xv"+num+"' placeholder=' If Other'/>";
 	}
-	hm +="</select>&nbsp;&nbsp;&nbsp;<input type=text placeholder=other id=xv"+num+" name=xv"+num+"><br><br>";
-	newTBDiv.innerHTML = hm;
+	else{
+	    hm +="<select name=x"+num+" id=x"+num+">";
+		var respo1=JSON.parse(respo2);
+		console.log(respo1);
+		var xml=respo1;
+		for(var key in xml){
+			var key1=JSON.stringify(xml[""+key+""]);
+			if(key1.charAt(0)=='"'){
+				hm +="<option value="+key+">" + key + "</option>";
+			}else if(key1.charAt(0)=='{'){
+				var xml1=JSON.parse(key1);
+				for(var key2 in xml1){
+					hm +="<option value="+key2+">" + key + "--"+key2+"</option>";
+				}
+			}else if(key1.charAt(0)=='['){
+				var xml2=JSON.parse(key1);
+				var xml1=xml2[0];
+				for(var aky in xml1){
+					hm +="<option value="+aky+">" + key + "--"+aky+"</option>";
+				}
+			}else{
+				hm +="<option value="+key+">" + key + "</option>";			
+			}
+		}
+		hm +="</select>&nbsp;&nbsp;&nbsp;<input type=text placeholder=other id=xv"+num+" name=xv"+num+"><br><br>";
+		newTBDiv.innerHTML = hm;
+	}
 	contentID.appendChild(newTBDiv);
 }
 function removeParam()
@@ -148,6 +156,9 @@ function removeParam()
 }
 function load(){
 	window.open("<%=request.getContextPath()%>/Loadres", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+}
+function load1(){
+	window.open("<%=request.getContextPath()%>/Login", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
 }
 </script>
 </head>
@@ -189,7 +200,8 @@ function load(){
 <body>
 <form action="Parse" method="post">
 <br><br><center><div class="head">Mind-Pulpy Mapping</div></center><br>
-<hr><br><center><a id='pa' href="javascript:load()">View Sample Trigger response</a></center>
+<hr><br><center><a id='pa' href="javascript:load()">Sample Trigger response(For XML)</a>&nbsp;&nbsp;&nbsp;
+<a id='pa' href="javascript:load1()">Sample Trigger response(For JSON)</a></center>
 <div id=ful>
 <div id=para>
 		<br><br><h3>Action Parameter:</h3><br>
