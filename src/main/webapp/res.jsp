@@ -125,6 +125,8 @@ function addParam(){
 		hm +="<select name=x"+num+" id=x"+num+">";
 		hm +="<option value=dummy>Choose Xml Node</option>";
 		var xmlDoc = new window.DOMParser().parseFromString(respo2,"text/xml");
+		var exres=document.getElementById('txt1');
+		exres.value=xmlDoc.documentElement.nodeName;
 		var y=xmlDoc.documentElement.childNodes;
 		var i;var z;
 		for (i=0;i<y.length;i++){
