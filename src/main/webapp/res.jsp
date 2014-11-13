@@ -132,7 +132,7 @@ function addParam(){
 						hm +="<option value="+nm1+">" + nm1 + "</option>";
 					}
 					else{
-						hm +="<option value="+y[i].nodeName+"--"+nm2+">"+y[i].nodeName+"--"+nm2+"</option>";
+						hm +="<option value="+y[i].nodeName+"//"+nm2+">"+y[i].nodeName+"//"+nm2+"</option>";
 					}
 				}
 			}
@@ -144,11 +144,14 @@ function addParam(){
 					{
 						var nm1=y[i].nodeName;
 						var nm2=y[i].childNodes[z].nodeName;
-						if(nm2=='#text'){ 
+						if(nn==1){ 
 							hm +="<option value="+nm1+">" + nm1 + "</option>";
 						}
 						else{
-							hm +="<option value="+y[i].nodeName+"--"+nm2+">"+y[i].nodeName+"--"+nm2+"</option>";
+							if(nm2=='#text'){ 
+							}else{
+								hm +="<option value="+y[i].nodeName+"//"+nm2+">"+y[i].nodeName+"//"+nm2+"</option>";
+							}
 						}
 					}
 				}
@@ -170,13 +173,13 @@ function addParam(){
 			}else if(key1.charAt(0)=='{'){
 				var xml1=JSON.parse(key1);
 				for(var key2 in xml1){
-					hm +="<option value="+key2+">" + key + "--"+key2+"</option>";
+					hm +="<option value=" + key + "//"+key2+">" + key + "//"+key2+"</option>";
 				}
 			}else if(key1.charAt(0)=='['){
 				var xml2=JSON.parse(key1);
 				var xml1=xml2[0];
 				for(var aky in xml1){
-					hm +="<option value="+aky+">" + key + "--"+aky+"</option>";
+					hm +="<option value=" + key + "//"+aky+">" + key + "//"+aky+"</option>";
 				}
 			}else{
 				hm +="<option value="+key+">" + key + "</option>";			
@@ -211,30 +214,30 @@ function load1(){
 <%@ page import="java.sql.*" %>
 <%@include file="conn.jsp" %>
 <%
-	ResultSet r=null;ResultSet rs =null; 
-	String actit="";String tgtit="";String tid="";String aid="";String tempid="";
-	String rformat="";String[] tp=new String[5]; 
-	String note="Guide";
+		ResultSet r=null;ResultSet rs =null; 
+		String actit="";String tgtit="";String tid="";String aid="";String tempid="";
+		String rformat="";String[] tp=new String[5]; 
+		String note="Guide";
 %>
 <%
 	try{
-		PreparedStatement st1=conn.prepareStatement("select * from home order by tempid desc limit 1");
-		r=st1.executeQuery();
-		while(r.next()){
-			tempid=r.getString("tempid");
-			tid=r.getString("tid");
-			aid=r.getString("aid");
-			tgtit=r.getString("tgtit");
-			actit=r.getString("actit");
-		}
-		PreparedStatement ps = conn.prepareStatement("select * from title t1 JOIN auth t2 on t1.appid=t2.appid JOIN triger t3 ON t1.appid=t3.appid where t1.appid=?");
-		ps.setString(1,aid);
-		rs=ps.executeQuery();
-		while(rs.next()){
-			rformat=rs.getString("rformat");
-			tp[1]=rs.getString("p1");tp[2]=rs.getString("p2");tp[3]=rs.getString("p3");tp[4]=rs.getString("p4");
-			note=rs.getString("note");
-		}
+	PreparedStatement st1=conn.prepareStatement("select * from home order by tempid desc limit 1");
+	r=st1.executeQuery();
+	while(r.next()){
+		tempid=r.getString("tempid");
+		tid=r.getString("tid");
+		aid=r.getString("aid");
+		tgtit=r.getString("tgtit");
+		actit=r.getString("actit");
+	}
+		  PreparedStatement ps = conn.prepareStatement("select * from title t1 JOIN auth t2 on t1.appid=t2.appid JOIN triger t3 ON t1.appid=t3.appid where t1.appid=?");
+	      ps.setString(1,aid);
+	      rs=ps.executeQuery();
+	      while(rs.next()){
+	    			rformat=rs.getString("rformat");
+	    			tp[1]=rs.getString("p1");tp[2]=rs.getString("p2");tp[3]=rs.getString("p3");tp[4]=rs.getString("p4");
+	    			note=rs.getString("note");
+	      }
 %>
 <body>
 <form action="Parse" method="post">
@@ -245,13 +248,13 @@ function load1(){
 <div id=para>
 		<br><br><h3>Action Parameter:</h3><br>
 <%
-		if(rformat.equals("rest")){
-			for(int i=1;i<5;i++){
-					if(!tp[i].equals("null")){
-							out.println("<br>*"+tp[i]+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;----Map With Trigger (x"+i+") Tag----&gt;&gt;<br>");
-					}
-			}
-		}else{
+	if(rformat.equals("rest")){
+		for(int i=1;i<5;i++){
+				if(!tp[i].equals("null")){
+						out.println("<br>*"+tp[i]+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;----Map With Trigger (x"+i+") Tag----&gt;&gt;<br>");
+				}
+		}
+	}else{
 		%><textarea name="exres" id="txt1"  placeholder="Give Original xml or json structure 
 
 Json Example:
@@ -259,10 +262,9 @@ Json Example:
 Xml Example:
 	&lt;root&gt;
 		&lt;stable&gt;@@map x1@@&lt;/stable&gt;
-	&lt;/root&gt;"></textarea>&nbsp;&nbsp;&nbsp;&lt;&lt;----Map With sample order----&gt;&gt;
-	<% 	
-		}
-	%>
+	&lt;/root&gt;"></textarea>&nbsp;&nbsp;&nbsp;&lt;&lt;----Map With sample order----&gt;&gt;<% 	
+	}
+%>
 </div>
 <div id=res>
 	<h3>Trigger Response:</h3>
@@ -273,13 +275,13 @@ Xml Example:
 </div>
 </div>
 <div id="name">User Guide:</div><br>
-<textarea name="note" id="txt2" value="<%=note%>" readonly></textarea>
+<textarea name="note" id="txt2" readonly><%=note%></textarea>
 <br><br><br>
 <%		
-	}
-	catch(Exception e){
-		out.println(e);
-	}
+		}
+		catch(Exception e){
+			out.println(e);
+		}
 %>
 <center><input type="submit" value="Continue"></center>
 </form>
