@@ -102,9 +102,9 @@ color:#FFFFFF;
   }
 </style>
 <%
-String respo= (String) request.getSession().getAttribute("xml1");
+//String respo= (String) request.getSession().getAttribute("xml1");
 //String respo="{\"name\":\"name\",\"age\":\"name\"}";
-//String respo="<?xml version=\"1.0\" encoding=\"UTF-8\"?><search><total_items>115</total_items><page_size><page_count11>12</page_count11></page_size><page_count>12</page_count><page_number>1</page_number></search>";
+String respo="<?xml version=\"1.0\" encoding=\"UTF-8\"?><search><total_items>115</total_items><page_size><page_count11>12</page_count11></page_size><page_count>12</page_count><page_number>1</page_number></search>";
 char chfirst=respo.charAt(0);
 %>
 <script type="text/javascript">
@@ -144,6 +144,7 @@ function addParam(){
 					{
 						var nm1=y[i].nodeName;
 						var nm2=y[i].childNodes[z].nodeName;
+						var nn=y[i].childNodes.length;
 						if(nn==1){ 
 							hm +="<option value="+nm1+">" + nm1 + "</option>";
 						}
@@ -208,7 +209,7 @@ function load1(){
 	String u = (String) request.getSession().getAttribute("id");
     if (u != null ) {
     }else{
-    	response.sendRedirect("logout.jsp");
+    	//response.sendRedirect("logout.jsp");
     }
 %>
 <%@ page import="java.sql.*" %>
