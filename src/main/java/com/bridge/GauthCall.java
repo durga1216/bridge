@@ -94,6 +94,21 @@ public class GauthCall extends HttpServlet {
 				}
 				session.setAttribute("xml1", str);
 		   	}
+		   	else{
+		   		String sheetname="";
+				Credential credential =  new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
+						.setJsonFactory(jsonFactory).setTransport(transport).build()
+				    	.setAccessToken(response1.getAccessToken()).setRefreshToken(response1.getRefreshToken());
+				SpreadsheetService service = new SpreadsheetService("Aplication-name");
+			    service.setOAuth2Credentials(credential);
+			    URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+			    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,SpreadsheetFeed.class);
+			    List<com.google.gdata.data.spreadsheet.SpreadsheetEntry> spreadsheets = feed.getEntries();
+			    for(int i=0;i<spreadsheets.size();i++){
+				    sheetname+=spreadsheets.get(i).getTitle().getPlainText()+"@@";
+			    }
+			    session.setAttribute("sheetname", sheetname);
+		   	}
 			//TODO continue with spreadsheet services
 		   	
 /*			Credential credential =  new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)

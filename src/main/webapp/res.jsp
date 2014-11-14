@@ -89,6 +89,10 @@ font-weight:bold;
 width:600px;
 height:120px;
 }
+#sheet{
+color:#fff;
+font-size:18px;
+}
 #name{
 font-family:verdana;
 font-size:18px;
@@ -105,10 +109,10 @@ color:#FFFFFF;
 String u = (String) request.getSession().getAttribute("id");
 if (u != null ) {
 }else{
-	//response.sendRedirect("logout.jsp");
+	response.sendRedirect("logout.jsp");
 }
-//String respo= (String) request.getSession().getAttribute("xml1");
-String respo="{\"name\":[{\"sname\":{\"bname\":\"susee\"}},{\"sname\":\"susee\"}]}";
+String respo= (String) request.getSession().getAttribute("xml1");
+//String respo="{\"name\":[{\"sname\":{\"bname\":\"susee\"}},{\"sname\":\"susee\"}]}";
 //String respo="<?xml version=\"1.0\" encoding=\"UTF-8\"?><search><total_items>115</total_items><page_size><page_count11>12</page_count11></page_size><page_count>12</page_count><page_number>1</page_number></search>";
 char chfirst=respo.charAt(0);
 %>
@@ -247,8 +251,17 @@ function load1(){
 <a id='pa' href="javascript:load1()">Sample Trigger response(For JSON)</a></center>
 <div id=ful>
 <div id=para>
-		<br><br><h3>Action Parameter:</h3><br>
-<%
+		<br><h3>Action Parameter:</h3>
+<%	
+	String sheet= (String) request.getSession().getAttribute("xml1");
+	if (sheet != null ) {
+		String[] sh=sheet.split("@@");
+		out.println("<div id='sheet'>Select your spreadsheet:&nbsp;&nbsp;<select>");
+		for(int i=0;i<sh.length;i++){
+			out.println("<option value='"+sh[i]+"'>"+sh[i]+"</option>");
+		}
+		out.println("</select></div><br>");
+	}
 	if(rformat.equals("rest")){
 		for(int i=1;i<5;i++){
 				if(!tp[i].equals("null")){
