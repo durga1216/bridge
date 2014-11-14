@@ -50,7 +50,7 @@ border-radius:5px;
 #para{
 float:left;
 height:100%;
-margin-left:150px;
+margin-left:70px;
 }
 #txt1{
 font-family:verdana;
@@ -83,7 +83,7 @@ height:1px;
 #txt2{
 font-family:verdana;
 font-size:15px;
-margin-left:150px;
+margin-left:70px;
 color:#FF9900;
 font-weight:bold;
 width:600px;
@@ -92,7 +92,7 @@ height:120px;
 #name{
 font-family:verdana;
 font-size:18px;
-margin-left:150px;
+margin-left:70px;
 color:#FFFFFF;
 }
 #pa{
@@ -125,7 +125,7 @@ function addParam(){
 		hm +="<select name=x"+num+" id=x"+num+">";
 		hm +="<option value=dummy>Choose Xml Node</option>";
 		var xmlDoc = new window.DOMParser().parseFromString(respo2,"text/xml");
-		var exres=document.getElementById('txt1');
+		var exres=document.getElementById('ptag');
 		exres.value=xmlDoc.documentElement.nodeName;
 		var y=xmlDoc.documentElement.childNodes;
 		var i;var z;
@@ -165,7 +165,7 @@ function addParam(){
 				}
 			}
 		}
-		hm +="</select>&nbsp;&nbsp;&nbsp;<input type=text placeholder=other id=xv"+num+" name=xv"+num+"><br><br>";
+		hm +="</select>&nbsp;&nbsp;&nbsp;<input type=text placeholder=' If Other' id=xv"+num+" name=xv"+num+"><br><br>";
 		newTBDiv.innerHTML = hm;
 	}
 	else{
@@ -193,7 +193,7 @@ function addParam(){
 				hm +="<option value="+key+">" + key + "</option>";			
 			}
 		}
-		hm +="</select>&nbsp;&nbsp;&nbsp;<input type=text placeholder=other id=xv"+num+" name=xv"+num+"><br><br>";
+		hm +="</select>&nbsp;&nbsp;&nbsp;<input type=text placeholder=' If Other' id=xv"+num+" name=xv"+num+"><br><br>";
 		newTBDiv.innerHTML = hm;
 	}
 	contentID.appendChild(newTBDiv);
@@ -263,13 +263,13 @@ Json Example:
 Xml Example:
 	&lt;root&gt;
 		&lt;stable&gt;@@map x1@@&lt;/stable&gt;
-	&lt;/root&gt;"></textarea>&nbsp;&nbsp;&nbsp;&lt;&lt;----Map With sample order----&gt;&gt;<% 	
+	&lt;/root&gt;"></textarea>&nbsp;&nbsp;&nbsp;&lt;&lt;--Map trigger nodes--&gt;&gt;<% 	
 	}
 %>
 </div>
 <div id=res>
 	<h3>Trigger Response:</h3>
-	<input type="text" name="ptag" placeholder=" parant Tag"><br><br>
+	<input type="text" id="ptag" name="ptag" placeholder=" parant Tag"><br><br>
 	<a id='pa' href="javascript:addParam()">Add_Tag</a>&nbsp;
     <a id='pa' href="javascript:removeParam()">Remove_Tags</a><br>
 	<div id="content"></div>
