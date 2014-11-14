@@ -43,6 +43,7 @@ public class Parse extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String ptag=request.getParameter("ptag");
 		String exres=request.getParameter("exres");
+		String sheet=request.getParameter("sheet");
 		String[] x=new String[11];
 		String tempid="";String tid="";String aid="";String tgtit="";String actit="";
 		for(int i=1;i<11;i++){
@@ -60,7 +61,7 @@ public class Parse extends HttpServlet {
  	   			tgtit=rs.getString("tgtit");
  	   			actit=rs.getString("actit");
 			}
-			PreparedStatement ps1=con.prepareStatement("insert into parse (tempid,tid,aid,ptag,exres,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10) values('"+tempid+"','"+tid+"','"+aid+"','"+ptag+"','"+exres+"','"+x[1]+"','"+x[2]+"','"+x[3]+"','"+x[4]+"','"+x[5]+"','"+x[6]+"','"+x[7]+"','"+x[8]+"','"+x[9]+"','"+x[10]+"')");
+			PreparedStatement ps1=con.prepareStatement("insert into parse (tempid,tid,aid,ptag,exres,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,shname) values('"+tempid+"','"+tid+"','"+aid+"','"+ptag+"','"+exres+"','"+x[1]+"','"+x[2]+"','"+x[3]+"','"+x[4]+"','"+x[5]+"','"+x[6]+"','"+x[7]+"','"+x[8]+"','"+x[9]+"','"+x[10]+"','"+sheet+"')");
 			ps1.executeUpdate();
 			response.sendRedirect(request.getContextPath()+"/Final");
 		}catch(Exception e){

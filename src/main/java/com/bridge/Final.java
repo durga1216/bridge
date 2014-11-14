@@ -567,7 +567,7 @@ public class Final extends HttpServlet {
 						//TODO For Checking xx value purpose I take null
 						String xx1="null";String xx2="null";String xx3="null";String xx4="null";String xx5="null";
 						String[] xx=new String[10];
-						String ptag="";String exres="";
+						String ptag="";String exres="";String shname="";
 						PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
 						st2.setString(1, da);
 						ResultSet rs1=st2.executeQuery();
@@ -575,7 +575,7 @@ public class Final extends HttpServlet {
 							x1=rs1.getString("x1");x2=rs1.getString("x2");
 							x3=rs1.getString("x3");x4=rs1.getString("x4");
 							x5=rs1.getString("x5");ptag=rs1.getString("ptag");
-							exres=rs1.getString("exres");
+							exres=rs1.getString("exres");shname=rs1.getString("shname");
 						} 
 						if(resformat.equals("json")){
 							try{
@@ -920,7 +920,14 @@ public class Final extends HttpServlet {
 					   				if (spreadsheets.isEmpty()) {
 					   					// 	TODO: There were no spreadsheets, act accordingly.
 					   				}
-					   				com.google.gdata.data.spreadsheet.SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+					   				int k=0;
+					   			    for(int i=0;i<spreadsheets.size();i++){
+					   				     String name=(String)spreadsheets.get(i).getTitle().getPlainText();
+					   				     if(shname.equals(name)){
+					   				    	 k=i;
+					   				     }
+					   			    }
+					   				com.google.gdata.data.spreadsheet.SpreadsheetEntry spreadsheet = spreadsheets.get(k);
 					   				URL listFeedUrl = ((WorksheetEntry) spreadsheet.getWorksheets().get(0)).getListFeedUrl();
 					   				ListFeed feed1 = (ListFeed) service.getFeed(listFeedUrl, ListFeed.class);
 					   				ArrayList<String > ar=new ArrayList<String>();
