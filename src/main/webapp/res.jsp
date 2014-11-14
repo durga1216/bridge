@@ -284,7 +284,7 @@ Xml Example:
 </div>
 <div id=res>
 	<h3>Trigger Response:</h3>
-	<input type="text" id="ptag" name="ptag" placeholder=" parant Tag"><br><br>
+	<input type="text" style="display:none;" id="ptag" name="ptag" placeholder=" parant Tag"><br><br>
 	<a id='pa' href="javascript:addParam()">Add_Tag</a>&nbsp;
     <a id='pa' href="javascript:removeParam()">Remove_Tags</a><br>
 	<div id="content"></div>

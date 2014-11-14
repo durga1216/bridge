@@ -106,6 +106,13 @@ color:#fff;
 background-color:#fff;
 height:1px;
 }
+#stt{
+font-family:verdana;
+font-size:20px;
+color:#fff;
+margin-left:200px;
+font-weight:bold;
+}
 #sout{
 float:right;
 margin-right:100px;
@@ -126,20 +133,58 @@ function log()
 	String u = (String) request.getSession().getAttribute("id");
     if (u != null ) {
     }else{
-    	response.sendRedirect("logout.jsp");
+    	//response.sendRedirect("logout.jsp");
     }
 %>
 <center><div id=sout><input id=butt type="button" value="Signout" Onclick="javascript:log()"></div><div id=head>Mind-Connectors</div><br><br><hr><br>
 <h2>Your Connecters is Running successfully..!! <a id=lin href="index.jsp">&lt;----Click here for Connect More----&gt;</a></h2>
-</center>
+</center><div id=stt>Your Active connector:</div><br>
 <%	String id = (String) request.getSession().getAttribute("id");
 	try{
-		 int i=1;
+		 int i=1;int j=1;
 		 PreparedStatement st1=conn.prepareStatement("select tempid from trig_all where userid='"+id+"'");
 		 ResultSet rs1=st1.executeQuery();
+		 PreparedStatement st3=conn.prepareStatement("select tempid from trig_all where userid='"+id+"'");
+		 ResultSet rs3=st3.executeQuery();
 		 while(rs1.next()){
 				String tempid=rs1.getString("tempid");
-				PreparedStatement st2=conn.prepareStatement("select * from home where tempid=?");
+				PreparedStatement st2=conn.prepareStatement("select * from home where tempid=? && state='Active'");
+				st2.setString(1, tempid);
+				ResultSet rs2=st2.executeQuery();
+				while(rs2.next()){
+						String tt=rs2.getString("tgtit");
+						String aa=rs2.getString("actit");
+						String tid=rs2.getString("tid");
+						String aid=rs2.getString("aid");
+						String userid=rs2.getString("userid");
+						String state=rs2.getString("state");
+						%>
+							<form action="ThreadHandler" method="get">
+							<h4><%=i%>, &nbsp; <img src="Title?appid=<%=tid%>"> <%=tt%> &nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;
+							<img src="Title?appid=<%=aid%>"> <%=aa%>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<%if(state.equals("Active")){ %>
+								<input id=gn type="button" value=" <%=state%> ">
+							<%}else{ %>
+								<input id=rd type="button" value=" <%=state%> ">
+							<%} %>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<select name="state"><option value=Active>Active</option><option value=Inactive>Inactive</select>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<select name="time"><option value=15>15 Minutes</option><option value=10>10 Minutes</select>
+							<input style="display:none;" type=text name=tempid value=<%=tempid%>>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="submit" value=" Apply "></h4>
+							</form>
+						<%
+				}
+				i++;
+		}%>
+			<br><div id=stt>Your Inactive connector:</div><br>
+		<% 
+		 while(rs3.next()){
+				String tempid=rs3.getString("tempid");
+				PreparedStatement st2=conn.prepareStatement("select * from home where tempid=? && state='Inactive'");
 				st2.setString(1, tempid);
 				ResultSet rs2=st2.executeQuery();
 				while(rs2.next()){
