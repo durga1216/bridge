@@ -1,6 +1,7 @@
 package com.bridge;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,6 +26,8 @@ import java.util.UUID;
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +36,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathFactory;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpResponse;
@@ -559,8 +564,8 @@ public class Final extends HttpServlet {
 					
 						session.setAttribute("samp", str);	 
 						String x1="";String x2="";String x3="";String x4="";String x5="";
-						//TODO For Checking xx value purpose I take mind
-						String xx1="mind";String xx2="mind";String xx3="mind";String xx4="mind";String xx5="mind";
+						//TODO For Checking xx value purpose I take null
+						String xx1="null";String xx2="null";String xx3="null";String xx4="null";String xx5="null";
 						String[] xx=new String[10];
 						String ptag="";String exres="";
 						PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
@@ -574,78 +579,41 @@ public class Final extends HttpServlet {
 						} 
 						if(resformat.equals("json")){
 							try{
-								JSONObject js=new JSONObject(str);
+								ScriptEngineManager manager = new ScriptEngineManager();
+							    ScriptEngine engine = manager.getEngineByName("javascript");
+							    engine.eval("var x = "+str+";");
 								if(!x1.equals("null")){
-									xx1=(String)js.getString(x1);}
+									xx1=(String)engine.eval("x."+x1+";");}
 								if(!x2.equals("null")){
-									xx2=(String)js.getString(x2);}
+									xx2=(String)engine.eval("x."+x2+";");}
 								if(!x3.equals("null")){
-									xx3=(String)js.getString(x3);}
+									xx3=(String)engine.eval("x."+x3+";");}
 								if(!x4.equals("null")){
-									xx4=(String)js.getString(x4);}
+									xx4=(String)engine.eval("x."+x4+";");}
 								if(!x5.equals("null")){
-									xx5=(String)js.getString(x5);}
-							}
-							catch(Exception e){
-								// out.println(e);
+									xx5=(String)engine.eval("x."+x5+";");}
+							}catch(Exception e){
+								
 							}
 						}
 						else if(resformat.equals("xml")){
-							DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-							InputSource is = new InputSource();
-							is.setCharacterStream(new StringReader(str));
-							Document doc = db.parse(is);
-							NodeList nodes = doc.getElementsByTagName(ptag);
-							int tot=nodes.getLength();String res="";
-							String[] data=new String[tot];
-							for (int i = 0,j=1; i < nodes.getLength(); i++,j++) {
-								Element element = (Element) nodes.item(i);
+							try{
+					       	 	DocumentBuilderFactory domFactory=DocumentBuilderFactory.newInstance();
+					       	 	DocumentBuilder builder=domFactory.newDocumentBuilder();
+								Document doc=builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+								XPath xPath = XPathFactory.newInstance().newXPath();
 								if(!x1.equals("null")){
-									String[] temp=x1.split("@");
-			      	    	   	   	if(temp.length==1){
-			      	    	   	   		out.println("in if");
-			      	    	   	   		NodeList name = element.getElementsByTagName(x1);
-			      	    	   	   		Element line = (Element) name.item(0);
-			      	    	   	   		xx1=getCharacterDataFromElement(line);}
-			      	    	   	   	else{
-			      	    	   	   		String tmp1=temp[0];
-			      	    	   	   		String tmp2=temp[1];
-			      	    	   	   		NodeList name = element.getElementsByTagName(tmp1);
-			      	    	   	   		Element line = (Element) name.item(0);
-			      	    	   	   		xx1=line.getAttribute(tmp2);
-			      	    	   	   		out.println(tmp1+tmp2+xx1);
-			      	    	   	   	}
-								}
+									xx1=(String)xPath.compile(ptag+"/"+x1).evaluate(doc);}
 								if(!x2.equals("null")){
-									String[] temp=x2.split("@");
-		      	    	   	   		if(temp.length==1){
-		      	    	   	   			out.println("in if");
-		      	    	   	   			NodeList name = element.getElementsByTagName(x2);
-		      	    	   	   			Element line = (Element) name.item(0);
-		      	    	   	   			xx2=getCharacterDataFromElement(line);}
-		      	    	   	   		else{
-		      	    	   	   			String tmp1=temp[0];
-		      	    	   	   			String tmp2=temp[1];
-		      	    	   	   			NodeList name = element.getElementsByTagName(tmp1);
-		      	    	   	   			Element line = (Element) name.item(0);
-		      	    	   	   			xx2=line.getAttribute(tmp2);
-		      	    	   	   			out.println(tmp1+tmp2+xx2);
-		      	    	   	   		}
-								}
+									xx2=(String)xPath.compile(ptag+"/"+x2).evaluate(doc);}
 								if(!x3.equals("null")){
-									NodeList name2 = element.getElementsByTagName(x3);
-					      	       	Element line2 = (Element) name2.item(0);
-					      	       	xx3=getCharacterDataFromElement(line2);
-								}if(!x4.equals("null")){
-									NodeList name3 = element.getElementsByTagName(x4);
-					      	       	Element line3 = (Element) name3.item(0);
-					      	       	xx4=getCharacterDataFromElement(line3);
-								}if(!x5.equals("null")){
-									NodeList name4 = element.getElementsByTagName(x5);
-					      	       	Element line4 = (Element) name4.item(0);
-					      	       	xx5=getCharacterDataFromElement(line4);
-								}
-								break;
+									xx3=(String)xPath.compile(ptag+"/"+x3).evaluate(doc);}
+								if(!x4.equals("null")){
+									xx4=(String)xPath.compile(ptag+"/"+x4).evaluate(doc);}
+								if(!x5.equals("null")){
+									xx5=(String)xPath.compile(ptag+"/"+x5).evaluate(doc);}
+							}catch(Exception e){
+								
 							}
 						}
 						xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
@@ -966,15 +934,15 @@ public class Final extends HttpServlet {
 					   					break;
 					   				}
 					   				ListEntry row = new ListEntry();
-					   				if(!xx1.equals("mind")){
+					   				if(!xx1.equals("null")){
 					   					row.getCustomElements().setValueLocal(ar.get(0), xx1);}
-					   				if(!xx2.equals("mind")){
+					   				if(!xx2.equals("null")){
 					   					row.getCustomElements().setValueLocal(ar.get(1), xx2);}
-					   				if(!xx3.equals("mind")){
+					   				if(!xx3.equals("null")){
 					   					row.getCustomElements().setValueLocal(ar.get(2), xx3);}
-					   				if(!xx4.equals("mind")){
+					   				if(!xx4.equals("null")){
 					   					row.getCustomElements().setValueLocal(ar.get(3), xx4);}
-					   				if(!xx5.equals("mind")){
+					   				if(!xx5.equals("null")){
 					   					row.getCustomElements().setValueLocal(ar.get(4), xx5);}
 					   				// 	Sending the new row for insertion into worksheet.
 					   				row = service.insert(listFeedUrl, row);

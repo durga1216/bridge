@@ -105,10 +105,10 @@ color:#FFFFFF;
 String u = (String) request.getSession().getAttribute("id");
 if (u != null ) {
 }else{
-	response.sendRedirect("logout.jsp");
+	//response.sendRedirect("logout.jsp");
 }
-String respo= (String) request.getSession().getAttribute("xml1");
-//String respo="{\"name\":\"name\",\"age\":\"name\"}";
+//String respo= (String) request.getSession().getAttribute("xml1");
+String respo="{\"name\":[{\"sname\":{\"bname\":\"susee\"}},{\"sname\":\"susee\"}]}";
 //String respo="<?xml version=\"1.0\" encoding=\"UTF-8\"?><search><total_items>115</total_items><page_size><page_count11>12</page_count11></page_size><page_count>12</page_count><page_number>1</page_number></search>";
 char chfirst=respo.charAt(0);
 %>
@@ -139,7 +139,7 @@ function addParam(){
 						hm +="<option value="+nm1+">" + nm1 + "</option>";
 					}
 					else{
-						hm +="<option value="+y[i].nodeName+"//"+nm2+">"+y[i].nodeName+"//"+nm2+"</option>";
+						hm +="<option value="+y[i].nodeName+"/"+nm2+">"+y[i].nodeName+"/"+nm2+"</option>";
 					}
 				}
 			}
@@ -158,7 +158,7 @@ function addParam(){
 						else{
 							if(nm2=='#text'){ 
 							}else{
-								hm +="<option value="+y[i].nodeName+"//"+nm2+">"+y[i].nodeName+"//"+nm2+"</option>";
+								hm +="<option value="+y[i].nodeName+"/"+nm2+">"+y[i].nodeName+"/"+nm2+"</option>";
 							}
 						}
 					}
@@ -181,13 +181,13 @@ function addParam(){
 			}else if(key1.charAt(0)=='{'){
 				var xml1=JSON.parse(key1);
 				for(var key2 in xml1){
-					hm +="<option value=" + key + "//"+key2+">" + key + "//"+key2+"</option>";
+					hm +="<option value=" + key + "."+key2+">" + key + "/"+key2+"</option>";
 				}
 			}else if(key1.charAt(0)=='['){
 				var xml2=JSON.parse(key1);
 				var xml1=xml2[0];
 				for(var aky in xml1){
-					hm +="<option value=" + key + "//"+aky+">" + key + "//"+aky+"</option>";
+					hm +="<option value=" + key + "[0]."+aky+">" + key + "/"+aky+"</option>";
 				}
 			}else{
 				hm +="<option value="+key+">" + key + "</option>";			
