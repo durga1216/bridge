@@ -562,7 +562,7 @@ public class Final extends HttpServlet {
 					
 	/**   Trigger Block ends   ------  Parsing the trigger response and mapping with action starts    **/
 					
-						session.setAttribute("samp", str);	 
+						 
 						String x1="";String x2="";String x3="";String x4="";String x5="";
 						//TODO For Checking xx value purpose I take null
 						String xx1="null";String xx2="null";String xx3="null";String xx4="null";String xx5="null";
@@ -603,15 +603,15 @@ public class Final extends HttpServlet {
 								Document doc=builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 								XPath xPath = XPathFactory.newInstance().newXPath();
 								if(!x1.equals("null")){
-									xx1=(String)xPath.compile(ptag+"/"+x1).evaluate(doc);}
+									xx1=xPath.compile(ptag+"/"+x1).evaluate(doc);}
 								if(!x2.equals("null")){
-									xx2=(String)xPath.compile(ptag+"/"+x2).evaluate(doc);}
+									xx2=xPath.compile(ptag+"/"+x2).evaluate(doc);}
 								if(!x3.equals("null")){
-									xx3=(String)xPath.compile(ptag+"/"+x3).evaluate(doc);}
+									xx3=xPath.compile(ptag+"/"+x3).evaluate(doc);}
 								if(!x4.equals("null")){
-									xx4=(String)xPath.compile(ptag+"/"+x4).evaluate(doc);}
+									xx4=xPath.compile(ptag+"/"+x4).evaluate(doc);}
 								if(!x5.equals("null")){
-									xx5=(String)xPath.compile(ptag+"/"+x5).evaluate(doc);}
+									xx5=xPath.compile(ptag+"/"+x5).evaluate(doc);}
 							}catch(Exception e){
 								
 							}
@@ -627,7 +627,7 @@ public class Final extends HttpServlet {
 								orurl=orurl+slt[k];
 							}
 						}
-						
+						session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2);	
 	/**   Parsing and mapping ends  ------ Action block starts from here	  **/
 						
 						PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");

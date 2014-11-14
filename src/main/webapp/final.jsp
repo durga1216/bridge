@@ -141,7 +141,6 @@ function log()
 </center><div id=stt>Your Active connector:</div><br>
 <%	String id = (String) request.getSession().getAttribute("id");
 	try{
-		 int i=1;int j=1;
 		 PreparedStatement st1=conn.prepareStatement("select tempid from trig_all where userid='"+id+"'");
 		 ResultSet rs1=st1.executeQuery();
 		 PreparedStatement st3=conn.prepareStatement("select tempid from trig_all where userid='"+id+"'");
@@ -160,7 +159,7 @@ function log()
 						String state=rs2.getString("state");
 						%>
 							<form action="ThreadHandler" method="get">
-							<h4><%=i%>, &nbsp; <img src="Title?appid=<%=tid%>"> <%=tt%> &nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;
+							<h4>&nbsp; <img src="Title?appid=<%=tid%>"> <%=tt%> &nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;
 							<img src="Title?appid=<%=aid%>"> <%=aa%>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<%if(state.equals("Active")){ %>
@@ -178,7 +177,7 @@ function log()
 							</form>
 						<%
 				}
-				i++;
+			
 		}%>
 			<br><div id=stt>Your Inactive connector:</div><br>
 		<% 
@@ -196,7 +195,7 @@ function log()
 						String state=rs2.getString("state");
 						%>
 							<form action="ThreadHandler" method="get">
-							<h4><%=i%>, &nbsp; <img src="Title?appid=<%=tid%>"> <%=tt%> &nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;
+							<h4>&nbsp; <img src="Title?appid=<%=tid%>"> <%=tt%> &nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;
 							<img src="Title?appid=<%=aid%>"> <%=aa%>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<%if(state.equals("Active")){ %>
@@ -214,7 +213,6 @@ function log()
 							</form>
 						<%
 				}
-				i++;
 		}
 	}
 	catch(Exception e){
