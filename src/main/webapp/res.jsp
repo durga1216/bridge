@@ -110,10 +110,10 @@ color:#FFFFFF;
 String u = (String) request.getSession().getAttribute("id");
 if (u != null ) {
 }else{
-	//response.sendRedirect("logout.jsp");
+	response.sendRedirect("logout.jsp");
 }
-//String respo= (String) request.getSession().getAttribute("xml1");
-String respo="{\"name\":[{\"sname\":{\"bname\":\"susee\"}},{\"sname\":\"susee\"}]}";
+String respo= (String) request.getSession().getAttribute("xml1");
+//String respo="{\"name\":[{\"sname\":{\"bname\":\"susee\"}},{\"sname\":\"susee\"}]}";
 //String respo="<?xml version=\"1.0\" encoding=\"UTF-8\"?><search><total_items>115</total_items><page_size><page_count11>12</page_count11></page_size><page_count>12</page_count><page_number>1</page_number></search>";
 char chfirst=respo.charAt(0);
 %>
@@ -254,8 +254,8 @@ function load1(){
 <div id=para>
 		<br><h3>Action Parameter:</h3>
 <%	
-	//String sheet= (String) request.getSession().getAttribute("sheetname");
-	String sheet="dssfas@@jhbjhjbhj@@jhbhjbjh@@jhbjhb@@";
+	String sheet= (String) request.getSession().getAttribute("sheetname");
+	//String sheet="dssfas@@jhbjhjbhj@@jhbhjbjh@@jhbjhb@@";
 	if (sheet != null ) {
 		String[] sh=sheet.split("@@");
 		out.println("<div id='sheet'>Select your spreadsheet:&nbsp;&nbsp;<select name='sheet'>");
