@@ -28,6 +28,8 @@ function removeTrigger(){
     contentID.removeChild(document.getElementById('strText'+intTextBox));
     TextBox = TextBox-1;
 }
+
+
 function addParent(){
 	intTextBox = intTextBox + 1;
 	var contentID = document.getElementById("cont"+TextBox);
@@ -42,6 +44,7 @@ function removeParent()
     contentID.removeChild(document.getElementById('strText'+intTextBox));
     intTextBox = intTextBox-1;
 }
+
 </script>
 <style>
 body{
@@ -152,6 +155,9 @@ font-family:verdana;
 <br><div id="name">Enter Trigger or Action Name&nbsp;&nbsp;&nbsp;<input type="text" name="name" placeholder="Name of the Trigger in Display"></div>
 <br><br><a id='trig' href="javascript:addTrigger();">Add Trigger or Action Method</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="trig" href="javascript:removeTrigger();">Remove Trigger or Action Method</a></center></br></br>
 <br><div id="content1"></div><br>
+
+
+
 <br><div id="name">Request Method</div>
 <br><select name="rmethod" style="margin-left:250px;">
 <option>Choose the Request Method</option>

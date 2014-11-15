@@ -56,6 +56,7 @@ public class Trigger extends HttpServlet {
     String rmethod=request.getParameter("rmethod");String rformat=request.getParameter("rformat");
     String resformat=request.getParameter("resformat");
     String note=request.getParameter("note");
+    
 
     try{
       	 Class.forName("com.mysql.jdbc.Driver").newInstance();

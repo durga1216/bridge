@@ -23,6 +23,23 @@ function removeParent()
     contentID.removeChild(document.getElementById('strText'+intTextBox));
     intTextBox = intTextBox-1;
 }	
+
+function addHead()
+{
+  intTextBox = intTextBox + 1;
+  var contentID = document.getElementById('content2');
+  var newTBDiv = document.createElement('div');
+  newTBDiv.setAttribute('id','strText'+intTextBox);
+  newTBDiv.innerHTML = "<input type='text' id='sh" + intTextBox + "'    name='sh" + intTextBox + "' placeholder='Header_Label'/>" + "<input type='text' id='shv"+ intTextBox + " ' name='shv"+intTextBox+"' placeholder='Header_Value'/>";
+  contentID.appendChild(newTBDiv);
+}
+
+function removeHead(){
+	var contentID = document.getElementById('content2');
+    contentID.removeChild(document.getElementById('strText'+intTextBox));
+    intTextBox = intTextBox-1;
+}
+
 $(document).ready(function(){
 	$('input[name=authen]').click(function(){
 	   	if($('input:radio[name=authen]:checked').val() == "No Auth"){
@@ -62,7 +79,34 @@ $(document).ready(function(){
 			$('.rmethod').show();
 			$('#select2').show();	
 		}
+		else if($('input:radio[name=authen]:checked').val() == "Signed Auth"){
+		 	$('#sign').show();	
+		}
 	});
+	
+	 $('#timestamp').click(function () {
+		    $("#stamp").toggle(this.checked);
+		});
+	 
+	 $('#signonce').click(function () {
+		    $("#nonce").toggle(this.checked);
+		});
+			$('#sign1').click(function(){
+				$('#sign').show();
+				$('#sign1').hide();
+			});
+			
+			 $('#http').click(function () {
+				    $("#suname").toggle(this.checked);
+				    $("#spwd").toggle(this.checked);
+		            $("#shead").toggle(this.checked);
+		            $("#shead1").toggle(this.checked);
+
+				});
+
+			
+	
+
 });
 
 </script>
@@ -193,6 +237,57 @@ font-weight:bold;
 margin-left:100px;
 color:#FFFFFF;
 }
+
+#sign{
+font-family:verdana;
+font-size:18px;
+color:#FFFFFF;
+margin-left:100px;
+}
+#stamp{
+margin-left:90px;
+font-size:18px;
+color:#FFFFFF;
+}
+#nonce{
+margin-left:90px;
+font-size:18px;
+color:#FFFFFF;
+}
+
+#sigtext{
+margin-left:100px;
+font-size:18px;
+font-family:verdana;
+width:350px;
+height:100px;
+color:#FF9900;
+padding:10px;
+}
+
+
+#sign1{
+color:#FFFFFF;
+font-size:20px;
+font-family:verdana;
+margin-left:100px;
+}
+#shead,#shead1{
+color:#FFFFFF;
+font-size:20px;
+font-family:verdana;
+margin-left:100px;
+
+}
+
+#ba{
+color:#FFFFFF;
+font-size:15px;
+font-family:verdana;
+margin-left:100px;
+}
+
+
 </style>
 </head>
 <body>
@@ -214,8 +309,9 @@ color:#FFFFFF;
 <input type="radio" name="authen"  value="Oauth2">
 <label for="rd1">OAuth2</label>
 
-<input type="radio" name="authen"  value="Digest">
-<label for="rd1">Digest Auth</label>
+<input type="radio" name="authen"  value="Signed Auth">
+<label for="rd1">Signed Auth</label>
+
 <br></div><div id="req" style="display:none">Fine! Go ahead</div>
 
 <div id="divid" style="display:none"><br>
@@ -287,6 +383,25 @@ color:#FFFFFF;
     <option value="DELETE">DELETE</option>
 </select><br/>
 </div>
+
+<br><div id='sign' style="display:none;">Select a Message Digest Algorithm<br><br>
+<select name="sig" id="sig">
+<option value="HMAC-SHA1">HMAC-SHA1</option>
+<option value="HMAC-SHA256">HMAC-SHA256</option>
+<option value="MD5">MD5</option>
+</select><br><br>
+<input type="text" name="sigckey" value="" placeholder="Signed_consumer_key">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="sigskey" value="" placeholder="Signed_secret_key"><br><br>
+<textarea id="sigtext" name="sigtext" placeholder="Enter the Message here"></textarea><br><br>
+<input type="checkbox" name="http" id="http" value="basic">Send signature Http headers<br><br>
+<a id='shead' href="javascript:addHead();" style="display:none">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;<a id='shead1' href="javascript:removeHead();" style="display:none">Remove Header</a><br><br>
+<div id="content2"></div>
+</div><br>
+
+</div>
+
+
+
 <input type="submit" name="submit" value="Continue">
 </form>
 </body>

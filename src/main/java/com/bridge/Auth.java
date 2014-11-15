@@ -14,10 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
-/**
- * Servlet implementation class Auth
- */
 @WebServlet("/Auth")
 public class Auth extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -68,10 +64,16 @@ public class Auth extends HttpServlet {
 		    String cseckey=request.getParameter("cseckey");String sname=request.getParameter("sname"); String svalue=request.getParameter("svalue");
 		    String aurl=request.getParameter("aurl"); String tokenurl=request.getParameter("tokenurl"); String tlabel=request.getParameter("tlabel");
 		    String treplace=request.getParameter("treplace"); String el=request.getParameter("el"); String ev=request.getParameter("ev");
+		    String sig=request.getParameter("sig");String sigskey=request.getParameter("sigskey");String sigckey=request.getParameter("sigckey");
+		    String message=request.getParameter("message");String sigbasic=request.getParameter("http");String sh1=request.getParameter("sh1");String shv1=request.getParameter("shv1");
+		    String sh2=request.getParameter("sh2");String shv2=request.getParameter("shv2");
+		    String sh3=request.getParameter("sh3");String shv3=request.getParameter("shv3");
+		    String sh4=request.getParameter("sh4");String shv4=request.getParameter("shv4");
+		    String sh5=request.getParameter("sh5");String shv5=request.getParameter("shv5");
 		    try{
 		    	Class.forName("com.mysql.jdbc.Driver").newInstance();
 		   	 	con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
-		   	 	PreparedStatement st=con.prepareStatement("insert into auth(appid,authen,txt1,txt2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,h6,hv6,h7,hv7,txt3,txt4,a1,a2,ckey,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,select2,ockey,oskey,ourl1,ourl2,ourl3,osmeth,oreq) values ('"+id+"','"+authen+"','"+txt1+"','"+txt2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+h6+"','"+hv6+"','"+h7+"','"+hv7+"','"+txt3+"','"+txt4+"','"+a1+"','"+a2+"','"+ckey+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+select2+"','"+ockey+"','"+oskey+"','"+ourl1+"','"+ourl2+"','"+ourl3+"','"+osmeth+"','"+oreq+"')");				 
+		   	 	PreparedStatement st=con.prepareStatement("insert into auth(appid,authen,txt1,txt2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,h6,hv6,h7,hv7,txt3,txt4,a1,a2,ckey,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,select2,ockey,oskey,ourl1,ourl2,ourl3,osmeth,oreq,sig,sigskey,sigckey,message,sigbasic,sh1,shv1,sh2,shv2,sh3,shv3,sh4,shv4,sh5,shv5) values ('"+id+"','"+authen+"','"+txt1+"','"+txt2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+h6+"','"+hv6+"','"+h7+"','"+hv7+"','"+txt3+"','"+txt4+"','"+a1+"','"+a2+"','"+ckey+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+select2+"','"+ockey+"','"+oskey+"','"+ourl1+"','"+ourl2+"','"+ourl3+"','"+osmeth+"','"+oreq+"','"+sig+"','"+sigskey+"','"+sigckey+"','"+message+"','"+sigbasic+"','"+sh1+"','"+shv1+"','"+sh2+"','"+shv2+"','"+sh3+"','"+shv3+"','"+sh4+"','"+shv4+"','"+sh5+"','"+shv5+"')");				 
 		   	 	st.executeUpdate();
 		   	 	out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 		         		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
