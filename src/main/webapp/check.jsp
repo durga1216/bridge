@@ -346,6 +346,14 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 	%><br><br>
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
 	<%
+	}else if(authen.equals("Signed Auth")){
+	%>
+	<div id=inpop><h3>Signed Authentication:</h3><br><br>
+	1,Login into Your account by clicking the Authenticate Button..
+	<br>2,Access the MindPulpy App to read the data..<br><br>
+	<br><br>
+		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
+	<%
 	}
 	%>
 	</div>
