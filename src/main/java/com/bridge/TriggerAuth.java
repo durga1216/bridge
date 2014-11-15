@@ -309,6 +309,7 @@ public class TriggerAuth extends HttpServlet {
 	 						}
 	 						smessage=orurl;
 	 					}
+	 					out.println("smessage");
 	 					//creating signature
 	 					SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
 	 			        Mac mac = Mac.getInstance("HMACSHA1");
@@ -318,22 +319,22 @@ public class TriggerAuth extends HttpServlet {
 	 			        String signature1 = URLEncoder.encode(result, "UTF-8") ;
 	 			        //merge all the params
 	 					if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){
-			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5+"&"+p6+"="+pv6;}
+			   				eurl=p1+"="+pav1+"&"+p2+"="+pav2+"&"+p3+"="+pav3+"&"+p4+"="+pav4+"&"+p5+"="+pav5+"&"+p6+"="+pav6;}
 			   			
 			   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
-			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
+			   				eurl=p1+"="+pav1+"&"+p2+"="+pav2+"&"+p3+"="+pav3+"&"+p4+"="+pav4+"&"+p5+"="+pav5;}
 		        		 
 			   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4)){
-			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4;}
+			   				eurl=p1+"="+pav1+"&"+p2+"="+pav2+"&"+p3+"="+pav3+"&"+p4+"="+pav4;}
 		        		 
 			   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3)){
-			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3;}
+			   				eurl=p1+"="+pav1+"&"+p2+"="+pav2+"&"+p3+"="+pav3;}
 		        		 
 			   			else if(!"null".equals(p1) && !"null".equals(p2)){
-			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2;}
+			   				eurl=p1+"="+pav1+"&"+p2+"="+pav2;}
 		        		 
 			   			else if(!"null".equals(p1)){
-			   				eurl=p1+"="+pv1;}
+			   				eurl=p1+"="+pav1;}
 	 					//construct the url
 	 					String[] slt1=eurl.split("@@");
 	 					int nn1=slt1.length;String orurl1="";
@@ -364,7 +365,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 				}
 	   	 				code=200;
 	   	 				session.setAttribute("xml1", str);
-	   	 				PreparedStatement st2=con.prepareStatement("insert into trig_all (userid,tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace,smessage,sigskey) values ('"+id+"','"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"','"+sigmsg+"','"+sigskey+"')");
+	   	 				PreparedStatement st2=con.prepareStatement("insert into trig_all (userid,tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace,smessage,sigskey) values ('"+id+"','"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pav1+"','"+p2+"','"+pav2+"','"+p3+"','"+pav3+"','"+p4+"','"+pav4+"','"+p5+"','"+pav5+"','"+p6+"','"+pav6+"','"+p7+"','"+pav7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"','"+sigmsg+"','"+sigskey+"')");
 	   	 				st2.executeUpdate();
 	   	 				st2.close();
 	   	 			}
