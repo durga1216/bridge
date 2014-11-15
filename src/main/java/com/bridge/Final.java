@@ -566,7 +566,7 @@ public class Final extends HttpServlet {
 						String x1="";String x2="";String x3="";String x4="";String x5="";
 						//TODO For Checking xx value purpose I take null
 						String xx1="null";String xx2="null";String xx3="null";String xx4="null";String xx5="null";
-						String[] xx=new String[10];
+						String[] xx=new String[10];String check="null";
 						String ptag="";String exres="";String shname="";
 						PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
 						st2.setString(1, da);
@@ -593,7 +593,7 @@ public class Final extends HttpServlet {
 								if(!x5.equals("null")){
 									xx5=(String)engine.eval("x."+x5+";");}
 							}catch(Exception e){
-								
+								check=e.getStackTrace().toString();
 							}
 						}
 						else if(resformat.equals("xml")){
@@ -613,7 +613,7 @@ public class Final extends HttpServlet {
 								if(!x5.equals("null")){
 									xx5=xPath.compile(ptag+"/"+x5).evaluate(doc);}
 							}catch(Exception e){
-								
+								check=e.getStackTrace().toString();
 							}
 						}
 						xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
@@ -627,7 +627,7 @@ public class Final extends HttpServlet {
 								orurl=orurl+slt[k];
 							}
 						}
-						session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2);	
+						session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);	
 	/**   Parsing and mapping ends  ------ Action block starts from here	  **/
 						
 						PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");
