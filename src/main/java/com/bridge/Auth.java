@@ -65,7 +65,7 @@ public class Auth extends HttpServlet {
 		    String aurl=request.getParameter("aurl"); String tokenurl=request.getParameter("tokenurl"); String tlabel=request.getParameter("tlabel");
 		    String treplace=request.getParameter("treplace"); String el=request.getParameter("el"); String ev=request.getParameter("ev");
 		    String sig=request.getParameter("sig");String sigskey=request.getParameter("sigskey");String sigckey=request.getParameter("sigckey");
-		    String message=request.getParameter("message");String sigbasic=request.getParameter("http");String sh1=request.getParameter("sh1");String shv1=request.getParameter("shv1");
+		    String message=request.getParameter("sigtext");String sigbasic=request.getParameter("http");String sh1=request.getParameter("sh1");String shv1=request.getParameter("shv1");
 		    String sh2=request.getParameter("sh2");String shv2=request.getParameter("shv2");
 		    String sh3=request.getParameter("sh3");String shv3=request.getParameter("shv3");
 		    String sh4=request.getParameter("sh4");String shv4=request.getParameter("shv4");

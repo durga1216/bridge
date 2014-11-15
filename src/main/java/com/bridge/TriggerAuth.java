@@ -40,6 +40,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import sun.misc.BASE64Encoder;
+
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeRequestUrl;
 
 
@@ -76,6 +78,7 @@ public class TriggerAuth extends HttpServlet {
         String[] tdm={"Test",request.getParameter("tdm1"),request.getParameter("tdm2"),request.getParameter("tdm3"),request.getParameter("tdm4"),request.getParameter("tdm5")};
         String[] ndm={"Test",request.getParameter("ndm1"),request.getParameter("ndm2"),request.getParameter("ndm3"),request.getParameter("ndm4"),request.getParameter("ndm5")};
         String[] adm={"Test",request.getParameter("adm1"),request.getParameter("adm2"),request.getParameter("adm3"),request.getParameter("adm4"),request.getParameter("adm5")};
+        
         out.println(action);
         int code=0;int code1=0;
         try{
@@ -112,6 +115,9 @@ public class TriggerAuth extends HttpServlet {
 	   	 			String aurl1=rs.getString("aurl");String tokenurl1=rs.getString("tokenurl");
 	   	 			String tlabel1=rs.getString("tlabel");String treplace1=rs.getString("treplace");
 	   	 			String el1=rs.getString("el");String ev1=rs.getString("ev");String rmethod1=rs.getString("select2");
+	   	 			//For signed auth
+	   	 			String sigckey=rs.getString("sigckey");String sigskey=rs.getString("sigskey");
+	   	 			String sigmsg=rs.getString("message");
 	   	 			
 	   	 			out.println(authen);
 	   	 			String str="";
@@ -281,6 +287,87 @@ public class TriggerAuth extends HttpServlet {
 	 	 			   	st2.executeUpdate();
 	 	 			   	st2.close();
 	   	 			}//basic auth
+	   	 			else if(authen.equals("Signed Auth")){
+	   	 				String uuid_string = UUID.randomUUID().toString();
+	 					uuid_string = uuid_string.replaceAll("-", "");
+	 					String nonce = uuid_string; 
+	 					String timestamp = String.valueOf((System.currentTimeMillis()/1000) +3600);
+	 					String smessage=sigmsg;
+	 					//construct the message
+	 					String[] slt=smessage.split("@@");
+	 					int nn=slt.length;String orurl="";
+	 					if(!(nn==0)){
+	 						for(int i=0;i<nn;i++){
+	 							if(slt[i].equals("timestamp")){
+	 								slt[i]=timestamp;
+	 							}else if(slt[i].equals("nonce")){
+	 								slt[i]=nonce;
+	 							}
+	 						}
+	 						for(int k=0;k<nn;k++){
+	 							orurl=orurl+slt[k];
+	 						}
+	 						smessage=orurl;
+	 					}
+	 					//creating signature
+	 					SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
+	 			        Mac mac = Mac.getInstance("HMACSHA1");
+	 			        mac.init(signingKey);
+	 			        byte[] rawHmac = mac.doFinal(smessage.getBytes());
+	 			        String result = new BASE64Encoder().encode(rawHmac);
+	 			        String signature1 = URLEncoder.encode(result, "UTF-8") ;
+	 			        //merge all the params
+	 					if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){
+			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5+"&"+p6+"="+pv6;}
+			   			
+			   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
+			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
+		        		 
+			   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4)){
+			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4;}
+		        		 
+			   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3)){
+			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3;}
+		        		 
+			   			else if(!"null".equals(p1) && !"null".equals(p2)){
+			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2;}
+		        		 
+			   			else if(!"null".equals(p1)){
+			   				eurl=p1+"="+pv1;}
+	 					//construct the url
+	 					String[] slt1=eurl.split("@@");
+	 					int nn1=slt1.length;String orurl1="";
+	 					if(!(nn1==0)){
+	 						for(int i=0;i<nn1;i++){
+	 							if(slt1[i].equals("timestamp")){
+	 								slt1[i]=timestamp;
+	 							}else if(slt1[i].equals("nonce")){
+	 								slt1[i]=nonce;
+	 							}else if(slt1[i].equals("signature")){
+	 								slt1[i]=signature1;
+	 							}
+	 						}
+	 						for(int k=0;k<nn1;k++){
+	 							orurl1=orurl1+slt1[k];
+	 						}
+	 						eurl=orurl1;
+	 					}
+	 					String callurl=t1+"?"+eurl;
+	 					//Request to client
+	   	 				HttpClient cli=new DefaultHttpClient();
+	   	 				HttpGet get=new HttpGet(callurl);
+	   	 				HttpResponse res=cli.execute(get);
+	   	 				BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
+	   	 				String line="";
+	   	 				while((line=bf.readLine())!=null){
+	   	 					str+=line;
+	   	 				}
+	   	 				code=200;
+	   	 				session.setAttribute("xml1", str);
+	   	 				PreparedStatement st2=con.prepareStatement("insert into trig_all (userid,tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace,smessage,sigskey) values ('"+id+"','"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"','"+sigmsg+"','"+sigskey+"')");
+	   	 				st2.executeUpdate();
+	   	 				st2.close();
+	   	 			}
 	   	 			else if(authen.equals("Oauth1")){
 		   	 			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){
 			   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5+"&"+p6+"="+pv6;}

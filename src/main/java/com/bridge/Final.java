@@ -57,6 +57,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import sun.misc.BASE64Encoder;
+
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.http.HttpTransport;
@@ -137,6 +139,7 @@ public class Final extends HttpServlet {
 				   		String h3=rs.getString("h3"); String hv3=rs.getString("hv3");
 				   		String h4=rs.getString("h4"); String hv4=rs.getString("hv4");
 				   		String h5=rs.getString("h5"); String hv5=rs.getString("hv5");
+				   		String sigmsg=rs.getString("smessage");String sigskey=rs.getString("sigskey");
 				   		if(authen.equals("No Auth")){
 			            	HttpClient cli=new DefaultHttpClient();
 			            	HttpGet get=new HttpGet(endurl1);
@@ -210,6 +213,82 @@ public class Final extends HttpServlet {
 		    					str+=lin;
 		    				}
 			   			}
+				   		else if(authen.equals("Signed Auth")){
+		   	 				String uuid_string = UUID.randomUUID().toString();
+		 					uuid_string = uuid_string.replaceAll("-", "");
+		 					String nonce = uuid_string; 
+		 					String timestamp = String.valueOf((System.currentTimeMillis()/1000) +3600);
+		 					String smessage=sigmsg;
+		 					//construct the message
+		 					String[] slt=smessage.split("@@");
+		 					int nn=slt.length;String orurl="";
+		 					if(!(nn==0)){
+		 						for(int i=0;i<nn;i++){
+		 							if(slt[i].equals("timestamp")){
+		 								slt[i]=timestamp;
+		 							}else if(slt[i].equals("nonce")){
+		 								slt[i]=nonce;
+		 							}
+		 						}
+		 						for(int k=0;k<nn;k++){
+		 							orurl=orurl+slt[k];
+		 						}
+		 						smessage=orurl;
+		 					}
+		 					//creating signature
+		 					SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
+		 			        Mac mac = Mac.getInstance("HMACSHA1");
+		 			        mac.init(signingKey);
+		 			        byte[] rawHmac = mac.doFinal(smessage.getBytes());
+		 			        String result = new BASE64Encoder().encode(rawHmac);
+		 			        String signature1 = URLEncoder.encode(result, "UTF-8") ;
+		 			        //merge all the params
+		 					if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){
+				   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5+"&"+p6+"="+pv6;}
+				   			
+				   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
+				   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
+			        		 
+				   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4)){
+				   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4;}
+			        		 
+				   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3)){
+				   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3;}
+			        		 
+				   			else if(!"null".equals(p1) && !"null".equals(p2)){
+				   				eurl=p1+"="+pv1+"&"+p2+"="+pv2;}
+			        		 
+				   			else if(!"null".equals(p1)){
+				   				eurl=p1+"="+pv1;}
+		 					//construct the url
+		 					String[] slt1=eurl.split("@@");
+		 					int nn1=slt1.length;String orurl1="";
+		 					if(!(nn1==0)){
+		 						for(int i=0;i<nn1;i++){
+		 							if(slt1[i].equals("timestamp")){
+		 								slt1[i]=timestamp;
+		 							}else if(slt1[i].equals("nonce")){
+		 								slt1[i]=nonce;
+		 							}else if(slt1[i].equals("signature")){
+		 								slt1[i]=signature1;
+		 							}
+		 						}
+		 						for(int k=0;k<nn1;k++){
+		 							orurl1=orurl1+slt1[k];
+		 						}
+		 						eurl=orurl1;
+		 					}
+		 					String callurl=endurl1+"?"+eurl;
+		 					//Request to client
+		   	 				HttpClient cli=new DefaultHttpClient();
+		   	 				HttpGet get=new HttpGet(callurl);
+		   	 				HttpResponse res=cli.execute(get);
+		   	 				BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
+		   	 				String line="";
+		   	 				while((line=bf.readLine())!=null){
+		   	 					str+=line;
+		   	 				}
+				   		}
 				   		else if(authen.equals("Oauth1")){
 				   			String res="";
 				   			//out.println("in Oauth");
