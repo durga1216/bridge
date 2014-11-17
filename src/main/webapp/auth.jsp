@@ -103,6 +103,8 @@ $(document).ready(function(){
 		            $("#shead1").toggle(this.checked);
 
 				});
+			 $('#tformat').change(function() {
+
 
 			if( $("#tformat").val() == "Unix"){
 				$('#second').show();
@@ -113,7 +115,7 @@ $(document).ready(function(){
 				$('#second').hide();
 			}
 	
-	
+			 });
 
 });
 
