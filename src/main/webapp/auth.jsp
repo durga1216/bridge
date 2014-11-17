@@ -104,11 +104,11 @@ $(document).ready(function(){
 
 				});
 
-			if( $("#tformat option:selected").text() == "Unix"){
+			if( $("#tformat").val() == "Unix"){
 				$('#second').show();
 				$('#utc').hide();
 			}
-			else if($("#tformat option:selected").text() == "UTC"){
+			else if($("#tformat").val() == "UTC"){
 				$('#utc').show();
 				$('#second').hide();
 			}
