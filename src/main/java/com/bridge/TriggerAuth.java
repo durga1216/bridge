@@ -400,7 +400,8 @@ public class TriggerAuth extends HttpServlet {
 	   	 					long oauth_timestamp = System.currentTimeMillis()/1000;
 	   	 					String parameter_string="";
 	   	 					String call="https://bridge-minddotss.rhcloud.com/Oauth1call";
-	   	 					if(rmethod1.equals("DELETE")){// get current time in milliseconds, then divide by 1000 to get seconds
+			   	 			//For checking the callback is required or not
+	   	 					if(rmethod1.equals("DELETE")){
 	   	 						parameter_string = "oauth_callback="+URLEncoder.encode(call, "UTF-8")+"&oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + osmeth + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
 	   	 					}else{
 	   	 						parameter_string = "oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + osmeth + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";
@@ -450,6 +451,7 @@ public class TriggerAuth extends HttpServlet {
 				         		session.setAttribute("tempid", tempid);
 				        	    session.setAttribute("tid", tid);
 				        	    session.setAttribute("ourl", eurl);
+				        	    session.setAttribute("otyp", "trigger");
 	   	 					}
 	   	 					catch(ClientProtocolException cpe)  {  
 	   	 						System.out.println(cpe.getMessage());  
@@ -511,6 +513,7 @@ public class TriggerAuth extends HttpServlet {
 					       		session.setAttribute("tempid", tempid);
 				        	    session.setAttribute("tid", tid);
 				        	    session.setAttribute("ourl", eurl);
+				        	    session.setAttribute("otyp", "trigger");
 	   	 					} 
 	   	 					catch(ClientProtocolException cpe)  {   
 	   	 						System.out.println(cpe.getMessage());  
@@ -551,6 +554,7 @@ public class TriggerAuth extends HttpServlet {
 		   	 			}else{
 		   	 				eeurl=t1+"?"+eurl;
 		   	 			}
+		   	 			//For checking the Google api or normal oauth2
 	   	 				if(rmethod1.equals("DELETE")){
 	   	 					session.setAttribute("tempid", tempid);
 	   	 					session.setAttribute("tid", tid);
@@ -762,7 +766,8 @@ public class TriggerAuth extends HttpServlet {
 		   	 					long oauth_timestamp = System.currentTimeMillis()/1000;
 		   	 					String parameter_string="";
 		   	 					String call="https://bridge-minddotss.rhcloud.com/Oauth1call";
-		   	 					if(rmethod1.equals("DELETE")){// get current time in milliseconds, then divide by 1000 to get seconds
+				   	 			//For checking the callback is required or not
+		   	 					if(rmethod1.equals("DELETE")){
 		   	 						parameter_string = "oauth_callback="+URLEncoder.encode(call, "UTF-8")+"&oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + osmeth + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
 		   	 					}else{
 		   	 						parameter_string = "oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + osmeth + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";
@@ -812,6 +817,7 @@ public class TriggerAuth extends HttpServlet {
 					         		session.setAttribute("tempid", tempid);
 					        	    session.setAttribute("tid", aid);
 					        	    session.setAttribute("ourl", eurl);
+					        	    session.setAttribute("otyp", "action");
 		   	 					}
 		   	 					catch(ClientProtocolException cpe)  {  
 		   	 						System.out.println(cpe.getMessage());  
@@ -873,6 +879,7 @@ public class TriggerAuth extends HttpServlet {
 						       		session.setAttribute("tempid", tempid);
 					        	    session.setAttribute("tid", aid);
 					        	    session.setAttribute("ourl", eurl);
+					        	    session.setAttribute("otyp", "action");
 		   	 					} 
 		   	 					catch(ClientProtocolException cpe)  {   
 		   	 						System.out.println(cpe.getMessage());  
@@ -889,6 +896,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 					st2.close();
 	   	 				}
 	   	 				else if(authen.equals("Oauth2")){
+			   	 			//For checking the Google api or normal oauth2
 	   	 					if(rmethod1.equals("DELETE")){
 	   	 						session.setAttribute("tempid", tempid);
 	   	 						session.setAttribute("tid", aid);
