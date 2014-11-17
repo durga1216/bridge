@@ -107,7 +107,7 @@ $(document).ready(function(){
 			if( $("#tformat option:selected").text() == "Unix"){
 				$('#second').show();
 			}
-			else($("#tformat option:selected").text() == "UTC"){
+			else if($("#tformat option:selected").text() == "UTC"){
 				$('#utc').show();
 			}
 	
