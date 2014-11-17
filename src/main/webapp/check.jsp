@@ -232,7 +232,7 @@
 <%
 ResultSet r=null;ResultSet rs1 =null;ResultSet rs=null;String authen="";String txt1="";String txt2="";String txt3="";String txt4="";String a1="";String b1="";String b3="";
 String authen1="";String atxt1="";String atxt2="";String atxt3="";String atxt4="";String tgtit="hh";
-String actit="hh";String tid="hh";String aid="hh";int code=0;int code1=0;String tempid="";
+String actit="hh";String tid="hh";String aid="hh";int code=0;int code1=0;String tempid="";String sigskey="";String sigckey="";
 String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5];
 	try{
 		PreparedStatement st1=conn.prepareStatement("select * from home order by tempid desc limit 1");
@@ -252,6 +252,7 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
     		turl=rs.getString("t1");
     		tp[1]=rs.getString("p1");tp[2]=rs.getString("p2");tp[3]=rs.getString("p3");tp[4]=rs.getString("p4");
     		txt1=rs.getString("txt1");txt2=rs.getString("txt2"); txt3=rs.getString("txt3");txt4=rs.getString("txt4");
+    		sigckey=rs.getString("sigckey");sigskey=rs.getString("sigskey");
       	}
 	  	PreparedStatement ps1 = conn.prepareStatement("select * from title t1 JOIN auth t2 on t1.appid=t2.appid JOIN triger t3 ON t1.appid=t3.appid where t1.appid=?");
       	ps1.setString(1,aid);
@@ -261,6 +262,7 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
     		aurl=rs1.getString("t1");
     		hd[1]=rs1.getString("h1");hd[2]=rs1.getString("h2");hd[3]=rs1.getString("h3");hd[4]=rs1.getString("h4");
     		atxt1=rs1.getString("txt1");atxt2=rs1.getString("txt2"); atxt3=rs1.getString("txt3");atxt4=rs1.getString("txt4");
+      	    
       	}
      	HttpSession session1=request.getSession();
      	session1.setAttribute("tid",tid);
@@ -349,9 +351,11 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 	}else if(authen.equals("Signed Auth")){
 	%>
 	<div id=inpop><h3>Signed Authentication:</h3><br><br>
-	1,Login into Your account by clicking the Authenticate Button..
-	<br>2,Access the MindPulpy App to read the data..<br><br>
-	<br><br>
+     <%=sigckey%>:<br>
+       <input type="text" name="sigckey" value=""><br><br>
+     <%=sigskey %>:<br>
+       <input type="text" name="sigskey" value=""><br><br>
+       
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
 	<%
 	}
@@ -438,7 +442,7 @@ else{%>
 <input type="button" Onclick="javascript:popup('popUpAct')" name="con_act" id="con_act" value="Connect an <%= actit %> account" style="margin-left:300px;"><div id="disp1" style="display:none;margin-left:300px;color:#fff;">Account is working</div>
 <%code1=(Integer)request.getAttribute("code1");
 if(code1==200){%>
-	<div id="disp1" style="margin-left:600px;color:#fff;"><img src="images/tick.jpg" width="20" height="20">&nbsp;&nbsp; Account is working</div><br><br>	
+	<div id="disp1" style="margin-left:600px;color:#fff;"><img src="images/tick.jpg" width="20" height="20">&nbsp;&nbsp; Account is working</div><br>
 
 
 <% }

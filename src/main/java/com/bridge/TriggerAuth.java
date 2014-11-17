@@ -78,7 +78,7 @@ public class TriggerAuth extends HttpServlet {
         String[] tdm={"Test",request.getParameter("tdm1"),request.getParameter("tdm2"),request.getParameter("tdm3"),request.getParameter("tdm4"),request.getParameter("tdm5")};
         String[] ndm={"Test",request.getParameter("ndm1"),request.getParameter("ndm2"),request.getParameter("ndm3"),request.getParameter("ndm4"),request.getParameter("ndm5")};
         String[] adm={"Test",request.getParameter("adm1"),request.getParameter("adm2"),request.getParameter("adm3"),request.getParameter("adm4"),request.getParameter("adm5")};
-        
+        String sigckey=request.getParameter("sigckey");String sigskey=request.getParameter("sigskey");
         out.println(action);
         int code=0;int code1=0;
         try{
@@ -116,7 +116,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 			String tlabel1=rs.getString("tlabel");String treplace1=rs.getString("treplace");
 	   	 			String el1=rs.getString("el");String ev1=rs.getString("ev");String rmethod1=rs.getString("select2");
 	   	 			//For signed auth
-	   	 			String sigckey=rs.getString("sigckey");String sigskey=rs.getString("sigskey");
+	   	 			//String sigckey=rs.getString("sigckey");String sigskey=rs.getString("sigskey");
 	   	 			String sigmsg=rs.getString("message");
 	   	 			
 	   	 			out.println(authen);
@@ -346,6 +346,8 @@ public class TriggerAuth extends HttpServlet {
 	 								slt1[i]=nonce;
 	 							}else if(slt1[i].equals("signature")){
 	 								slt1[i]=signature1;
+	 							}else if(slt1[i].equals("apikey")){
+	 								slt1[i]=sigckey;
 	 							}
 	 						}
 	 						for(int k=0;k<nn1;k++){
