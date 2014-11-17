@@ -104,7 +104,13 @@ $(document).ready(function(){
 
 				});
 
-			
+			if( $("#tformat option:selected").text() == "Unix"){
+				$('#second').show();
+			}
+			else($("#tformat option:selected").text() == "UTC"){
+				$('#utc').show();
+			}
+	
 	
 
 });
@@ -403,6 +409,13 @@ margin-left:100px;
 <option value="URL-Encoded">URL-Encoded</option>
 <option value="HexaDecimal">HexaDecimal</option>
 </select><br><br>
+<div id="ba1">Timestamp Format</div>
+<select name="tformat" id="tformat">
+<option value="Unix">Unix</option>
+<option value="UTC">UTC</option>
+</select><br><br>
+<input type="text" name="second" id="second" placeholder="Add Seconds to Unix timestamp (optional)" style="display:none">
+<input type="text" name="utc" id="utc" placeholder="Enter the UTC Format" style="display:none">
 <div id="ba">Dynamic param values (i.e timestamp,nonce), mention like @@timestamp@@,@@nonce@@ in below text area</div><br><br>
 <textarea id="sigtext" name="sigtext" placeholder="Enter the Message here"></textarea><br><br>
 <input type="checkbox" name="http" id="http" value="basic">Send signature Http headers<br><br>

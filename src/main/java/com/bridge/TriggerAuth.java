@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -19,6 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.*;
 
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
@@ -119,7 +121,8 @@ public class TriggerAuth extends HttpServlet {
 	   	 			//For signed auth
 	   	 			//String sigckey=rs.getString("sigckey");String sigskey=rs.getString("sigskey");
 	   	 			String sigmsg=rs.getString("message");String sig=rs.getString("sig");
-	   	 			String sformat=rs.getString("sformat");
+	   	 			String sformat=rs.getString("sformat");String tformat=rs.getString("tformat");
+	   	 			int second=rs.getInt("second");String utc=rs.getString("utc");
 	   	 			
 	   	 			out.println(authen);
 	   	 			String str="";
@@ -290,10 +293,20 @@ public class TriggerAuth extends HttpServlet {
 	 	 			   	st2.close();
 	   	 			}//basic auth
 	   	 			else if(authen.equals("Signed Auth")){
+	   	 				String timestamp="";
 	   	 				String uuid_string = UUID.randomUUID().toString();
 	 					uuid_string = uuid_string.replaceAll("-", "");
 	 					String nonce = uuid_string; 
-	 					String timestamp = String.valueOf((System.currentTimeMillis()/1000) +3600);
+	 					if(tformat.equals("Unix"))
+	 				      timestamp = String.valueOf((System.currentTimeMillis()/1000) + second);
+	 					else if(tformat.equals("UTC")){
+	 						final Date currentTime = new Date();
+	 						final SimpleDateFormat sdf = new SimpleDateFormat(utc);
+	 						sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+	 						timestamp=sdf.format(currentTime).toString();
+
+	 					}
+	 						
 	 					String smessage=sigmsg;
 	 					//construct the message
 	 					String[] slt=smessage.split("@@");
