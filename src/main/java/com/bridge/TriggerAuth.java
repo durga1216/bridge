@@ -397,8 +397,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 					uuid_string = uuid_string.replaceAll("-", "");
 	   	 					String oauth_nonce = uuid_string; 
 	   	 					String eurl1 = URLEncoder.encode(ourl1, "UTF-8");
-	   	 					int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
-	   	 					String oauth_timestamp = (new Long(millis/1000)).toString();
+	   	 					long oauth_timestamp = System.currentTimeMillis()/1000;
 	   	 					String parameter_string="";
 	   	 					String call="https://bridge-minddotss.rhcloud.com/Oauth1call";
 	   	 					if(rmethod1.equals("DELETE")){// get current time in milliseconds, then divide by 1000 to get seconds
@@ -466,7 +465,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 					uuid_string = uuid_string.replaceAll("-", "");
 	   	 					String oauth_nonce = uuid_string; 
 	   	 					String eurl1 = URLEncoder.encode(ourl1, "UTF-8");
-	   	 					String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
+	   	 					long oauth_timestamp = System.currentTimeMillis()/1000;
 	   	 					String parameter_string = "oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + osmeth + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
 	   	 					String signature_base_string = oreq+"&"+eurl1+"&" + URLEncoder.encode(parameter_string, "UTF-8");out.println("signature_base_string=" + signature_base_string);
 	   	 					out.println(signature_base_string);
@@ -497,10 +496,16 @@ public class TriggerAuth extends HttpServlet {
 					       			 	result.append(line);
 					       		}
 					       		String tok=result.toString();
-					       		out.println("dsdsdsdsssssdf"+tok);
-					       		String[] tok1=tok.split("&");
-					       		oauth_token=tok1[0];
-					       		String sec1=tok1[1];
+					       		String sec1="";
+				         		String[] chk1=tok.split("&");
+				        		for(int i=0;i<chk1.length;i++){
+				        			String[] stest=chk1[i].split("=");
+				        			if(stest[0].equals("oauth_token")){
+				        				oauth_token=chk1[i];
+				        			}else if(stest[0].equals("oauth_token_secret")){
+				        				sec1=chk1[i];
+				        			}
+				        		}
 					       		session.setAttribute("secret1", sec1);
 					       		session.setAttribute("tempid", tempid);
 				        	    session.setAttribute("tid", tid);

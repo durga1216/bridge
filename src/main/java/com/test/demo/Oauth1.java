@@ -53,7 +53,8 @@ public class Oauth1 {
 	            String oauth_nonce = uuid_string; 
 	            String eurl1 = URLEncoder.encode(endurl1, "UTF-8");
 	            String call = URLEncoder.encode(callback, "UTF-8");
-	            String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
+	            //String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
+				long oauth_timestamp =System.currentTimeMillis()/1000;
 				String parameter_string ="";
                 if(eurl.equals("null")){
                  parameter_string ="oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
