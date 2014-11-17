@@ -286,7 +286,13 @@ font-size:15px;
 font-family:verdana;
 margin-left:100px;
 }
+#ba1{
+color:#FFFFFF;
+font-size:20px;
+font-family:verdana;
+margin-left:100px;
 
+}
 
 </style>
 </head>
@@ -392,7 +398,12 @@ margin-left:100px;
 </select><br><br>
 <input type="text" name="sigckey" value="" placeholder="Signed_consumer_key">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="text" name="sigskey" value="" placeholder="Signed_secret_key"><br><br>
-<div id="ba">Dynamic param values (i.e timestamp,nonce), mention like @@timestamp@@,@@nonce@@ in below text area</div><br>
+<div id="ba">Dynamic param values (i.e timestamp,nonce), mention like @@timestamp@@,@@nonce@@ in below text area</div><br><br>
+<div id="ba1">Signature Format</div>
+<select name="sformat" id="sformat">
+<option value="URL-Encoded">URL-Encoded</option>
+<option value="HexaDecimal">HexaDecimal</option>
+</select><br><br>
 <textarea id="sigtext" name="sigtext" placeholder="Enter the Message here"></textarea><br><br>
 <input type="checkbox" name="http" id="http" value="basic">Send signature Http headers<br><br>
 <a id='shead' href="javascript:addHead();" style="display:none">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;<a id='shead1' href="javascript:removeHead();" style="display:none">Remove Header</a><br><br>

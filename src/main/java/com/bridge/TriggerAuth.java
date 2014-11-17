@@ -31,6 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Hex;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -117,7 +118,8 @@ public class TriggerAuth extends HttpServlet {
 	   	 			String el1=rs.getString("el");String ev1=rs.getString("ev");String rmethod1=rs.getString("select2");
 	   	 			//For signed auth
 	   	 			//String sigckey=rs.getString("sigckey");String sigskey=rs.getString("sigskey");
-	   	 			String sigmsg=rs.getString("message");
+	   	 			String sigmsg=rs.getString("message");String sig=rs.getString("sig");
+	   	 			String sformat=rs.getString("sformat");
 	   	 			
 	   	 			out.println(authen);
 	   	 			String str="";
@@ -311,12 +313,29 @@ public class TriggerAuth extends HttpServlet {
 	 					}
 	 					out.println("smessage");
 	 					//creating signature
+	 					String result="";String signature1="";
+	 					if(sig.equals("HMAC-SHA1")){
 	 					SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
 	 			        Mac mac = Mac.getInstance("HMACSHA1");
 	 			        mac.init(signingKey);
 	 			        byte[] rawHmac = mac.doFinal(smessage.getBytes());
-	 			        String result = new BASE64Encoder().encode(rawHmac);
-	 			        String signature1 = URLEncoder.encode(result, "UTF-8") ;
+	 			        if(sformat.equals("URL-Encoded")){
+	 			        result = new BASE64Encoder().encode(rawHmac);
+	 			        signature1 = URLEncoder.encode(result, "UTF-8") ;}
+	 			        else if(sformat.equals("HexaDecimal"))
+	 			        signature1=new String(Hex.encodeHex(rawHmac));
+	 					}
+	 					else if(sig.equals("HMAC-SHA256")){
+	 						SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HmacSHA256");
+		 			        Mac mac = Mac.getInstance("HmacSHA256");
+		 			        mac.init(signingKey);
+		 			        byte[] rawHmac = mac.doFinal(smessage.getBytes());
+		 			    		if(sformat.equals("URL-Encoded")){
+			 			        result = new BASE64Encoder().encode(rawHmac);
+			 			        signature1 = URLEncoder.encode(result, "UTF-8") ;}
+			 			        else if(sformat.equals("HexaDecimal"))
+			 			        signature1=new String(Hex.encodeHex(rawHmac));
+	 					}
 	 			        //merge all the params
 	 					if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){
 			   				eurl=p1+"="+pav1+"&"+p2+"="+pav2+"&"+p3+"="+pav3+"&"+p4+"="+pav4+"&"+p5+"="+pav5+"&"+p6+"="+pav6;}
