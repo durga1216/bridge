@@ -348,7 +348,7 @@ margin-left:100px;
 <input type="text" name="ourl1" value="" placeholder=" Request_token_Url">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="text" name="ourl2" value="" placeholder=" Authorization_Url"><br><br>
 <input type="text" name="ourl3" value="" placeholder=" Access_Token_Url">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="osmeth" value="HMAC-SHA1" placeholder=" Signature_Method"><br><br>
+<input type="text" name="osmeth" value="HMAC-SHA1" placeholder="Signature_Method"><br><br>
 <select name="oreq">
 <option value="dummy"> Request Method</option>
     <option value="GET"> GET</option>
