@@ -135,6 +135,7 @@ public class Oauth1call extends HttpServlet {
 	         				 secrt=chk1[i];
 	         			 }
 	         		 }
+		         	 session.setAttribute("samp", tok+"\n"+oauth_token+"\n"+sec1+"\n"+signature_base_string+"\n"+actok);
 	         		 session.setAttribute("access_token1", tokn);
 	         		 session.setAttribute("access_secret1", secrt);
 	         		 PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken,secret) values ('"+tempid+"','"+appid+"','"+tokn+"','"+secrt+"')");

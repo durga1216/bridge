@@ -810,7 +810,7 @@ public class TriggerAuth extends HttpServlet {
 					         		session.setAttribute("samp", tok+"\n"+oauth_token+"\n"+sec1+"\n"+signature_base_string+"\n"+uurl);
 					         		session.setAttribute("secret1", sec1);  
 					         		session.setAttribute("tempid", tempid);
-					        	    session.setAttribute("tid", tid);
+					        	    session.setAttribute("tid", aid);
 					        	    session.setAttribute("ourl", eurl);
 		   	 					}
 		   	 					catch(ClientProtocolException cpe)  {  
@@ -871,7 +871,7 @@ public class TriggerAuth extends HttpServlet {
 					        		}
 						       		session.setAttribute("secret1", sec1);
 						       		session.setAttribute("tempid", tempid);
-					        	    session.setAttribute("tid", tid);
+					        	    session.setAttribute("tid", aid);
 					        	    session.setAttribute("ourl", eurl);
 		   	 					} 
 		   	 					catch(ClientProtocolException cpe)  {   
