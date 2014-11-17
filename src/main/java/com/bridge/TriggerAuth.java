@@ -435,7 +435,6 @@ public class TriggerAuth extends HttpServlet {
 				         			result.append(line);
 				         		}
 				         		String tok=result.toString();
-				         		//out.println("dsdsdsdsssssdf"+tok);
 				         		String sec1="";
 				         		String[] chk1=tok.split("&");
 				        		for(int i=0;i<chk1.length;i++){
@@ -446,6 +445,7 @@ public class TriggerAuth extends HttpServlet {
 				        				sec1=chk1[i];
 				        			}
 				        		}
+				         		session.setAttribute("samp", tok+"\n"+oauth_token+"\n"+sec1+"\n"+signature_base_string+"\n"+uurl);
 				         		session.setAttribute("secret1", sec1);  
 				         		session.setAttribute("tempid", tempid);
 				        	    session.setAttribute("tid", tid);
@@ -457,6 +457,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 					catch(IOException ioe) {   
 	   	 						System.out.println(ioe.getMessage());  
    	 						}
+	   	 					
 	   	 					String author=ourl2+"?"+oauth_token+"&perms=write";
 	   	 					response.sendRedirect(author);
 	   	 				}
