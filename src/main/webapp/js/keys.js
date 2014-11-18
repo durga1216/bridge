@@ -55,22 +55,115 @@ function addParam(){
 	    hm +="<select name=x"+num+" id=x"+num+">";
 	    hm +="<option value=dummy>Choose Json Node</option>";
 		var respo1=JSON.parse(respo2);
-		console.log(respo1);
-		var xml=respo1;
+		var xml="";
+		if(chfst=="["){
+			xml=respo1[0];
+		}else if(chfst=="{"){
+			xml=respo1;
+		}
 		for(var key in xml){
-			var key1=JSON.stringify(xml[""+key+""]);
-			if(key1.charAt(0)=='"'){
+			var sxml1=JSON.stringify(xml[""+key+""]);
+			var xml1=JSON.parse(sxml1);
+			if(sxml1.charAt(0)=='"'){
 				hm +="<option value="+key+">" + key + "</option>";
-			}else if(key1.charAt(0)=='{'){
-				var xml1=JSON.parse(key1);
-				for(var key2 in xml1){
-					hm +="<option value=" + key + "."+key2+">" + key + "/"+key2+"</option>";
+			}else if(sxml1.charAt(0)=='{'){
+				for(var sky1 in xml1){
+					var sxml2=JSON.stringify(xml1[""+sky1+""]);
+					var xml2=JSON.parse(sxml2);
+					if(sxml2.charAt(0)=='"'){
+						hm +="<option value=" + key + "."+sky1+">" + key + "/"+sky1+"</option>";
+					}else if(sxml2.charAt(0)=='{'){
+						for(var sky2 in xml2){
+							var sxml3=JSON.stringify(xml2[""+sky2+""]);
+							var xml3=JSON.parse(sxml3);
+							if(sxml3.charAt(0)=='"'){
+								hm +="<option value=" + key + "."+sky1+"."+sky2+">" + key + "/"+sky1+"/"+sky2+"</option>";
+							}else if(sxml3.charAt(0)=='{'){
+								for(var sky3 in xml3){
+									hm +="<option value=" + key + "."+sky1+"."+sky2+"."+sky3+">" + key + "/"+sky1+"/"+sky2+"/"+sky3+"</option>";
+								}
+							}else if(sxml3.charAt(0)=='['){
+								var axml3=xml3[0];
+								for(var aky3 in axml3){
+									hm +="<option value=" + key + "."+sky1+"."+sky2+"[0]."+aky3+">" + key + "/"+sky1+"/"+sky2+"/"+aky3+"</option>";
+								}
+							}else{
+								hm +="<option value=" + key + "."+sky1+"."+sky2+">" + key + "/"+sky1+"/"+sky2+"</option>";			
+							}
+						}
+					}else if(sxml2.charAt(0)=='['){
+						var axml2=xml2[0];
+						for(var aky2 in axml2){
+							var sxml3=JSON.stringify(axml2[""+aky2+""]);
+							var xml3=JSON.parse(sxml3);
+							if(sxml3.charAt(0)=='"'){
+								hm +="<option value=" + key + "."+sky1+"[0]."+aky2+">" + key + "/"+sky1+"/"+aky2+"</option>";
+							}else if(sxml3.charAt(0)=='{'){
+								for(var sky3 in xml3){
+									hm +="<option value=" + key + "."+sky1+"[0]."+aky2+"."+sky3+">" + key + "/"+sky1+"/"+aky2+"/"+sky3+"</option>";
+								}
+							}else if(sxml3.charAt(0)=='['){
+								var axml3=xml3[0];
+								for(var aky3 in axml3){
+									hm +="<option value=" + key + "."+sky1+"[0]."+aky2+"[0]."+aky3+">" + key + "/"+sky1+"/"+aky2+"/"+aky3+"</option>";
+								}
+							}else{
+								hm +="<option value=" + key + "."+sky1+"[0]."+aky2+">" + key + "/"+sky1+"/"+aky2+"</option>";			
+							}
+						}
+					}else{
+						hm +="<option value=" + key + "."+sky1+">" + key + "/"+sky1+"</option>";			
+					}
 				}
-			}else if(key1.charAt(0)=='['){
-				var xml2=JSON.parse(key1);
-				var xml1=xml2[0];
-				for(var aky in xml1){
-					hm +="<option value=" + key + "[0]."+aky+">" + key + "/"+aky+"</option>";
+			}else if(sxml1.charAt(0)=='['){
+				var axml1=xml1[0];
+				for(var aky1 in axml1){
+					var sxml2=JSON.stringify(axml1[""+aky1+""]);
+					var xml2=JSON.parse(sxml2);
+					if(sxml2.charAt(0)=='"'){
+						hm +="<option value=" + key + "[0]."+aky1+">" + key + "/"+aky1+"</option>";
+					}else if(sxml2.charAt(0)=='{'){
+						for(var sky2 in xml2){
+							var sxml3=JSON.stringify(xml2[""+sky2+""]);
+							var xml3=JSON.parse(sxml3);
+							if(sxml3.charAt(0)=='"'){
+								hm +="<option value=" + key + "[0]."+aky1+"."+sky2+">" + key + "/"+aky1+"/"+sky2+"</option>";
+							}else if(sxml3.charAt(0)=='{'){
+								for(var sky3 in xml3){
+									hm +="<option value=" + key + "[0]."+aky1+"."+sky2+"."+sky3+">" + key + "/"+aky1+"/"+sky2+"/"+sky3+"</option>";
+								}
+							}else if(sxml3.charAt(0)=='['){
+								var axml3=xml3[0];
+								for(var aky3 in axml3){
+									hm +="<option value=" + key + "[0]."+aky1+"."+sky2+"[0]."+aky3+">" + key + "/"+aky1+"/"+sky2+"/"+aky3+"</option>";
+								}
+							}else{
+								hm +="<option value=" + key + "[0]."+aky1+"."+sky2+">" + key + "/"+aky1+"/"+sky2+"</option>";			
+							}
+						}
+					}else if(sxml2.charAt(0)=='['){
+						var axml2=xml2[0];
+						for(var aky2 in axml2){
+							var sxml3=JSON.stringify(axml2[""+aky2+""]);
+							var xml3=JSON.parse(sxml3);
+							if(sxml3.charAt(0)=='"'){
+								hm +="<option value=" + key + "[0]."+aky1+"[0]."+aky2+">" + key + "/"+aky1+"/"+aky2+"</option>";
+							}else if(sxml3.charAt(0)=='{'){
+								for(var sky3 in xml3){
+									hm +="<option value=" + key + "[0]."+aky1+"[0]."+aky2+"."+sky3+">" + key + "/"+aky1+"/"+aky2+"/"+sky3+"</option>";
+								}
+							}else if(sxml3.charAt(0)=='['){
+								var axml3=xml3[0];
+								for(var aky3 in axml3){
+									hm +="<option value=" + key + "[0]."+aky1+"[0]."+aky2+"[0]."+aky3+">" + key + "/"+aky1+"/"+aky2+"/"+aky3+"</option>";
+								}
+							}else{
+								hm +="<option value=" + key + "[0]."+aky1+"[0]."+aky2+">" + key + "/"+aky1+"/"+aky2+"</option>";		
+							}
+						}
+					}else{
+						hm +="<option value=" + key + "[0]."+aky1+">" + key + "/"+aky1+"</option>";			
+					}
 				}
 			}else{
 				hm +="<option value="+key+">" + key + "</option>";			
