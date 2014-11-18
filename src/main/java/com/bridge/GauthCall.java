@@ -80,19 +80,54 @@ public class GauthCall extends HttpServlet {
 		   	st2.executeUpdate();
 		   	st2.close();
 		   	if(type.equals("trigger")){
-			   	//TODO For google analytics
-			   	//String url="https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A85990559&start-date=2014-01-01&end-date=today&metrics=ga%3Apageviews";
-				HttpClient cli=new DefaultHttpClient();
-				HttpGet get=new HttpGet(Gurl);
-				get.addHeader("Authorization","Bearer "+response1.getAccessToken());
-				get.addHeader("X-JavaScript-User-Agent","Google APIs Explorer");
-				HttpResponse response2=cli.execute(get);
-				BufferedReader bf=new BufferedReader(new InputStreamReader(response2.getEntity().getContent()));
-				String line="";String str="";
-				while((line=bf.readLine())!=null){
-						str=str+line;
-				}
-				session.setAttribute("xml1", str);
+		   		if(Gurl.equals("spreadsheet_data")){
+		   			//TODO continue with spreadsheet services
+					Credential credential =  new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
+							.setJsonFactory(jsonFactory).setTransport(transport).build()
+					    	.setAccessToken(response1.getAccessToken()).setRefreshToken(response1.getRefreshToken());
+					SpreadsheetService service = new SpreadsheetService("Aplication-name");
+				    service.setOAuth2Credentials(credential);
+				    URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+				    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,SpreadsheetFeed.class);
+				    List<com.google.gdata.data.spreadsheet.SpreadsheetEntry> spreadsheets = feed.getEntries();
+				    if (spreadsheets.isEmpty()) {
+				    	//TODO no spreadsheeet
+				    }
+				    com.google.gdata.data.spreadsheet.SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+				    //System.out.println(spreadsheet.getTitle().getPlainText());
+				    WorksheetFeed worksheetFeed = service.getFeed(spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+				    List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
+				    WorksheetEntry worksheet = worksheets.get(0);
+				    //TODO Fetch the cell feed of the worksheet.
+				    URL cellFeedUrl = worksheet.getCellFeedUrl();
+				    CellFeed cellFeed = service.getFeed(cellFeedUrl, CellFeed.class);
+				    JSONObject obj = new JSONObject();
+				    JSONObject obj1 = new JSONObject();
+				    String title=spreadsheet.getTitle().getPlainText();
+				    for (CellEntry cell : cellFeed.getEntries()) {
+				    	String name=cell.getTitle().getPlainText();
+				    	String value=cell.getCell().getValue();
+				    	obj.put(name, value);
+				    }
+				    obj1.put(title, obj); 
+				    String sdata=obj1.toString();
+				    sdata=sdata.replaceAll(" ", "_");
+				    session.setAttribute("xml1", sdata);
+		   		}else{
+				   	//TODO For google analytics
+				   	//String url="https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A85990559&start-date=2014-01-01&end-date=today&metrics=ga%3Apageviews";
+					HttpClient cli=new DefaultHttpClient();
+					HttpGet get=new HttpGet(Gurl);
+					get.addHeader("Authorization","Bearer "+response1.getAccessToken());
+					get.addHeader("X-JavaScript-User-Agent","Google APIs Explorer");
+					HttpResponse response2=cli.execute(get);
+					BufferedReader bf=new BufferedReader(new InputStreamReader(response2.getEntity().getContent()));
+					String line="";String str="";
+					while((line=bf.readLine())!=null){
+							str=str+line;
+					}
+					session.setAttribute("xml1", str);
+		   		}
 		   	}
 		   	else{
 		   		String sheetname="";
@@ -109,36 +144,6 @@ public class GauthCall extends HttpServlet {
 			    }
 			    session.setAttribute("sheetname", sheetname);
 		   	}
-			//TODO continue with spreadsheet services
-		   	
-/*			Credential credential =  new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
-					.setJsonFactory(jsonFactory).setTransport(transport).build()
-			    	.setAccessToken(response1.getAccessToken()).setRefreshToken(response1.getRefreshToken());
-			SpreadsheetService service = new SpreadsheetService("Aplication-name");
-		    service.setOAuth2Credentials(credential);
-		    URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
-		    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,SpreadsheetFeed.class);
-		    List<com.google.gdata.data.spreadsheet.SpreadsheetEntry> spreadsheets = feed.getEntries();
-		    if (spreadsheets.isEmpty()) {
-		    	//TODO no spreadsheeet
-		    }
-		    com.google.gdata.data.spreadsheet.SpreadsheetEntry spreadsheet = spreadsheets.get(0);
-		    //System.out.println(spreadsheet.getTitle().getPlainText());
-		    WorksheetFeed worksheetFeed = service.getFeed(spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
-		    List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
-		    WorksheetEntry worksheet = worksheets.get(0);
-		    //TODO Fetch the cell feed of the worksheet.
-		    URL cellFeedUrl = worksheet.getCellFeedUrl();
-		    CellFeed cellFeed = service.getFeed(cellFeedUrl, CellFeed.class);
-		    JSONObject obj = new JSONObject();
-		    JSONObject obj1 = new JSONObject();
-		    String title=spreadsheet.getTitle().getPlainText();
-		    for (CellEntry cell : cellFeed.getEntries()) {
-		    	String name=cell.getTitle().getPlainText();
-		    	String value=cell.getCell().getValue();
-		    	obj.put(name, value);
-		    }
-		    obj1.put(title, obj); */
 			
 		}catch(Exception e){
 			  out.println(e);
