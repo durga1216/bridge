@@ -7,6 +7,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
 
 public class Hget {
 
@@ -23,6 +24,10 @@ public class Hget {
 				str+=line;		     			
 			}
 			System.out.println(str);
+			JSONObject obj=new JSONObject(str);
+			String getkind=obj.getString("kind");
+			String totalitems=obj.getString("totalItems");
+			System.out.println(getkind+"\n"+totalitems);
 		}
 		catch(Exception e){
 			System.out.println(e);

@@ -2,6 +2,7 @@ package com.bridge;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -32,6 +33,9 @@ public class WebHooks extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		PrintWriter out=response.getWriter();
+		out.println("<h1>Documentation:</h1><br>");
+		out.println("");
 	
 	}
 
