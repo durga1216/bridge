@@ -85,7 +85,7 @@ function load2(){
 </script>
 </head>
 <body><br>
-<div id="head"><a href="http://minddotss.com"><img style="margin-left:100px;box-shadow:0px 0px 0px 0px;width:150px;height:70px;" alt="MindDots" src="images/log.png"></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mind-Pulpy Cloud Connectors</div><br><hr>
+<a href="http://minddotss.com"><img style="margin-left:100px;box-shadow:0px 0px 0px 0px;width:150px;height:70px;" alt="MindDots" src="images/log.png"></a><center><div id="head">Mind-Pulpy Cloud Connectors</div></center><br><hr>
 <br><br><div id=tit>Login with MindPulpy Credentials:</div><br><br>
 <br>
 <form action="Login" method="post">

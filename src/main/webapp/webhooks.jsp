@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<script src="js/jquery-latest.js"></script>
+<title>Mind Connectors</title>
+<link rel="shortcut icon" href="favicon.ico" />
 </head>
 <style type="text/css">
 body{
@@ -83,10 +85,13 @@ font-weight:bold;
 </style>
 <body>
 <center><div id=head>Mind-Connectors</div><br><br><hr><br></center>
+<form action="finish.jsp">
 <div id=msg>
-<ul><li>Enter the MindPulpy Webhook Url into Your account</li>
-<li><u>https://bridge-minddotss.rhcloud.com/WebHooks</u> Method:Post</li>
-<li>Do the configured action in you account then Refresh this page and View the response</li></ul>
+**Alert:
+<ul><li>Did you enter the MindPulpy Webhook Url into Your account..??</li>
+<li>Did you make your Webhook Response as Xml or Json..??</li>
+<li>Did you do the specified action in you account..??</li></ul>
+Then view and choose your required fields.. Or Do the above steps in your account and refresh this page.
 </div><br>
 <div id=full>
 <div id=lft1>
@@ -121,6 +126,7 @@ font-weight:bold;
 </div></div>
 <br><br><br><br>
 <center><input type="submit" value=Continue></center>
+</form>
 </body>
 <script type="text/javascript" src="js/keys.js"></script>
 <script type="text/javascript">

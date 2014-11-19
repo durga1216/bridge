@@ -17,15 +17,13 @@ function addParent(){
 	  newTBDiv.innerHTML = "<input type='text' id='h" + intTextBox + "'    name='h" + intTextBox + "' placeholder='Header_Label'/>" + "<input type='text' id='hv"+ intTextBox + " ' name='hv"+intTextBox+"' placeholder='Header_Value'/>";
 	  contentID.appendChild(newTBDiv);
 }
-function removeParent()
-{
+function removeParent(){
 	var contentID = document.getElementById('content');
     contentID.removeChild(document.getElementById('strText'+intTextBox));
     intTextBox = intTextBox-1;
 }	
 
-function addHead()
-{
+function addHead(){
   intTextBox = intTextBox + 1;
   var contentID = document.getElementById('content2');
   var newTBDiv = document.createElement('div');
@@ -45,7 +43,9 @@ $(document).ready(function(){
 	   	if($('input:radio[name=authen]:checked').val() == "No Auth"){
 			$('#req').show();
 		  	$('#divid').hide();
-		  	$('#apiid').hide();			
+		  	$('#apiid').hide();	
+			$('#hook').hide();
+			$('#sign').hide();
 		  	$('#oauth2').hide();
 	  		$('#oauth1').hide();
 		}
@@ -53,6 +53,8 @@ $(document).ready(function(){
 	 		$('#divid').show();
 		  	$('#apiid').hide();
 		  	$('#oauth2').hide();
+			$('#hook').hide();
+			$('#sign').hide();
 			$('#req').hide();
 			$('#oauth1').hide();
 	   	}
@@ -62,11 +64,15 @@ $(document).ready(function(){
 			$('#req').hide();
 			$('#oauth2').hide();
 			$('#oauth1').hide();
+			$('#hook').hide();
+			$('#sign').hide();
 		}
 		else if($('input:radio[name=authen]:checked').val() == "Oauth1"){
 			$('#apiid').hide();
 			$('#divid').hide();
-			$('#req').hide();			
+			$('#req').hide();	
+			$('#hook').hide();
+			$('#sign').hide();
 			$('#oauth2').hide();
 			$('#oauth1').show();
 		}
@@ -74,6 +80,8 @@ $(document).ready(function(){
 		 	$('#apiid').hide();
 			$('#divid').hide();
 			$('#req').hide();
+			$('#hook').hide();
+			$('#sign').hide();
 			$('#oauth1').hide();
 			$('#oauth2').show();
 			$('.rmethod').show();
@@ -81,42 +89,55 @@ $(document).ready(function(){
 		}
 		else if($('input:radio[name=authen]:checked').val() == "Signed Auth"){
 		 	$('#sign').show();	
+			$('#hook').hide();
+			$('#req').hide();
+		  	$('#divid').hide();
+		  	$('#apiid').hide();			
+		  	$('#oauth2').hide();
+	  		$('#oauth1').hide();
+		}
+		else if($('input:radio[name=authen]:checked').val() == "Webhook"){
+			$('#hook').show();
+			$('#sign').hide();
+			$('#req').hide();
+		  	$('#divid').hide();
+		  	$('#apiid').hide();			
+		  	$('#oauth2').hide();
+	  		$('#oauth1').hide();
 		}
 	});
 	
-	 $('#timestamp').click(function () {
-		    $("#stamp").toggle(this.checked);
-		});
-	 
-	 $('#signonce').click(function () {
-		    $("#nonce").toggle(this.checked);
-		});
-			$('#sign1').click(function(){
-				$('#sign').show();
-				$('#sign1').hide();
-			});
-			
-			 $('#http').click(function () {
-				    $("#suname").toggle(this.checked);
-				    $("#spwd").toggle(this.checked);
-		            $("#shead").toggle(this.checked);
-		            $("#shead1").toggle(this.checked);
-
-				});
-			 $('#tformat').change(function() {
-
-
-			if( $("#tformat").val() == "Unix"){
-				$('#second').show();
-				$('#utc').hide();
-			}
-			else if($("#tformat").val() == "UTC"){
-				$('#utc').show();
-				$('#second').hide();
-			}
+	//For signed Authentication
+	$('#timestamp').click(function () {
+	    $("#stamp").toggle(this.checked);
+	});	
 	
-			 });
-
+ 	$('#signonce').click(function () {
+	    $("#nonce").toggle(this.checked);
+	});
+ 	
+	$('#sign1').click(function(){
+		$('#sign').show();
+		$('#sign1').hide();
+	});
+			
+	$('#http').click(function () {
+	    $("#suname").toggle(this.checked);
+	    $("#spwd").toggle(this.checked);
+        $("#shead").toggle(this.checked);
+        $("#shead1").toggle(this.checked);
+	});
+	
+	$('#tformat').change(function() {
+		if( $("#tformat").val() == "Unix"){
+			$('#second').show();
+			$('#utc').hide();
+		}
+		else if($("#tformat").val() == "UTC"){
+			$('#utc').show();
+			$('#second').hide();
+		}	
+	});
 });
 
 </script>
@@ -185,7 +206,7 @@ input[type="radio"]
    color:#FFFFFF;
    font-size:20px;
    font-family:verdana;
-   margin-left:60px;
+   margin-left:40px;
  }
  label{
 font-family:verdana;
@@ -247,7 +268,12 @@ font-weight:bold;
 margin-left:100px;
 color:#FFFFFF;
 }
-
+#hook{
+font-family:verdana;
+font-size:18px;
+color:#FFFFFF;
+margin-left:200px;
+}
 #sign{
 font-family:verdana;
 font-size:18px;
@@ -311,14 +337,16 @@ margin-left:100px;
 <br><br><center><div id="head">Mind-Bridge</div></center>
 <br><br><br><br><div id="tit">1.Choose Trigger Authentication Scheme</div><br><br>
 <div id="inline_content">
+
 <input type="radio" name="authen"  value="No Auth">
 <label for="rd1">No Auth</label>
+
 <input type="radio" name="authen"   value="Basic Auth">
-
 <label for="rd1">Basic Auth</label>
-<input type="radio" name="authen"   value="API keys" >
 
+<input type="radio" name="authen"   value="API keys" >
 <label for="rd1">API keys</label>
+
 <input type="radio" name="authen"  value="Oauth1">
 <label for="rd1">OAuth1</label>
 
@@ -328,7 +356,12 @@ margin-left:100px;
 <input type="radio" name="authen"  value="Signed Auth">
 <label for="rd1">Signed Auth</label>
 
-<br></div><div id="req" style="display:none">Fine! Go ahead</div>
+<input type="radio" name="authen"  value="Webhook">
+<label for="rd1">Webhook</label>
+
+<br></div>
+
+<div id="req" style="display:none">Fine! Go ahead</div>
 
 <div id="divid" style="display:none"><br>
 <br><br><div id="desc">Add Description</div><br><br>
@@ -343,6 +376,13 @@ margin-left:100px;
 <br><div id="content"></div><br>
 </div>
 
+<div id="hook" style="display:none">
+<br><br><br>
+1,Enter the MindPulpy Webhook Url into Your account.<br><br>
+2,Url:<u>https://bridge-minddotss.rhcloud.com/WebHooks</u>
+&nbsp;&nbsp;&nbsp;Method:Post<br><br>
+3,Do the specified action in you account then click continue..
+</div>
 
 <div id="apiid" style="display:none"><br>
 <div id="desc">Add Description</div><br><br>
