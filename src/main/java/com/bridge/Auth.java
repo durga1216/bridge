@@ -70,7 +70,7 @@ public class Auth extends HttpServlet {
 		    String sh3=request.getParameter("sh3");String shv3=request.getParameter("shv3");
 		    String sh4=request.getParameter("sh4");String shv4=request.getParameter("shv4");
 		    String sh5=request.getParameter("sh5");String shv5=request.getParameter("shv5");String sformat=request.getParameter("sformat");
-		   String tformat=request.getParameter("tformat");int second=Integer.parseInt(request.getParameter("second"));String utc=request.getParameter("utc");
+		   String tformat=request.getParameter("tformat");String second=request.getParameter("second");String utc=request.getParameter("utc");
 		    try{
 		    	Class.forName("com.mysql.jdbc.Driver").newInstance();
 		   	 	con=DriverManager.getConnection(Util.url,Util.user,Util.pass);

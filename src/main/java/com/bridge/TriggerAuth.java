@@ -122,8 +122,8 @@ public class TriggerAuth extends HttpServlet {
 	   	 			//String sigckey=rs.getString("sigckey");String sigskey=rs.getString("sigskey");
 	   	 			String sigmsg=rs.getString("message");String sig=rs.getString("sig");
 	   	 			String sformat=rs.getString("sformat");String tformat=rs.getString("tformat");
-	   	 			int second=rs.getInt("second");String utc=rs.getString("utc");
-	   	 			
+	   	 			String second=rs.getString("second");String utc=rs.getString("utc");
+	   	 			int sec=Integer.parseInt(second);
 	   	 			out.println(authen);
 	   	 			String str="";
 	   	 			String eurl="null";
@@ -298,7 +298,7 @@ public class TriggerAuth extends HttpServlet {
 	 					uuid_string = uuid_string.replaceAll("-", "");
 	 					String nonce = uuid_string; 
 	 					if(tformat.equals("Unix"))
-	 				      timestamp = String.valueOf((System.currentTimeMillis()/1000) + second);
+	 				      timestamp = String.valueOf((System.currentTimeMillis()/1000) + sec);
 	 					else if(tformat.equals("UTC")){
 	 						final Date currentTime = new Date();
 	 						final SimpleDateFormat sdf = new SimpleDateFormat(utc);
