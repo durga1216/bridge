@@ -45,6 +45,9 @@ public class WebHooks extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Connection conn=null;
+		String order=request.getParameter("order");
+		String subject=request.getParameter("subject");
+		String XmlString=request.getParameter("XmlString");
 		try{
 			StringBuffer jb = new StringBuffer();
 			String line = null;
@@ -55,7 +58,7 @@ public class WebHooks extends HttpServlet {
 	    	String res=jb.toString();
 	    	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    	conn=DriverManager.getConnection(Util.url,Util.user,Util.pass);
-	    	PreparedStatement ps=conn.prepareStatement("insert into hook (str) values ('"+res+"')");
+	    	PreparedStatement ps=conn.prepareStatement("insert into hook (str) values ('"+XmlString+"')");
 	    	ps.executeUpdate();
 		}
 		catch(Exception e){
