@@ -51,7 +51,7 @@ public class Zoho extends HttpServlet {
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		//Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 		Connection conn=DriverManager.getConnection("jdbc:mysql://127.12.212.2:3306/bridge", "admin7R9w6e8", "5n4gq2Pz4q_b");
-		PreparedStatement pt=conn.prepareStatement("insert into hook(str,count) values('"+res+"','null')");
+		PreparedStatement pt=conn.prepareStatement("insert into hook(str,count) values('durga','roobini')");
 		pt.execute();
 		pt.close();
 	    }
