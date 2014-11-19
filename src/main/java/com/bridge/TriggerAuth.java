@@ -64,8 +64,9 @@ public class TriggerAuth extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out =response.getWriter(); 
 		Connection con=null;  
-	   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
+	   	response.setHeader("Content-Type","text/html;charset=UTF-8");
         HttpSession session=request.getSession();
+	   	session.setAttribute("xml1", "null");
 		String id=(String) session.getAttribute("id");
         String tempid=(String)session.getAttribute("tempid");
         String tid=(String)session.getAttribute("tid");  

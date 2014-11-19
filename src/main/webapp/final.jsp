@@ -117,6 +117,10 @@ font-weight:bold;
 float:right;
 margin-right:100px;
 }
+#sout1{
+float:left;
+margin-left:100px;
+}
 #nhr{
 margin-right:300px;
 margin-left:200px;
@@ -126,10 +130,12 @@ height:1px;
 }
 </style>
 <script type="text/javascript">
-function log()
-{
+function log(){
 	window.location="logout.jsp";
-	}
+}
+function log1(){
+	window.location="index.jsp";
+}
 </script>
 </head>
 <%@ page import="java.sql.*" %>
@@ -142,9 +148,9 @@ function log()
     	//response.sendRedirect("logout.jsp");
     }
 %>
-<center><div id=sout><input id=butt type="button" value="Signout" Onclick="javascript:log()"></div><div id=head>Mind-Connectors</div><br><br><hr><br>
-<h2>Your Connecters is Running successfully..!! <a id=lin href="index.jsp">&lt;----Click here for Connect More----&gt;</a></h2>
-</center><div id=stt>Your Active connector:</div><br>
+<div id=sout1><input id=butt type="button" value="Back" Onclick="javascript:log1()"></div><div id=sout><input id=butt type="button" value="Signout" Onclick="javascript:log()"></div><center><div id=head>Mind-Connectors</div><br><br><hr><br>
+<h2>Your Connecters are Running successfully..!! <a id=lin href="index.jsp">&lt;----Click here for Connect More----&gt;</a></h2>
+</center><div id=stt>Your Active connector:-</div><br>
 <%	String id = (String) request.getSession().getAttribute("id");
 	try{
 		 PreparedStatement st1=conn.prepareStatement("select tempid from trig_all where userid='"+id+"'");
@@ -187,7 +193,7 @@ function log()
 				}
 			
 		}%>
-			<br><div id=stt>Your Inactive connector:</div><br>
+			<br><div id=stt>Your Inactive connector:-</div><br>
 		<% 
 		 while(rs3.next()){
 				String tempid=rs3.getString("tempid");

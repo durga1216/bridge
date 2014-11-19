@@ -147,7 +147,10 @@ $(document).ready(function(){
 	});
 });
 function load(){
-		window.open("https://docs.google.com/forms/d/1mULCyQRpHS3IBRaoKOuKg8cGrR6o8i0QyfcW4bXfeO0/viewform?embedded=true",'_blank');
+	window.open("https://docs.google.com/forms/d/1mULCyQRpHS3IBRaoKOuKg8cGrR6o8i0QyfcW4bXfeO0/viewform?embedded=true",'_blank');
+}
+function load1(){
+	window.location="final.jsp";
 }
 </script>
 </head>
@@ -169,7 +172,9 @@ ResultSet rs2=null; ResultSet rs3=null;%>
        String appid="";String title="";String mode="";String title1="";String appid1="";String mode1="";String app="";String app1="";
 String id="";String id1="";
 %>
-<div id="head"><a href="http://minddotss.com"><img style="margin-left:100px;box-shadow:0px 0px 0px 0px;width:150px;height:70px;" alt="MindDots" src="images/log.png"></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mind-Pulpy Cloud Connectors</div><br><hr>
+<br>
+<a href="http://minddotss.com"><img style="margin-left:100px;box-shadow:0px 0px 0px 0px;width:150px;height:70px;" src="images/log.png"></a>
+<input type="button" value="Your Account" Onclick="javascript:load1()" style="margin-right:100px;float:right;"><div id="head"><center>Mind-Pulpy Cloud Connectors</center></div><br><hr>
 <br><div id='tit'>1.Choose trigger and action &nbsp;&nbsp;&nbsp; (OR) &nbsp;&nbsp;&nbsp; <a style="color:#fff;" href="javascript:load()">Click here to Submit New Cloud Connect Request</a></div>
 <br><br>
 <div id="ins">a.Choose a trigger -> b. Choose an action -> c.Choose Trigger Method -> d.Choose Action Method</div><br>
