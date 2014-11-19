@@ -182,7 +182,7 @@ function log()
 							<input style="display:none;" type=text name=tempid value=<%=tempid%>>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="submit" value=" Apply the Changes"></h4>
-							</form><br>
+							</form><div id=nhr><hr></div>
 						<%
 				}
 			
