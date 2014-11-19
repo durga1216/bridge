@@ -117,7 +117,13 @@ font-weight:bold;
 float:right;
 margin-right:100px;
 }
-
+#nhr{
+margin-right:300px;
+margin-left:200px;
+color:#fff;
+background-color:#fff;
+height:1px;
+}
 </style>
 <script type="text/javascript">
 function log()
@@ -214,7 +220,7 @@ function log()
 							<input style="display:none;" type=text name=tempid value=<%=tempid%>>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="submit" value=" Apply the Changes"></h4>
-							</form><br>
+							</form><div id=nhr><hr></div>
 						<%
 				}
 		}
