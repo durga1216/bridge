@@ -37,13 +37,13 @@ public class WebHooks extends HttpServlet {
 		String subject=request.getParameter("subject");
 		String XmlString=request.getParameter("XmlString");
 		try{
-			StringBuffer jb = new StringBuffer();
+		/*	StringBuffer jb = new StringBuffer();
 			String line = null;
 			BufferedReader reader = request.getReader();
 			while ((line = reader.readLine()) != null){
 				jb.append(line);
 			}
-	    	String res=jb.toString();
+	    	String res=jb.toString();*/
 	    	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    	conn=DriverManager.getConnection(Util.url,Util.user,Util.pass);
 	    	PreparedStatement ps=conn.prepareStatement("insert into hook (str) values ('durga')");
