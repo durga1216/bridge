@@ -32,11 +32,26 @@ public class WebHooks extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter out=response.getWriter();
-		out.println("<h1>Documentation:</h1><br>");
-		out.println("");
-	
+		Connection conn=null;
+		String order=request.getParameter("order");
+		String subject=request.getParameter("subject");
+		String XmlString=request.getParameter("XmlString");
+		try{
+			StringBuffer jb = new StringBuffer();
+			String line = null;
+			BufferedReader reader = request.getReader();
+			while ((line = reader.readLine()) != null){
+				jb.append(line);
+			}
+	    	String res=jb.toString();
+	    	Class.forName("com.mysql.jdbc.Driver").newInstance();
+	    	conn=DriverManager.getConnection(Util.url,Util.user,Util.pass);
+	    	PreparedStatement ps=conn.prepareStatement("insert into hook (str) values ('durga')");
+	    	ps.executeUpdate();
+		}
+		catch(Exception e){
+			
+		}
 	}
 
 	/**
