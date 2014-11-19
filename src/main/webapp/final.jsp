@@ -28,7 +28,7 @@ font-family:verdana;
 font-weight:bold;
 color:#FFFFFF;
 font-size:20px;
-margin-left:300px;
+margin-left:200px;
 }
 #lin{
 text-decoration:none;
@@ -110,7 +110,7 @@ height:1px;
 font-family:verdana;
 font-size:20px;
 color:#fff;
-margin-left:200px;
+margin-left:150px;
 font-weight:bold;
 }
 #sout{
@@ -157,6 +157,7 @@ function log()
 						String aid=rs2.getString("aid");
 						String userid=rs2.getString("userid");
 						String state=rs2.getString("state");
+						String time=rs2.getString("time");
 						%>
 							<form action="ThreadHandler" method="get">
 							<h4>&nbsp; <img src="Title?appid=<%=tid%>"> <%=tt%> &nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;
@@ -167,14 +168,15 @@ function log()
 							<%}else{ %>
 								<input id=rd type="button" value=" <%=state%> ">
 							<%} %>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id=gn type="button" value=" <%=time%> Minutes ">
+							<br><br>Settings:- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<select name="state"><option value=dummy>Choose State</option><option value=Active>Active</option><option value=Inactive>Inactive</option></select>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<select name="state"><option value=Active>Active</option><option value=Inactive>Inactive</select>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<select name="time"><option value=15>15 Minutes</option><option value=10>10 Minutes</select>
+							<select name="time"><option value=dummy>Choose Time</option><option value=15>15 Minutes</option><option value=30>30 Minutes</option><option value=45>45 Minutes</option></select>
 							<input style="display:none;" type=text name=tempid value=<%=tempid%>>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="submit" value=" Apply "></h4>
-							</form>
+							<input type="submit" value=" Apply the Changes"></h4>
+							</form><br>
 						<%
 				}
 			
@@ -193,6 +195,7 @@ function log()
 						String aid=rs2.getString("aid");
 						String userid=rs2.getString("userid");
 						String state=rs2.getString("state");
+						String time=rs2.getString("time");
 						%>
 							<form action="ThreadHandler" method="get">
 							<h4>&nbsp; <img src="Title?appid=<%=tid%>"> <%=tt%> &nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;
@@ -203,14 +206,15 @@ function log()
 							<%}else{ %>
 								<input id=rd type="button" value=" <%=state%> ">
 							<%} %>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id=gn type="button" value=" <%=time%> Minutes ">
+							<br><br>Settings:- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<select name="state"><option value=dummy>Choose State</option><option value=Active>Active</option><option value=Inactive>Inactive</option></select>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<select name="state"><option value=Active>Active</option><option value=Inactive>Inactive</select>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<select name="time"><option value=15>15 Minutes</option><option value=10>10 Minutes</select>
+							<select name="time"><option value=dummy>Choose Time</option><option value=15>15 Minutes</option><option value=30>30 Minutes</option><option value=45>45 Minutes</option></select>
 							<input style="display:none;" type=text name=tempid value=<%=tempid%>>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="submit" value=" Apply "></h4>
-							</form>
+							<input type="submit" value=" Apply the Changes"></h4>
+							</form><br>
 						<%
 				}
 		}

@@ -39,7 +39,7 @@ public class ThreadHandler extends HttpServlet {
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
-			PreparedStatement ps=con.prepareStatement("update home set state='"+state+"' where  tempid='"+tempid+"'");
+			PreparedStatement ps=con.prepareStatement("update home set state='"+state+"' && time='"+time+"' where  tempid='"+tempid+"'");
 			ps.executeUpdate();
 			response.sendRedirect("final.jsp");
 		}catch(Exception e){
