@@ -46,7 +46,7 @@ public class WebHooks extends HttpServlet {
 	    	String res=jb.toString();*/
 	    	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    	conn=DriverManager.getConnection(Util.url,Util.user,Util.pass);
-	    	PreparedStatement ps=conn.prepareStatement("insert into hook (str) values ('durga')");
+	    	PreparedStatement ps=conn.prepareStatement("insert into hook (str) values ('"+XmlString+"')");
 	    	ps.executeUpdate();
 		}
 		catch(Exception e){
