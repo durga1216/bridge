@@ -985,7 +985,7 @@ public class TriggerAuth extends HttpServlet {
 						      		for(int k=0;k<nn1;k++){
 						      			orurl1=orurl1+slt1[k];
 						      		}
-						      		t1=orurl1;
+						      		aurl1=orurl1;
 						  		}
 						  		//construct token url by @@
 						  		String[] slt2=tokenurl1.split("@@");
@@ -997,7 +997,7 @@ public class TriggerAuth extends HttpServlet {
 						      		for(int k=0;k<nn2;k++){
 						      			orurl2=orurl2+slt2[k];
 						      		}
-						      		t1=orurl2;
+						      		tokenurl1=orurl2;
 						  		}
 	   	 						session.setAttribute("ckey", ckey1);
 	   	 						session.setAttribute("cseckey", cseckey1);
