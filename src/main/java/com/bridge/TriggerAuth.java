@@ -630,12 +630,13 @@ public class TriggerAuth extends HttpServlet {
 	   	 		} //while
 	   	 	} //auth trigger 		  	   	 
 	   	 	else if("Webhook Trigger".equals(action)){
+	   	 		String respo="No Response from Webhook";
 		   	 	PreparedStatement ps=con.prepareStatement("select * from hook order by count desc limit 1");
 				ResultSet rs=ps.executeQuery();
 				while(rs.next()){
-					String respo=rs.getString("str");
-					session.setAttribute("xml1", respo);
+					respo=rs.getString("str");
 				}
+				session.setAttribute("xml1", respo);
 				code=200;
  				PreparedStatement st2=con.prepareStatement("insert into trig_all (userid,tempid,tid,authen) values ('"+id+"','"+tempid+"','"+tid+"','Webhook')");
  				st2.executeUpdate();
