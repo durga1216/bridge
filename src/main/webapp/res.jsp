@@ -119,7 +119,6 @@ char chfirst=respo.charAt(0);
 %>
 <script type="text/javascript" src="js/keys.js"></script>
 <script type="text/javascript">
-var num=0;
 var respo2='<%=respo%>';
 var chfst='<%=chfirst%>';
 function load(){

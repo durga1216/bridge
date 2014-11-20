@@ -130,7 +130,6 @@ Then view and choose your required fields.. Or Do the above steps in your accoun
 </body>
 <script type="text/javascript" src="js/keys.js"></script>
 <script type="text/javascript">
-var num=0;
 var respo2='<%=respo%>';
 var chfst='<%=chfirst%>';
 </script>

@@ -1,3 +1,4 @@
+var num=0;
 function addParam(){
 	num = num + 1;
 	var contentID = document.getElementById('content');
