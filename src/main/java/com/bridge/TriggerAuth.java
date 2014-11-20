@@ -640,6 +640,9 @@ public class TriggerAuth extends HttpServlet {
  				PreparedStatement st2=con.prepareStatement("insert into trig_all (userid,tempid,tid,authen) values ('"+id+"','"+tempid+"','"+tid+"','Webhook')");
  				st2.executeUpdate();
  				st2.close();
+ 				request.setAttribute("code", code);
+   	 			request.setAttribute("code1", code1);
+   	 			request.getRequestDispatcher("check.jsp").forward(request, response);	
 	   	 	}
 	   	 	else if("Authenticate Action".equals(action)){
 	   	 		out.println("Authenticate Action inside");
