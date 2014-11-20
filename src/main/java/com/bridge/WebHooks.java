@@ -87,7 +87,7 @@ public class WebHooks extends HttpServlet {
 		// TODO Auto-generated method stub
 		Connection conn=null;
 		String Tid="TMP_008";
-		String zoho=request.getParameter("XmlString");
+		String zoho=request.getParameter("zoho_webhook");
 		
 		try{
 	    	Class.forName("com.mysql.jdbc.Driver").newInstance();
