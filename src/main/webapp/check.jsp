@@ -409,7 +409,20 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 	%>
 	<div id=inpop><h3>Oauth Authentication:</h3><br><br>
 	1,Login into Your account by clicking the Authenticate Button..
-	<br>2,Access the MindPulpy App to read the data..<br><br><br><br>
+	<br>2,Access the MindPulpy App to read the data..<br>
+	<%
+	String[] slt=aurl.split("@@");
+	int nn=slt.length;String orurl="";
+	if(!(nn==0)){
+	for(int i=1,j=1;i<nn;i=i+2,j++){
+		slt[i]="&nbsp;<input style='width:100px;border-radius:5px;'name='adm"+j+"' type='text'>&nbsp;";
+	}
+	for(int k=0;k<nn;k++){
+		orurl=orurl+slt[k];
+	}
+	out.println("<br>"+orurl+"<br>");
+	}
+	%><br><br><br>
 		<input type="submit" name="submit" onclick="javascript:sub1('dis1')" value="Authenticate Action" ></div>
 	<%}else if(authen1.equals("Oauth1")){
 	%>
