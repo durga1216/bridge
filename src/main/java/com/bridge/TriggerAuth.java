@@ -629,6 +629,18 @@ public class TriggerAuth extends HttpServlet {
 	   	 			request.getRequestDispatcher("check.jsp").forward(request, response);	
 	   	 		} //while
 	   	 	} //auth trigger 		  	   	 
+	   	 	else if("Webhook Trigger".equals(action)){
+		   	 	PreparedStatement ps=con.prepareStatement("select * from hook order by count desc limit 1");
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()){
+					String respo=rs.getString("str");
+					session.setAttribute("xml1", respo);
+				}
+				code=200;
+ 				PreparedStatement st2=con.prepareStatement("insert into trig_all (userid,tempid,tid,authen) values ('"+id+"','"+tempid+"','"+tid+"','Webhook')");
+ 				st2.executeUpdate();
+ 				st2.close();
+	   	 	}
 	   	 	else if("Authenticate Action".equals(action)){
 	   	 		out.println("Authenticate Action inside");
 	   	 		PreparedStatement st1=con.prepareStatement("select * from triger t1 JOIN auth t2 on t1.appid=t2.appid where t1.appid=?");
