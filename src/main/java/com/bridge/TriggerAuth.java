@@ -66,7 +66,6 @@ public class TriggerAuth extends HttpServlet {
 		Connection con=null;  
 	   	response.setHeader("Content-Type","text/html;charset=UTF-8");
         HttpSession session=request.getSession();
-	   	session.setAttribute("xml1", "null");
 		String id=(String) session.getAttribute("id");
         String tempid=(String)session.getAttribute("tempid");
         String tid=(String)session.getAttribute("tid");  
@@ -89,6 +88,7 @@ public class TriggerAuth extends HttpServlet {
         	Class.forName("com.mysql.jdbc.Driver").newInstance();
         	con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
 	   	 	if(action.equals("Authenticate Trigger")){
+	   		   	session.setAttribute("xml1", "null");
 	   	 		PreparedStatement st1=con.prepareStatement("select * from triger t1 JOIN auth t2 on t1.appid=t2.appid where t1.appid=?");
 	   	 		st1.setString(1, tid);
 	   	 		ResultSet rs=st1.executeQuery();
