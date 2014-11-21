@@ -66,7 +66,6 @@ public class TriggerAuth extends HttpServlet {
 		Connection con=null;  
 	   	response.setHeader("Content-Type","text/html;charset=UTF-8");
         HttpSession session=request.getSession();
-	   	session.setAttribute("xml1", "null");
 		String id=(String) session.getAttribute("id");
         String tempid=(String)session.getAttribute("tempid");
         String tid=(String)session.getAttribute("tid");  
@@ -89,6 +88,7 @@ public class TriggerAuth extends HttpServlet {
         	Class.forName("com.mysql.jdbc.Driver").newInstance();
         	con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
 	   	 	if(action.equals("Authenticate Trigger")){
+	   		   	session.setAttribute("xml1", "null");
 	   	 		PreparedStatement st1=con.prepareStatement("select * from triger t1 JOIN auth t2 on t1.appid=t2.appid where t1.appid=?");
 	   	 		st1.setString(1, tid);
 	   	 		ResultSet rs=st1.executeQuery();
@@ -630,16 +630,20 @@ public class TriggerAuth extends HttpServlet {
 	   	 		} //while
 	   	 	} //auth trigger 		  	   	 
 	   	 	else if("Webhook Trigger".equals(action)){
+	   	 		String respo="No Response from Webhook";
 		   	 	PreparedStatement ps=con.prepareStatement("select * from hook order by count desc limit 1");
 				ResultSet rs=ps.executeQuery();
 				while(rs.next()){
-					String respo=rs.getString("str");
-					session.setAttribute("xml1", respo);
+					respo=rs.getString("str");
 				}
+				session.setAttribute("xml1", respo);
 				code=200;
  				PreparedStatement st2=con.prepareStatement("insert into trig_all (userid,tempid,tid,authen) values ('"+id+"','"+tempid+"','"+tid+"','Webhook')");
  				st2.executeUpdate();
  				st2.close();
+ 				request.setAttribute("code", code);
+   	 			request.setAttribute("code1", code1);
+   	 			request.getRequestDispatcher("check.jsp").forward(request, response);	
 	   	 	}
 	   	 	else if("Authenticate Action".equals(action)){
 	   	 		out.println("Authenticate Action inside");
@@ -959,6 +963,42 @@ public class TriggerAuth extends HttpServlet {
 	   	 						st2.close();
 	   	 					}
 	   	 					else{
+	   	 						//construct Method Url by @@
+		   	 					String[] slt=t1.split("@@");
+						  		int nn=slt.length;String orurl="";
+						  		if(!(nn==0)){
+						  			for(int i=1,j=1;i<nn;i=i+2,j++){
+						  				slt[i]=adm[j];
+						      		}
+						      		for(int k=0;k<nn;k++){
+						      			orurl=orurl+slt[k];
+						      		}
+						      		t1=orurl;
+						  		}
+						  		//construct authentication url by @@
+						  		String[] slt1=aurl1.split("@@");
+						  		int nn1=slt1.length;String orurl1="";
+						  		if(!(nn1==0)){
+						  			for(int i=1,j=1;i<nn1;i=i+2,j++){
+						  				slt1[i]=adm[j];
+						      		}
+						      		for(int k=0;k<nn1;k++){
+						      			orurl1=orurl1+slt1[k];
+						      		}
+						      		aurl1=orurl1;
+						  		}
+						  		//construct token url by @@
+						  		String[] slt2=tokenurl1.split("@@");
+						  		int nn2=slt2.length;String orurl2="";
+						  		if(!(nn2==0)){
+						  			for(int i=1,j=1;i<nn2;i=i+2,j++){
+						  				slt2[i]=adm[j];
+						      		}
+						      		for(int k=0;k<nn2;k++){
+						      			orurl2=orurl2+slt2[k];
+						      		}
+						      		tokenurl1=orurl2;
+						  		}
 	   	 						session.setAttribute("ckey", ckey1);
 	   	 						session.setAttribute("cseckey", cseckey1);
 	   	 						session.setAttribute("tokenurl", tokenurl1);
