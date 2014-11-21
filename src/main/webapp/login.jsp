@@ -54,14 +54,14 @@ font-family:verdana;
 width:30%;
 float:left;
 margin-left:50px;
-height:400px;
+height:350px;
 overflow-y:auto;
 }
 #act{
 width:30%;
 float:left;
 margin-left:30px;
-height:400px;
+height:350px;
 overflow-y:auto;
 }
 #log{
