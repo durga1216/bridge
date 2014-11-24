@@ -99,13 +99,7 @@ public class OauthCall extends HttpServlet {
 			}
 			else if(rm1.equals("GET")){
 				pw.println("inside get");
-				HttpGet get=new HttpGet(tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
-				List <NameValuePair> cod = new ArrayList <NameValuePair>();
-				cod.add(new BasicNameValuePair("code",code));
-				cod.add(new BasicNameValuePair("grant_type","authorization_code"));
-				cod.add(new BasicNameValuePair("client_id",apikey));
-				cod.add(new BasicNameValuePair("client_secret",apisecvalue)); 
-				cod.add(new BasicNameValuePair("redirect_uri","https://bridge-minddotss.rhcloud.com/OauthCall")); 
+				HttpGet get=new HttpGet(tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCall");
 				HttpResponse response1 = client.execute(get);
 				BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));   		    
 				while ((responseMsg = rd.readLine()) != null) {
