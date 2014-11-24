@@ -71,6 +71,7 @@ public class TriggerAuth extends HttpServlet {
         String tid=(String)session.getAttribute("tid");  
         String aid=(String)session.getAttribute("aid");
         String action=request.getParameter("submit");
+        String exreq=request.getParameter("exreq");
         String dn=request.getParameter("dn");String apkey=request.getParameter("apkey");String b2=request.getParameter("uname");String b4=request.getParameter("pwd");
         String dn1=request.getParameter("dn1");
         String hd1=request.getParameter("hd1");String hd2=request.getParameter("hd2");String hd3=request.getParameter("hd3");
@@ -141,16 +142,28 @@ public class TriggerAuth extends HttpServlet {
 	   	 					t1=orurl;
 	   	 				}
 	   	 				HttpClient cli=new DefaultHttpClient();
-	   	 				HttpGet get=new HttpGet(t1);
-	   	 				HttpResponse res=cli.execute(get);
-	   	 				BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
-	   	 				String line="";
-	   	 				while((line=bf.readLine())!=null){
-	   	 					str+=line;
+	   	 				if(rmethod.equals("Get")){
+		   	 				HttpGet get=new HttpGet(t1);
+		   	 				HttpResponse res=cli.execute(get);
+			   	 			BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
+		   	 				String line="";
+		   	 				while((line=bf.readLine())!=null){
+		   	 					str+=line;
+		   	 				}
+	   	 				}else if(rmethod.equals("Post")){
+	   	 					HttpPost post=new HttpPost(t1);
+	   	 					StringEntity stt=new StringEntity(exreq);
+	   	 					post.setEntity(stt);
+	   	 					HttpResponse res=cli.execute(post);
+		   	 				BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
+		   	 				String line="";
+		   	 				while((line=bf.readLine())!=null){
+		   	 					str+=line;
+		   	 				}
 	   	 				}
 	   	 				code=200;
 	   	 				session.setAttribute("xml1", str);
-	   	 				PreparedStatement st2=con.prepareStatement("insert into trig_all (userid,tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace) values ('"+id+"','"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"')");
+	   	 				PreparedStatement st2=con.prepareStatement("insert into trig_all (userid,tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace,exreq) values ('"+id+"','"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"','"+exreq+"')");
 	   	 				st2.executeUpdate();
 	   	 				st2.close();
 	   	 			}else if(authen.equals("API keys")){  

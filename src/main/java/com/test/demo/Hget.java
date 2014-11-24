@@ -18,10 +18,10 @@ public class Hget {
 		try{
 			HttpClient client=new DefaultHttpClient();
 			String str=" ";String line="";
-			HttpPost post=new HttpPost("https://mandrillapp.com/api/1.0/users/info.json");
-			StringEntity str1=new StringEntity("{\"key\": \"bfOjWW_1dPe6Y3a9odyWsQ\"}");
+			HttpPost post=new HttpPost("https://us3.api.mailchimp.com/2.0/reports/bounce-messages.json");
+			StringEntity str1=new StringEntity("{\"apikey\": \"a1840fe8506a8257062ad3cb44f0ab01-us3\",\"cid\":\"614a0b5a90\"}");//\"id\":\"619e890eb0\"   ,\"cid\":\"614a0b5a90\",\"struct\":{\"data\":\"message\"}
 			post.setEntity(str1);
-			//HttpGet get=new HttpGet("https://www.googleapis.com/books/v1/volumes?key=AIzaSyDhka1g6k9JVmWn7N5sgis4_oG9nZhwgoc&q=9780605039070");
+			//HttpGet post=new HttpGet("https://ap1.salesforce.com/services/data/v28.0/searchlayout?oauth_token=00D900000010GvM!AQ8AQJzntgY4kdBf75XV7Shfuc7SdRD2zsyHzGS40plIeMApT3QWv7s5TpvO2w0MliL65_uhzOKnhLyb5jwMB0KgXZcGn89i&q=Accout,Name,Email,Contact");
 			HttpResponse response1 = client.execute(post);
 			BufferedReader rd = new BufferedReader(
 					new InputStreamReader(response1.getEntity().getContent()));

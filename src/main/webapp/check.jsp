@@ -123,7 +123,7 @@
 		font-size:15px;
 		color:#FF9900;
 		font-weight:bold;
-		width:200px;
+		width:300px;
 		height:100px;
 		}
 	#tit{
@@ -299,27 +299,20 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 			String[] slt=turl.split("@@");
 			int nn=slt.length;String orurl="";
 			if(!(nn==0)){
-			for(int i=1,j=1;i<nn;i=i+2,j++){
-				slt[i]="&nbsp;<input style='width:100px;border-radius:5px;'name='ndm"+j+"' type='text'>&nbsp;";
-			}
-			for(int k=0;k<nn;k++){
-				orurl=orurl+slt[k];
-			}
-			out.println("<br>"+orurl+"<br>");
+				for(int i=1,j=1;i<nn;i=i+2,j++){
+					slt[i]="&nbsp;<input style='width:100px;border-radius:5px;'name='ndm"+j+"' type='text'>&nbsp;";
+				}
+				for(int k=0;k<nn;k++){
+					orurl=orurl+slt[k];
+				}
+				out.println("<br>"+orurl+"<br>");
 			}
 			if(!rformat.equals("rest")){
-				%><textarea name="exreq" id="txt1"  placeholder="Give Original xml or json structure 
-
-						Json Example:
-							{'root':{Stable:@@map x1@@}}
-						Xml Example:
-							&lt;root&gt;
-								&lt;stable&gt;@@map x1@@&lt;/stable&gt;
-							&lt;/root&gt;"></textarea>&nbsp;&nbsp;&nbsp;&lt;&lt;--Map trigger nodes--&gt;&gt;<% 	
-							}
-						%>
-				<br><br><br><br><br>
-				<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
+				%><textarea name="exreq" id="txt1"  placeholder="Give Original xml or json structure "></textarea><% 	
+			}
+			%>
+			<br><br><br><br><br>
+			<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
 	<%}else if(authen.equals("Basic Auth")){%>
 		<div id=inpop><h3>Enter the Authentication details:</h3><br>*Basic Authentication(required):<br>
 		<%

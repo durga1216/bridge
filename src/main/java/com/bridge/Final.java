@@ -137,7 +137,7 @@ public class Final extends HttpServlet {
 					   		String pv1=rs.getString("pv1");String pv2=rs.getString("pv2");
 					   		String pv3=rs.getString("pv3");String pv4=rs.getString("pv4");
 					   		String pv5=rs.getString("pv5");String pv6=rs.getString("pv6");
-					   		String pv7=rs.getString("p7");
+					   		String pv7=rs.getString("p7");String exreq=rs.getString("exreq");
 					   		String h1=rs.getString("h1"); String hv1=rs.getString("hv1");
 					   		String h2=rs.getString("h2"); String hv2=rs.getString("hv2");
 					   		String h3=rs.getString("h3"); String hv3=rs.getString("hv3");
@@ -145,14 +145,27 @@ public class Final extends HttpServlet {
 					   		String h5=rs.getString("h5"); String hv5=rs.getString("hv5");
 					   		String sigmsg=rs.getString("smessage");String sigskey=rs.getString("sigskey");
 					   		if(authen.equals("No Auth")){
-				            	HttpClient cli=new DefaultHttpClient();
-				            	HttpGet get=new HttpGet(endurl1);
-				            	HttpResponse res=cli.execute(get);
-				            	BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
-				            	String line="";
-				            	while((line=bf.readLine())!=null){
-				            		str+=line;
-				            	}
+					   			HttpClient cli=new DefaultHttpClient();
+					   			if(rmethod.equals("Get")){
+					   				HttpGet get=new HttpGet(endurl1);
+					            	HttpResponse res=cli.execute(get);
+					            	BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
+					            	String line="";
+					            	while((line=bf.readLine())!=null){
+					            		str+=line;
+					            	}
+					   			}
+					   			else if(rmethod.equals("Post")){
+					   				HttpPost post=new HttpPost(endurl1);
+			   	 					StringEntity stt=new StringEntity(exreq);
+			   	 					post.setEntity(stt);
+			   	 					HttpResponse res=cli.execute(post);
+				   	 				BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
+				   	 				String line="";
+				   	 				while((line=bf.readLine())!=null){
+				   	 					str+=line;
+				   	 				}
+					   			}
 					   		}else if(authen.equals("API keys")){
 					   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
 					   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
