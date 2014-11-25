@@ -692,7 +692,7 @@ public class Final extends HttpServlet {
 									if(!x5.equals("null")){
 										xx5=(String)engine.eval("x."+x5+";");}
 								}catch(Exception e){
-									check=e.getStackTrace().toString();
+									check=e.toString();
 								}
 							}
 							else if(resformat.equals("xml")){
@@ -712,7 +712,7 @@ public class Final extends HttpServlet {
 									if(!x5.equals("null")){
 										xx5=xPath.compile(ptag+"/"+x5).evaluate(doc);}
 								}catch(Exception e){
-									check=e.getStackTrace().toString();
+									check=e.toString();
 								}
 							}
 							xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;

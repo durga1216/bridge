@@ -1,5 +1,4 @@
 var num=0;
-try{
 function addParam(){
 	num = num + 1;
 	var contentID = document.getElementById('content');
@@ -176,18 +175,6 @@ function addParam(){
 	}
 	contentID.appendChild(newTBDiv);
 }
-
-}//try
-catch(err){
-	num = num + 1;
-	var contentID = document.getElementById('content');
-	var newTBDiv = document.createElement('div');
-	newTBDiv.setAttribute('id','strText'+num);
-	newTBDiv.innerHTML = "<input type='text' id='x" + num + "'    name='x" + num + "' placeholder='Enter JSON Node'/>";
-	  contentID.appendChild(newTBDiv);
-	
-}
-
 function removeParam()
 {
 	var contentID = document.getElementById('content');
