@@ -11,7 +11,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Jersey</servlet-name>
-    <url-pattern>/rest/*</url-pattern>
+    <url-pattern>/mindpulpy/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <display-name>Title</display-name>

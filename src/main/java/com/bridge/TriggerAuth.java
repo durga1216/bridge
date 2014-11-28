@@ -342,15 +342,16 @@ public class TriggerAuth extends HttpServlet {
 	 					//creating signature
 	 					String result="";String signature1="";
 	 					if(sig.equals("HMAC-SHA1")){
-	 					SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
-	 			        Mac mac = Mac.getInstance("HMACSHA1");
-	 			        mac.init(signingKey);
-	 			        byte[] rawHmac = mac.doFinal(smessage.getBytes());
-	 			        if(sformat.equals("URL-Encoded")){
-	 			        result = new BASE64Encoder().encode(rawHmac);
-	 			        signature1 = URLEncoder.encode(result, "UTF-8") ;}
-	 			        else if(sformat.equals("HexaDecimal"))
-	 			        signature1=new String(Hex.encodeHex(rawHmac));
+		 					SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
+		 			        Mac mac = Mac.getInstance("HMACSHA1");
+		 			        mac.init(signingKey);
+		 			        byte[] rawHmac = mac.doFinal(smessage.getBytes());
+		 			        if(sformat.equals("URL-Encoded")){
+		 			        	result = new BASE64Encoder().encode(rawHmac);
+		 			        	signature1 = URLEncoder.encode(result, "UTF-8") ;
+		 			        }
+		 			        else if(sformat.equals("HexaDecimal"))
+		 			        	signature1=new String(Hex.encodeHex(rawHmac));
 	 					}
 	 					else if(sig.equals("HMAC-SHA256")){
 	 						SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HmacSHA256");
@@ -358,10 +359,11 @@ public class TriggerAuth extends HttpServlet {
 		 			        mac.init(signingKey);
 		 			        byte[] rawHmac = mac.doFinal(smessage.getBytes());
 		 			    		if(sformat.equals("URL-Encoded")){
-			 			        result = new BASE64Encoder().encode(rawHmac);
-			 			        signature1 = URLEncoder.encode(result, "UTF-8") ;}
+				 			        result = new BASE64Encoder().encode(rawHmac);
+				 			        signature1 = URLEncoder.encode(result, "UTF-8") ;
+			 			        }
 			 			        else if(sformat.equals("HexaDecimal"))
-			 			        signature1=new String(Hex.encodeHex(rawHmac));
+			 			        	signature1=new String(Hex.encodeHex(rawHmac));
 	 					}
 	 			        //merge all the params
 	 					if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){

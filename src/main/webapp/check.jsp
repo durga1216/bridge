@@ -373,10 +373,10 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 		%>
 		<div id=inpop><h3>Webhooks:</h3><br><br>
 	    **Alert:<br>
-		1,Enter the MindPulpy Webhook Url into Your account.<br><br>
-		2,Url:<u>https://bridge-minddotss.rhcloud.com/WebHooks</u>
-		&nbsp;&nbsp;&nbsp;Method:Post<br><br>
-		3,Do the specified action in you account then click continue..<br><br><br>
+		1, Enter the MindPulpy Webhook Url into Your account.<br><br>
+		2, Your webhook url:<u>https://bridge-minddotss.rhcloud.com/mindpulpy/webhooks/<%=tempid %></u><br><br>
+		3, Method:Post &nbsp;&nbsp;&nbsp; Parameter_name:data &nbsp;&nbsp;&nbsp; Format:Json.<br><br>
+		4, Do the specified action in you account then click continue..<br><br><br>
 	    <input type="submit" name="submit" onclick="javascript:sub('dis')" value="Webhook Trigger" ></div>
 		<%
 		}
