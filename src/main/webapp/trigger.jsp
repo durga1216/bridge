@@ -208,7 +208,7 @@ font-family:verdana;
 <div id="bjson" style="display:none">
 <div id="jsnote">Build Sample JSON Structure.Please enclose variables with @@dummy_variable@@ in JSON Structure</div><br><br>
 <textarea id="js" name="js" placeholder="@@Sample JSON Structure@@"></textarea><br><br>
-<a id="field" href="javascript:addField();">Add JSON Field Label</a><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="trig" href="javascript:removeField();">Remove Field</a><br>
+<a id="field" href="javascript:addField();">Add JSON Field Label</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="trig" href="javascript:removeField();">Remove Field</a><br><br>
 <div id="content2"></div>
 </div><br><br>
 <div id="name">Notes:</div><br>

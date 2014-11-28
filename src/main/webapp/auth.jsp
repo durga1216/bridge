@@ -96,15 +96,7 @@ $(document).ready(function(){
 		  	$('#oauth2').hide();
 	  		$('#oauth1').hide();
 		}
-		else if($('input:radio[name=authen]:checked').val() == "Webhook"){
-			$('#hook').show();
-			$('#sign').hide();
-			$('#req').hide();
-		  	$('#divid').hide();
-		  	$('#apiid').hide();			
-		  	$('#oauth2').hide();
-	  		$('#oauth1').hide();
-		}
+		
 	});
 	
 	//For signed Authentication
@@ -138,6 +130,22 @@ $(document).ready(function(){
 			$('#second').hide();
 		}	
 	});
+	
+	$('#hooki').click(function(){
+		$('#hook1').show();
+	});
+	
+	$('input[name=hoo]').click(function(){
+
+	if($('input:radio[name=hoo]:checked').val() == "Web Hooks"){
+		$('#web').show();
+		$('#rest').hide();
+	}
+	else if($('input:radio[name=hoo]:checked').val() == "Rest Hooks"){
+		$('#web').hide();
+		$('#rest').show();
+	}
+	});
 });
 
 </script>
@@ -151,7 +159,7 @@ font-weight:bold;
 font-size:25px;
 color:#FFFFFF;
 }
-#tit{
+#tit,#hooki{
 font-family:verdana;
 font-size:20px;
 font-weight:bold;
@@ -268,7 +276,7 @@ font-weight:bold;
 margin-left:100px;
 color:#FFFFFF;
 }
-#hook{
+#web,#rest{
 font-family:verdana;
 font-size:18px;
 color:#FFFFFF;
@@ -334,8 +342,24 @@ margin-left:100px;
 </head>
 <body>
 <form action="Auth" method="post">
-<br><br><center><div id="head">Mind-Bridge</div></center>
-<br><br><br><br><div id="tit">1.Choose Trigger Authentication Scheme</div><br><br>
+<br><br><center><div id="head">Mind-Bridge</div></center><br><br><br><br>
+<div id="hooki"><u>Click here to configure with hooks</u></div><br>
+<div id="hook1" style="display:none">
+<input type="radio" name="hoo" value="Web Hooks">
+<label for="rd2">Web Hooks</label><br><br>
+<div id="web" style="display:none">
+1.Enter the MindPulpy Webhook Url into Your account.<br><br>
+2.Url:<u>https://bridge-minddotss.rhcloud.com/WebHooks?tempid=$$we provide tempid while build connectors$$</u>
+&nbsp;&nbsp;&nbsp;Method:Post<br><br>
+3.Do the specified action in you account then click continue.
+</div>
+<div id="rest" style="display:none">
+Fine,Select Authentication scheme.
+</div>
+<input type="radio" name="hoo" value="Rest Hooks">
+<label for="rd2">Rest Hooks</label>
+</div><br><br>
+<br><div id="tit">Choose Trigger Authentication Scheme</div><br><br>
 <div id="inline_content">
 
 <input type="radio" name="authen"  value="No Auth">
@@ -356,8 +380,6 @@ margin-left:100px;
 <input type="radio" name="authen"  value="Signed Auth">
 <label for="rd1">Signed Auth</label>
 
-<input type="radio" name="authen"  value="Webhook">
-<label for="rd1">Webhook</label>
 
 <br></div>
 

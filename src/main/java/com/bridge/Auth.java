@@ -41,7 +41,7 @@ public class Auth extends HttpServlet {
 		    Connection con=null;  
 	   	 	response.setHeader("Content-Type","text/html;charset=UTF-8");
 		    PrintWriter out=response.getWriter();
-		    String authen=request.getParameter("authen");
+		    String authen=request.getParameter("authen");String hoo=request.getParameter("hoo");
 		    String txt1=request.getParameter("txt1");String txt2=request.getParameter("txt2");
 		    String txt3=request.getParameter("txt3");String txt4=request.getParameter("txt4");
 		    String b1=request.getParameter("b1");String b2=request.getParameter("b2");
@@ -74,7 +74,7 @@ public class Auth extends HttpServlet {
 		    try{
 		    	Class.forName("com.mysql.jdbc.Driver").newInstance();
 		   	 	con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
-			   	 	PreparedStatement st=con.prepareStatement("insert into auth(appid,authen,txt1,txt2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,h6,hv6,h7,hv7,txt3,txt4,a1,a2,ckey,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,select2,ockey,oskey,ourl1,ourl2,ourl3,osmeth,oreq,sig,sigskey,sigckey,message,sformat,tformat,second,utc,sigbasic,sh1,shv1,sh2,shv2,sh3,shv3,sh4,shv4,sh5,shv5) values ('"+id+"','"+authen+"','"+txt1+"','"+txt2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+h6+"','"+hv6+"','"+h7+"','"+hv7+"','"+txt3+"','"+txt4+"','"+a1+"','"+a2+"','"+ckey+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+select2+"','"+ockey+"','"+oskey+"','"+ourl1+"','"+ourl2+"','"+ourl3+"','"+osmeth+"','"+oreq+"','"+sig+"','"+sigskey+"','"+sigckey+"','"+message+"','"+sformat+"','"+tformat+"','"+second+"','"+utc+"','"+sigbasic+"','"+sh1+"','"+shv1+"','"+sh2+"','"+shv2+"','"+sh3+"','"+shv3+"','"+sh4+"','"+shv4+"','"+sh5+"','"+shv5+"')");				 
+			   	 	PreparedStatement st=con.prepareStatement("insert into auth(appid,hoo,authen,txt1,txt2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,h6,hv6,h7,hv7,txt3,txt4,a1,a2,ckey,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,select2,ockey,oskey,ourl1,ourl2,ourl3,osmeth,oreq,sig,sigskey,sigckey,message,sformat,tformat,second,utc,sigbasic,sh1,shv1,sh2,shv2,sh3,shv3,sh4,shv4,sh5,shv5) values ('"+id+"','"+hoo+"','"+authen+"','"+txt1+"','"+txt2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+h6+"','"+hv6+"','"+h7+"','"+hv7+"','"+txt3+"','"+txt4+"','"+a1+"','"+a2+"','"+ckey+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+select2+"','"+ockey+"','"+oskey+"','"+ourl1+"','"+ourl2+"','"+ourl3+"','"+osmeth+"','"+oreq+"','"+sig+"','"+sigskey+"','"+sigckey+"','"+message+"','"+sformat+"','"+tformat+"','"+second+"','"+utc+"','"+sigbasic+"','"+sh1+"','"+shv1+"','"+sh2+"','"+shv2+"','"+sh3+"','"+shv3+"','"+sh4+"','"+shv4+"','"+sh5+"','"+shv5+"')");				 
 			   	 	st.executeUpdate();
 			   	 	out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 			         		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
