@@ -639,6 +639,22 @@ public class TriggerAuth extends HttpServlet {
 	   	 					st2.close();
 	   	 				}
 	   	 			}
+	   	 			else if(authen.equals("Webhook")){
+		   	 			String respo="No Response from Webhook";
+				   	 	PreparedStatement pss=con.prepareStatement("select * from hook order by count desc limit 1");
+						ResultSet rss=pss.executeQuery();
+						while(rss.next()){
+							respo=rss.getString("str");
+						}
+						session.setAttribute("xml1", respo);
+						code=200;
+		 				PreparedStatement st2=con.prepareStatement("insert into trig_all (userid,tempid,tid,authen) values ('"+id+"','"+tempid+"','"+tid+"','Webhook')");
+		 				st2.executeUpdate();
+		 				st2.close();
+		 				request.setAttribute("code", code);
+		   	 			request.setAttribute("code1", code1);
+		   	 			request.getRequestDispatcher("check.jsp").forward(request, response);	
+	   	 			}
 	   	 			request.setAttribute("code", code);
 	   	 			request.setAttribute("code1", code1);
 	   	 			request.getRequestDispatcher("check.jsp").forward(request, response);	

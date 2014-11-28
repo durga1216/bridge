@@ -93,6 +93,7 @@ public class Resthook {
 				x5=rs1.getString("x5");ptag=rs1.getString("ptag");
 				exres=rs1.getString("exres");shname=rs1.getString("shname");
 			} 
+			//Json parsing for trigger response
 			if(resformat.equals("json")){
 				try{
 					ScriptEngineManager manager = new ScriptEngineManager();
@@ -112,6 +113,7 @@ public class Resthook {
 					check=e.toString();
 				}
 			}
+			//XMl parsing for trigger response
 			else if(resformat.equals("xml")){
 				try{
 		       	 	DocumentBuilderFactory domFactory=DocumentBuilderFactory.newInstance();
@@ -132,6 +134,7 @@ public class Resthook {
 					check=e.toString();
 				}
 			}
+			//Construct the Json Or Xml String by removing the @@
 			xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
 			String[] slt=exres.split("@@");
 			int nn=slt.length;String orurl="";
@@ -145,7 +148,8 @@ public class Resthook {
 			}
 			session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);
 			
-	/**Action part **/
+	/**Action part for the webhook configuration**/
+			
     		PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");
 			st3.setString(1, id);
 			ResultSet rs2=st3.executeQuery();
@@ -251,7 +255,6 @@ public class Resthook {
 		   			String oauthtk=tok11[1];
 		   			String[] tok1=access_secret1.split("=");
 		   			String sec1=tok1[1];
-		   			//out.println(sec1);
 		   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){
 		   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5+"&"+p6+"="+pv6;}
         		 
@@ -275,7 +278,6 @@ public class Resthook {
 	   				// out.println(eurl);
 	   				//=========================
 		   			if(rmethod.equals ("Get")){
-		   				//========initial=========
 		   				String uuid_string = UUID.randomUUID().toString();
 		   				uuid_string = uuid_string.replaceAll("-", "");
 		   				String oauth_nonce = uuid_string; 
@@ -415,7 +417,9 @@ public class Resthook {
 		   			}
 		   			HttpClient client = new DefaultHttpClient();
 		   			String line="";
+		   			// Just filter the google Oauth api's
 		   			if(rmethod.equals("DELETE")){
+		   				//we will get from database also
 		   				String CLIENT_ID = "758153664645-n04dc4ki6pr383jdnrq6hmgjsvbsibls";
 		   				String CLIENT_SECRET = "YsLu7TgD4q_NmheHjx4W2Okf";
 		   				HttpTransport transport = new NetHttpTransport();
@@ -431,6 +435,7 @@ public class Resthook {
 		   				if (spreadsheets.isEmpty()) {
 		   					// 	TODO: There were no spreadsheets, act accordingly.
 		   				}
+		   				//Choose the spreadsheet
 		   				int k=0;
 		   			    for(int i=0;i<spreadsheets.size();i++){
 		   				     String name=(String)spreadsheets.get(i).getTitle().getPlainText();
@@ -451,6 +456,7 @@ public class Resthook {
 		   					}
 		   					break;
 		   				}
+		   				//Choose the columns from parsing
 		   				ListEntry row = new ListEntry();
 		   				if(!xx1.equals("null")){
 		   					row.getCustomElements().setValueLocal(ar.get(0), xx1);}
@@ -573,11 +579,11 @@ public class Resthook {
 		   			}
 		   			PreparedStatement ps=con.prepareStatement("insert into testing (data) values('"+str1+"')");
 		   			ps.executeUpdate();
-		   			//out.println(str);
+		   			result11=str;
 				}//while
 			}//try
 			catch(Exception e){
-				
+				result11=e.getMessage();
     		}
     	return Response.ok(result11)
     			.header("Access-Control-Allow-Origin", "*")

@@ -296,6 +296,11 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 	<%}else if(authen.equals("No Auth")){%>
 			<div id=inpop><h3>Enter the Parameter details:</h3><br>No Authentication(required):<br>
 				<%
+			for(int i=1;i<5;i++){
+				if(!tp[i].equals("null")){
+					out.println("<br>*"+tp[i]+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style='width:100px;border-radius:5px;'name='pv"+i+"' type='text'><br>");
+				}
+			}
 			String[] slt=turl.split("@@");
 			int nn=slt.length;String orurl="";
 			if(!(nn==0)){
@@ -461,7 +466,7 @@ if(code==200){%>
 <% }
 else if(code==0){%>
    	<div id="disp" style="margin-left:600px;color:#fff;">Please check your Account!!!</div><br><br>	
-   
+
 <%} 
 else{%>
 	<div id="disp" style="margin-left:600px;color:#fff;">!! Account is Not working</div><br><br>	
