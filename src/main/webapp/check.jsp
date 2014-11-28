@@ -371,11 +371,11 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 	<%
 	}else if(authen.equals("Webhook")){
 		%>
-		<div id=inpop><h3>Webhooks:</h3><br><br>
-	    **Alert:<br>
+		<div id=inpop><h3>Webhooks:</h3><br>
+	    **ALERT**<br><br>
 		1, Enter the MindPulpy Webhook Url into Your account.<br><br>
-		2, Your webhook url:<u>https://bridge-minddotss.rhcloud.com/mindpulpy/webhooks/<%=tempid %></u><br><br>
-		3, Method:Post &nbsp;&nbsp;&nbsp; Parameter_name:data &nbsp;&nbsp;&nbsp; Format:Json.<br><br>
+		2, Your webhook url :<br><u>https://bridge-minddotss.rhcloud.com/mindpulpy/webhooks/<%=tempid %></u><br><br>
+		3, Method: POST &nbsp;&nbsp;&nbsp; Parameter_name: data &nbsp;&nbsp;&nbsp; Format: JSON.<br><br>
 		4, Do the specified action in you account then click continue..<br><br><br>
 	    <input type="submit" name="submit" onclick="javascript:sub('dis')" value="Webhook Trigger" ></div>
 		<%

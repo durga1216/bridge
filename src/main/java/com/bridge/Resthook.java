@@ -76,7 +76,7 @@ public class Resthook {
     	String str=data;
     	HttpSession session=request.getSession(true);
     	try{
-    		PrintWriter out=response.getWriter();
+    		//PrintWriter out=response.getWriter();
     		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		    final Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
     		String x1="";String x2="";String x3="";String x4="";String x5="";
@@ -234,7 +234,6 @@ public class Resthook {
 		   		}
 		   		else if(authen.equals("Oauth1")){
 		   			String res="";
-		   			out.println("in Oauth");
 		   			String oauth_signature_method=rs2.getString("osmeth");
 		   			String oauth_consumer_key=rs2.getString("ockey"); String secret=rs2.getString("oskey");
 		   			String oauth_token="";
@@ -277,7 +276,6 @@ public class Resthook {
 	   				//=========================
 		   			if(rmethod.equals ("Get")){
 		   				//========initial=========
-		   				out.println("in Get");
 		   				String uuid_string = UUID.randomUUID().toString();
 		   				uuid_string = uuid_string.replaceAll("-", "");
 		   				String oauth_nonce = uuid_string; 
@@ -304,7 +302,6 @@ public class Resthook {
 		   					oauth_signature1 = URLEncoder.encode(oauth_signature, "UTF-8");
 		   				} catch (GeneralSecurityException e) {
 		   					// TODO Auto-generated catch block
-		   					out.println(e);
 		   				}
 		   				String actok=endurl1+"?"+tst4+"&oauth_signature="+oauth_signature1;
 		   				//out.println(actok);
@@ -320,7 +317,6 @@ public class Resthook {
 		   				str1=result.toString();
 		   			}
 		   			else if(rmethod.equals ("Post")){
-		   				out.println("in post");
 		   				String exhead="";
 		   				if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6) && !"null".equals(p7)){
 		   					exhead=p1+"=\""+pv1+"\","+p2+"=\""+pv2+"\","+p3+"=\""+pv3+"\","+p4+"=\""+pv4+"\","+p5+"=\""+pv5+"\","+p6+"=\""+pv6+"\","+p7+"=\""+pv7+"\"";}
@@ -374,7 +370,6 @@ public class Resthook {
 		   				}
 		   				catch (GeneralSecurityException e) {
 		   					// TODO Auto-generated catch block
-		   					out.println(e);
 		   				}
 		   				String authorization_header_string="";
 		   				if(exhead.equals("null")){
