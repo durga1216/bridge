@@ -39,7 +39,7 @@ public class Trigger extends HttpServlet {
     String f7=request.getParameter("f7");String f8=request.getParameter("f8");
     String f9=request.getParameter("f9");String f10=request.getParameter("f10");
 
-    String name=request.getParameter("name");String name2=request.getParameter("name2");
+    String name=request.getParameter("mname");String name2=request.getParameter("name2");
     String name3=request.getParameter("name3");String name4=request.getParameter("name4");
     String name5=request.getParameter("name5");
 

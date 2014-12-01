@@ -180,7 +180,7 @@ font-family:verdana;
 <form action="Trigger" method="post">
 <br><br><center><div id="head">Mind-Bridge</div></center>
 <br><br><div id="tit">2.Choose the Trigger or Action Fields</div><br>
-<br><div id="name">Enter Trigger or Action Name&nbsp;&nbsp;&nbsp;<input type='text' name='t1'  placeholder='Name of the Trigger in Display'></div>
+<br><div id="name">Enter Trigger or Action Name&nbsp;&nbsp;&nbsp;<input type='text' name='mname'  placeholder='Name of the Trigger in Display'></div>
 <br><br><a id='trig' href="javascript:addTrigger();">Add Trigger or Action Method</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="trig" href="javascript:removeTrigger();">Remove Trigger or Action Method</a></center></br></br>
 <br><div id="content1"></div><br>
 
