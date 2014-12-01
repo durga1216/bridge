@@ -294,18 +294,11 @@ String id="";String id1="";
         id=rs2.getString("appid");
         dis=rs2.getString("tit");
     	t1=rs2.getString("name");
-    	t2=rs2.getString("name2");
-    	t3=rs2.getString("name3");
-    	t4=rs2.getString("name4");
-    	t5=rs2.getString("name5");
+    	
         mode2=rs2.getString("mode");
         if("Trigger".equals(mode2)){ %>
       <option value="<%=t1 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=t1%></option>
-      <option value="<%=t2 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=t2%></option>
-      <option value="<%=t3 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=t3%></option>
-      <option value="<%=t4 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=t4%></option>
-      <option value="<%=t5 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=t5%></option>
-   
+        
    <option disabled="disabled" ></option>
     	        <%}} %></select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <select name="actmeth" id="actmeth" onchange="change()" style="height:40px;" >
@@ -315,19 +308,11 @@ String id="";String id1="";
     	id1=rs3.getString("appid");
     	dis1=rs3.getString("tit");
     	act_t1=rs3.getString("name");
-    	act_t2=rs3.getString("name2");
-    	act_t3=rs3.getString("name3");
-    	act_t4=rs3.getString("name4");
-    	act_t5=rs3.getString("name5");
-
+    	
     	mode3=rs3.getString("mode");
     	 if("Action".equals(mode3)){%>
    <option value="<%=act_t1 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=act_t1%></option>
-      <option value="<%=act_t2 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=act_t2%></option>
-      <option value="<%=act_t3 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=act_t3%></option>
-      <option value="<%=act_t4 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=act_t4%></option>
-      <option value="<%=act_t5 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=act_t5%></option>
-   
+     
    <option disabled="disabled" ></option>
     	        <%}}%></select><input type="text" name="app1" value="<%=app1%>" style="display:none"><input type="text" name="app" value="<%=app %>" style="display:none">      <br><br>  <br><br>
     	  
