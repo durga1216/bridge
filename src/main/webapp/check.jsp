@@ -317,7 +317,7 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 				out.println("<br>"+orurl+"<br>");
 			}
 			if(!rformat.equals("rest")){
-				%><textarea name="exreq" id="txt1"><%=jstr%></textarea><% 	
+				%><br>Enter the json/xml Input:<br><textarea name="exreq" id="txt1"><%=jstr%></textarea><% 	
 			}
 			%>
 			<br><br><br><br><br>
@@ -337,7 +337,10 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 	out.println("<br>"+orurl+"<br>");
 	}
 	if(!rformat.equals("rest")){
-		%><textarea name="exreq" id="txt1"><%=jstr%></textarea><% 	
+		%><br>Enter the json/xml Input:<br><textarea name="exreq" id="txt1"><%=jstr%></textarea><% 	
+		if(type.equals("resthook")){
+			%><br>Add this Redirect Url:<br><u>https://bridge-minddotss.rhcloud.com/mindpulpy/webhooks/<%=tempid %></u><%
+		}	
 	}
 	%>
 		<br><%=txt1 %><br><br><input type="text" name="uname" placeholder="UserName or ApiKey"><br><br><%=txt2 %><br><br><input type="password" name="pwd" placeholder="Password or Secret Key"><br><br><br>
@@ -366,7 +369,10 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 		out.println("<br>"+orurl+"<br>");
 	}
 	if(!rformat.equals("rest")){
-		%><textarea name="exreq" id="txt1"><%=jstr%></textarea><% 	
+		%><br>Enter the json/xml Input:<br><textarea name="exreq" id="txt1"><%=jstr%></textarea><% 	
+		if(type.equals("resthook")){
+			%><br>Add this Redirect Url:<br><u>https://bridge-minddotss.rhcloud.com/mindpulpy/webhooks/<%=tempid %></u><%
+		}
 	}
 	%><br><br>
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
