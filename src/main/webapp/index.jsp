@@ -285,8 +285,8 @@ String id="";String id1="";
        PreparedStatement st1=conn.prepareStatement("select * from title t1 JOIN auth t2 on t1.appid=t2.appid JOIN triger t3 ON t1.appid=t3.appid where t1.appid=?");
        st1.setString(1,app1);
        rs3=st1.executeQuery();
-       String t1="";String mode2="";String act_t1="";String mode3="";String accname="";String dis="";String dis1="";
-  %>    
+       String t1="";String t2="";String t3="";String t4="";String t5="";String mode2="";String act_t1="";String mode3="";String accname="";String dis="";String dis1="";
+ String act_t2="";String act_t3="";String act_t4="";String act_t5=""; %>    
 <br><select name="tgmeth" id="tgmeth" onchange="change()" style="margin-left:250px;height:40px;" >
     <option>&nbsp;&nbsp;&nbsp;&nbsp;Choose Any Trigger Method from the list</option>
     <option disabled="disabled" ></option>
@@ -294,9 +294,18 @@ String id="";String id1="";
         id=rs2.getString("appid");
         dis=rs2.getString("tit");
     	t1=rs2.getString("name");
+    	t2=rs2.getString("name2");
+    	t3=rs2.getString("name3");
+    	t4=rs2.getString("name4");
+    	t5=rs2.getString("name5");
         mode2=rs2.getString("mode");
         if("Trigger".equals(mode2)){ %>
-   <option value="<%=t1 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=t1%></option>
+      <option value="<%=t1 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=t1%></option>
+      <option value="<%=t2 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=t2%></option>
+      <option value="<%=t3 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=t3%></option>
+      <option value="<%=t4 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=t4%></option>
+      <option value="<%=t5 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=t5%></option>
+   
    <option disabled="disabled" ></option>
     	        <%}} %></select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <select name="actmeth" id="actmeth" onchange="change()" style="height:40px;" >
@@ -306,9 +315,19 @@ String id="";String id1="";
     	id1=rs3.getString("appid");
     	dis1=rs3.getString("tit");
     	act_t1=rs3.getString("name");
+    	act_t2=rs3.getString("name2");
+    	act_t3=rs3.getString("name3");
+    	act_t4=rs3.getString("name4");
+    	act_t5=rs3.getString("name5");
+
     	mode3=rs3.getString("mode");
     	 if("Action".equals(mode3)){%>
    <option value="<%=act_t1 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=act_t1%></option>
+      <option value="<%=act_t2 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=act_t2%></option>
+      <option value="<%=act_t3 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=act_t3%></option>
+      <option value="<%=act_t4 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=act_t4%></option>
+      <option value="<%=act_t5 %>" >&nbsp;&nbsp;&nbsp;&nbsp;<%=act_t5%></option>
+   
    <option disabled="disabled" ></option>
     	        <%}}%></select><input type="text" name="app1" value="<%=app1%>" style="display:none"><input type="text" name="app" value="<%=app %>" style="display:none">      <br><br>  <br><br>
     	  
