@@ -66,14 +66,28 @@ import javax.servlet.http.HttpSession;
 
 @Path("/webhooks")
 public class Resthook {
-    @GET
+    @POST
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/{id}")
     public Response addPlainText(@PathParam("id") String id,@QueryParam("data") String data,@Context HttpServletRequest request,@Context HttpServletResponse response) {
     	String result11="test---"+id+"---"+data;
-    	String eurl="";
+    	String eurl="";String str="";
     	String resformat="json";
-    	String str=data;
+    	if(data.equals(null)){
+    		try{
+	    		StringBuffer jb = new StringBuffer();
+				String line = null;
+				BufferedReader reader = request.getReader();
+				while ((line = reader.readLine()) != null){
+					jb.append(line);
+				}
+		    	str=jb.toString();
+    		}
+	    	catch(Exception e){
+    		}
+    	}else{
+    		str=data;
+    	}
     	HttpSession session=request.getSession(true);
     	session.setAttribute("xml1", str);
     	try{
