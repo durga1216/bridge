@@ -12,20 +12,22 @@ var TextBox=0;
 var intTextBox=0;
 function addTrigger(){
 	TextBox = TextBox + 1;
-  	if(TextBox==1){
+	    var nameID= document.getElementById('name');
+	    var newDiv=document.createElement('div');
+	    newDiv.setAttribute('id','strText'+TextBox);
+	    newDiv.innerHTML ="<br>Enter Trigger or Action Name&nbsp;&nbsp;&nbsp;<input type='text' name='name" + TextBox + "'  placeholder='Name of the Trigger in Display'>";
+	    nameID.appendChild(newDiv);
   		var contentID = document.getElementById('content1');
   		var newTBDiv = document.createElement('div');
   		newTBDiv.setAttribute('id','strText'+TextBox);
   		newTBDiv.innerHTML = "<br><br><input type='text' style='width:400px;margin-left:350px;' id='t" + TextBox + "'    name='t" + TextBox + "' placeholder='Enter the Trigger Method Url here'/>&nbsp;<a id='pa' href='javascript:addParent();'>Add Parameter</a><a id='pa' href='javascript:removeParent();'>Remove Parameter</a><br><br><br><div id='cont"+TextBox+"'></div><br>";
   		contentID.appendChild(newTBDiv);
-  	}
-  	else{
-  		alert("Configure Trigger Method One by One");
-  	}
+  	
+  	
 }
 function removeTrigger(){
 	var contentID = document.getElementById('content1');
-    contentID.removeChild(document.getElementById('strText'+intTextBox));
+    contentID.removeChild(document.getElementById('strText'+TextBox));
     TextBox = TextBox-1;
 }
 
@@ -46,7 +48,7 @@ function removeField()
 
 function addParent(){
 	intTextBox = intTextBox + 1;
-	var contentID = document.getElementById("cont"+TextBox);
+	var contentID = document.getElementById("cont"+intTextBox);
 	var newTBDiv = document.createElement('div');
 	newTBDiv.setAttribute('id','strText'+intTextBox);
    	newTBDiv.innerHTML = "<input type='text' id='p" + intTextBox + "'    name='p" + intTextBox + "' placeholder='Param_Label'/>" + "<input type='text' id='pv"+ intTextBox + " ' name='pv"+intTextBox +"' placeholder='Param_Value'/><br>";
@@ -54,7 +56,7 @@ function addParent(){
 }
 function removeParent()
 {
-	var contentID = document.getElementById('cont'+TextBox);
+	var contentID = document.getElementById('cont'+intTextBox);
     contentID.removeChild(document.getElementById('strText'+intTextBox));
     intTextBox = intTextBox-1;
 }
@@ -178,7 +180,7 @@ font-family:verdana;
 <form action="Trigger" method="post">
 <br><br><center><div id="head">Mind-Bridge</div></center>
 <br><br><div id="tit">2.Choose the Trigger or Action Fields</div><br>
-<br><div id="name">Enter Trigger or Action Name&nbsp;&nbsp;&nbsp;<input type="text" name="name" placeholder="Name of the Trigger in Display"></div>
+<br><div id="name"></div>
 <br><br><a id='trig' href="javascript:addTrigger();">Add Trigger or Action Method</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="trig" href="javascript:removeTrigger();">Remove Trigger or Action Method</a></center></br></br>
 <br><div id="content1"></div><br>
 
