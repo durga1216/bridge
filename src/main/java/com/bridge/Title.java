@@ -85,6 +85,7 @@ public class Title extends HttpServlet {
 	   	String appname="";
 	   	String descr=""; 
 	   	String mode="";
+	   	String disp="";
 	   	InputStream is = null;
 	   	HashMap<String, String> formParams = new HashMap<String, String>();  
  		boolean isMultipart = ServletFileUpload.isMultipartContent(request); 
@@ -111,6 +112,8 @@ public class Title extends HttpServlet {
  				        	descr=fieldvalue;
  				        }else if(fieldname.equals("mode")){
  				        	mode=fieldvalue;
+ 				        }else if(fieldname.equals("disp")){
+ 				        	mode=fieldvalue;
  				        }
  				    }
  				}
@@ -123,7 +126,7 @@ public class Title extends HttpServlet {
  			HttpSession session=request.getSession();
  			Class.forName("com.mysql.jdbc.Driver").newInstance();
  			con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
- 			PreparedStatement st=con.prepareStatement("insert into title (tit,des,img,mode) values ('"+appname+"','"+descr+"',?,'"+mode+"')");
+ 			PreparedStatement st=con.prepareStatement("insert into title (tit,des,img,mode,disp) values ('"+appname+"','"+descr+"',?,'"+mode+"','"+disp+"')");
  			st.setBlob(1, is);
  			st.executeUpdate();
  			PreparedStatement st1=con.prepareStatement("select * from title ORDER BY appid DESC LIMIT 1");

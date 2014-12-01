@@ -131,20 +131,15 @@ $(document).ready(function(){
 		}	
 	});
 	
-	$('#hooki').click(function(){
-		$('#hook1').show();
-	});
-	
-	$('input[name=hoo]').click(function(){
-
-	if($('input:radio[name=hoo]:checked').val() == "Web Hooks"){
-		$('#web').show();
-		$('#rest').hide();
-	}
-	else if($('input:radio[name=hoo]:checked').val() == "Rest Hooks"){
-		$('#web').hide();
-		$('#rest').show();
-	}
+	$('#hoo').change(function(){
+		if($('#hoo option:selected').val() == "webhook"){
+			$('#web').show();
+			$('#rest').hide();
+		}
+		else {//if($('#hoo option:selected').val() == "rest"){
+			$('#rest').show();
+			$('#web').hide();
+		}
 	});
 });
 
@@ -237,7 +232,16 @@ font-family:verdana;
 font-size:15px;
 font-family:verdana;
 margin-left:100px;}
-
+#hoo{
+font-family:verdana;
+font-size:17px;
+color:#FF9900;
+font-weight:bold;
+width:350px;
+height:50px;
+background-color:#fff;
+border-radius:5px;
+}
 #pa{
   font-family:verdana;
   font-size:15px;
@@ -343,23 +347,22 @@ margin-left:100px;
 <body>
 <form action="Auth" method="post">
 <br><br><center><div id="head">Mind-Bridge</div></center><br><br><br><br>
-<div id="hooki"><u>Click here to configure with hooks</u></div><br>
-<div id="hook1" style="display:none">
-<input type="radio" name="hoo" value="Web Hooks">
-<label for="rd2">Web Hooks</label><br><br>
+<select name="hoo" id="hoo">
+<option value="dummy">Choose your Request type</option>
+<option value="rest">Rest Api</option>
+<option value="webhook">Webhook</option>
+<option value="resthook">Resthook</option>
+</select><br><br><br>
 <div id="web" style="display:none">
-1.Enter the MindPulpy Webhook Url into Your account.<br><br>
-2.Url:<u>https://bridge-minddotss.rhcloud.com/WebHooks?tempid=$$we provide tempid while build connectors$$</u>
+1.Enter the MindPulpy Webhook Url into Your account while built your connectors.<br><br>
+2.Url:<u>Eg:https://bridge-minddotss.rhcloud.com/mindpulpy/webhooks/TMP_001</u>
 &nbsp;&nbsp;&nbsp;Method:Post<br><br>
-3.Do the specified action in you account then click continue.
+3.Leave the auhthentication and Click Continue.
 </div>
 <div id="rest" style="display:none">
-Fine,Select Authentication scheme.
+<div id="tit">Fine, Choose Authentication Scheme</div>
 </div>
-<input type="radio" name="hoo" value="Rest Hooks">
-<label for="rd2">Rest Hooks</label>
-</div><br><br>
-<br><div id="tit">Choose Trigger Authentication Scheme</div><br><br>
+<br><br><br>
 <div id="inline_content">
 
 <input type="radio" name="authen"  value="No Auth">

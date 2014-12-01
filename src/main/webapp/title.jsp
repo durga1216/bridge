@@ -102,6 +102,7 @@ margin-left:26px;
 <br><br><br><div id="tit1">1.Trigger App Details</div>
 <br><br><br><div id="tit">Title*</div><br><input type="text" name="app1" id="app1" placeholder="Enter the App title" required>
 <br><br><br><div id="desc">Description*</div><br><textarea name="descr" id="txt1"  placeholder="Min 3 sentence of description" required></textarea>
+<br><br><div id="tit"><input type="checkbox" name="disp" value="true"> This app should come in Mindpulpy Display page</div>
 <br><br><br><div id="tit">Logo</div><br><input type="file"  name="selectFile">
 <input type="radio" name="mode"  value="Trigger">
 <label for="rd1">Trigger</label>
