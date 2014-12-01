@@ -85,7 +85,7 @@ public class Title extends HttpServlet {
 	   	String appname="";
 	   	String descr=""; 
 	   	String mode="";
-	   	String disp="";
+	   	String disp="false";
 	   	InputStream is = null;
 	   	HashMap<String, String> formParams = new HashMap<String, String>();  
  		boolean isMultipart = ServletFileUpload.isMultipartContent(request); 
@@ -113,7 +113,7 @@ public class Title extends HttpServlet {
  				        }else if(fieldname.equals("mode")){
  				        	mode=fieldvalue;
  				        }else if(fieldname.equals("disp")){
- 				        	mode=fieldvalue;
+ 				        	disp=fieldvalue;
  				        }
  				    }
  				}
