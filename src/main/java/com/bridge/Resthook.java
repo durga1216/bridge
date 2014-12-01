@@ -66,7 +66,7 @@ import javax.servlet.http.HttpSession;
 
 @Path("/webhooks")
 public class Resthook {
-    @POST
+    @GET
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/{id}")
     public Response addPlainText(@PathParam("id") String id,@QueryParam("data") String data,@Context HttpServletRequest request,@Context HttpServletResponse response) {
@@ -94,6 +94,8 @@ public class Resthook {
     		//PrintWriter out=response.getWriter();
     		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		    final Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
+		    PreparedStatement ps11=con.prepareStatement("insert into hook (str) values ('"+str+"')");
+	    	ps11.executeUpdate();
     		String x1="";String x2="";String x3="";String x4="";String x5="";
 			//TODO For Checking xx value purpose I take null
 			String xx1="null";String xx2="null";String xx3="null";String xx4="null";String xx5="null";
