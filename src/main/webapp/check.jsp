@@ -239,9 +239,9 @@
 <%@include file="conn.jsp" %>
 <%
 ResultSet r=null;ResultSet rs1 =null;ResultSet rs=null;String authen="";String txt1="";String txt2="";String txt3="";String txt4="";String a1="";String b1="";String b3="";
-String authen1="";String atxt1="";String atxt2="";String atxt3="";String atxt4="";String tgtit="hh";
+String authen1="";String atxt1="";String atxt2="";String atxt3="";String atxt4="";String tgtit="hh";String jstr="";
 String actit="hh";String tid="hh";String aid="hh";int code=0;int code1=0;String tempid="";String sigskey="";String sigckey="";
-String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5];String rformat="";
+String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5];String rformat="";String type="";
 	try{
 		PreparedStatement st1=conn.prepareStatement("select * from home order by tempid desc limit 1");
      	r=st1.executeQuery();
@@ -257,6 +257,7 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
       	rs=ps.executeQuery();
       	while(rs.next()){
     		authen=rs.getString("authen");
+    		type=rs.getString("hoo");jstr=rs.getString("js");
     		turl=rs.getString("t1");
     		tp[1]=rs.getString("p1");tp[2]=rs.getString("p2");tp[3]=rs.getString("p3");tp[4]=rs.getString("p4");
     		txt1=rs.getString("txt1");txt2=rs.getString("txt2"); txt3=rs.getString("txt3");txt4=rs.getString("txt4");
@@ -313,7 +314,7 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 				out.println("<br>"+orurl+"<br>");
 			}
 			if(!rformat.equals("rest")){
-				%><textarea name="exreq" id="txt1"  placeholder="Give Original xml or json structure "></textarea><% 	
+				%><textarea name="exreq" id="txt1"><%=jstr%></textarea><% 	
 			}
 			%>
 			<br><br><br><br><br>
@@ -347,6 +348,20 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 			out.println("<br>*"+tp[i]+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style='width:100px;border-radius:5px;'name='pv"+i+"' type='text'><br>");
 		}
 	}
+	String[] slt=turl.split("@@");
+	int nn=slt.length;String orurl="";
+	if(!(nn==0)){
+		for(int i=1,j=1;i<nn;i=i+2,j++){
+			slt[i]="&nbsp;<input style='width:100px;border-radius:5px;'name='ndm"+j+"' type='text'>&nbsp;";
+		}
+		for(int k=0;k<nn;k++){
+			orurl=orurl+slt[k];
+		}
+		out.println("<br>"+orurl+"<br>");
+	}
+	if(!rformat.equals("rest")){
+		%><textarea name="exreq" id="txt1"><%=jstr%></textarea><% 	
+	}
 	%><br><br>
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
 	<%}else if(authen.equals("Oauth1")){
@@ -374,14 +389,14 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
        
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
 	<%
-	}else if(authen.equals("Webhook")){
+	}else if(type.equals("webhook")){
 		%>
 		<div id=inpop><h3>Webhooks:</h3><br>
 	    **ALERT**<br><br>
 		1, Enter the MindPulpy Webhook Url into Your account.<br><br>
 		2, Your webhook url :<br><u>https://bridge-minddotss.rhcloud.com/mindpulpy/webhooks/<%=tempid %></u><br><br>
 		3, Method: POST &nbsp;&nbsp;&nbsp; Parameter_name: data &nbsp;&nbsp;&nbsp; Format: JSON.<br><br>
-		4, Do the specified action in you account then click continue..<br><br><br>
+		4, <input type="checkbox" required> Do the specified action in you account then click continue..<br><br><br>
 	    <input type="submit" name="submit" onclick="javascript:sub('dis')" value="Webhook Trigger" ></div>
 		<%
 		}

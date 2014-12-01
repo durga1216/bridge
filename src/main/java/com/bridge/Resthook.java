@@ -75,6 +75,7 @@ public class Resthook {
     	String resformat="json";
     	String str=data;
     	HttpSession session=request.getSession(true);
+    	session.setAttribute("xml1", str);
     	try{
     		//PrintWriter out=response.getWriter();
     		Class.forName("com.mysql.jdbc.Driver").newInstance();

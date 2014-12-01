@@ -27,6 +27,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
@@ -67,6 +68,7 @@ public class OauthCall extends HttpServlet {
 			String tempid=(String) session.getAttribute("tempid");
 			String tid=(String) session.getAttribute("tid");
 			String but=(String) session.getAttribute("but");
+			String jstring=(String) session.getAttribute("jstring");
 			String code = request.getParameter(OAuthConstants.CODE);
 			String res=null;
 			String responseMsg=null;
@@ -187,6 +189,19 @@ public class OauthCall extends HttpServlet {
 	   							str+=line;		     			
    							}
 	   						session.setAttribute("xml1", str);
+	   					}
+	   					else if("Authorization:header".equals(treplace)){					     			
+	   						post.addHeader("X-Shopify-Access-Token", access_token);
+	   						StringEntity st=new StringEntity(jstring);
+	   						st.setContentType("application/json");
+	   						post.setEntity(st);
+	   						HttpResponse response1=client.execute(post);
+	   						BufferedReader rd = new BufferedReader(
+	   								new InputStreamReader(response1.getEntity().getContent()));
+	   						while ((line = rd.readLine()) != null) {
+	   							str+=line;		     			
+   							}
+	   						//session.setAttribute("xml1", str);
 	   					}
 	   					else if("QueryString".equals(treplace)){
 	   						List <NameValuePair> cod = new ArrayList <NameValuePair>();
