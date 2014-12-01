@@ -191,12 +191,13 @@
 		height:500px;
 		border:3px solid #ff9900;
 		z-index: 9002;
+		overflow-y:auto;
 		box-shadow:2px 2px 5px 1px #000;
 	
 	}
 	
 	#popUpDiv {
-		a position:relative; top:20px; left:20px
+		a position:relative; top:20px; left:20px; overflow-y:auto;
 	}
 	#popUpAct {
 		position:absolute;
@@ -205,6 +206,7 @@
 		height:500px;
 		border:3px solid #ff9900;
 		z-index: 9002;
+		overflow-y:auto;
 		box-shadow:2px 2px 5px 1px #000;
 	
 	}
@@ -214,6 +216,7 @@
 	}
 	#inpop{
 		margin:50px;
+		overflow-y:auto;
 		font-family:verdana;
 		font-size:15px;
 		color:#FFFFFF;
@@ -333,6 +336,9 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 	}
 	out.println("<br>"+orurl+"<br>");
 	}
+	if(!rformat.equals("rest")){
+		%><textarea name="exreq" id="txt1"><%=jstr%></textarea><% 	
+	}
 	%>
 		<br><%=txt1 %><br><br><input type="text" name="uname" placeholder="UserName or ApiKey"><br><br><%=txt2 %><br><br><input type="password" name="pwd" placeholder="Password or Secret Key"><br><br><br>
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
@@ -396,7 +402,7 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 		1, Enter the MindPulpy Webhook Url into Your account.<br><br>
 		2, Your webhook url :<br><u>https://bridge-minddotss.rhcloud.com/mindpulpy/webhooks/<%=tempid %></u><br><br>
 		3, Method: POST &nbsp;&nbsp;&nbsp; Parameter_name: data &nbsp;&nbsp;&nbsp; Format: JSON.<br><br>
-		4, <input type="checkbox" required> Do the specified action in you account then click continue..<br><br><br>
+		4, <input type="checkbox"> Do the specified action in you account then click continue..<br><br><br>
 	    <input type="submit" name="submit" onclick="javascript:sub('dis')" value="Webhook Trigger" ></div>
 		<%
 		}
