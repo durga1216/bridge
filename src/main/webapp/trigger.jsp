@@ -12,16 +12,16 @@ var TextBox=0;
 var intTextBox=0;
 function addTrigger(){
 	TextBox = TextBox + 1;
-	    var nameID= document.getElementById('name');
-	    var newDiv=document.createElement('div');
-	    newDiv.setAttribute('id','strText'+TextBox);
-	    newDiv.innerHTML ="<br>Enter Trigger or Action Name&nbsp;&nbsp;&nbsp;<input type='text' name='name" + TextBox + "'  placeholder='Name of the Trigger in Display'>";
-	    nameID.appendChild(newDiv);
+	   if(TextBox==1){
   		var contentID = document.getElementById('content1');
   		var newTBDiv = document.createElement('div');
   		newTBDiv.setAttribute('id','strText'+TextBox);
   		newTBDiv.innerHTML = "<br><br><input type='text' style='width:400px;margin-left:350px;' id='t" + TextBox + "'    name='t" + TextBox + "' placeholder='Enter the Trigger Method Url here'/>&nbsp;<a id='pa' href='javascript:addParent();'>Add Parameter</a><a id='pa' href='javascript:removeParent();'>Remove Parameter</a><br><br><br><div id='cont"+TextBox+"'></div><br>";
-  		contentID.appendChild(newTBDiv);
+  		contentID.appendChild(newTBDiv);}
+	   
+	   else{
+		   		   alert("Insert Trigger URL one by one..");
+	   }
   	
   	
 }
@@ -180,7 +180,7 @@ font-family:verdana;
 <form action="Trigger" method="post">
 <br><br><center><div id="head">Mind-Bridge</div></center>
 <br><br><div id="tit">2.Choose the Trigger or Action Fields</div><br>
-<br><div id="name"></div>
+<br><div id="name">Enter Trigger or Action Name&nbsp;&nbsp;&nbsp;<input type='text' name='t1'  placeholder='Name of the Trigger in Display'></div>
 <br><br><a id='trig' href="javascript:addTrigger();">Add Trigger or Action Method</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="trig" href="javascript:removeTrigger();">Remove Trigger or Action Method</a></center></br></br>
 <br><div id="content1"></div><br>
 

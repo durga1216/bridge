@@ -39,8 +39,7 @@ public class MethodStorage extends HttpServlet {
 		String id=(String) session.getAttribute("id");
 	    String app=request.getParameter("app");
 	    String app1=request.getParameter("app1");
-	    String tgmeth="";
-	    String actmeth="";
+	    String tgmeth="";String actmeth="";
 	    String aid="";String tid="";String tgtit="";String actit="";int code=0;int code1=0;
 	    Connection con;
 	    try{
