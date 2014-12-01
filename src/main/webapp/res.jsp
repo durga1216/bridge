@@ -113,7 +113,7 @@ if (u != null ) {
 	response.sendRedirect("logout.jsp");
 }
 String respo= (String) request.getSession().getAttribute("xml1");
-//String respo="{\"name\":[{\"sname\":{\"bname\":\"susee\"}},{\"sname\":\"susee\"}]}";
+//String respo="{\"name\":[{\"sname\":{\"bname\":\"mind\"}},{\"sname\":\"dots\"}]}";
 //String respo="<?xml version=\"1.0\" encoding=\"UTF-8\"?><search><total_items>115</total_items><page_size><page_count11>12</page_count11></page_size><page_count>12</page_count><page_number>1</page_number></search>";
 char chfirst=respo.charAt(0);
 %>

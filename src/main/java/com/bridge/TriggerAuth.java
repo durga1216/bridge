@@ -168,6 +168,17 @@ public class TriggerAuth extends HttpServlet {
 	   	 				st2.executeUpdate();
 	   	 				st2.close();
 	   	 			}else if(authen.equals("API keys")){  
+		   	 			String[] slt=t1.split("@@");
+	   	 				int nn=slt.length;String orurl="";
+	   	 				if(!(nn==0)){
+	   	 					for(int i=1,j=1;i<nn;i=i+2,j++){
+	   	 						slt[i]=tdm[j];
+	   	 					}
+	   	 					for(int k=0;k<nn;k++){
+	   	 						orurl=orurl+slt[k];
+	   	 					}
+	   	 					t1=orurl;
+	   	 				}
 	   	 				if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
 	   	 					eurl=t1+"?"+a1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
       		 
@@ -579,6 +590,17 @@ public class TriggerAuth extends HttpServlet {
 	   	 				st2.close();
 	   	 			}
 	   	 			else if(authen.equals("Oauth2")){
+		   	 			String[] slt=t1.split("@@");
+				  		int nn=slt.length;String orurl="";
+				  		if(!(nn==0)){
+				  			for(int i=1,j=1;i<nn;i=i+2,j++){
+				  				slt[i]=adm[j];
+				      		}
+				      		for(int k=0;k<nn;k++){
+				      			orurl=orurl+slt[k];
+				      		}
+				      		t1=orurl;
+				  		}
 	   	 				String eeurl="";
 		   	 			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
 	   	 					eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
@@ -620,6 +642,31 @@ public class TriggerAuth extends HttpServlet {
 	   	 					st2.executeUpdate();
 	   	 					st2.close();
 	   	 				}else{
+	   	 				
+					  		//construct authentication url by @@
+					  		String[] slt1=aurl1.split("@@");
+					  		int nn1=slt1.length;String orurl1="";
+					  		if(!(nn1==0)){
+					  			for(int i=1,j=1;i<nn1;i=i+2,j++){
+					  				slt1[i]=adm[j];
+					      		}
+					      		for(int k=0;k<nn1;k++){
+					      			orurl1=orurl1+slt1[k];
+					      		}
+					      		aurl1=orurl1;
+					  		}
+					  		//construct token url by @@
+					  		String[] slt2=tokenurl1.split("@@");
+					  		int nn2=slt2.length;String orurl2="";
+					  		if(!(nn2==0)){
+					  			for(int i=1,j=1;i<nn2;i=i+2,j++){
+					  				slt2[i]=adm[j];
+					      		}
+					      		for(int k=0;k<nn2;k++){
+					      			orurl2=orurl2+slt2[k];
+					      		}
+					      		tokenurl1=orurl2;
+					  		}
 	   	 					session.setAttribute("ckey", ckey1);
 	   	 					session.setAttribute("cseckey", cseckey1);
 	   	 					session.setAttribute("tokenurl", tokenurl1);
