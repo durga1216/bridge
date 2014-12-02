@@ -23,7 +23,7 @@ function addParam(){
 						hm +="<option value="+nm1+">" + nm1 + "</option>";
 					}
 					else{
-						hm +="<option value="+y[i].nodeName+"/"+nm2+">"+y[i].nodeName+"/"+nm2+"</option>";
+						hm +="<option value="+y[i].nodeName+"[last()]/"+nm2+"[last()]>"+y[i].nodeName+"/"+nm2+"</option>";
 					}
 				}
 			}
@@ -42,7 +42,7 @@ function addParam(){
 						else{
 							if(nm2=='#text'){ 
 							}else{
-								hm +="<option value="+y[i].nodeName+"/"+nm2+">"+y[i].nodeName+"/"+nm2+"</option>";
+								hm +="<option value="+y[i].nodeName+"[last()]/"+nm2+"[last()]>"+y[i].nodeName+"/"+nm2+"</option>";
 							}
 						}
 					}
@@ -86,7 +86,7 @@ function addParam(){
 							}else if(sxml3.charAt(0)=='['){
 								var axml3=xml3[0];
 								for(var aky3 in axml3){
-									hm +="<option value=" + key + "."+sky1+"."+sky2+"[0]."+aky3+">" + key + "/"+sky1+"/"+sky2+"/"+aky3+"</option>";
+									hm +="<option value=" + key + "."+sky1+"."+sky2+"["+(xml3.length-1)+"]."+aky3+">" + key + "/"+sky1+"/"+sky2+"/"+aky3+"</option>";
 								}
 							}else{
 								hm +="<option value=" + key + "."+sky1+"."+sky2+">" + key + "/"+sky1+"/"+sky2+"</option>";			
@@ -106,7 +106,7 @@ function addParam(){
 							}else if(sxml3.charAt(0)=='['){
 								var axml3=xml3[0];
 								for(var aky3 in axml3){
-									hm +="<option value=" + key + "."+sky1+"[0]."+aky2+"[0]."+aky3+">" + key + "/"+sky1+"/"+aky2+"/"+aky3+"</option>";
+									hm +="<option value=" + key + "."+sky1+"[0]."+aky2+"["+(xml3.length-1)+"]."+aky3+">" + key + "/"+sky1+"/"+aky2+"/"+aky3+"</option>";
 								}
 							}else{
 								hm +="<option value=" + key + "."+sky1+"[0]."+aky2+">" + key + "/"+sky1+"/"+aky2+"</option>";			
@@ -136,7 +136,7 @@ function addParam(){
 							}else if(sxml3.charAt(0)=='['){
 								var axml3=xml3[0];
 								for(var aky3 in axml3){
-									hm +="<option value=" + key + "[0]."+aky1+"."+sky2+"[0]."+aky3+">" + key + "/"+aky1+"/"+sky2+"/"+aky3+"</option>";
+									hm +="<option value=" + key + "[0]."+aky1+"."+sky2+"["+(xml3.length-1)+"]."+aky3+">" + key + "/"+aky1+"/"+sky2+"/"+aky3+"</option>";
 								}
 							}else{
 								hm +="<option value=" + key + "[0]."+aky1+"."+sky2+">" + key + "/"+aky1+"/"+sky2+"</option>";			
@@ -156,7 +156,7 @@ function addParam(){
 							}else if(sxml3.charAt(0)=='['){
 								var axml3=xml3[0];
 								for(var aky3 in axml3){
-									hm +="<option value=" + key + "[0]."+aky1+"[0]."+aky2+"[0]."+aky3+">" + key + "/"+aky1+"/"+aky2+"/"+aky3+"</option>";
+									hm +="<option value=" + key + "[0]."+aky1+"[0]."+aky2+"["+(xml3.length-1)+"]."+aky3+">" + key + "/"+aky1+"/"+aky2+"/"+aky3+"</option>";
 								}
 							}else{
 								hm +="<option value=" + key + "[0]."+aky1+"[0]."+aky2+">" + key + "/"+aky1+"/"+aky2+"</option>";		
