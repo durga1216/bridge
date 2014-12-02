@@ -81,7 +81,7 @@ public class Trigger extends HttpServlet {
             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
          if (request.getParameter("new") != null) {
 
-   		     response.setHeader("Refresh", "1; URL=trigger.jsp");
+   		     response.setHeader("Refresh", "1; URL=auth.jsp");
          }
          else if(request.getParameter("finish")!=null){
          	response.sendRedirect("finish.jsp");
