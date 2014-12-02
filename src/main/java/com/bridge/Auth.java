@@ -78,7 +78,7 @@ public class Auth extends HttpServlet {
 		   	 	con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
 			   	 	PreparedStatement st=con.prepareStatement("insert into auth(appid,hoo,authen,txt1,txt2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,h6,hv6,h7,hv7,txt3,txt4,a1,a2,ckey,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,select2,ockey,oskey,ourl1,ourl2,ourl3,osmeth,oreq,sig,sigskey,sigckey,message,sformat,tformat,second,utc,sigbasic,sh1,shv1,sh2,shv2,sh3,shv3,sh4,shv4,sh5,shv5) values ('"+id+"','"+hoo+"','"+authen+"','"+txt1+"','"+txt2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+h6+"','"+hv6+"','"+h7+"','"+hv7+"','"+txt3+"','"+txt4+"','"+a1+"','"+a2+"','"+ckey+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+select2+"','"+ockey+"','"+oskey+"','"+ourl1+"','"+ourl2+"','"+ourl3+"','"+osmeth+"','"+oreq+"','"+sig+"','"+sigskey+"','"+sigckey+"','"+message+"','"+sformat+"','"+tformat+"','"+second+"','"+utc+"','"+sigbasic+"','"+sh1+"','"+shv1+"','"+sh2+"','"+shv2+"','"+sh3+"','"+shv3+"','"+sh4+"','"+shv4+"','"+sh5+"','"+shv5+"')");				 
 			   	 	st.executeUpdate();
-			   	 	PreparedStatement st1=con.prepareStatement("Select * from auth order by desc limit 1");
+			   	 	PreparedStatement st1=con.prepareStatement("select * from auth order by tid desc limit 1");
 			   	 	ResultSet rs=st1.executeQuery();
 			   	 	while(rs.next()){
 			   	 		tid=rs.getString("tid");
