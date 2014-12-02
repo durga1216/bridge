@@ -69,12 +69,12 @@ public class Trigger extends HttpServlet {
     String rmethod=request.getParameter("rmethod");String rformat=request.getParameter("rformat");
     String resformat=request.getParameter("resformat");
     String note=request.getParameter("note");
-    
+    String tid=(String)session.getAttribute("tid");
 
     try{
       	 Class.forName("com.mysql.jdbc.Driver").newInstance();
       	 con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
-         PreparedStatement st=con.prepareStatement("insert into triger(appid,name,name2,name3,name4,name5,t1,t2,t3,t4,t5,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,p11,pv11,p12,pv12,p13,pv13,p14,pv14,p15,pv15,p16,pv16,p17,pv17,p18,pv18,p19,pv19,p20,pv20,rmethod,rformat,resformat,note,js,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10) values ('"+appid+"','"+name+"','"+name2+"','"+name3+"','"+name4+"','"+name5+"','"+t1+"','"+t2+"','"+t3+"','"+t4+"','"+t5+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+p11+"','"+pv11+"','"+p12+"','"+pv12+"','"+p13+"','"+pv13+"','"+p14+"','"+pv14+"','"+p15+"','"+pv15+"','"+p16+"','"+pv16+"','"+p17+"','"+pv17+"','"+p18+"','"+pv18+"','"+p19+"','"+pv19+"','"+p20+"','"+pv20+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+note+"','"+js+"','"+f1+"','"+f2+"','"+f3+"','"+f4+"','"+f5+"','"+f6+"','"+f7+"','"+f8+"','"+f9+"','"+f10+"')");				 
+         PreparedStatement st=con.prepareStatement("insert into triger(tid,appid,name,name2,name3,name4,name5,t1,t2,t3,t4,t5,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,p11,pv11,p12,pv12,p13,pv13,p14,pv14,p15,pv15,p16,pv16,p17,pv17,p18,pv18,p19,pv19,p20,pv20,rmethod,rformat,resformat,note,js,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10) values ('"+tid+"','"+appid+"','"+name+"','"+name2+"','"+name3+"','"+name4+"','"+name5+"','"+t1+"','"+t2+"','"+t3+"','"+t4+"','"+t5+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+p11+"','"+pv11+"','"+p12+"','"+pv12+"','"+p13+"','"+pv13+"','"+p14+"','"+pv14+"','"+p15+"','"+pv15+"','"+p16+"','"+pv16+"','"+p17+"','"+pv17+"','"+p18+"','"+pv18+"','"+p19+"','"+pv19+"','"+p20+"','"+pv20+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+note+"','"+js+"','"+f1+"','"+f2+"','"+f3+"','"+f4+"','"+f5+"','"+f6+"','"+f7+"','"+f8+"','"+f9+"','"+f10+"')");				 
          st.executeUpdate();
       	 st.close();
       	 out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"

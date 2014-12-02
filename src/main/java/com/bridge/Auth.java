@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -71,11 +72,18 @@ public class Auth extends HttpServlet {
 		    String sh4=request.getParameter("sh4");String shv4=request.getParameter("shv4");
 		    String sh5=request.getParameter("sh5");String shv5=request.getParameter("shv5");String sformat=request.getParameter("sformat");
 		    String tformat=request.getParameter("tformat");String second=request.getParameter("second");String utc=request.getParameter("utc");
+		    String tid="";
 		    try{
 		    	Class.forName("com.mysql.jdbc.Driver").newInstance();
 		   	 	con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
 			   	 	PreparedStatement st=con.prepareStatement("insert into auth(appid,hoo,authen,txt1,txt2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,h6,hv6,h7,hv7,txt3,txt4,a1,a2,ckey,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,select2,ockey,oskey,ourl1,ourl2,ourl3,osmeth,oreq,sig,sigskey,sigckey,message,sformat,tformat,second,utc,sigbasic,sh1,shv1,sh2,shv2,sh3,shv3,sh4,shv4,sh5,shv5) values ('"+id+"','"+hoo+"','"+authen+"','"+txt1+"','"+txt2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+h6+"','"+hv6+"','"+h7+"','"+hv7+"','"+txt3+"','"+txt4+"','"+a1+"','"+a2+"','"+ckey+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+select2+"','"+ockey+"','"+oskey+"','"+ourl1+"','"+ourl2+"','"+ourl3+"','"+osmeth+"','"+oreq+"','"+sig+"','"+sigskey+"','"+sigckey+"','"+message+"','"+sformat+"','"+tformat+"','"+second+"','"+utc+"','"+sigbasic+"','"+sh1+"','"+shv1+"','"+sh2+"','"+shv2+"','"+sh3+"','"+shv3+"','"+sh4+"','"+shv4+"','"+sh5+"','"+shv5+"')");				 
 			   	 	st.executeUpdate();
+			   	 	PreparedStatement st1=con.prepareStatement("select * from auth order by tid desc limit 1");
+			   	 	ResultSet rs=st1.executeQuery();
+			   	 	while(rs.next()){
+			   	 		tid=rs.getString("tid");
+			   	 	}
+			   	 	session.setAttribute("tid", tid);
 			   	 	out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 			         		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 			   	 	response.setHeader("Refresh", "1; URL=trigger.jsp");
