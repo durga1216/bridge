@@ -346,7 +346,7 @@ margin-left:100px;
 </head>
 <body>
 <form action="Auth" method="post">
-<br><br><center><div id="head">Mind-Bridge</div></center><br><br><br><br>
+<br><br><center><div id="head">Mind-Bridge</div></center><br><br><br>
 <select name="hoo" id="hoo">
 <option value="dummy">Choose your Request type</option>
 <option value="rest">Polling</option>
@@ -478,6 +478,7 @@ margin-left:100px;
 <select name="sformat" id="sformat">
 <option value="URL-Encoded">URL-Encoded</option>
 <option value="HexaDecimal">HexaDecimal</option>
+<option value="Hexa-Base64">Hexa-Base64</option>
 </select><br><br>
 <div id="ba1">Timestamp Format</div><br>
 <select name="tformat" id="tformat">

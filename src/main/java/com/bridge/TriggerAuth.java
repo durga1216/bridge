@@ -352,7 +352,7 @@ public class TriggerAuth extends HttpServlet {
 	 					}
 	 					out.println("smessage");
 	 					//creating signature
-	 					String result="";String signature1="";
+	 					String result="";String signature1="";String sign="";
 	 					if(sig.equals("HMAC-SHA1")){
 		 					SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
 		 			        Mac mac = Mac.getInstance("HMACSHA1");
@@ -362,8 +362,15 @@ public class TriggerAuth extends HttpServlet {
 		 			        	result = new BASE64Encoder().encode(rawHmac);
 		 			        	signature1 = URLEncoder.encode(result, "UTF-8") ;
 		 			        }
-		 			        else if(sformat.equals("HexaDecimal"))
-		 			        	signature1=new String(Hex.encodeHex(rawHmac));
+		 			        else if(sformat.equals("HexaDecimal")){
+		 			        	signature1=new String(Hex.encodeHex(rawHmac));}
+		 			        
+		 			        else if(sformat.equals("Hexa-Base64")){
+		 			        	sign=new String(Hex.encodeHex(rawHmac));
+		 			            byte[] encoded = Base64.encodeBase64(signature1.getBytes());  
+		 			            signature1= encoded.toString();
+
+		 			        }
 	 					}
 	 					else if(sig.equals("HMAC-SHA256")){
 	 						SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HmacSHA256");
