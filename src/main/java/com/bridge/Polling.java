@@ -108,6 +108,7 @@ public class Polling extends HttpServlet {
 		    	tar.add(Integer.parseInt(rs1.getString("time"))*60*1000);
 		    }
 		    int ttl=ar.size();
+		    session.setAttribute("samp", ar.toString()+"---"+ttl);
 		    //Create Thread for Every Trigger
 		    Thread[] th =new Thread[ttl];
 			for(int i=0;i<ttl;i++){
@@ -231,6 +232,7 @@ public class Polling extends HttpServlet {
 			    				while((lin=bf.readLine())!=null){
 			    					str+=lin;
 			    				}
+			    				session.setAttribute("samp", str);
 				   			}
 					   		else if(authen.equals("Signed Auth")){
 			   	 				String uuid_string = UUID.randomUUID().toString();
@@ -679,6 +681,7 @@ public class Polling extends HttpServlet {
 								exres=rs1.getString("exres");shname=rs1.getString("shname");
 								parpol=rs1.getString("parpol");unipol=rs1.getString("unipol");
 							} 
+							session.setAttribute("samp", x1+x2+x3+x4+x5+parpol+unipol);
 							if(resformat.equals("json")){
 								try{
 									ScriptEngineManager manager = new ScriptEngineManager();
@@ -714,13 +717,14 @@ public class Polling extends HttpServlet {
 									for(int i=0;i<ln;i++){
 										Node inputEvent=inevent.item(i);
 										String value= xPath.evaluate(unipol, inputEvent);
+										arr.add(value);
 										arx1.add(xPath.evaluate(x1, inputEvent));
 										arx2.add(xPath.evaluate(x2, inputEvent));
 										arx3.add(xPath.evaluate(x3, inputEvent));
 										arx4.add(xPath.evaluate(x4, inputEvent));
 										arx5.add(xPath.evaluate(x5, inputEvent));
-										arr.add(value);
 									}
+									session.setAttribute("samp", arx1.toString()+arx2.toString()+arx3.toString()+arx4.toString()+arx5.toString());
 									if(arr1.size()==0){
 										arr1=arr;
 									}
