@@ -40,7 +40,7 @@ public class MethodStorage extends HttpServlet {
 	    String app=request.getParameter("app");
 	    String app1=request.getParameter("app1");
 	    String tgmeth="";String actmeth="";
-	    String aid="";String tid="";String tgtit="";String actit="";int code=0;int code1=0;
+	    String aid="";String tid="";String tgtit="";String actit="";int code=0;int code1=0;String type="";
 	    Connection con;
 	    try{
 			   Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -56,6 +56,7 @@ public class MethodStorage extends HttpServlet {
 	        	   tid=rs2.getString("appid");
 	        	   tgtit=rs2.getString("tit");
 	        	   tgmeth=rs2.getString("t1");
+	        	   type=rs2.getString("hoo");
 	           }
 	           st2.close();
 	           PreparedStatement st3=con.prepareStatement("select * from title t1 JOIN triger t2 ON t1.appid=t2.appid where t1.appid=?");
@@ -68,7 +69,7 @@ public class MethodStorage extends HttpServlet {
 	           }
 	           st3.close();
 	           
-	           PreparedStatement st=con.prepareStatement("insert into home(userid,tid,aid,tgtit,actit,tgmeth,actmeth,state,time) values ('"+id+"','"+tid+"','"+aid+"','"+tgtit+"','"+actit+"','"+tgmeth+"','"+actmeth+"','Active','15')");
+	           PreparedStatement st=con.prepareStatement("insert into home(userid,tid,aid,tgtit,actit,tgmeth,actmeth,state,time,type) values ('"+id+"','"+tid+"','"+aid+"','"+tgtit+"','"+actit+"','"+tgmeth+"','"+actmeth+"','Active','15','"+type+"')");
 	           st.executeUpdate();
 	           st.close();
 	           request.setAttribute("code1", code1);

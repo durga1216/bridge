@@ -349,7 +349,8 @@ margin-left:100px;
 <br><br><center><div id="head">Mind-Bridge</div></center><br><br><br><br>
 <select name="hoo" id="hoo">
 <option value="dummy">Choose your Request type</option>
-<option value="rest">Rest Api</option>
+<option value="rest">Polling</option>
+<option value="rest">Normal Rest Api's</option>
 <option value="webhook">Webhook</option>
 <option value="resthook">Resthook</option>
 </select><br><br><br>

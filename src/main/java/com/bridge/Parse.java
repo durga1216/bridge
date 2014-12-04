@@ -44,10 +44,16 @@ public class Parse extends HttpServlet {
 		String ptag=request.getParameter("ptag");
 		String exres=request.getParameter("exres");
 		String sheet=request.getParameter("sheet");
+		String parpol=request.getParameter("parpol");
+		String unipol=request.getParameter("unipol");
 		String[] x=new String[11];
+		String[] xx=new String[11];
 		String tempid="";String tid="";String aid="";String tgtit="";String actit="";
 		for(int i=1;i<11;i++){
 			x[i]=request.getParameter("x"+i);
+		}
+		for(int i=1;i<11;i++){
+			xx[i]=request.getParameter("xx"+i);
 		}
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -61,7 +67,7 @@ public class Parse extends HttpServlet {
  	   			tgtit=rs.getString("tgtit");
  	   			actit=rs.getString("actit");
 			}
-			PreparedStatement ps1=con.prepareStatement("insert into parse (tempid,tid,aid,ptag,exres,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,shname) values('"+tempid+"','"+tid+"','"+aid+"','"+ptag+"','"+exres+"','"+x[1]+"','"+x[2]+"','"+x[3]+"','"+x[4]+"','"+x[5]+"','"+x[6]+"','"+x[7]+"','"+x[8]+"','"+x[9]+"','"+x[10]+"','"+sheet+"')");
+			PreparedStatement ps1=con.prepareStatement("insert into parse (tempid,tid,aid,ptag,exres,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,shname,xx1,xx2,xx3,xx4,xx5,parpol,unipol) values('"+tempid+"','"+tid+"','"+aid+"','"+ptag+"','"+exres+"','"+x[1]+"','"+x[2]+"','"+x[3]+"','"+x[4]+"','"+x[5]+"','"+x[6]+"','"+x[7]+"','"+x[8]+"','"+x[9]+"','"+x[10]+"','"+sheet+"','"+xx[1]+"','"+xx[2]+"','"+xx[3]+"','"+xx[4]+"','"+xx[5]+"','"+parpol+"','"+unipol+"')");
 			ps1.executeUpdate();
 			response.sendRedirect(request.getContextPath()+"/Final");
 		}catch(Exception e){

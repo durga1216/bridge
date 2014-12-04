@@ -49,7 +49,7 @@ function addParam(){
 				}
 			}
 		}
-		hm +="</select>&nbsp;&nbsp;&nbsp;<input type=text placeholder=' If Other' id=xv"+num+" name=xv"+num+"><br><br>";
+		hm +="</select>&nbsp;&nbsp;&nbsp;<input type=text placeholder=' If Other' id=xx"+num+" name=xx"+num+"><br><br>";
 		newTBDiv.innerHTML = hm;
 	}
 	else{
@@ -170,7 +170,7 @@ function addParam(){
 				hm +="<option value="+key+">" + key + "</option>";			
 			}
 		}
-		hm +="</select>&nbsp;&nbsp;&nbsp;<input type=text placeholder=' If Other' id=xv"+num+" name=xv"+num+"><br><br>";
+		hm +="</select>&nbsp;&nbsp;&nbsp;<input type=text placeholder=' If Other' id=xx"+num+" name=xx"+num+"><br><br>";
 		newTBDiv.innerHTML = hm;
 	}
 	contentID.appendChild(newTBDiv);

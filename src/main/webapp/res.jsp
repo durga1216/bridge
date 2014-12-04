@@ -53,6 +53,11 @@ height:100%;
 width:600px;
 margin-left:70px;
 }
+h4{
+font-family:verdana; 
+font-size:19px;
+color:#fff;
+}
 #txt1{
 font-family:verdana;
 font-size:15px;
@@ -135,7 +140,7 @@ function load1(){
 		ResultSet r=null;ResultSet rs =null; 
 		String actit="";String tgtit="";String tid="";String aid="";String tempid="";
 		String rformat="";String[] tp=new String[5]; 
-		String note="Guide";
+		String note="Guide";String type="";
 %>
 <%
 	try{
@@ -147,6 +152,7 @@ function load1(){
 		aid=r.getString("aid");
 		tgtit=r.getString("tgtit");
 		actit=r.getString("actit");
+		type=r.getString("type");
 	}
 		  PreparedStatement ps = conn.prepareStatement("select * from title t1 JOIN auth t2 on t1.appid=t2.appid JOIN triger t3 ON t1.appid=t3.appid where t1.appid=?");
 	      ps.setString(1,aid);
@@ -196,6 +202,10 @@ Xml Example:
 </div>
 <div id=res>
 	<h3>Trigger Response:</h3>
+	<%if(type.equals("polling")){
+		%><h4>Enter the Polling parent Tag:</h4><input type=text name="parpol">
+		<h4>Enter the Unique Polling Element:</h4><input type=text name="paruni"><%
+	}%>
 	<input type="text" style="display:none;" id="ptag" name="ptag" placeholder=" parant Tag"><br><br>
 	<a id='pa' href="javascript:addParam()">Add_Tag</a>&nbsp;
     <a id='pa' href="javascript:removeParam()">Remove_Tags</a><br>
