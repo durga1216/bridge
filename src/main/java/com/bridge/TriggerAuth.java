@@ -380,10 +380,10 @@ public class TriggerAuth extends HttpServlet {
 		 			        
 		 			        else if(sformat.equals("Hexa-Base64")){
 		 			        	SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes("UTF-8"), "HMACSHA1");
-			 			        Mac mac = Mac.getInstance("HMACSHA1");
-			 			        mac.init(signingKey);
-			 			       String orig = new String(Hex.encodeHex(mac.doFinal(msg.getBytes())));
-			 			       encoded = Base64.encodeBase64(orig.getBytes());  
+		 			           Mac mac = Mac.getInstance("HMACSHA1");
+		 			           mac.init(signingKey);
+		 			           String orig = new String(Hex.encodeHex(mac.doFinal(msg.getBytes())));
+		 			           encoded = Base64.encodeBase64(orig.getBytes());  
 
 		 			        }
 	 					}

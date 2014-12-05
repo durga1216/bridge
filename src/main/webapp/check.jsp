@@ -399,7 +399,7 @@ try{
      Enter the API key:<br>
        <input type="text" name="sigckey" value=""><br><br>
      Enter the Secret Key:<br>
-       <input type="text" name="sigskey" value=""><br><br>
+       <input type="password" name="sigskey" value=""><br><br>
      Enter Message(For Eg- <%=sigmessage%>):<br><br>
        <textarea name="msg" id="msg" value="" placeholder="You can also copy paste the message from eg,or enter new message"></textarea><br><br>
        
