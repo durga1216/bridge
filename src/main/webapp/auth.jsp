@@ -272,7 +272,7 @@ font-weight:bold;
 margin-left:100px;
 color:#FFFFFF;
 }
-#hook{
+#web,#rest{
 font-family:verdana;
 font-size:18px;
 color:#FFFFFF;
@@ -343,14 +343,14 @@ margin-left:100px;
 <div id="hook1" style="display:none">
 <input type="radio" name="hoo" value="Web Hooks">
 <label for="rd2">Web Hooks</label><br><br>
-<div id="hook" style="display:none">
+<div id="web" style="display:none">
 1.Enter the MindPulpy Webhook Url into Your account.<br><br>
 2.Url:<u>https://bridge-minddotss.rhcloud.com/WebHooks?tempid=$$we provide tempid while build connectors$$</u>
 &nbsp;&nbsp;&nbsp;Method:Post<br><br>
 3.Do the specified action in you account then click continue.
 </div>
 <div id="rest" style="display:none">
-<div id="hook">Fine,Select Authentication scheme.</div>
+Fine,Select Authentication scheme.
 </div>
 <input type="radio" name="hoo" value="Rest Hooks">
 <label for="rd2">Rest Hooks</label>
