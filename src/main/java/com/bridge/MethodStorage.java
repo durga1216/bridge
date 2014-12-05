@@ -49,13 +49,13 @@ public class MethodStorage extends HttpServlet {
 	           st.executeUpdate();
 	           st.close();*/
 	           
-	           PreparedStatement st2=con.prepareStatement("select * from title t1 JOIN triger t2 ON t1.appid=t2.appid where t1.appid=?");
+	           PreparedStatement st2=con.prepareStatement("select * from title t1 JOIN triger t2 ON t1.appid=t2.appid JOIN auth t3 on t1.appid=t3.appid where t1.appid=?");
 	           st2.setString(1, app);
 	           ResultSet rs2=st2.executeQuery();
 	           while(rs2.next()){
 	        	   tid=rs2.getString("appid");
 	        	   tgtit=rs2.getString("tit");
-	        	   tgmeth=rs2.getString("t1");
+	        	   tgmeth=rs2.getString("t1"); 
 	        	   type=rs2.getString("hoo");
 	           }
 	           st2.close();
