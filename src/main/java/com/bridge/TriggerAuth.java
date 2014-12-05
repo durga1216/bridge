@@ -362,21 +362,28 @@ public class TriggerAuth extends HttpServlet {
 	 					//creating signature
 	 					String result="";String signature1="";String sign="";byte[] encoded = null;
 	 					if(sig.equals("HMAC-SHA1")){
-		 					SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
-		 			        Mac mac = Mac.getInstance("HMACSHA1");
-		 			        mac.init(signingKey);
-		 			        byte[] rawHmac = mac.doFinal(msg.getBytes());
+		 					
 		 			        if(sformat.equals("URL-Encoded")){
+		 			        	SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes("UTF-8"), "HMACSHA1");
+			 			        Mac mac = Mac.getInstance("HMACSHA1");
+			 			        mac.init(signingKey);
+			 			        byte[] rawHmac = mac.doFinal(msg.getBytes());
 		 			        	result = new BASE64Encoder().encode(rawHmac);
 		 			        	signature1 = URLEncoder.encode(result, "UTF-8") ;
 		 			        }
 		 			        else if(sformat.equals("HexaDecimal")){
+		 			        	SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes("UTF-8"), "HMACSHA1");
+			 			        Mac mac = Mac.getInstance("HMACSHA1");
+			 			        mac.init(signingKey);
+			 			        byte[] rawHmac = mac.doFinal(msg.getBytes());
 		 			        	signature1=new String(Hex.encodeHex(rawHmac));}
 		 			        
 		 			        else if(sformat.equals("Hexa-Base64")){
-		 			        	sign=new String(Hex.encodeHex(rawHmac));
-		 			            encoded = Base64.encodeBase64(sign.getBytes());  
-		 			            signature1= encoded.toString();
+		 			        	SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes("UTF-8"), "HMACSHA1");
+			 			        Mac mac = Mac.getInstance("HMACSHA1");
+			 			        mac.init(signingKey);
+			 			       String orig = new String(Hex.encodeHex(mac.doFinal(msg.getBytes())));
+			 			       encoded = Base64.encodeBase64(orig.getBytes());  
 
 		 			        }
 	 					}
