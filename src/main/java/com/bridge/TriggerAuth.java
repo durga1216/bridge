@@ -134,7 +134,6 @@ public class TriggerAuth extends HttpServlet {
 	   	 			String sh5=rs.getString("sh5");String shv5=rs.getString("shv5");
 
 	   	 			
-	   	 			//int sec=Integer.parseInt(second);
 	   	 			out.println(authen);
 	   	 			String str="";
 	   	 			String eurl="null";
