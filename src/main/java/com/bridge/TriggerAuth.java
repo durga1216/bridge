@@ -131,7 +131,6 @@ public class TriggerAuth extends HttpServlet {
 	   	 			String sh2=rs.getString("sh2");String shv2=rs.getString("shv2");
 	   	 			String sh3=rs.getString("sh3");String shv3=rs.getString("shv3");
 	   	 			String sh4=rs.getString("sh4");String shv4=rs.getString("shv4");
-	   	 			String sh5=rs.getString("sh5");String shv5=rs.getString("shv5");
 
 	   	 			
 	   	 			out.println(authen);
