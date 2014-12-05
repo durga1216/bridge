@@ -139,7 +139,7 @@ $(document).ready(function(){
 		}	
 	});
 	
-	$('#hooki').click(function({
+	$('#hooki').click(function(){
 		$('#hook1').show();
 	});
 });
@@ -339,7 +339,7 @@ margin-left:100px;
 <body>
 <form action="Auth" method="post">
 <br><br><center><div id="head">Mind-Bridge</div></center><br><br><br><br>
-<div id="hooki">1.Click here to configure with hooks</div><br>
+<div id="hooki"><u>Click here to configure with hooks</u></div><br>
 <div id="hook1" style="display:none">
 <input type="radio" name="hoo" value="Web Hooks">
 <label for="rd2">Web Hooks</label>
@@ -347,7 +347,7 @@ margin-left:100px;
 <input type="radio" name="hoo" value="Rest Hooks">
 <label for="rd2">Rest Hooks</label>
 </div><br><br>
-<br><div id="tit">2.Choose Trigger Authentication Scheme</div><br><br>
+<br><div id="tit">Choose Trigger Authentication Scheme</div><br><br>
 <div id="inline_content">
 
 <input type="radio" name="authen"  value="No Auth">
