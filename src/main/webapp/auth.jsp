@@ -134,6 +134,9 @@ $(document).ready(function(){
 	$('#hooki').click(function(){
 		$('#hook1').show();
 	});
+	
+	$('input[name=hoo]').click(function(){
+
 	if($('input:radio[name=hoo]:checked').val() == "Web Hooks"){
 		$('#web').show();
 		$('#rest').hide();
@@ -142,6 +145,7 @@ $(document).ready(function(){
 		$('#web').hide();
 		$('#rest').show();
 	}
+	});
 });
 
 </script>
