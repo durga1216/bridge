@@ -84,6 +84,7 @@ public class TriggerAuth extends HttpServlet {
         String[] ndm={"Test",request.getParameter("ndm1"),request.getParameter("ndm2"),request.getParameter("ndm3"),request.getParameter("ndm4"),request.getParameter("ndm5")};
         String[] adm={"Test",request.getParameter("adm1"),request.getParameter("adm2"),request.getParameter("adm3"),request.getParameter("adm4"),request.getParameter("adm5")};
         String sigckey=request.getParameter("sigckey");String sigskey=request.getParameter("sigskey");
+        String msg=request.getParameter("msg");
         out.println(action);
         int code=0;int code1=0;
         try{
@@ -126,6 +127,13 @@ public class TriggerAuth extends HttpServlet {
 	   	 			String sigmsg=rs.getString("message");String sig=rs.getString("sig");
 	   	 			String sformat=rs.getString("sformat");String tformat=rs.getString("tformat");
 	   	 			String second=rs.getString("second");String utc=rs.getString("utc");
+	   	 			String sh1=rs.getString("sh1");String shv1=rs.getString("shv1");
+	   	 			String sh2=rs.getString("sh2");String shv2=rs.getString("shv2");
+	   	 			String sh3=rs.getString("sh3");String shv3=rs.getString("shv3");
+	   	 			String sh4=rs.getString("sh4");String shv4=rs.getString("shv4");
+	   	 			String sh5=rs.getString("sh5");String shv5=rs.getString("shv5");
+
+	   	 			
 	   	 			//int sec=Integer.parseInt(second);
 	   	 			out.println(authen);
 	   	 			String str="";
@@ -357,7 +365,7 @@ public class TriggerAuth extends HttpServlet {
 		 					SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
 		 			        Mac mac = Mac.getInstance("HMACSHA1");
 		 			        mac.init(signingKey);
-		 			        byte[] rawHmac = mac.doFinal(smessage.getBytes());
+		 			        byte[] rawHmac = mac.doFinal(msg.getBytes());
 		 			        if(sformat.equals("URL-Encoded")){
 		 			        	result = new BASE64Encoder().encode(rawHmac);
 		 			        	signature1 = URLEncoder.encode(result, "UTF-8") ;
@@ -424,8 +432,27 @@ public class TriggerAuth extends HttpServlet {
 	 					}
 	 					String callurl=t1+"?"+eurl;
 	 					//Request to client
+	 					String header="";
+	 					String[] head=sh1.split("@@");
+	 					int head1=head.length;
+	 					  if(!(head1==0)){
+	 						  for(int i=0;i<head1;i++){
+	 							  if(head[i].equals("apikey")){
+	 								  head[i]=sigckey;
+	 							  }
+	 							  if(head[i].equals("signature")){
+	 								  head[i]=signature1;
+	 							  }
+	 						  }
+	 						  for(int k=0;k<head1;k++){
+	 							  header=header+head[k];
+	 						  }
+	 					  }
 	   	 				HttpClient cli=new DefaultHttpClient();
 	   	 				HttpGet get=new HttpGet(callurl);
+	   	 				if(!"null".equals(sh1)){
+	   	 					get.addHeader(header,shv1);
+	   	 				}
 	   	 				HttpResponse res=cli.execute(get);
 	   	 				BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
 	   	 				String line="";

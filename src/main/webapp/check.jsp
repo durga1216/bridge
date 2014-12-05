@@ -118,7 +118,7 @@
 		font-size:25px;
 		color:#FFFFFF;
 	}
-	#txt1{
+	#txt1,#msg{
 		font-family:verdana;
 		font-size:15px;
 		color:#FF9900;
@@ -245,7 +245,8 @@ ResultSet r=null;ResultSet rs1 =null;ResultSet rs=null;String authen="";String t
 String authen1="";String atxt1="";String atxt2="";String atxt3="";String atxt4="";String tgtit="hh";String jstr="";
 String actit="hh";String tid="hh";String aid="hh";int code=0;int code1=0;String tempid="";String sigskey="";String sigckey="";
 String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5];String rformat="";String type="";
-	try{
+String sigmessage="";	
+try{
 		PreparedStatement st1=conn.prepareStatement("select * from home order by tempid desc limit 1");
      	r=st1.executeQuery();
     	while(r.next()){
@@ -265,6 +266,7 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
     		tp[1]=rs.getString("p1");tp[2]=rs.getString("p2");tp[3]=rs.getString("p3");tp[4]=rs.getString("p4");
     		txt1=rs.getString("txt1");txt2=rs.getString("txt2"); txt3=rs.getString("txt3");txt4=rs.getString("txt4");
     		sigckey=rs.getString("sigckey");sigskey=rs.getString("sigskey");rformat=rs.getString("rformat");
+    		sigmessage=rs.getString("message");
       	}
 	  	PreparedStatement ps1 = conn.prepareStatement("select * from title t1 JOIN auth t2 on t1.appid=t2.appid JOIN triger t3 ON t1.appid=t3.appid where t1.appid=?");
       	ps1.setString(1,aid);
@@ -394,10 +396,12 @@ String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5
 	}else if(authen.equals("Signed Auth")){
 	%>
 	<div id=inpop><h3>Signed Authentication:</h3><br><br>
-     <%=sigckey%>:<br>
+     Enter the API key:<br>
        <input type="text" name="sigckey" value=""><br><br>
-     <%=sigskey %>:<br>
+     Enter the Secret Key:<br>
        <input type="text" name="sigskey" value=""><br><br>
+     Enter Message(For Eg- <%=sigmessage%>):
+       <textarea name="msg" id="msg" value="" placeholder="You can also copy paste the message from eg,or enter new message"></textarea><br><br>
        
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
 	<%
