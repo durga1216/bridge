@@ -83,8 +83,8 @@ public class TriggerAuth extends HttpServlet {
         String[] tdm={"Test",request.getParameter("tdm1"),request.getParameter("tdm2"),request.getParameter("tdm3"),request.getParameter("tdm4"),request.getParameter("tdm5")};
         String[] ndm={"Test",request.getParameter("ndm1"),request.getParameter("ndm2"),request.getParameter("ndm3"),request.getParameter("ndm4"),request.getParameter("ndm5")};
         String[] adm={"Test",request.getParameter("adm1"),request.getParameter("adm2"),request.getParameter("adm3"),request.getParameter("adm4"),request.getParameter("adm5")};
-       // String sigckey=request.getParameter("sigckey");String sigskey=request.getParameter("sigskey");
-        String msg=request.getParameter("msg");
+         String sigckey=request.getParameter("sigckey");String sigskey=request.getParameter("sigskey");
+        String msg=request.getParameter("authmsg");
         out.println(action);
         int code=0;int code1=0;
         try{
@@ -123,7 +123,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 			String tlabel1=rs.getString("tlabel");String treplace1=rs.getString("treplace");
 	   	 			String el1=rs.getString("el");String ev1=rs.getString("ev");String rmethod1=rs.getString("select2");
 	   	 			//For signed auth
-	   	 			String sigckey=rs.getString("sigckey");String sigskey=rs.getString("sigskey");
+	   	 			//String sigckey=rs.getString("sigckey");String sigskey=rs.getString("sigskey");
 	   	 			String sigmsg=rs.getString("message");String sig=rs.getString("sig");
 	   	 			String sformat=rs.getString("sformat");String tformat=rs.getString("tformat");
 	   	 			String second=rs.getString("second");String utc=rs.getString("utc");
@@ -329,7 +329,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 				String uuid_string = UUID.randomUUID().toString();
 	 					uuid_string = uuid_string.replaceAll("-", "");
 	 					String nonce = uuid_string; 
-	 					if(tformat.equals("Unix"))
+	 				/*	if(tformat.equals("Unix"))
 	 				      timestamp = String.valueOf((System.currentTimeMillis()/1000) + second);
 	 					else if(tformat.equals("UTC")){
 	 						final Date currentTime = new Date();
@@ -356,7 +356,7 @@ public class TriggerAuth extends HttpServlet {
 	 						}
 	 						smessage=orurl;
 	 					}
-	 					out.println("smessage");
+	 					out.println("smessage");*/
 	 					//creating signature
 	 					String result="";String signature1="";String sign="";byte[] encoded = null;
 	 					if(sig.equals("HMAC-SHA1")){
@@ -389,7 +389,7 @@ public class TriggerAuth extends HttpServlet {
 	 						SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HmacSHA256");
 		 			        Mac mac = Mac.getInstance("HmacSHA256");
 		 			        mac.init(signingKey);
-		 			        byte[] rawHmac = mac.doFinal(smessage.getBytes());
+		 			        byte[] rawHmac = mac.doFinal(msg.getBytes());
 		 			    		if(sformat.equals("URL-Encoded")){
 				 			        result = new BASE64Encoder().encode(rawHmac);
 				 			        signature1 = URLEncoder.encode(result, "UTF-8") ;
@@ -458,6 +458,8 @@ public class TriggerAuth extends HttpServlet {
 	 							  header=header+head[k];
 	 						  }
 	 						  session.setAttribute("samp", header);
+	 						  session.setAttribute("msg", msg);
+	 						  session.setAttribute("sigskey", sigskey);
 	 					  }
 	   	 				HttpClient cli=new DefaultHttpClient();
 	   	 				HttpGet get=new HttpGet(callurl);
