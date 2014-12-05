@@ -458,13 +458,13 @@ public class TriggerAuth extends HttpServlet {
 	 							  header=header+head[k];
 	 						  }
 	 						  session.setAttribute("samp", header);
-	 						  session.setAttribute("msg", msg);
+	 						  session.setAttribute("t1", msg);
 	 						  session.setAttribute("sigskey", sigskey);
 	 					  }
 	   	 				HttpClient cli=new DefaultHttpClient();
 	   	 				HttpGet get=new HttpGet(callurl);
 	   	 				if(!"null".equals(sh1)){
-	   	 					get.addHeader(header,shv1);
+	   	 					get.addHeader(header,"");
 	   	 				}
 	   	 				HttpResponse res=cli.execute(get);
 	   	 				BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
