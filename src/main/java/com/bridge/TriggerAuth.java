@@ -375,7 +375,7 @@ public class TriggerAuth extends HttpServlet {
 		 			        
 		 			        else if(sformat.equals("Hexa-Base64")){
 		 			        	sign=new String(Hex.encodeHex(rawHmac));
-		 			            encoded = Base64.encodeBase64(signature1.getBytes());  
+		 			            encoded = Base64.encodeBase64(sign.getBytes());  
 		 			            signature1= encoded.toString();
 
 		 			        }
