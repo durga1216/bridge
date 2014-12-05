@@ -83,7 +83,7 @@ public class TriggerAuth extends HttpServlet {
         String[] tdm={"Test",request.getParameter("tdm1"),request.getParameter("tdm2"),request.getParameter("tdm3"),request.getParameter("tdm4"),request.getParameter("tdm5")};
         String[] ndm={"Test",request.getParameter("ndm1"),request.getParameter("ndm2"),request.getParameter("ndm3"),request.getParameter("ndm4"),request.getParameter("ndm5")};
         String[] adm={"Test",request.getParameter("adm1"),request.getParameter("adm2"),request.getParameter("adm3"),request.getParameter("adm4"),request.getParameter("adm5")};
-        String sigckey=request.getParameter("sigckey");String sigskey=request.getParameter("sigskey");
+       // String sigckey=request.getParameter("sigckey");String sigskey=request.getParameter("sigskey");
         String msg=request.getParameter("msg");
         out.println(action);
         int code=0;int code1=0;
@@ -123,7 +123,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 			String tlabel1=rs.getString("tlabel");String treplace1=rs.getString("treplace");
 	   	 			String el1=rs.getString("el");String ev1=rs.getString("ev");String rmethod1=rs.getString("select2");
 	   	 			//For signed auth
-	   	 			//String sigckey=rs.getString("sigckey");String sigskey=rs.getString("sigskey");
+	   	 			String sigckey=rs.getString("sigckey");String sigskey=rs.getString("sigskey");
 	   	 			String sigmsg=rs.getString("message");String sig=rs.getString("sig");
 	   	 			String sformat=rs.getString("sformat");String tformat=rs.getString("tformat");
 	   	 			String second=rs.getString("second");String utc=rs.getString("utc");
