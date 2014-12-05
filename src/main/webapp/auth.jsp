@@ -347,7 +347,7 @@ margin-left:100px;
 1.Enter the MindPulpy Webhook Url into Your account.<br><br>
 2.Url:<u>https://bridge-minddotss.rhcloud.com/WebHooks?tempid=$$we provide tempid while build connectors$$</u>
 &nbsp;&nbsp;&nbsp;Method:Post<br><br>
-3.Do the specified action in you account then click continue..
+3.Do the specified action in you account then click continue.
 </div>
 <div id="rest" style="display:none">
 <div id="hook">Fine,Select Authentication scheme.</div>
