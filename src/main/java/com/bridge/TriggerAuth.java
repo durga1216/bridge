@@ -437,9 +437,7 @@ public class TriggerAuth extends HttpServlet {
 	 						eurl=orurl1;
 	 					}
 	 					String callurl="";
-	 					if(!"null".equals(eurl)){
-	 					  callurl=t1+"?"+eurl;}
-	 					else
+	 					
 	 					   callurl=t1;
 	 					//Request to client
 	 					String header="";
@@ -458,7 +456,7 @@ public class TriggerAuth extends HttpServlet {
 	 							  header=header+head[k];
 	 						  }
 	 						  session.setAttribute("samp", header);
-	 						  session.setAttribute("t1", msg);
+	 						  session.setAttribute("msg", t1);
 	 						  session.setAttribute("sigskey", sigskey);
 	 					  }
 	   	 				HttpClient cli=new DefaultHttpClient();
