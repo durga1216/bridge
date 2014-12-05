@@ -451,7 +451,7 @@ public class TriggerAuth extends HttpServlet {
 	 								  head[i]=sigckey;
 	 							  }
 	 							  if(head[i].equals("signature")){
-	 								  head[i]=new String(encoded);
+	 								  head[i]="NDAyYTg1NmM2NWJiNmNkODM4MGU2MzZkNjM0MTY1ZDZmZjVhMzliNw==";
 	 							  }
 	 						  }
 	 						  for(int k=0;k<head1;k++){
