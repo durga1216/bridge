@@ -96,15 +96,7 @@ $(document).ready(function(){
 		  	$('#oauth2').hide();
 	  		$('#oauth1').hide();
 		}
-		else if($('input:radio[name=authen]:checked').val() == "Webhook"){
-			$('#hook').show();
-			$('#sign').hide();
-			$('#req').hide();
-		  	$('#divid').hide();
-		  	$('#apiid').hide();			
-		  	$('#oauth2').hide();
-	  		$('#oauth1').hide();
-		}
+		
 	});
 	
 	//For signed Authentication
@@ -142,6 +134,14 @@ $(document).ready(function(){
 	$('#hooki').click(function(){
 		$('#hook1').show();
 	});
+	if($('input:radio[name=hoo]:checked').val() == "Web Hooks"){
+		$('#web').show();
+		$('#rest').hide();
+	}
+	else if($('input:radio[name=hoo]:checked').val() == "Rest Hooks"){
+		$('#web').hide();
+		$('#rest').show();
+	}
 });
 
 </script>
@@ -342,8 +342,16 @@ margin-left:100px;
 <div id="hooki"><u>Click here to configure with hooks</u></div><br>
 <div id="hook1" style="display:none">
 <input type="radio" name="hoo" value="Web Hooks">
-<label for="rd2">Web Hooks</label>
-
+<label for="rd2">Web Hooks</label><br><br>
+<div id="hook" style="display:none">
+1.Enter the MindPulpy Webhook Url into Your account.<br><br>
+2.Url:<u>https://bridge-minddotss.rhcloud.com/WebHooks?tempid=$$we provide tempid while build connectors$$</u>
+&nbsp;&nbsp;&nbsp;Method:Post<br><br>
+3.Do the specified action in you account then click continue..
+</div>
+<div id="rest" style="display:none">
+<div id="hook">Fine,Select Authentication scheme.</div>
+</div>
 <input type="radio" name="hoo" value="Rest Hooks">
 <label for="rd2">Rest Hooks</label>
 </div><br><br>
@@ -368,8 +376,6 @@ margin-left:100px;
 <input type="radio" name="authen"  value="Signed Auth">
 <label for="rd1">Signed Auth</label>
 
-<input type="radio" name="authen"  value="Webhook">
-<label for="rd1">Webhook</label>
 
 <br></div>
 
