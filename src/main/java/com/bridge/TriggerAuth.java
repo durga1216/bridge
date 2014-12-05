@@ -410,6 +410,7 @@ public class TriggerAuth extends HttpServlet {
 		        		 
 			   			else if(!"null".equals(p1)){
 			   				eurl=p1+"="+pav1;}
+	 					
 	 					//construct the url
 	 					String[] slt1=eurl.split("@@");
 	 					int nn1=slt1.length;String orurl1="";
@@ -430,7 +431,11 @@ public class TriggerAuth extends HttpServlet {
 	 						}
 	 						eurl=orurl1;
 	 					}
-	 					String callurl=t1+"?"+eurl;
+	 					String callurl="";
+	 					if(!"null".equals(eurl)){
+	 					  callurl=t1+"?"+eurl;}
+	 					else
+	 					   callurl=t1;
 	 					//Request to client
 	 					String header="";
 	 					String[] head=sh1.split("@@");
@@ -447,6 +452,7 @@ public class TriggerAuth extends HttpServlet {
 	 						  for(int k=0;k<head1;k++){
 	 							  header=header+head[k];
 	 						  }
+	 						  session.setAttribute("samp", header);
 	 					  }
 	   	 				HttpClient cli=new DefaultHttpClient();
 	   	 				HttpGet get=new HttpGet(callurl);

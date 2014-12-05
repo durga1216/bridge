@@ -400,7 +400,7 @@ try{
        <input type="text" name="sigckey" value=""><br><br>
      Enter the Secret Key:<br>
        <input type="text" name="sigskey" value=""><br><br>
-     Enter Message(For Eg- <%=sigmessage%>):
+     Enter Message(For Eg- <%=sigmessage%>):<br><br>
        <textarea name="msg" id="msg" value="" placeholder="You can also copy paste the message from eg,or enter new message"></textarea><br><br>
        
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
