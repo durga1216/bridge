@@ -88,7 +88,7 @@ public class Zoho_Webhook extends HttpServlet {
 		   			}
 		   			HttpClient client = new DefaultHttpClient();
 		   			String line="";
-		   			HttpGet get=new HttpGet(endurl1+"?text="+zoho1+"?token="+access_token);
+		   			HttpGet get=new HttpGet("https://slack.com/api/chat.postMessage?channel=C035FU6PN?text="+zoho1+"?token=xoxp-3185718386-3185718390-3184386673-31d9eb");
    	 				HttpResponse res=client.execute(get);
 	   	 			BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
    	 				String line1="";
