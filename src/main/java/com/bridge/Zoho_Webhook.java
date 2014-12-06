@@ -93,10 +93,12 @@ public class Zoho_Webhook extends HttpServlet {
 	   	 			BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
    	 				String line1="";
    	 				while((line1=bf.readLine())!=null){
-   	 					 str = line1;
+   	 					 str+= line1;
    	 					   			
 		   		
 		   		}
+   	 			PreparedStatement ps1=conn.prepareStatement("insert into hook (str) values ('"+str+"')");
+   		    	ps1.executeUpdate();
 		}
 			
 			catch(Exception e){
