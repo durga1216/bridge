@@ -43,10 +43,11 @@ public class Zoho_Webhook extends HttpServlet {
 		Connection conn=null;
 		String Tid="TMP_110";
 		String zoho=request.getParameter("zoho_webhook");
+		String zoho1=request.getParameter("zoho");
 		try{
 	    	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    	conn=DriverManager.getConnection(Util.url,Util.user,Util.pass);
-	    	PreparedStatement ps=conn.prepareStatement("insert into hook (str) values ('"+zoho+"')");
+	    	PreparedStatement ps=conn.prepareStatement("insert into hook (str) values ('"+zoho1+"')");
 	    	ps.executeUpdate();
 	    	PreparedStatement st3=conn.prepareStatement("select * from act_all where tempid=?");
 			st3.setString(1, Tid);
