@@ -20,6 +20,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.*;
+import java.net.URLEncoder;
 
 @WebServlet("/Zoho_Webhook")
 public class Zoho_Webhook extends HttpServlet {
@@ -49,7 +50,7 @@ public class Zoho_Webhook extends HttpServlet {
 	    	conn=DriverManager.getConnection(Util.url,Util.user,Util.pass);
 	    	PreparedStatement ps=conn.prepareStatement("insert into hook (str) values ('"+zoho1+"')");
 	    	ps.executeUpdate();
-	    	/*PreparedStatement st3=conn.prepareStatement("select * from act_all where tempid=?");
+	    	PreparedStatement st3=conn.prepareStatement("select * from act_all where tempid=?");
 			st3.setString(1, Tid);
 			ResultSet rs2=st3.executeQuery();
 			while(rs2.next()){
@@ -85,10 +86,11 @@ public class Zoho_Webhook extends HttpServlet {
 		   			while(rs4.next()){
 		   				access_token=rs4.getString("oauthtoken");
 		   				refresh=rs4.getString("secret");
-		   			}*/String str="";
+		   			}
 		   			HttpClient client = new DefaultHttpClient();
-		   			String line="";
-		   			HttpGet get=new HttpGet("https://slack.com/api/chat.postMessage?channel=C035FU6PN&text="+zoho1+"&token=xoxp-3185718386-3185718390-3184386673-31d9eb");
+		   			String line="";			String msg=URLEncoder.encode(zoho1);
+
+		   			HttpGet get=new HttpGet(endurl1+"&text="+msg+"&token="+access_token);
    	 				HttpResponse res=client.execute(get);
 	   	 			BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
    	 				String line1="";
@@ -100,7 +102,7 @@ public class Zoho_Webhook extends HttpServlet {
    	 			PreparedStatement ps1=conn.prepareStatement("insert into hook (str) values ('"+str+"')");
    		    	ps1.executeUpdate();
 		}
-			
+			}}
 			catch(Exception e){
 				System.out.println(e);
 				}
