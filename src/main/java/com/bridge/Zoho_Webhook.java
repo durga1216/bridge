@@ -88,7 +88,7 @@ public class Zoho_Webhook extends HttpServlet {
 		   			}
 		   			HttpClient client = new DefaultHttpClient();
 		   			String line="";
-		   			HttpGet get=new HttpGet(endurl1+"?text="+zoho+"?token="+access_token);
+		   			HttpGet get=new HttpGet(endurl1+"?text="+zoho1+"?token="+access_token);
    	 				HttpResponse res=client.execute(get);
 	   	 			BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
    	 				String line1="";
