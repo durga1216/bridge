@@ -722,7 +722,7 @@ public class Final extends HttpServlet {
 									check=e.toString();
 								}
 							}
-							PreparedStatement st31=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+resformat+"','"+da+"')");
+							PreparedStatement st31=con.prepareStatement("insert into test (te,temp) values ('"+x1+"\n"+x2+"\n"+resformat+"','"+da+"')");
 		 	 			   	st31.executeUpdate();
 		 	 			   	st31.close();
 		 	 			   	String orurl="";
