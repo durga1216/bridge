@@ -721,23 +721,31 @@ public class Final extends HttpServlet {
 									check=e.toString();
 								}
 							}
-							xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
-							String[] slt=exres.split("@@");
-							int nn=slt.length;String orurl="";
-							if(!(nn==0)){
-								for(int i=1,j=1;i<nn;i=i+2,j++){
-									slt[i]=xx[j];
-								}
-								for(int k=0;k<nn;k++){
-									orurl=orurl+slt[k];
-								}
-							}else{
-								orurl=exres;
-							}
-							session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+orurl);	
-							PreparedStatement st31=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+"\n"+orurl+"','"+da+"')");
+							session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);	
+							PreparedStatement st31=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+"','"+da+"')");
 		 	 			   	st31.executeUpdate();
 		 	 			   	st31.close();
+		 	 			   	String orurl="";
+		 	 			   	try{
+								xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
+								String[] slt=exres.split("@@");
+								int nn=slt.length;
+								if(!(nn==0)){
+									for(int i=1,j=1;i<nn;i=i+2,j++){
+										slt[i]=xx[j];
+									}
+									for(int k=0;k<nn;k++){
+										orurl=orurl+slt[k];
+									}
+								}else{
+									orurl=exres;
+								}
+		 	 			   	}catch(Exception e){
+		 	 			   		check=e.getMessage();
+		 	 			   	}
+							PreparedStatement st32=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+"\n"+orurl+"\n"+exres+"','"+da+"')");
+		 	 			   	st32.executeUpdate();
+		 	 			   	st32.close();
 		/**   Parsing and mapping ends  ------ Action block starts from here	  **/
 							
 							PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");
