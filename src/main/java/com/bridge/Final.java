@@ -308,6 +308,7 @@ public class Final extends HttpServlet {
 			   	 				while((line=bf.readLine())!=null){
 			   	 					str+=line;
 			   	 				}
+			   	 				session.setAttribute(str, "str");
 					   		}
 					   		else if(authen.equals("Oauth1")){
 					   			String res="";
