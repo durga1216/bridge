@@ -732,7 +732,7 @@ public class Final extends HttpServlet {
 									orurl=orurl+slt[k];
 								}
 							}
-							session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);	
+							session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+orurl);	
 		/**   Parsing and mapping ends  ------ Action block starts from here	  **/
 							
 							PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");

@@ -40,10 +40,10 @@ public class Temp extends HttpServlet {
 		HttpSession session=request.getSession(true);
 		String sample=(String)session.getAttribute("str");
 		String msg=(String)session.getAttribute("da");
-		String secret=(String)session.getAttribute("sigskey");
+		String secret=(String)session.getAttribute("samp");
 
 		PrintWriter out=response.getWriter();
-		out.println(sample+"<br>"+msg);
+		out.println(sample+"<br>"+msg+"<br>"+secret);
 	}
 
 	/**
