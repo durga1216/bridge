@@ -732,6 +732,9 @@ public class Final extends HttpServlet {
 									orurl=orurl+slt[k];
 								}
 							}
+							 PreparedStatement st31=con.prepareStatement("insert into test (te) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+orurl+"')");
+			 	 			   	st31.executeUpdate();
+			 	 			   	st31.close();
 							session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+orurl);	
 		/**   Parsing and mapping ends  ------ Action block starts from here	  **/
 							
