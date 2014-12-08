@@ -681,9 +681,7 @@ public class Final extends HttpServlet {
 								x5=rs1.getString("x5");ptag=rs1.getString("ptag");
 								exres=rs1.getString("exres");shname=rs1.getString("shname");
 							} 
-							PreparedStatement st31=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+"','"+da+"')");
-		 	 			   	st31.executeUpdate();
-		 	 			   	st31.close();
+							
 							if(resformat.equals("json")){
 								try{
 									ScriptEngineManager manager = new ScriptEngineManager();
@@ -733,8 +731,13 @@ public class Final extends HttpServlet {
 								for(int k=0;k<nn;k++){
 									orurl=orurl+slt[k];
 								}
+							}else{
+								orurl=exres;
 							}
 							session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+orurl);	
+							PreparedStatement st31=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+"\n"+orurl+"','"+da+"')");
+		 	 			   	st31.executeUpdate();
+		 	 			   	st31.close();
 		/**   Parsing and mapping ends  ------ Action block starts from here	  **/
 							
 							PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");
@@ -984,7 +987,7 @@ public class Final extends HttpServlet {
 						   						+ endurl1+"\n"+authorization_header_string+"\n"+parameter_string+"\n"+exres);
 						   				HttpPost post = new HttpPost(endurl1);
 						   				post.setHeader("Authorization", authorization_header_string);
-						   				StringEntity input = new StringEntity(exres);
+						   				StringEntity input = new StringEntity(orurl);
 						   				input.setContentType("application/xml");
 						   				post.setEntity(input);
 						   				response1 = httpclient.execute(post);
