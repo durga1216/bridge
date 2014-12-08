@@ -688,15 +688,15 @@ public class Final extends HttpServlet {
 								    ScriptEngine engine = manager.getEngineByName("javascript");
 								    engine.eval("var x = "+str+";");
 									if(!x1.equals("null")){
-										xx1=(String)engine.eval("x."+x1+";");}
+										xx1=String.valueOf(engine.eval("x."+x1+";"));}
 									if(!x2.equals("null")){
-										xx2=(String)engine.eval("x."+x2+";");}
+										xx2=String.valueOf(engine.eval("x."+x2+";"));}
 									if(!x3.equals("null")){
-										xx3=(String)engine.eval("x."+x3+";");}
+										xx3=String.valueOf(engine.eval("x."+x3+";"));}
 									if(!x4.equals("null")){
-										xx4=(String)engine.eval("x."+x4+";");}
+										xx4=String.valueOf(engine.eval("x."+x4+";"));}
 									if(!x5.equals("null")){
-										xx5=(String)engine.eval("x."+x5+";");}
+										xx5=String.valueOf(engine.eval("x."+x5+";"));}
 								}catch(Exception e){
 									check=e.toString();
 								}
