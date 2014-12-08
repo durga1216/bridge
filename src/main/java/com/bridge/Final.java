@@ -40,6 +40,7 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathFactory;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Hex;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -144,6 +145,7 @@ public class Final extends HttpServlet {
 					   		String h4=rs.getString("h4"); String hv4=rs.getString("hv4");
 					   		String h5=rs.getString("h5"); String hv5=rs.getString("hv5");
 					   		String sigmsg=rs.getString("smessage");String sigskey=rs.getString("sigskey");
+					   		String sigckey=rs.getString("sigckey");String signature=rs.getString("signature");
 					   		if(authen.equals("No Auth")){
 					   			HttpClient cli=new DefaultHttpClient();
 					   			if(rmethod.equals("Get")){
@@ -231,7 +233,7 @@ public class Final extends HttpServlet {
 			    				}
 				   			}
 					   		else if(authen.equals("Signed Auth")){
-			   	 				String uuid_string = UUID.randomUUID().toString();
+			   	 			/*	String uuid_string = UUID.randomUUID().toString();
 			 					uuid_string = uuid_string.replaceAll("-", "");
 			 					String nonce = uuid_string; 
 			 					String timestamp = String.valueOf((System.currentTimeMillis()/1000) +3600);
@@ -256,9 +258,8 @@ public class Final extends HttpServlet {
 			 					SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
 			 			        Mac mac = Mac.getInstance("HMACSHA1");
 			 			        mac.init(signingKey);
-			 			        byte[] rawHmac = mac.doFinal(smessage.getBytes());
-			 			        String result = new BASE64Encoder().encode(rawHmac);
-			 			        String signature1 = URLEncoder.encode(result, "UTF-8") ;
+			 			       String orig = new String(Hex.encodeHex(mac.doFinal(msg.getBytes())));
+		 			           byte[] encoded = Base64.encodeBase64(orig.getBytes());  
 			 			        //merge all the params
 			 					if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){
 					   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5+"&"+p6+"="+pv6;}
@@ -278,7 +279,7 @@ public class Final extends HttpServlet {
 					   			else if(!"null".equals(p1)){
 					   				eurl=p1+"="+pv1;}
 			 					//construct the url
-			 					String[] slt1=eurl.split("@@");
+			 				/*	String[] slt1=eurl.split("@@");
 			 					int nn1=slt1.length;String orurl1="";
 			 					if(!(nn1==0)){
 			 						for(int i=0;i<nn1;i++){
@@ -295,10 +296,12 @@ public class Final extends HttpServlet {
 			 						}
 			 						eurl=orurl1;
 			 					}
-			 					String callurl=endurl1+"?"+eurl;
+			 					String callurl=endurl1+"?"+eurl;*/
+			 					String callurl=endurl1;
 			 					//Request to client
 			   	 				HttpClient cli=new DefaultHttpClient();
 			   	 				HttpGet get=new HttpGet(callurl);
+			   	 				get.addHeader(signature,"");
 			   	 				HttpResponse res=cli.execute(get);
 			   	 				BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
 			   	 				String line="";
