@@ -722,7 +722,7 @@ public class Final extends HttpServlet {
 									check=e.toString();
 								}
 							}
-							PreparedStatement st31=con.prepareStatement("insert into test (te,temp) values ('"+x1+"\n"+x2+"\n"+resformat+"','"+da+"')");
+							PreparedStatement st31=con.prepareStatement("insert into test (te,temp) values ('fjkansjfasdjfnadsflbalfbnasf','"+da+"')");
 		 	 			   	st31.executeUpdate();
 		 	 			   	st31.close();
 		 	 			   	String orurl="";
@@ -743,7 +743,7 @@ public class Final extends HttpServlet {
 		 	 			   	}catch(Exception e){
 		 	 			   		check=e.getMessage();
 		 	 			   	}
-							PreparedStatement st32=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+x1+"\n"+x2+"\n"+resformat+"\n"+orurl+"\n"+exres+"','"+da+"')");
+							PreparedStatement st32=con.prepareStatement("insert into test (te,temp) values ('"+orurl+"','"+da+"')");
 		 	 			   	st32.executeUpdate();
 		 	 			   	st32.close();
 		/**   Parsing and mapping ends  ------ Action block starts from here	  **/
