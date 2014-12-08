@@ -39,11 +39,11 @@ public class Temp extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session=request.getSession(true);
 		String sample=(String)session.getAttribute("str");
-		String msg=(String)session.getAttribute("msg");
+		String msg=(String)session.getAttribute("da");
 		String secret=(String)session.getAttribute("sigskey");
 
 		PrintWriter out=response.getWriter();
-		out.println(sample);
+		out.println(sample+"<br>"+msg);
 	}
 
 	/**

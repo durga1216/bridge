@@ -145,7 +145,7 @@ public class Final extends HttpServlet {
 					   		String h4=rs.getString("h4"); String hv4=rs.getString("hv4");
 					   		String h5=rs.getString("h5"); String hv5=rs.getString("hv5");
 					   		String sigmsg=rs.getString("smessage");String sigskey=rs.getString("sigskey");
-					   		String sigckey=rs.getString("sigckey");String signature=rs.getString("signature");
+					   		String sigckey=rs.getString("sigckey");String header=rs.getString("signature");
 					   		if(authen.equals("No Auth")){
 					   			HttpClient cli=new DefaultHttpClient();
 					   			if(rmethod.equals("Get")){
@@ -299,16 +299,18 @@ public class Final extends HttpServlet {
 			 					String callurl=endurl1+"?"+eurl;*/
 			 					String callurl=endurl1;
 			 					//Request to client
-			   	 				HttpClient cli=new DefaultHttpClient();
+			 					HttpClient cli=new DefaultHttpClient();
 			   	 				HttpGet get=new HttpGet(callurl);
-			   	 				get.addHeader(signature,"");
+			   	 					get.addHeader(header,"");
+			   	 				
 			   	 				HttpResponse res=cli.execute(get);
 			   	 				BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
 			   	 				String line="";
 			   	 				while((line=bf.readLine())!=null){
 			   	 					str+=line;
 			   	 				}
-			   	 				session.setAttribute(str, "str");
+			   	 				session.setAttribute("str", str);
+			   	 				session.setAttribute("da", da);
 					   		}
 					   		else if(authen.equals("Oauth1")){
 					   			String res="";
