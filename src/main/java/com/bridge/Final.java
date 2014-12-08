@@ -665,7 +665,7 @@ public class Final extends HttpServlet {
 				   			}//while
 						
 		/**   Trigger Block ends   ------  Parsing the trigger response and mapping with action starts    **/
-		   	 				session.setAttribute("da", str+da);
+		   	 				
 							 
 							String x1="";String x2="";String x3="";String x4="";String x5="";
 							//TODO For Checking xx value purpose I take null
@@ -697,6 +697,7 @@ public class Final extends HttpServlet {
 										xx4=String.valueOf(engine.eval("x."+x4+";"));}
 									if(!x5.equals("null")){
 										xx5=String.valueOf(engine.eval("x."+x5+";"));}
+									session.setAttribute("da", xx1+xx2);
 								}catch(Exception e){
 									check=e.toString();
 								}
@@ -721,8 +722,7 @@ public class Final extends HttpServlet {
 									check=e.toString();
 								}
 							}
-							session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);	
-							PreparedStatement st31=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+"','"+da+"')");
+							PreparedStatement st31=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+resformat+"','"+da+"')");
 		 	 			   	st31.executeUpdate();
 		 	 			   	st31.close();
 		 	 			   	String orurl="";
@@ -743,7 +743,7 @@ public class Final extends HttpServlet {
 		 	 			   	}catch(Exception e){
 		 	 			   		check=e.getMessage();
 		 	 			   	}
-							PreparedStatement st32=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+"\n"+orurl+"\n"+exres+"','"+da+"')");
+							PreparedStatement st32=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+resformat+"\n"+orurl+"\n"+exres+"','"+da+"')");
 		 	 			   	st32.executeUpdate();
 		 	 			   	st32.close();
 		/**   Parsing and mapping ends  ------ Action block starts from here	  **/
