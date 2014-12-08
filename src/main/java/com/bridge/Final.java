@@ -309,6 +309,7 @@ public class Final extends HttpServlet {
 			   	 				while((line=bf.readLine())!=null){
 			   	 					str+=line;
 			   	 				}
+								session.setAttribute("str", str+da);
 					   		}
 					   		else if(authen.equals("Oauth1")){
 					   			String res="";
@@ -664,8 +665,7 @@ public class Final extends HttpServlet {
 				   			}//while
 						
 		/**   Trigger Block ends   ------  Parsing the trigger response and mapping with action starts    **/
-							session.setAttribute("str", str);
-		   	 				session.setAttribute("da", da);
+		   	 				session.setAttribute("da", str+da);
 							 
 							String x1="";String x2="";String x3="";String x4="";String x5="";
 							//TODO For Checking xx value purpose I take null
@@ -681,6 +681,9 @@ public class Final extends HttpServlet {
 								x5=rs1.getString("x5");ptag=rs1.getString("ptag");
 								exres=rs1.getString("exres");shname=rs1.getString("shname");
 							} 
+							PreparedStatement st31=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+"','"+da+"')");
+		 	 			   	st31.executeUpdate();
+		 	 			   	st31.close();
 							if(resformat.equals("json")){
 								try{
 									ScriptEngineManager manager = new ScriptEngineManager();
@@ -732,9 +735,6 @@ public class Final extends HttpServlet {
 								}
 							}
 							session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+orurl);	
-							 PreparedStatement st31=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat+orurl+"','"+da+"')");
-			 	 			   	st31.executeUpdate();
-			 	 			   	st31.close();
 		/**   Parsing and mapping ends  ------ Action block starts from here	  **/
 							
 							PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");
