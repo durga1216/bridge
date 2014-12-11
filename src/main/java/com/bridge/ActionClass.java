@@ -408,7 +408,7 @@ public class ActionClass {
 		   							param=tlabel+"="+access_token+"&"+p1+"="+xx1+"&"+p2+"="+xx2;
 
 		   						else if(!"null".equals(p1))
-		   							param=tlabel+"="+access_token+"&"+p1+"="+xx1;
+		   							param=tlabel+"="+access_token+"&"+p1+"="+URLEncoder.encode(xx1);
 
 		   						else if("null".equals(p1))
 		   							param=tlabel+"="+access_token;

@@ -759,7 +759,7 @@ public class Final extends HttpServlet {
 		 	 			   	
 		 	 			   	
 		/**   Parsing and mapping ends  ------ Action block starts from here	  **/
-		 	 			   	      if(!"null".equals(c1)){
+		 	 			   	      if("null".equals(c1)){
 				 	 			  ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,orurl,shname);
 				 				  String str1=act.start();}
 		 	 			   	      
