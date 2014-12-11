@@ -1,4 +1,4 @@
-package com.bridge;
+package com.thread.thread;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -35,6 +35,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
+import com.bridge.Util;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.http.HttpTransport;

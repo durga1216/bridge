@@ -16,6 +16,8 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
+import com.thread.thread.TriggerClass;
+
 public class MainThreadClass implements Runnable{
 	public Thread t;
 	   private String Tempid;
