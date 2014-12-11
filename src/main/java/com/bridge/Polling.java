@@ -776,7 +776,7 @@ public class Polling extends HttpServlet {
 											 ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,orurl,shname);
 											 String str1=act.start();
 											} //if
-										} // resformat xml
+										} // 
 										
 									}catch(Exception e){
 										check=e.toString();
