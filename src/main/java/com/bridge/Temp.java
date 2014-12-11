@@ -38,12 +38,11 @@ public class Temp extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session=request.getSession(true);
-		String sample=(String)session.getAttribute("str");
-		String msg=(String)session.getAttribute("da");
-		String secret=(String)session.getAttribute("samp");
+		String sample=(String)session.getAttribute("samp");
+		
 
 		PrintWriter out=response.getWriter();
-		out.println(sample+"<br>"+msg+"<br>"+secret);
+		out.println(sample);
 	}
 
 	/**
