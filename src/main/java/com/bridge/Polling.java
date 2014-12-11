@@ -706,9 +706,82 @@ public class Polling extends HttpServlet {
 								    else if(!x5.equals("null")){
 								    	arx5=JsonPath.read(str,x5);
 								    }
-								}catch(Exception e){
-									check=e.toString();
-								}
+									session.setAttribute("samp", arx1.toString()+arx2.toString()+arx3.toString()+arx4.toString()+arx5.toString());
+									if(arr1.size()==0){
+										arr1=arr;
+										for(int m=0;m<arr.size();m++){
+											if(!x1.equals("null")){
+											xx1=arx1.get(m);}
+											if(!x2.equals("null")){
+											xx2=arx2.get(m);}
+											if(!x3.equals("null")){
+											xx3=arx3.get(m);}
+											if(!x4.equals("null")){
+											xx4=arx4.get(m);}
+											if(!x5.equals("null")){
+											xx5=arx5.get(m);}
+									
+										xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
+										String[] slt=exres.split("@@");
+										int nn=slt.length;String orurl="";
+										if(!(nn==0)){
+											for(int i=1,j=1;i<nn;i=i+2,j++){
+												slt[i]=xx[j];
+											}
+											for(int k=0;k<nn;k++){
+												orurl=orurl+slt[k];
+											}//for
+										} //if
+										session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);	
+					/**   Parsing and mapping ends  ------ Action block starts from here	  **/
+										 ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,orurl,shname);
+										 String str1=act.start();
+										} //for
+									} //if
+									System.out.println(arr.toString());
+									System.out.println(arr1.toString());
+									session.setAttribute("samp", str+"\n"+arr.toString()+"\n"+arr1.toString()+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);	
+									for(int m=0;m<arr.size();m++){
+										boolean find=true;
+										for(int l=0;l<arr1.size();l++){
+											if(arr.get(m).equals(arr1.get(l))){
+												find=false;
+											}//if
+										} //for
+										if(find==true){
+											System.out.println(arr.get(m));
+											if(!x1.equals("null")){
+												xx1=arx1.get(m);}
+												if(!x2.equals("null")){
+												xx2=arx2.get(m);}
+												if(!x3.equals("null")){
+												xx3=arx3.get(m);}
+												if(!x4.equals("null")){
+												xx4=arx4.get(m);}
+												if(!x5.equals("null")){
+												xx5=arx5.get(m);}
+										
+											xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
+											String[] slt=exres.split("@@");
+											int nn=slt.length;String orurl="";
+											if(!(nn==0)){
+												for(int i=1,j=1;i<nn;i=i+2,j++){
+													slt[i]=xx[j];
+												} //for
+												for(int k=0;k<nn;k++){
+													orurl=orurl+slt[k];
+												} //for
+											} //if
+											session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);												
+											 ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,orurl,shname);
+											 String str1=act.start();
+											} //if
+										} // resformat xml
+										
+									}catch(Exception e){
+										check=e.toString();
+									}
+									arr1=arr;
 							}
 							else if(resformat.equals("xml")){
 								try{

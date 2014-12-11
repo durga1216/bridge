@@ -1,12 +1,12 @@
 package com.bridge;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,9 +32,11 @@ public class ThreadServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String data=start(15);
+		start(15);
+		PrintWriter out=response.getWriter();
+		out.println("Success");
 	}
-	public String start(int time){
+	public void start(int time){
 		ArrayList<String> ar=new ArrayList<String>();
 		int stime=time*60*1000;
 		try{
@@ -61,7 +63,5 @@ public class ThreadServlet extends HttpServlet {
 		}catch(Exception e){
 			
 		}
-		return ar.toString();
 	}
-
 }
