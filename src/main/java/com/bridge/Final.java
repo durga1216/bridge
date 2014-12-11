@@ -73,6 +73,7 @@ import com.google.gdata.data.spreadsheet.ListFeed;
 import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
+import com.jayway.jsonpath.JsonPath;
 
 /**
  * Servlet implementation class Final
@@ -758,8 +759,17 @@ public class Final extends HttpServlet {
 		 	 			   	
 		 	 			   	
 		/**   Parsing and mapping ends  ------ Action block starts from here	  **/
+		 	 			   	      if(!"null".equals(c1)){
 				 	 			  ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,orurl,shname);
-				 				  String str1=act.start();
+				 				  String str1=act.start();}
+		 	 			   	      
+		 	 			   	      else{
+		 	 			   	    	  
+		 	 			   	    	if((JsonPath.read(str,c1)).equals(cv1) && (JsonPath.read(str,c2)).equals(cv2) || (JsonPath.read(str,c3)).equals(cv3) ){
+		 	 			   	    	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,orurl,shname);
+					 				String str1=act.start();
+		 	 					    }
+		 	 			   	      }
 							}//try
 							catch(Exception e)
 							{

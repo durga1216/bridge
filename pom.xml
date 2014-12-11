@@ -57,6 +57,13 @@
 	<artifactId>google-api-client</artifactId>
 	<version>1.18.0-rc</version>
 </dependency>
+
+<dependency>
+	<groupId>com.jayway.jsonpath</groupId>
+	<artifactId>json-path</artifactId>
+	<version>0.9.1</version>
+</dependency>
+
 <dependency>
 	<groupId>commons-fileupload</groupId>
 	<artifactId>commons-fileupload</artifactId>

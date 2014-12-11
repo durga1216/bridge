@@ -47,6 +47,7 @@ import com.google.gdata.data.spreadsheet.WorksheetEntry;
 public class ActionClass {
 	String str1="";
 	String xx1;String xx2;String xx3;String xx4;String xx5;String orurl;String da;String shname;
+	
 	public ActionClass(String tempid,String x1,String x2,String x3,String x4,String x5,String exres,String shnm){
 		xx1=x1;
 		xx2=x2;
