@@ -52,6 +52,9 @@ float:left;
 height:100%;
 width:600px;
 margin-left:70px;
+font-family:verdana;
+color:#FF9900;
+font-size:18px;
 }
 h4{
 font-family:verdana; 
@@ -139,7 +142,7 @@ function addCond(){
 	  var contentID = document.getElementById('condcont');
 	  var newTBDiv = document.createElement('div');
 	  newTBDiv.setAttribute('id','strText'+intTextBox);
-	  newTBDiv.innerHTML = "<input type='text' id='c" + intTextBox + "'    name='c" + intTextBox + "' placeholder='Condition_Name'/> &nbsp;&nbsp;&nbsp; is equals to &nbsp;&nbsp;&nbsp;" + "<input type='text' id='cv"+ intTextBox + " ' name='cv"+intTextBox+"' placeholder='Condition_Value'/>";
+	  newTBDiv.innerHTML = "<input type='text' id='c" + intTextBox + "'    name='c" + intTextBox + "' placeholder='Condition_Name'/> &nbsp;&nbsp;&nbsp;<style>font-family:verdana;color:#FFFFFF;> is equals to </style>&nbsp;&nbsp;&nbsp;" + "<input type='text' id='cv"+ intTextBox + " ' name='cv"+intTextBox+"' placeholder='Condition_Value'/>";
 	  contentID.appendChild(newTBDiv);
 }
 
@@ -186,7 +189,7 @@ function removeCond(){
 <hr><br><center><a id='pa' href="javascript:load()">Sample Trigger response(For XML)</a>&nbsp;&nbsp;&nbsp;
 <a id='pa' href="javascript:load1()">Sample Trigger response(For JSON)</a></center><br><br>
 <div id="cond">Check Condition</div>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:addCond()">Add Condition</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeCond()">Remove Condition</a><br><br>
+	&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:addCond()">Add Condition</a>&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeCond()">Remove Condition</a><br><br>
   
   <div id="condcont"></div>
 <div id=ful>
