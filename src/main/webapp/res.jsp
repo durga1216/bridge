@@ -142,7 +142,7 @@ function addCond(){
 	  var contentID = document.getElementById('condcont');
 	  var newTBDiv = document.createElement('div');
 	  newTBDiv.setAttribute('id','strText'+intTextBox);
-	  newTBDiv.innerHTML = "<input type='text' id='c" + intTextBox + "'    name='c" + intTextBox + "' placeholder='Condition_Name'/> &nbsp;&nbsp;&nbsp;<style>font-family:verdana;color:#FFFFFF;> is equals to </style>&nbsp;&nbsp;&nbsp;" + "<input type='text' id='cv"+ intTextBox + " ' name='cv"+intTextBox+"' placeholder='Condition_Value'/>";
+	  newTBDiv.innerHTML = "<input type='text' id='c" + intTextBox + "'    name='c" + intTextBox + "' placeholder='Condition_Name'/> &nbsp;&nbsp;&nbsp;<style=font-family:verdana;color:#FFFFFF;> is equals to </style>&nbsp;&nbsp;&nbsp;" + "<input type='text' id='cv"+ intTextBox + " ' name='cv"+intTextBox+"' placeholder='Condition_Value'/>";
 	  contentID.appendChild(newTBDiv);
 }
 
