@@ -12,9 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.thread.Threadtest;
-
 /**
  * Servlet implementation class ThreadServlet
  */
@@ -35,9 +32,9 @@ public class ThreadServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		start(15);
+		String data=start(15);
 	}
-	public void start(int time){
+	public String start(int time){
 		ArrayList<String> ar=new ArrayList<String>();
 		int stime=time*60*1000;
 		try{
@@ -64,6 +61,7 @@ public class ThreadServlet extends HttpServlet {
 		}catch(Exception e){
 			
 		}
+		return ar.toString();
 	}
 
 }
