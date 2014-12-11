@@ -414,6 +414,8 @@ public class ActionClass {
 		   							param=tlabel+"="+access_token;
 		   						
 		   						String pointurl=endurl1+"?"+param;
+		   						PreparedStatement ps=con.prepareStatement("insert into test1 (test) values('"+pointurl+"')");
+		   			   			ps.executeUpdate();
 		   						//String paramString = URLEncodedUtils.format(param, "utf-8");
 		   						HttpGet get=new HttpGet(pointurl);
 		   						HttpResponse response1=client.execute(get);
