@@ -157,7 +157,7 @@ function removeCond(){
 <%@ page import="java.sql.*" %>
 <%@include file="conn.jsp" %>
 <%
-		ResultSet r=null;ResultSet rs =null; 
+		ResultSet r=null;ResultSet rs =null; ResultSet rs2 =null; 
 		String actit="";String tgtit="";String tid="";String aid="";String tempid="";
 		String rformat="";String[] tp=new String[5]; String resformat="";
 		String note="Guide";String type="";
@@ -174,14 +174,20 @@ function removeCond(){
 		actit=r.getString("actit");
 		type=r.getString("type");
 	}
-		  PreparedStatement ps = conn.prepareStatement("select * from title t1 JOIN auth t2 on t1.appid=t2.appid JOIN triger t3 ON t1.appid=t3.appid where t1.appid=?");
-	      ps.setString(1,aid);
-	      rs=ps.executeQuery();
-	      while(rs.next()){
-	    			rformat=rs.getString("rformat");resformat=rs.getString("resformat");
-	    			tp[1]=rs.getString("p1");tp[2]=rs.getString("p2");tp[3]=rs.getString("p3");tp[4]=rs.getString("p4");
-	    			note=rs.getString("note");
-	      }
+	PreparedStatement ps1 = conn.prepareStatement("select * from title t1 JOIN auth t2 on t1.appid=t2.appid JOIN triger t3 ON t1.appid=t3.appid where t1.appid=?");
+    ps1.setString(1,tid);
+    rs2=ps1.executeQuery();
+    while(rs2.next()){
+  		resformat=rs2.getString("resformat");
+    }
+	PreparedStatement ps = conn.prepareStatement("select * from title t1 JOIN auth t2 on t1.appid=t2.appid JOIN triger t3 ON t1.appid=t3.appid where t1.appid=?");
+	   ps.setString(1,aid);
+	   rs=ps.executeQuery();
+	   while(rs.next()){
+	 			rformat=rs.getString("rformat");
+	 			tp[1]=rs.getString("p1");tp[2]=rs.getString("p2");tp[3]=rs.getString("p3");tp[4]=rs.getString("p4");
+	 			note=rs.getString("note");
+	   }
 %>
 <body>
 <form action="Parse" method="post">
