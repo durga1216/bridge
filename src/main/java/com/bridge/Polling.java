@@ -72,6 +72,7 @@ import com.google.gdata.data.spreadsheet.ListFeed;
 import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
+import com.jayway.jsonpath.JsonPath;
 
 /**
  * Servlet implementation class Polling
@@ -684,19 +685,27 @@ public class Polling extends HttpServlet {
 							session.setAttribute("samp", x1+x2+x3+x4+x5+parpol+unipol);
 							if(resformat.equals("json")){
 								try{
-									ScriptEngineManager manager = new ScriptEngineManager();
-								    ScriptEngine engine = manager.getEngineByName("javascript");
-								    engine.eval("var x = "+str+";");
-									if(!x1.equals("null")){
-										xx1=(String)engine.eval("x."+x1+";");}
-									if(!x2.equals("null")){
-										xx2=(String)engine.eval("x."+x2+";");}
-									if(!x3.equals("null")){
-										xx3=(String)engine.eval("x."+x3+";");}
-									if(!x4.equals("null")){
-										xx4=(String)engine.eval("x."+x4+";");}
-									if(!x5.equals("null")){
-										xx5=(String)engine.eval("x."+x5+";");}
+									ArrayList<String> arx1=new ArrayList<String>();
+									ArrayList<String> arx2=new ArrayList<String>();
+									ArrayList<String> arx3=new ArrayList<String>();
+									ArrayList<String> arx4=new ArrayList<String>();
+									ArrayList<String> arx5=new ArrayList<String>();
+									arr=JsonPath.read(str, unipol);
+								    if(!x1.equals("null")){
+								    	arx1=JsonPath.read(str,x1);
+								    }
+								    else if(!x2.equals("null")){
+								    	arx2=JsonPath.read(str, x2);
+								    }
+								    else if(!x3.equals("null")){
+								    	arx3=JsonPath.read(str,x3);
+								    }
+								    else if(!x4.equals("null")){
+								    	arx4=JsonPath.read(str, x4);
+								    }
+								    else if(!x5.equals("null")){
+								    	arx5=JsonPath.read(str,x5);
+								    }
 								}catch(Exception e){
 									check=e.toString();
 								}
@@ -753,14 +762,14 @@ public class Polling extends HttpServlet {
 											}
 											for(int k=0;k<nn;k++){
 												orurl=orurl+slt[k];
-											}
-										}
+											}//for
+										} //if
 										session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);	
 					/**   Parsing and mapping ends  ------ Action block starts from here	  **/
 										 ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,orurl,shname);
 										 String str1=act.start();
-										}
-									}
+										} //for
+									} //if
 									System.out.println(arr.toString());
 									System.out.println(arr1.toString());
 									session.setAttribute("samp", str+"\n"+arr.toString()+"\n"+arr1.toString()+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);	
@@ -769,8 +778,8 @@ public class Polling extends HttpServlet {
 										for(int l=0;l<arr1.size();l++){
 											if(arr.get(m).equals(arr1.get(l))){
 												find=false;
-											}
-										}
+											}//if
+										} //for
 										if(find==true){
 											System.out.println(arr.get(m));
 											if(!x1.equals("null")){
@@ -790,16 +799,16 @@ public class Polling extends HttpServlet {
 											if(!(nn==0)){
 												for(int i=1,j=1;i<nn;i=i+2,j++){
 													slt[i]=xx[j];
-												}
+												} //for
 												for(int k=0;k<nn;k++){
 													orurl=orurl+slt[k];
-												}
-											}
+												} //for
+											} //if
 											session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);												
 											 ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,orurl,shname);
 											 String str1=act.start();
-											}
-										}
+											} //if
+										} // resformat xml
 										
 									}catch(Exception e){
 										check=e.toString();
