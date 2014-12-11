@@ -670,7 +670,8 @@ public class Final extends HttpServlet {
 							String x1="";String x2="";String x3="";String x4="";String x5="";
 							//TODO For Checking xx value purpose I take null
 							String xx1="null";String xx2="null";String xx3="null";String xx4="null";String xx5="null";
-							String[] xx=new String[10];String check="null";
+							String[] xx=new String[10];String check="null";String c1="";String cv1="";
+							String c2="";String cv2="";String c3="";String cv3="";String c4="";String cv4="";String c5="";String cv5="";
 							String ptag="";String exres="";String shname="";
 							PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
 							st2.setString(1, da);
@@ -680,7 +681,15 @@ public class Final extends HttpServlet {
 								x3=rs1.getString("x3");x4=rs1.getString("x4");
 								x5=rs1.getString("x5");ptag=rs1.getString("ptag");
 								exres=rs1.getString("exres");shname=rs1.getString("shname");
+								c1=rs1.getString("c1");cv1=rs1.getString("cv1");
+								c2=rs1.getString("c2");cv2=rs1.getString("cv2");
+								c3=rs1.getString("c3");cv3=rs1.getString("cv3");
+								c4=rs1.getString("c4");cv4=rs1.getString("cv4");
+								c5=rs1.getString("c5");cv5=rs1.getString("cv5");
+
 							} 
+							
+							
 							
 							if(resformat.equals("json")){
 								try{
