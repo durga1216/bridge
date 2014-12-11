@@ -1228,9 +1228,7 @@ public class Polling extends HttpServlet {
 													orurl=orurl+slt[k];
 												}
 											}
-											session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);	
-						/**   Parsing and mapping ends  ------ Action block starts from here	  **/
-											
+											session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);												
 											PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");
 											st3.setString(1, da);
 											ResultSet rs2=st3.executeQuery();

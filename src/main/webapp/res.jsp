@@ -159,7 +159,7 @@ function removeCond(){
 <%
 		ResultSet r=null;ResultSet rs =null; 
 		String actit="";String tgtit="";String tid="";String aid="";String tempid="";
-		String rformat="";String[] tp=new String[5]; 
+		String rformat="";String[] tp=new String[5]; String resformat="";
 		String note="Guide";String type="";
 %>
 <%
@@ -178,7 +178,7 @@ function removeCond(){
 	      ps.setString(1,aid);
 	      rs=ps.executeQuery();
 	      while(rs.next()){
-	    			rformat=rs.getString("rformat");
+	    			rformat=rs.getString("rformat");resformat=rs.getString("resformat");
 	    			tp[1]=rs.getString("p1");tp[2]=rs.getString("p2");tp[3]=rs.getString("p3");tp[4]=rs.getString("p4");
 	    			note=rs.getString("note");
 	      }
@@ -230,7 +230,8 @@ Xml Example:
 		%><h4>Enter the Polling parent Tag:</h4><input type=text name="parpol">
 		<h4>Enter the Unique Polling Element:</h4><input type=text name="unipol"><br><%
 	}%>
-	<input type="text" style="display:none;" id="ptag" name="ptag" placeholder=" parant Tag"><br><br>
+	<input type="text" style="display:none;" id="ptag" name="ptag" placeholder=" parant Tag">
+	<input type="text" style="display:none;" name="resf" value="<%=resformat %>" placeholder=" parant Tag"><br><br>
 	<a id='pa' href="javascript:addParam()">Add_Tag</a>&nbsp;
     <a id='pa' href="javascript:removeParam()">Remove_Tags</a><br>
 	<div id="content"></div>

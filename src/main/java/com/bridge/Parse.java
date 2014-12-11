@@ -46,6 +46,7 @@ public class Parse extends HttpServlet {
 		String sheet=request.getParameter("sheet");
 		String parpol=request.getParameter("parpol");
 		String unipol=request.getParameter("unipol");
+		String resf=request.getParameter("resf");
 		String c1=request.getParameter("c1");String cv1=request.getParameter("cv1");
 		String c2=request.getParameter("c2");String cv2=request.getParameter("cv2");
 		String c3=request.getParameter("c3");String cv3=request.getParameter("cv3");
@@ -73,7 +74,7 @@ public class Parse extends HttpServlet {
  	   			tgtit=rs.getString("tgtit");
  	   			actit=rs.getString("actit");
 			}
-			PreparedStatement ps1=con.prepareStatement("insert into parse (tempid,tid,aid,ptag,exres,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,shname,xx1,xx2,xx3,xx4,xx5,parpol,unipol,c1,cv1,c2,cv2,c3,cv3,c4,cv4,c5,cv5) values('"+tempid+"','"+tid+"','"+aid+"','"+ptag+"','"+exres+"','"+x[1]+"','"+x[2]+"','"+x[3]+"','"+x[4]+"','"+x[5]+"','"+x[6]+"','"+x[7]+"','"+x[8]+"','"+x[9]+"','"+x[10]+"','"+sheet+"','"+xx[1]+"','"+xx[2]+"','"+xx[3]+"','"+xx[4]+"','"+xx[5]+"','"+parpol+"','"+unipol+"','"+c1+"','"+cv1+"','"+c2+"','"+cv2+"','"+c3+"','"+cv3+"','"+c4+"','"+cv4+"','"+c5+"','"+cv5+"')");
+			PreparedStatement ps1=con.prepareStatement("insert into parse (tempid,tid,aid,ptag,exres,resf,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,shname,xx1,xx2,xx3,xx4,xx5,parpol,unipol,c1,cv1,c2,cv2,c3,cv3,c4,cv4,c5,cv5) values('"+tempid+"','"+tid+"','"+aid+"','"+ptag+"','"+exres+"','"+resf+"','"+x[1]+"','"+x[2]+"','"+x[3]+"','"+x[4]+"','"+x[5]+"','"+x[6]+"','"+x[7]+"','"+x[8]+"','"+x[9]+"','"+x[10]+"','"+sheet+"','"+xx[1]+"','"+xx[2]+"','"+xx[3]+"','"+xx[4]+"','"+xx[5]+"','"+parpol+"','"+unipol+"','"+c1+"','"+cv1+"','"+c2+"','"+cv2+"','"+c3+"','"+cv3+"','"+c4+"','"+cv4+"','"+c5+"','"+cv5+"')");
 			ps1.executeUpdate();
 			response.sendRedirect(request.getContextPath()+"/Final");
 		}catch(Exception e){

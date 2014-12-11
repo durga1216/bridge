@@ -2,6 +2,7 @@ package com.test.demo;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.URLEncoder;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -19,7 +20,9 @@ public class Hget {
 		try{
 			HttpClient client=new DefaultHttpClient();
 			String str=" ";String line="";
-			HttpGet post=new HttpGet("https://api.parse.com/1/classes/AdminControlUser");
+			String para="where={\"name\":\"hhf\"}";
+			para=URLEncoder.encode(para);
+			HttpGet post=new HttpGet("https://api.parse.com/1/classes/Inflencer?"+para);
 			post.addHeader("X-Parse-Application-Id","QRgHJmTvRLIr4FrWuUH83cZ2RyRelm4z9OFvuePR");
 			post.addHeader("X-Parse-REST-API-Key","vqm5GfSHBJbxLGHLXW50gG40LWO8HILgtPxYg1pP");
 			//post.addHeader("Content-Ty","");
@@ -35,9 +38,10 @@ public class Hget {
 			System.out.println(str);
 			JSONObject obj=new JSONObject(str);
 			JSONArray arr=(JSONArray)obj.getJSONArray("results");
+			System.out.println(arr.length());
 			for(int i=0;i<arr.length();i++){
 				JSONObject obj2=new JSONObject(arr.get(i).toString());
-				String id1=obj2.getString("password");
+				String id1=obj2.getString("name");
 				System.out.println("\n"+id1);
 			}
 		}
