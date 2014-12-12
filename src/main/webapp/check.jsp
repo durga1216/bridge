@@ -362,13 +362,13 @@ try{
 	String[] slt=turl.split("@@");
 	int nn=slt.length;String orurl="";
 	if(!(nn==0)){
-		for(int i=1,j=1;i<nn;i=i+2,j++){
-			slt[i]="&nbsp;<input style='width:100px;border-radius:5px;'name='ndm"+j+"' type='text'>&nbsp;";
-		}
-		for(int k=0;k<nn;k++){
-			orurl=orurl+slt[k];
-		}
-		out.println("<br>"+orurl+"<br>");
+	for(int i=1,j=1;i<nn;i=i+2,j++){
+		slt[i]="&nbsp;<input style='width:100px;border-radius:5px;'name='tdm"+j+"' type='text'>&nbsp;";
+	}
+	for(int k=0;k<nn;k++){
+		orurl=orurl+slt[k];
+	}
+	out.println("<br>"+orurl+"<br>");
 	}
 	if(!rformat.equals("rest")){
 		%><br>Enter the json/xml Input:<br><textarea name="exreq" id="txt1"><%=jstr%></textarea><% 	
