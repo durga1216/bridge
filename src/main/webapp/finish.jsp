@@ -18,7 +18,7 @@ color:#FFFFFF;
 }
 #tit{
 font-family:verdana;
-font-size:25px;
+font-size:20px;
 font-weight:bold;
 color:#FFFFFF;
 font-weight:bold;
