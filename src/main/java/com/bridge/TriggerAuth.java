@@ -637,7 +637,7 @@ public class TriggerAuth extends HttpServlet {
 				  		int nn=slt.length;String orurl="";
 				  		if(!(nn==0)){
 				  			for(int i=1,j=1;i<nn;i=i+2,j++){
-				  				slt[i]=adm[j];
+				  				slt[i]=tdm[j];
 				      		}
 				      		for(int k=0;k<nn;k++){
 				      			orurl=orurl+slt[k];
@@ -691,7 +691,7 @@ public class TriggerAuth extends HttpServlet {
 					  		int nn1=slt1.length;String orurl1="";
 					  		if(!(nn1==0)){
 					  			for(int i=1,j=1;i<nn1;i=i+2,j++){
-					  				slt1[i]=adm[j];
+					  				slt1[i]=tdm[j];
 					      		}
 					      		for(int k=0;k<nn1;k++){
 					      			orurl1=orurl1+slt1[k];
@@ -703,7 +703,7 @@ public class TriggerAuth extends HttpServlet {
 					  		int nn2=slt2.length;String orurl2="";
 					  		if(!(nn2==0)){
 					  			for(int i=1,j=1;i<nn2;i=i+2,j++){
-					  				slt2[i]=adm[j];
+					  				slt2[i]=tdm[j];
 					      		}
 					      		for(int k=0;k<nn2;k++){
 					      			orurl2=orurl2+slt2[k];
