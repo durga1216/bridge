@@ -162,8 +162,23 @@ public class OauthCall extends HttpServlet {
 	   						while ((line = rd.readLine()) != null) {
 	   							str+=line;		     			
 	   						}
+	   						
 	   						session.setAttribute("xml1", str);
 	   					}
+	   					
+	   					else if("Authorization:header".equals(treplace)){
+			     			HttpGet get=new HttpGet(endurl1);
+			     			get.addHeader("X-Shopify-Access-Token", access_token);
+
+		   					HttpResponse response1=client.execute(get);
+		   					BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));   
+				    		while ((line = rd.readLine()) != null) {
+				    			str+=line;
+				    		}    	
+
+	   						session.setAttribute("xml1", str);
+
+			     		}
 	   					else if("QueryString".equals(treplace)){
 	   						//if parameter are ther put it here
 	   						String param=tlabel+"="+access_token;	
