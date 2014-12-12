@@ -180,14 +180,14 @@ function log1(){
 							<%}else{ %>
 								<input id=rd type="button" value=" <%=state%> ">
 							<%} %>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id=gn type="button" value=" <%=time%> Minutes ">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id=gn type="button" value=" <%=time%> Minutes ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name=submit value="Run Now">
 							<br><br>Settings:- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<select name="state"><option value=dummy>Choose State</option><option value=Active>Active</option><option value=Inactive>Inactive</option></select>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<select name="time"><option value=dummy>Choose Time</option><option value=15>15 Minutes</option><option value=30>30 Minutes</option><option value=45>45 Minutes</option></select>
 							<input style="display:none;" type=text name=tempid value=<%=tempid%>>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="submit" value=" Apply the Changes"></h4>
+							<input type="submit" name="submit" value=" Apply the Changes"></h4>
 							</form><div id=nhr><hr></div>
 						<%
 				}
@@ -218,14 +218,14 @@ function log1(){
 							<%}else{ %>
 								<input id=rd type="button" value=" <%=state%> ">
 							<%} %>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id=gn type="button" value=" <%=time%> Minutes ">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id=gn type="button" value=" <%=time%> Minutes ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name=submit value="Run Now">
 							<br><br>Settings:- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<select name="state"><option value=dummy>Choose State</option><option value=Active>Active</option><option value=Inactive>Inactive</option></select>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<select name="time"><option value=dummy>Choose Time</option><option value=15>15 Minutes</option><option value=30>30 Minutes</option><option value=45>45 Minutes</option></select>
 							<input style="display:none;" type=text name=tempid value=<%=tempid%>>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="submit" value=" Apply the Changes"></h4>
+							<input type="submit" name=submit value=" Apply the Changes"></h4>
 							</form><div id=nhr><hr></div>
 						<%
 				}

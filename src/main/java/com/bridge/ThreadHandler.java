@@ -36,6 +36,11 @@ public class ThreadHandler extends HttpServlet {
 		String tempid=request.getParameter("tempid");
 		String time=request.getParameter("time");
 		String state=request.getParameter("state");
+		String submit=request.getParameter("submit");
+		if(submit.equals("Run Now")){
+			MainThreadClass th=new MainThreadClass(tempid);
+			th.start();
+		}
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
