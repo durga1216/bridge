@@ -568,6 +568,9 @@ public class Final extends HttpServlet {
 						     			while ((line = rd.readLine()) != null) {
 						     				str+=line;		     			
 					     				}
+						     			String ttest=str+"<br>"+endurl1+"<br>"+access_token;
+						     			PreparedStatement ps=con.prepareStatement("insert into test1 (test) values('"+ttest+"')");
+				   			   			ps.executeUpdate();
 					   				}
 					   				
 					   				else if("Authorization:header".equals(treplace)){
