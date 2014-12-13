@@ -261,6 +261,9 @@ public class TriggerAuth extends HttpServlet {
 	   	 					url1 =new URL(t1);
 	   	 				HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
 	   	 				connection.setDoOutput(true);
+	   	 	        connection.setDoInput(true);
+	   	         connection.setInstanceFollowRedirects(false); 
+
 	   	 				if(rmethod.equals("Get")){
 	   	 					connection.setRequestMethod("GET");}
 	   	 				else if(rmethod.equals("Post")){		             
