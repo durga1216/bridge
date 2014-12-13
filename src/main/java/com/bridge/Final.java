@@ -627,8 +627,8 @@ public class Final extends HttpServlet {
 									}
 					   			}
 					   			else if(rmethod.equals("Get")){ 
+					   				HttpGet get=new HttpGet(endurl1);
 					   				if("Authorization:Bearer".equals(treplace)){
-					   					HttpGet get=new HttpGet(endurl1);
 					   					get.addHeader("Authorization", "Bearer "+access_token);
 					   					HttpResponse response1 = client.execute(get);
 					   					BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
@@ -641,7 +641,6 @@ public class Final extends HttpServlet {
 					   				}
 					   				
 					   				else if("Authorization:header".equals(treplace)){
-						     			HttpGet get=new HttpGet(endurl1);
 						     			get.addHeader("X-Shopify-Access-Token", access_token);
 					   					HttpResponse response1=client.execute(get);
 					   					BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));   
@@ -681,7 +680,6 @@ public class Final extends HttpServlet {
 					   					
 					   					String pointurl=endurl1+"?"+param;
 					   					//String paramString = URLEncodedUtils.format(param, "utf-8");
-					   					HttpGet get=new HttpGet(pointurl);
 					   					HttpResponse response1=client.execute(get);
 					   					BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));   
 							    		while ((line = rd.readLine()) != null) {
@@ -698,7 +696,18 @@ public class Final extends HttpServlet {
 					     				while ((line = rd.readLine()) != null) {
 					     					str+=line;		     			}
 										}
-						     		
+						     		else if("Authorization:header".equals(treplace)){
+						     			post.addHeader("X-Shopify-Access-Token", access_token);
+					   					HttpResponse response1=client.execute(post);
+					   					BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));   
+							    		while ((line = rd.readLine()) != null) {
+							    			str+=line;
+							    		}    	
+							    		String ttest=str+"<br>"+endurl1+"<br>"+access_token;
+						     			PreparedStatement ps=con.prepareStatement("insert into test1 (test) values('"+ttest+"')");
+				   			   			ps.executeUpdate();
+						     		}
+					   				
 					     			else if("QueryString".equals(treplace)){	
 					     				List <NameValuePair> cod = new ArrayList <NameValuePair>();
 					     				if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){

@@ -754,6 +754,7 @@ public class Polling extends HttpServlet {
 							String x1="";String x2="";String x3="";String x4="";String x5="";
 							//TODO For Checking xx value purpose I take null
 							String xx1="null";String xx2="null";String xx3="null";String xx4="null";String xx5="null";
+							Object xo1;Object xo2;Object xo3;Object xo4;Object xo5;
 							String[] xx=new String[10];String check="null";
 							String ptag="";String exres="";String shname="";String parpol="";String unipol="";
 							PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
@@ -769,11 +770,11 @@ public class Polling extends HttpServlet {
 							session.setAttribute("samp", x1+x2+x3+x4+x5+parpol+unipol);
 							if(resformat.equals("json")){
 								try{
-									ArrayList<String> arx1=new ArrayList<String>();
-									ArrayList<String> arx2=new ArrayList<String>();
-									ArrayList<String> arx3=new ArrayList<String>();
-									ArrayList<String> arx4=new ArrayList<String>();
-									ArrayList<String> arx5=new ArrayList<String>();
+									ArrayList arx1=new ArrayList();
+									ArrayList arx2=new ArrayList();
+									ArrayList arx3=new ArrayList();
+									ArrayList arx4=new ArrayList();
+									ArrayList arx5=new ArrayList();
 									arr=JsonPath.read(str, unipol);
 								    if(!x1.equals("null")){
 								    	arx1=JsonPath.read(str,x1);
@@ -795,15 +796,15 @@ public class Polling extends HttpServlet {
 										arr1=arr;
 										for(int m=0;m<arr.size();m++){
 											if(!x1.equals("null")){
-											xx1=arx1.get(m);}
+											xo1=arx1.get(m);xx1=xo1.toString();}
 											if(!x2.equals("null")){
-											xx2=arx2.get(m);}
+											xo2=arx2.get(m);xx2=xo2.toString();}
 											if(!x3.equals("null")){
-											xx3=arx3.get(m);}
+											xo3=arx3.get(m);xx3=xo3.toString();}
 											if(!x4.equals("null")){
-											xx4=arx4.get(m);}
+											xo4=arx4.get(m);xx4=xo4.toString();}
 											if(!x5.equals("null")){
-											xx5=arx5.get(m);}
+											xo5=arx5.get(m);xx5=xo5.toString();}
 									
 										xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
 										String[] slt=exres.split("@@");
@@ -835,15 +836,15 @@ public class Polling extends HttpServlet {
 										if(find==true){
 											System.out.println(arr.get(m));
 											if(!x1.equals("null")){
-												xx1=arx1.get(m);}
+												xo1=arx1.get(m);xx1=xo1.toString();}
 												if(!x2.equals("null")){
-												xx2=arx2.get(m);}
+												xo2=arx2.get(m);xx2=xo2.toString();}
 												if(!x3.equals("null")){
-												xx3=arx3.get(m);}
+												xo3=arx3.get(m);xx3=xo3.toString();}
 												if(!x4.equals("null")){
-												xx4=arx4.get(m);}
+												xo4=arx4.get(m);xx4=xo4.toString();}
 												if(!x5.equals("null")){
-												xx5=arx5.get(m);}
+												xo5=arx5.get(m);xx5=xo5.toString();}
 										
 											xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
 											String[] slt=exres.split("@@");
