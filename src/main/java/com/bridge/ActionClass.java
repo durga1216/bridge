@@ -1,6 +1,7 @@
 package com.bridge;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -122,32 +123,106 @@ public class ActionClass {
 		   				str1+=line;
 		   			}
 		   		}
-		   		else if (authen.equals("Basic Auth")){
-					HttpClient httpClient = new DefaultHttpClient();
-					HttpPost postRequest = new HttpPost(endurl1);
-					StringEntity input = new StringEntity(orurl);
-					input.setContentType("application/json");
-					postRequest.setEntity(input);
-					if(!b2.equals("") && !b2.equals("null")){
-						String encoding = new String(
-								org.apache.commons.codec.binary.Base64.encodeBase64   
-								(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
-						postRequest.setHeader("Authorization","Basic " + encoding);
-					}
-					if(!h1.equals("null") && !h2.equals("null") && !h3.equals("null")){
-						postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2);postRequest.setHeader(h3,hv3);
-					}else if(!h1.equals("null") && !h2.equals("null")){
-						postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2);
-					}else if(!h1.equals("null")){
-						postRequest.setHeader(h1, hv1);
-					}
-					HttpResponse response1 = httpClient.execute(postRequest);
-					BufferedReader in1 = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
-					String line1="";
-				    while((line1=in1.readLine())!=null){
-				    	str1+=line1;
-				    }
-		   		}
+		   		
+		   		else if(authen.equals("Basic Auth")){
+		   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
+		   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
+        		 
+		   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4)){
+		   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4;}
+        		 
+		   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3)){
+		   				eurl=p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3;}
+        		 
+		   			else if(!"null".equals(p1) && !"null".equals(p2)){
+		   				eurl=p1+"="+pv1+"&"+p2+"="+pv2;}
+        		 
+		   			else if(!"null".equals(p1)){
+		   				eurl=p1+"="+pv1;}
+		   			
+		   			
+        		 
+		   			   URL url1=null;     		
+        		   if(rmethod.equals("Get")){
+        			   if("null".equals(p1)){
+			   				 url1=new URL(endurl1);}
+        			   else{
+		   			         url1=new URL(endurl1+"?"+eurl);}
+		   			
+        			HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
+		   			connection.setDoOutput(true);
+		   			connection.setDoInput(true);
+		   			connection.setRequestMethod("GET");
+		   			String encoding=null;
+		   			if(!b2.equals("") && !b2.equals("null")){
+		   				encoding = new String(org.apache.commons.codec.binary.Base64.encodeBase64   
+                        		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
+		   				connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+		   			}
+		   			if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
+		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
+		            }
+		   			else if(!"".equals(h1) && !"".equals(h2)){
+		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2);  
+		            }
+		   			else if(!"".equals(h1)){
+		            	connection.setRequestProperty(h1, hv1);  
+		            }
+		   				connection.setRequestProperty("Content-Type", "application/json");
+		   				InputStream stream = (InputStream)connection.getInputStream();
+		   				BufferedReader bf=new BufferedReader(new InputStreamReader(stream));
+		   				String lin="";
+    				while((lin=bf.readLine())!=null){
+    					str1+=lin;
+    				}
+    				
+        		   }// Get
+        		   
+        		   else if(rmethod.equals("Post")){
+        			   String urlparam=eurl;
+			   		   url1=new URL(endurl1);
+        			   HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
+			   			connection.setDoOutput(true);
+			   			connection.setDoInput(true);
+			   			connection.setRequestMethod("POST");
+			   			String encoding=null;
+			   			if(!b2.equals("") && !b2.equals("null")){
+			   				encoding = new String(org.apache.commons.codec.binary.Base64.encodeBase64   
+	                        		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
+			   				connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+			   			}
+			   		    if(!"null".equals(p1)){
+
+			   			DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
+				         wr.writeBytes(urlparam);
+				         wr.flush();
+				         wr.close();}
+			   		    
+			   		    
+			   			if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
+			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
+			            }
+			   			else if(!"".equals(h1) && !"".equals(h2)){
+			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2);  
+			            }
+			   			else if(!"".equals(h1)){
+			            	connection.setRequestProperty(h1, hv1);  
+			            }
+			   				connection.setRequestProperty("Content-Type", "application/json");
+			   				InputStream stream = (InputStream)connection.getInputStream();
+			   				BufferedReader bf=new BufferedReader(new InputStreamReader(stream));
+			   				String lin="";
+	    				while((lin=bf.readLine())!=null){
+	    					str1+=lin;
+	    				}
+	    				
+
+        				     
+        		   }
+	   			}
+
+		   		
+		   		
 		   		else if(authen.equals("Oauth1")){
 		   			String res="";
 		   			String oauth_signature_method=rs2.getString("osmeth");
