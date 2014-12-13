@@ -768,12 +768,7 @@ public class Final extends HttpServlet {
 								}
 		 	 			   	}catch(Exception e){
 		 	 			   		check=e.getMessage();
-		 	 			   	}
-							PreparedStatement st32=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+resformat+"\n"+orurl+"\n"+exres+"','"+da+"')");
-		 	 			   	st32.executeUpdate();
-		 	 			   	st32.close();
-		 	 			   	
-		 	 			   	
+		 	 			   	}		 	 			   	
 		/**   Parsing and mapping ends  ------ Action block starts from here	  **/
 		 	 			   	      if("null".equals(c1)){
 				 	 			  ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,orurl,shname);
