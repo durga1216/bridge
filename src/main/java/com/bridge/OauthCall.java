@@ -66,6 +66,7 @@ public class OauthCall extends HttpServlet {
 			String apisecvalue=(String) session.getAttribute("cseckey");
 			String rm1=(String) session.getAttribute("rm1");
 			String tempid=(String) session.getAttribute("tempid");
+			String endurl1=(String) session.getAttribute("endurl");
 			String tid=(String) session.getAttribute("tid");
 			String but=(String) session.getAttribute("but");
 			String jstring=(String) session.getAttribute("jstring");
@@ -149,7 +150,7 @@ public class OauthCall extends HttpServlet {
 			while(rs.next()){
 				String str="";
 				String mode=rs.getString("mode");String rmethod=rs.getString("rmethod");
-				String treplace=rs.getString("treplace");String endurl1=rs.getString("t1");
+				String treplace=rs.getString("treplace");
 				String tlabel=rs.getString("tlabel");
 				if(mode.equals("Trigger")){
 					if(rmethod.equals("Get")){ 
