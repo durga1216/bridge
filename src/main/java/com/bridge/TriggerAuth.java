@@ -712,6 +712,7 @@ public class TriggerAuth extends HttpServlet {
 					      		tokenurl1=orurl2;
 					  		}
 	   	 					session.setAttribute("ckey", ckey1);
+	   	 					session.setAttribute("endurl", t1);
 	   	 					session.setAttribute("cseckey", cseckey1);
 	   	 					session.setAttribute("tokenurl", tokenurl1);
 	   	 					session.setAttribute("tempid", tempid);
