@@ -672,6 +672,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 				if(rmethod1.equals("DELETE")){
 	   	 					session.setAttribute("tempid", tempid);
 	   	 					session.setAttribute("tid", tid);
+	   	 					session.setAttribute("endurl", t1);
 	   	 					session.setAttribute("rtype", "trigger");
 	   	 					session.setAttribute("Gurl", eeurl);
 	   	 					String CLIENT_ID = "758153664645-n04dc4ki6pr383jdnrq6hmgjsvbsibls";
