@@ -568,22 +568,22 @@ public class Final extends HttpServlet {
 						     			while ((line = rd.readLine()) != null) {
 						     				str+=line;		     			
 					     				}
-						     			String ttest=str+"<br>"+endurl1+"<br>"+access_token;
-						     			PreparedStatement ps=con.prepareStatement("insert into test1 (test) values('"+ttest+"')");
-				   			   			ps.executeUpdate();
+//						     			String ttest=str+"<br>"+endurl1+"<br>"+access_token;
+//						     			PreparedStatement ps=con.prepareStatement("insert into test1 (test) values('"+ttest+"')");
+//				   			   			ps.executeUpdate();
 					   				}
 					   				
 					   				else if("Authorization:header".equals(treplace)){
 						     			HttpGet get=new HttpGet(endurl1);
 						     			get.addHeader("X-Shopify-Access-Token", access_token);
-
 					   					HttpResponse response1=client.execute(get);
 					   					BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));   
 							    		while ((line = rd.readLine()) != null) {
 							    			str+=line;
 							    		}    	
-
-						     			
+							    		String ttest=str+"<br>"+endurl1+"<br>"+access_token;
+						     			PreparedStatement ps=con.prepareStatement("insert into test1 (test) values('"+ttest+"')");
+				   			   			ps.executeUpdate();
 						     		}
 					   				
 					   				
