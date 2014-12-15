@@ -636,8 +636,7 @@ public class Polling extends HttpServlet {
 								  		  ContactFeed resultFeed = myService.query(myQuery, ContactFeed.class);
 								  		  // Print the results
 								  		  String title=resultFeed.getTitle().getPlainText();
-								  		  System.out.println(title);
-								  		  System.out.println(resultFeed.getEntries().size());
+								  		  title=title.replaceAll(" ", "_");
 								  		  JSONArray arc=new JSONArray();
 								  		  int i=0;
 								  		  for (ContactEntry entry : resultFeed.getEntries()) {

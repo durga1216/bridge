@@ -637,6 +637,7 @@ public class Final extends HttpServlet {
 								  		  ContactFeed resultFeed = myService.query(myQuery, ContactFeed.class);
 								  		  // Print the results
 								  		  String title=resultFeed.getTitle().getPlainText();
+								  		title=title.replaceAll(" ", "_");
 								  		  System.out.println(title);
 								  		  System.out.println(resultFeed.getEntries().size());
 								  		  JSONArray arr=new JSONArray();
