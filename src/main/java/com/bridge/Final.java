@@ -679,7 +679,6 @@ public class Final extends HttpServlet {
 								  		  }
 								  		  JSONObject obj1 = new JSONObject();
 								  		  obj1.put(title, arr);
-								  		  session.setAttribute("xml1", obj1.toString());
 							   		}
 									else{
 										//TODO for getting analytics data

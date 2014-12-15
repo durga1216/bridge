@@ -638,7 +638,7 @@ public class Polling extends HttpServlet {
 								  		  String title=resultFeed.getTitle().getPlainText();
 								  		  System.out.println(title);
 								  		  System.out.println(resultFeed.getEntries().size());
-								  		  JSONArray arr=new JSONArray();
+								  		  JSONArray arc=new JSONArray();
 								  		  int i=0;
 								  		  for (ContactEntry entry : resultFeed.getEntries()) {
 								  			  JSONObject obj = new JSONObject();
@@ -673,11 +673,11 @@ public class Polling extends HttpServlet {
 								  		      else
 								  		    	  obj.put("Group_id", "");
 									  		      System.out.println(obj.toString());
-									  		      arr.put(i, obj);
+									  		      arc.put(i, obj);
 									  		      i++;
 								  		  }
 								  		  JSONObject obj1 = new JSONObject();
-								  		  obj1.put(title, arr);
+								  		  obj1.put(title, arc);
 								  		  session.setAttribute("xml1", obj1.toString());
 							   		}
 									else{
