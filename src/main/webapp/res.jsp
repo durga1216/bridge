@@ -53,7 +53,7 @@ height:100%;
 width:600px;
 margin-left:70px;
 font-family:verdana;
-color:#FF9900;
+color:#fff;
 font-size:18px;
 }
 h4{
