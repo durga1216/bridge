@@ -48,13 +48,31 @@ import com.google.gdata.data.spreadsheet.WorksheetEntry;
 public class ActionClass {
 	String str1="";
 	String xx1;String xx2;String xx3;String xx4;String xx5;String orurl;String da;String shname;
-	
-	public ActionClass(String tempid,String x1,String x2,String x3,String x4,String x5,String exres,String shnm){
+	String xx6;String xx7;String xx8;String xx9;String xx10;
+	String xx11;String xx12;String xx13;String xx14;String xx15;
+	String xx16;String xx17;String xx18;String xx19;String xx20;
+
+	public ActionClass(String tempid,String x1,String x2,String x3,String x4,String x5,String x6,String x7,String x8,String x9,String x10,String x11,String x12,String x13,String x14,String x15,String x16,String x17,String x18,String x19,String x20,String exres,String shnm){
 		xx1=x1;
 		xx2=x2;
 		xx3=x3;
 		xx4=x4;
 		xx5=x5;
+		xx6=x6;
+		xx7=x7;
+		xx8=x8;
+		xx9=x9;
+		xx10=x10;
+		xx11=x11;
+		xx12=x12;
+		xx13=x13;
+		xx14=x14;
+		xx15=x15;
+		xx16=x16;
+		xx17=x17;
+		xx18=x18;
+		xx19=x19;
+		xx20=x20;
 		orurl=exres;
 		da=tempid;
 		shname=shnm;

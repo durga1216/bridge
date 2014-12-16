@@ -818,10 +818,21 @@ public class Polling extends HttpServlet {
 		/**   Trigger Block ends   ------  Parsing the trigger response and mapping with action starts    **/
 						
 							 
-							String x1="";String x2="";String x3="";String x4="";String x5="";
-							//TODO For Checking xx value purpose I take null
-							String xx1="null";String xx2="null";String xx3="null";String xx4="null";String xx5="null";
-							Object xo1;Object xo2;Object xo3;Object xo4;Object xo5;
+						String x1="";String x2="";String x3="";String x4="";String x5="";
+						String x6="";String x7="";String x8="";String x9="";String x10="";
+						String x11="";String x12="";String x13="";String x14="";String x15="";
+						String x16="";String x17="";String x18="";String x19="";String x20="";							//TODO For Checking xx value purpose I take null
+
+						String xx1="";String xx2="";String xx3="";String xx4="";String xx5="";
+						String xx6="";String xx7="";String xx8="";String xx9="";String xx10="";
+						String xx11="";String xx12="";String xx13="";String xx14="";String xx15="";
+						String xx16="";String xx17="";String xx18="";String xx19="";String xx20="";
+						
+						Object xo1;Object xo2;Object xo3;Object xo4;Object xo5;
+						Object xo6;Object xo7;Object xo8;Object xo9;Object xo10;
+						Object xo11;Object xo12;Object xo13;Object xo14;Object xo15;
+						Object xo16;Object xo17;Object xo18;Object xo19;Object xo20;
+
 							String[] xx=new String[10];String check="null";
 							String ptag="";String exres="";String shname="";String parpol="";String unipol="";
 							PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
@@ -830,7 +841,18 @@ public class Polling extends HttpServlet {
 							while(rs1.next()){
 								x1=rs1.getString("xx1");x2=rs1.getString("xx2");
 								x3=rs1.getString("xx3");x4=rs1.getString("xx4");
-								x5=rs1.getString("xx5");ptag=rs1.getString("ptag");
+								x5=rs1.getString("xx5");x6=rs1.getString("xx6");x7=rs1.getString("xx7");
+								x8=rs1.getString("xx8");x9=rs1.getString("xx9");
+								x10=rs1.getString("xx10");x11=rs1.getString("xx11");
+								x12=rs1.getString("xx12"); 
+								x13=rs1.getString("xx13");
+								x14=rs1.getString("xx14");
+								x15=rs1.getString("xx15");
+								x16=rs1.getString("xx16");
+								x17=rs1.getString("xx17");
+								x18=rs1.getString("xx18");
+								x19=rs1.getString("xx19");
+								x20=rs1.getString("xx20");ptag=rs1.getString("ptag");
 								exres=rs1.getString("exres");shname=rs1.getString("shname");
 								parpol=rs1.getString("parpol");unipol=rs1.getString("unipol");
 							} 
@@ -842,6 +864,24 @@ public class Polling extends HttpServlet {
 									ArrayList arx3=new ArrayList();
 									ArrayList arx4=new ArrayList();
 									ArrayList arx5=new ArrayList();
+									
+									ArrayList arx6=new ArrayList();
+									ArrayList arx7=new ArrayList();
+									ArrayList arx8=new ArrayList();
+									ArrayList arx9=new ArrayList();
+									ArrayList arx10=new ArrayList();
+									
+									ArrayList arx11=new ArrayList();
+									ArrayList arx12=new ArrayList();
+									ArrayList arx13=new ArrayList();
+									ArrayList arx14=new ArrayList();
+									ArrayList arx15=new ArrayList();
+									
+									ArrayList arx16=new ArrayList();
+									ArrayList arx17=new ArrayList();
+									ArrayList arx18=new ArrayList();
+									ArrayList arx19=new ArrayList();
+									ArrayList arx20=new ArrayList();
 									arr=JsonPath.read(str, unipol);
 								    if(!x1.equals("null")){
 								    	arx1=JsonPath.read(str,x1);
@@ -858,6 +898,55 @@ public class Polling extends HttpServlet {
 								    if(!x5.equals("null")){
 								    	arx5=JsonPath.read(str,x5);
 								    }
+								    
+								    if(!x6.equals("null")){
+								    	arx6=JsonPath.read(str,x6);
+								    }
+								    if(!x7.equals("null")){
+								    	arx7=JsonPath.read(str, x7);
+								    }
+								    if(!x8.equals("null")){
+								    	arx8=JsonPath.read(str,x8);
+								    }
+								    if(!x9.equals("null")){
+								    	arx9=JsonPath.read(str, x9);
+								    }
+								    if(!x10.equals("null")){
+								    	arx10=JsonPath.read(str,x10);
+								    }
+								    
+								    if(!x11.equals("null")){
+								    	arx11=JsonPath.read(str,x11);
+								    }
+								    if(!x12.equals("null")){
+								    	arx12=JsonPath.read(str, x12);
+								    }
+								    if(!x13.equals("null")){
+								    	arx13=JsonPath.read(str,x13);
+								    }
+								    if(!x14.equals("null")){
+								    	arx14=JsonPath.read(str, x14);
+								    }
+								    if(!x15.equals("null")){
+								    	arx15=JsonPath.read(str,x15);
+								    }
+								    
+								    if(!x16.equals("null")){
+								    	arx16=JsonPath.read(str,x16);
+								    }
+								    if(!x17.equals("null")){
+								    	arx17=JsonPath.read(str, x17);
+								    }
+								    if(!x18.equals("null")){
+								    	arx18=JsonPath.read(str,x18);
+								    }
+								    if(!x19.equals("null")){
+								    	arx19=JsonPath.read(str, x19);
+								    }
+								    if(!x20.equals("null")){
+								    	arx20=JsonPath.read(str,x20);
+								    }
+								    
 									session.setAttribute("samp", arx1.toString()+arx2.toString()+arx3.toString()+arx4.toString()+arx5.toString());
 									if(arr1.size()==0){
 										arr1=arr;
@@ -872,8 +961,46 @@ public class Polling extends HttpServlet {
 											xo4=arx4.get(m);xx4=xo4.toString();}
 											if(!x5.equals("null")){
 											xo5=arx5.get(m);xx5=xo5.toString();}
+											
+											    if(!x6.equals("null")){
+												xo6=arx6.get(m);xx6=xo6.toString();}
+												if(!x7.equals("null")){
+												xo7=arx7.get(m);xx7=xo7.toString();}
+												if(!x8.equals("null")){
+												xo8=arx8.get(m);xx8=xo8.toString();}
+												if(!x9.equals("null")){
+												xo9=arx9.get(m);xx9=xo9.toString();}
+												if(!x10.equals("null")){
+												xo10=arx10.get(m);xx10=xo10.toString();}
+												
+												
+												if(!x11.equals("null")){
+													xo11=arx11.get(m);xx11=xo11.toString();}
+													if(!x12.equals("null")){
+													xo12=arx12.get(m);xx12=xo12.toString();}
+													if(!x13.equals("null")){
+													xo13=arx13.get(m);xx13=xo13.toString();}
+													if(!x14.equals("null")){
+													xo14=arx14.get(m);xx14=xo14.toString();}
+													if(!x15.equals("null")){
+													xo15=arx15.get(m);xx15=xo15.toString();}
+													
+													 if(!x16.equals("null")){
+															xo16=arx16.get(m);xx16=xo16.toString();}
+															if(!x17.equals("null")){
+															xo17=arx17.get(m);xx17=xo17.toString();}
+															if(!x18.equals("null")){
+															xo18=arx8.get(m);xx18=xo18.toString();}
+															if(!x19.equals("null")){
+															xo19=arx19.get(m);xx19=xo19.toString();}
+															if(!x20.equals("null")){
+															xo20=arx20.get(m);xx20=xo20.toString();}
 									
 										xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
+										xx[6]=xx6;xx[7]=xx7;xx[8]=xx8;xx[9]=xx9;xx[10]=xx10;
+										xx[11]=xx11;xx[12]=xx12;xx[13]=xx13;xx[14]=xx14;xx[15]=xx15;
+										xx[16]=xx16;xx[17]=xx17;xx[18]=xx18;xx[19]=xx19;xx[20]=xx20;
+
 										String[] slt=exres.split("@@");
 										int nn=slt.length;String orurl="";
 										if(!(nn==0)){
@@ -886,8 +1013,9 @@ public class Polling extends HttpServlet {
 										} //if
 										session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);	
 					/**   Parsing and mapping ends  ------ Action block starts from here	  **/
-										 ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,orurl,shname);
-										 String str1=act.start();
+						 	 			  ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+
+										String str1=act.start();
 										} //for
 									} //if
 									System.out.println(arr.toString());
@@ -902,7 +1030,7 @@ public class Polling extends HttpServlet {
 										} //for
 										if(find==true){
 											System.out.println(arr.get(m));
-											if(!x1.equals("null")){
+											   if(!x1.equals("null")){
 												xo1=arx1.get(m);xx1=xo1.toString();}
 												if(!x2.equals("null")){
 												xo2=arx2.get(m);xx2=xo2.toString();}
@@ -912,8 +1040,47 @@ public class Polling extends HttpServlet {
 												xo4=arx4.get(m);xx4=xo4.toString();}
 												if(!x5.equals("null")){
 												xo5=arx5.get(m);xx5=xo5.toString();}
+												
+												
+												if(!x6.equals("null")){
+													xo6=arx6.get(m);xx6=xo6.toString();}
+													if(!x7.equals("null")){
+													xo7=arx7.get(m);xx7=xo7.toString();}
+													if(!x8.equals("null")){
+													xo8=arx8.get(m);xx8=xo8.toString();}
+													if(!x9.equals("null")){
+													xo9=arx9.get(m);xx9=xo9.toString();}
+													if(!x10.equals("null")){
+													xo10=arx10.get(m);xx10=xo10.toString();}
+													
+													
+													if(!x11.equals("null")){
+														xo11=arx11.get(m);xx11=xo11.toString();}
+														if(!x12.equals("null")){
+														xo12=arx12.get(m);xx12=xo12.toString();}
+														if(!x13.equals("null")){
+														xo13=arx13.get(m);xx13=xo13.toString();}
+														if(!x14.equals("null")){
+														xo14=arx14.get(m);xx14=xo14.toString();}
+														if(!x15.equals("null")){
+														xo15=arx15.get(m);xx15=xo15.toString();}
+														
+														if(!x16.equals("null")){
+															xo16=arx16.get(m);xx16=xo16.toString();}
+															if(!x17.equals("null")){
+															xo17=arx17.get(m);xx17=xo17.toString();}
+															if(!x18.equals("null")){
+															xo18=arx18.get(m);xx18=xo18.toString();}
+															if(!x19.equals("null")){
+															xo19=arx19.get(m);xx19=xo19.toString();}
+															if(!x20.equals("null")){
+															xo20=arx20.get(m);xx20=xo20.toString();}
 										
 											xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
+											xx[6]=xx6;xx[7]=xx7;xx[8]=xx8;xx[9]=xx9;xx[10]=xx10;
+											xx[11]=xx11;xx[12]=xx12;xx[13]=xx13;xx[14]=xx14;xx[15]=xx15;
+											xx[16]=xx16;xx[17]=xx17;xx[18]=xx18;xx[19]=xx19;xx[20]=xx20;
+
 											String[] slt=exres.split("@@");
 											int nn=slt.length;String orurl="";
 											if(!(nn==0)){
@@ -925,7 +1092,7 @@ public class Polling extends HttpServlet {
 												} //for
 											} //if
 											session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);												
-											 ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,orurl,shname);
+							 	 			  ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
 											 String str1=act.start();
 											} //if
 										} // 
