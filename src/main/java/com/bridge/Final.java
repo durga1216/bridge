@@ -624,7 +624,7 @@ public class Final extends HttpServlet {
 						   				str=cng;
 									}
 									//to get the google contacts data
-									if(eurl.equals("Google_contacts")){
+									else if(eurl.equals("Google_contacts")){
 							   			Credential credential =  new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
 												.setJsonFactory(jsonFactory).setTransport(transport).build()
 										    	.setAccessToken(access_token).setRefreshToken(refresh);
@@ -681,6 +681,9 @@ public class Final extends HttpServlet {
 								  		  JSONObject obj1 = new JSONObject();
 								  		  obj1.put("contacts", arr);
 								  		  str=obj1.toString();
+								  		String ttest=str+"<br>"+endurl1+"<br>"+access_token+"<br>"+tid;
+						     			PreparedStatement ps=con.prepareStatement("insert into test1 (test) values('"+ttest+"')");
+				   			   			ps.executeUpdate();
 							   		}
 									else{
 										//TODO for getting analytics data
@@ -773,9 +776,7 @@ public class Final extends HttpServlet {
 							    		while ((line = rd.readLine()) != null) {
 							    			str+=line;
 							    		}    	
-							    		String ttest=str+"<br>"+endurl1+"<br>"+access_token;
-						     			PreparedStatement ps=con.prepareStatement("insert into test1 (test) values('"+ttest+"')");
-				   			   			ps.executeUpdate();
+							    		
 						     		}
 					   				
 					     			else if("QueryString".equals(treplace)){	

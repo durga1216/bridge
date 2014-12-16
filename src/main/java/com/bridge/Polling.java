@@ -127,12 +127,12 @@ public class Polling extends HttpServlet {
 		    final String da=ar.get(i);
 		    final int slp=tar.get(i);
 			th[i]=new Thread(){
-				ArrayList<String> arr1=new ArrayList<String>();
+				ArrayList arr1=new ArrayList();
 			public void run(){
 				while(true){
 					try{
 						String str="";String eurl="";String resformat="";
-						ArrayList<String> arr=new ArrayList<String>();
+						ArrayList arr=new ArrayList();
 						PreparedStatement st1=con.prepareStatement("select * from trig_all where tempid=?");
 						st1.setString(1, da);
 						ResultSet rs=st1.executeQuery();
@@ -623,7 +623,7 @@ public class Polling extends HttpServlet {
 						   				cng=cng.replaceAll(" ", "_");
 						   				str=cng;
 									}
-									if(eurl.equals("Google_contacts")){
+									else if(eurl.equals("Google_contacts")){
 							   			Credential credential =  new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
 												.setJsonFactory(jsonFactory).setTransport(transport).build()
 										    	.setAccessToken(access_token).setRefreshToken(refresh);
@@ -637,7 +637,7 @@ public class Polling extends HttpServlet {
 								  		  // Print the results
 								  		  String title=resultFeed.getTitle().getPlainText();
 								  		  title=title.replaceAll(" ", "_");
-								  		  JSONArray arc=new JSONArray();
+								  		  JSONArray arc1=new JSONArray();
 								  		  int i=0;
 								  		  for (ContactEntry entry : resultFeed.getEntries()) {
 								  			  JSONObject obj = new JSONObject();
@@ -672,11 +672,11 @@ public class Polling extends HttpServlet {
 								  		      else
 								  		    	  obj.put("Group_id", "");
 									  		      System.out.println(obj.toString());
-									  		      arc.put(i, obj);
+									  		      arc1.put(i, obj);
 									  		      i++;
 								  		  }
 								  		  JSONObject obj1 = new JSONObject();
-								  		  obj1.put("contacts", arc);
+								  		  obj1.put("contacts", arc1);
 								  		  str=obj1.toString();
 							   		}
 									else{
