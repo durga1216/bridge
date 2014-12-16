@@ -179,7 +179,7 @@ public class GauthCall extends HttpServlet {
 				  		      i++;
 			  		  }
 			  		  JSONObject obj1 = new JSONObject();
-			  		  obj1.put(title, arr);
+			  		  obj1.put("contacts", arr);
 			  		  session.setAttribute("xml1", obj1.toString());
 		   		}
 		   		else{

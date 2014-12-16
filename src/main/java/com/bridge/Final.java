@@ -679,7 +679,8 @@ public class Final extends HttpServlet {
 									  		      i++;
 								  		  }
 								  		  JSONObject obj1 = new JSONObject();
-								  		  obj1.put(title, arr);
+								  		  obj1.put("contacts", arr);
+								  		  str=obj1.toString();
 							   		}
 									else{
 										//TODO for getting analytics data

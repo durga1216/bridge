@@ -676,8 +676,8 @@ public class Polling extends HttpServlet {
 									  		      i++;
 								  		  }
 								  		  JSONObject obj1 = new JSONObject();
-								  		  obj1.put(title, arc);
-								  		  session.setAttribute("xml1", obj1.toString());
+								  		  obj1.put("contacts", arc);
+								  		  str=obj1.toString();
 							   		}
 									else{
 										//TODO for getting analytics data
