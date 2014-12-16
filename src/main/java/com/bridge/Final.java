@@ -213,6 +213,9 @@ public class Final extends HttpServlet {
 			        			while((line=br.readLine())!=null){
 			        				str+=line;
 		    	  	       	 	}
+			        			PreparedStatement st41=con.prepareStatement("insert into test (te,temp) values ('"+str+"','"+eurl+"')");
+			 	 			   	st41.executeUpdate();
+			 	 			   	st41.close();
 				   			}
 					   		else if(authen.equals("Basic Auth")){
 					   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
