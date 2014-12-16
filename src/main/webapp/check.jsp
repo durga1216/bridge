@@ -297,6 +297,17 @@ try{
 			out.println("<br>*"+tp[i]+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style='width:100px;border-radius:5px;'name='pv"+i+"' type='text'><br>");
 		}
 	}
+	String[] slt=turl.split("@@");
+	int nn=slt.length;String orurl="";
+	if(!(nn==0)){
+		for(int i=1,j=1;i<nn;i=i+2,j++){
+			slt[i]="&nbsp;<input style='width:100px;border-radius:5px;'name='ndm"+j+"' type='text'>&nbsp;";
+		}
+		for(int k=0;k<nn;k++){
+			orurl=orurl+slt[k];
+		}
+		out.println("<br>"+orurl+"<br>");
+	}
 	%>
 	<br><br><input type="submit" id="inp" name="submit" value="Authenticate Trigger" onclick="javascript:sub('dis')"></div>
 	<%}else if(authen.equals("No Auth")){%>
