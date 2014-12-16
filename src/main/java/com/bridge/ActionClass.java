@@ -563,7 +563,7 @@ public class ActionClass {
 		   					}			 
 		   				}
 		   			}
-		   			PreparedStatement ps=con.prepareStatement("insert into testing (data) values('"+str1+"')");
+		   			PreparedStatement ps=con.prepareStatement("insert into testing (data,tempid) values('"+str1+"','"+da+"')");
 		   			ps.executeUpdate();
 		   			//out.println(str);
 				}//while
