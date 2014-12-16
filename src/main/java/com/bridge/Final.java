@@ -180,48 +180,46 @@ public class Final extends HttpServlet {
 				   	 				}
 					   			}
 					   		}else if(authen.equals("API keys")){
-					   			 try{
-					   			/*if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
-					   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
-			        		 
-					   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4)){
-					   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4;}
-			        		 
-					   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3)){
-					   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3;}
-			        		 
-					   			else if(!"null".equals(p1) && !"null".equals(p2)){
-					   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2;}
-			        		 
-					   			else if(!"null".equals(p1)){
-					   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1;}
-					   			
-					   			else if("null".equals(p1))*/
-					   				eurl=endurl1+"?"+ak1+"="+apkey;
-			        		 
-					   			/*else if("null".equals(ak1) && "null".equals(apkey))
-					   				eurl=endurl1;	     */   		
-			        		
-			        		//	eurl=eurl.replaceAll(" ", "%20"); 
-			        			URL eurl1=new URL(eurl);
-			        			URLConnection uconn = eurl1.openConnection();
-			        			HttpURLConnection conn = (HttpURLConnection) uconn;
-			        			conn.connect();
-			        			Object content = conn.getContent();
-			        			InputStream stream = (InputStream) content;
-			        			String line=null;
-			        			BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-			        			while((line=br.readLine())!=null){
-			        				str+=line;
-		    	  	       	 	}
-			        			PreparedStatement st41=con.prepareStatement("insert into test (te,temp) values ('"+str+"','"+eurl+"')");
+					   			String err="";
+					   			try{
+						   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
+						   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
+				        		 
+						   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4)){
+						   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4;}
+				        		 
+						   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3)){
+						   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3;}
+				        		 
+						   			else if(!"null".equals(p1) && !"null".equals(p2)){
+						   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2;}
+				        		 
+						   			else if(!"null".equals(p1)){
+						   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1;}
+						   			
+						   			else if("null".equals(p1))
+						   				eurl=endurl1+"?"+ak1+"="+apkey;
+				        		 
+						   			else if("null".equals(ak1) && "null".equals(apkey))
+						   				eurl=endurl1;	     	
+				        		
+				        			eurl=eurl.replaceAll(" ", "%20");
+				        			HttpClient cli=new DefaultHttpClient();
+				        			HttpGet get=new HttpGet(eurl);
+					            	HttpResponse res=cli.execute(get);
+					            	BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
+					            	String line="";
+					            	while((line=bf.readLine())!=null){
+					            		str+=line;
+					            	}
+			 	 			   	}
+					   			catch(Exception e){
+					   				err=e.toString();
+					   			}
+					   			String uul=str+eurl+"<br>"+err;
+					   			PreparedStatement st41=con.prepareStatement("insert into test (te,temp) values ('"+str+"','"+da+"')");
 			 	 			   	st41.executeUpdate();
-			 	 			   	st41.close();}
-					   			 catch(Exception e){
-					   				PreparedStatement st41=con.prepareStatement("insert into test (te,temp) values ('"+e+"','"+eurl+"')");
-				 	 			   	st41.executeUpdate();
-				 	 			   	st41.close();
-					   			 }
+			 	 			   	st41.close();
 				   			}
 					   		else if(authen.equals("Basic Auth")){
 					   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
