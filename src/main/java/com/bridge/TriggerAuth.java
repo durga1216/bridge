@@ -178,7 +178,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 				int nn=slt.length;String orurl="";
 	   	 				if(!(nn==0)){
 	   	 					for(int i=1,j=1;i<nn;i=i+2,j++){
-	   	 						slt[i]=tdm[j];
+	   	 						slt[i]=ndm[j];
 	   	 					}
 	   	 					for(int k=0;k<nn;k++){
 	   	 						orurl=orurl+slt[k];
@@ -201,7 +201,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 					eurl=t1+"?"+a1+"="+apkey+"&"+p1+"="+pv1;}
 	   	 				
 	   	 				else if("null".equals(p1))
-	   	 					eurl=t1+"?"+a1+"="+apkey+"&";
+	   	 					eurl=t1+"?"+a1+"="+apkey;
       		 
 	   	 				eurl=eurl.replaceAll(" ", "%20"); 
 	   	 				URL eurl1=new URL(eurl);
