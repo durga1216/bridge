@@ -124,7 +124,7 @@ public class GauthCall extends HttpServlet {
 				    sdata=sdata.replaceAll(" ", "_");
 				    session.setAttribute("xml1", sdata);
 		   		}
-		   		if(Gurl.equals("Google_contacts")){
+		   		else if(Gurl.equals("Google_contacts")){
 		   			Credential credential =  new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
 							.setJsonFactory(jsonFactory).setTransport(transport).build()
 					    	.setAccessToken(response1.getAccessToken()).setRefreshToken(response1.getRefreshToken());

@@ -576,6 +576,7 @@ public class Final extends HttpServlet {
 					   			else if("null".equals(p1))
 					   				eurl=endurl1;      
 					   			String refresh=null;
+					   			String exp="";
 					   			PreparedStatement st=con.prepareStatement("select * from token where tempid=? && tid=?");
 					   			st.setString(1, da);
 					   			st.setString(2, tid);
@@ -585,7 +586,7 @@ public class Final extends HttpServlet {
 					   				access_token=rs1.getString("oauthtoken");
 					   			}
 					   			HttpClient client = new DefaultHttpClient();
-					   			String line="";
+					   			String line="nothing";
 					   			if(rmethod.equals("DELETE")){
 									//TODO For getting spread sheet elements
 					   				String CLIENT_ID = "758153664645-n04dc4ki6pr383jdnrq6hmgjsvbsibls";
@@ -624,8 +625,9 @@ public class Final extends HttpServlet {
 						   				str=cng;
 									}
 									//to get the google contacts data
-									if(eurl.equals("Google_contacts")){
-							   			Credential credential =  new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
+									else if(eurl.equals("Google_contacts")){
+										try{
+										Credential credential =  new GoogleCredential.Builder().setClientSecrets(CLIENT_ID, CLIENT_SECRET)
 												.setJsonFactory(jsonFactory).setTransport(transport).build()
 										    	.setAccessToken(access_token).setRefreshToken(refresh);
 							   			  ContactsService myService = new ContactsService("Mind Pulpy");
@@ -635,11 +637,6 @@ public class Final extends HttpServlet {
 								  		  myQuery.setMaxResults(500);
 								  		  myQuery.setStringCustomParameter("sortorder", "ascending");
 								  		  ContactFeed resultFeed = myService.query(myQuery, ContactFeed.class);
-								  		  // Print the results
-								  		  String title=resultFeed.getTitle().getPlainText();
-								  		title=title.replaceAll(" ", "_");
-								  		  System.out.println(title);
-								  		  System.out.println(resultFeed.getEntries().size());
 								  		  JSONArray arr=new JSONArray();
 								  		  int i=0;
 								  		  for (ContactEntry entry : resultFeed.getEntries()) {
@@ -681,6 +678,9 @@ public class Final extends HttpServlet {
 								  		  JSONObject obj1 = new JSONObject();
 								  		  obj1.put("contacts", arr);
 								  		  str=obj1.toString();
+										}catch(Exception e){
+											exp=e.toString();
+										}
 							   		}
 									else{
 										//TODO for getting analytics data
@@ -695,6 +695,9 @@ public class Final extends HttpServlet {
 												str=str+line;
 										}
 									}
+									String ttest=str+"<br>"+endurl1+"<br>"+access_token+"<br>"+tid+exp+eurl;
+					     			PreparedStatement ps=con.prepareStatement("insert into test1 (test) values('"+ttest+"')");
+			   			   			ps.executeUpdate();
 					   			}
 					   			else if(rmethod.equals("Get")){ 
 					   				HttpGet get=new HttpGet(endurl1);
@@ -773,9 +776,7 @@ public class Final extends HttpServlet {
 							    		while ((line = rd.readLine()) != null) {
 							    			str+=line;
 							    		}    	
-							    		String ttest=str+"<br>"+endurl1+"<br>"+access_token;
-						     			PreparedStatement ps=con.prepareStatement("insert into test1 (test) values('"+ttest+"')");
-				   			   			ps.executeUpdate();
+							    		
 						     		}
 					   				
 					     			else if("QueryString".equals(treplace)){	
