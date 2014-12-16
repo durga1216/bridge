@@ -180,6 +180,7 @@ public class Final extends HttpServlet {
 				   	 				}
 					   			}
 					   		}else if(authen.equals("API keys")){
+					   			 try{
 					   			/*if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
 					   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
 			        		 
@@ -215,7 +216,12 @@ public class Final extends HttpServlet {
 		    	  	       	 	}
 			        			PreparedStatement st41=con.prepareStatement("insert into test (te,temp) values ('"+str+"','"+eurl+"')");
 			 	 			   	st41.executeUpdate();
-			 	 			   	st41.close();
+			 	 			   	st41.close();}
+					   			 catch(Exception e){
+					   				PreparedStatement st41=con.prepareStatement("insert into test (te,temp) values ('"+e+"','"+eurl+"')");
+				 	 			   	st41.executeUpdate();
+				 	 			   	st41.close();
+					   			 }
 				   			}
 					   		else if(authen.equals("Basic Auth")){
 					   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
