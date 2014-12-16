@@ -1158,7 +1158,7 @@ public class Polling extends HttpServlet {
 										} //if
 										session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);	
 					/**   Parsing and mapping ends  ------ Action block starts from here	  **/
-										 ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,orurl,shname);
+						 	 			  ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
 										 String str1=act.start();
 										} //for
 									} //if
@@ -1197,8 +1197,9 @@ public class Polling extends HttpServlet {
 												} //for
 											} //if
 											session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);												
-											 ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,orurl,shname);
-											 String str1=act.start();
+							 	 			  ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+
+											String str1=act.start();
 											} //if
 										} // resformat xml
 										
