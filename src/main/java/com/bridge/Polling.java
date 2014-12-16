@@ -846,16 +846,16 @@ public class Polling extends HttpServlet {
 								    if(!x1.equals("null")){
 								    	arx1=JsonPath.read(str,x1);
 								    }
-								    else if(!x2.equals("null")){
+								    if(!x2.equals("null")){
 								    	arx2=JsonPath.read(str, x2);
 								    }
-								    else if(!x3.equals("null")){
+								    if(!x3.equals("null")){
 								    	arx3=JsonPath.read(str,x3);
 								    }
-								    else if(!x4.equals("null")){
+								    if(!x4.equals("null")){
 								    	arx4=JsonPath.read(str, x4);
 								    }
-								    else if(!x5.equals("null")){
+								    if(!x5.equals("null")){
 								    	arx5=JsonPath.read(str,x5);
 								    }
 									session.setAttribute("samp", arx1.toString()+arx2.toString()+arx3.toString()+arx4.toString()+arx5.toString());
