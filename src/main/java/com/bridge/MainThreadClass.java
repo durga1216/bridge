@@ -36,6 +36,11 @@ public class MainThreadClass implements Runnable{
 	    	  String x1="";String x2="";String x3="";String x4="";String x5="";String resf="";
 	    	  //TODO For Checking xx value purpose I take null
 	    	  String xx1="null";String xx2="null";String xx3="null";String xx4="null";String xx5="null";
+	    	  String xx6="null";String xx7="null";String xx8="null";String xx9="null";String xx10="null";
+	    	  String xx11="null";String xx12="null";String xx13="null";String xx14="null";String xx15="null";
+	    	  String xx16="null";String xx17="null";String xx18="null";String xx19="null";String xx20="null";
+
+	    	  
 	    	  String[] xx=new String[10];String check="null";
 	    	  String ptag="";String exres="";String shname="";
 	    	  PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
@@ -109,7 +114,7 @@ public class MainThreadClass implements Runnable{
 			   		check=e.getMessage();
 			   	}
 			  //Action part started
-			  ActionClass act=new ActionClass(Tempid,xx1,xx2,xx3,xx4,xx5,orurl,shname);
+	 			  ActionClass act=new ActionClass(Tempid,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
 			  String str1=act.start();
 	    	  synchronized(this) {
 	    		  while(suspended) {
