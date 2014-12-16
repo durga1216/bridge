@@ -186,11 +186,11 @@ public class ActionClass {
 			   			connection.setDoInput(true);
 			   			connection.setRequestMethod("POST");
 			   			String encoding=null;
-			   			if( !"null".equals(b2) && !"null".equals(b4)){
+			   			//if( !"null".equals(b2) && !"null".equals(b4)){
 			   				encoding = new String(org.apache.commons.codec.binary.Base64.encodeBase64   
 	                        		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
 			   				connection.setRequestProperty  ("Authorization", "Basic " + encoding);
-			   			}
+			   			//}
 		   				connection.setRequestProperty("Content-Type", "application/xml");
 
 
@@ -563,7 +563,7 @@ public class ActionClass {
 		   					}			 
 		   				}
 		   			}
-		   			PreparedStatement ps=con.prepareStatement("insert into testing (data,tempid) values('"+str1+"','"+da+"')");
+		   			PreparedStatement ps=con.prepareStatement("insert into testing (data,orurl,tempid) values('"+str1+"','"+orurl+"','"+da+"')");
 		   			ps.executeUpdate();
 		   			//out.println(str);
 				}//while
