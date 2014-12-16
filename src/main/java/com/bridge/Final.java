@@ -1042,7 +1042,6 @@ public class Final extends HttpServlet {
 									PreparedStatement ps1=con.prepareStatement("insert into testing (data) values('"+e+"')");
 									ps1.executeUpdate();
 								} catch (SQLException e1) {
-									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
 							}
