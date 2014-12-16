@@ -180,7 +180,7 @@ public class Final extends HttpServlet {
 				   	 				}
 					   			}
 					   		}else if(authen.equals("API keys")){
-					   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
+					   			/*if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
 					   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1+"&"+p2+"="+pv2+"&"+p3+"="+pv3+"&"+p4+"="+pv4+"&"+p5+"="+pv5;}
 			        		 
 					   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4)){
@@ -195,13 +195,13 @@ public class Final extends HttpServlet {
 					   			else if(!"null".equals(p1)){
 					   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+pv1;}
 					   			
-					   			else if("null".equals(p1))
+					   			else if("null".equals(p1))*/
 					   				eurl=endurl1+"?"+ak1+"="+apkey;
 			        		 
-					   			else if("null".equals(ak1) && "null".equals(apkey))
-					   				eurl=endurl1;	        		
+					   			/*else if("null".equals(ak1) && "null".equals(apkey))
+					   				eurl=endurl1;	     */   		
 			        		
-			        			eurl=eurl.replaceAll(" ", "%20"); 
+			        		//	eurl=eurl.replaceAll(" ", "%20"); 
 			        			URL eurl1=new URL(eurl);
 			        			URLConnection uconn = eurl1.openConnection();
 			        			HttpURLConnection conn = (HttpURLConnection) uconn;
