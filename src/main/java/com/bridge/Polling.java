@@ -205,7 +205,6 @@ public class Polling extends HttpServlet {
 					   			else if("null".equals(ak1) && "null".equals(apkey))
 					   				eurl=endurl1;	        		
 			        		
-			        			eurl=eurl.replaceAll(" ", "%20"); 
 			        			URL eurl1=new URL(eurl);
 			        			URLConnection uconn = eurl1.openConnection();
 			        			HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -975,7 +974,7 @@ public class Polling extends HttpServlet {
 											if(!x17.equals("null")){
 											xo17=arx17.get(m);xx17=xo17.toString();}
 											if(!x18.equals("null")){
-											xo18=arx8.get(m);xx18=xo18.toString();}
+											xo18=arx18.get(m);xx18=xo18.toString();}
 											if(!x19.equals("null")){
 											xo19=arx19.get(m);xx19=xo19.toString();}
 											if(!x20.equals("null")){
