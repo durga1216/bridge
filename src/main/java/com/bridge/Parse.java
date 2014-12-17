@@ -53,8 +53,8 @@ public class Parse extends HttpServlet {
 		String c4=request.getParameter("c4");String cv4=request.getParameter("cv4");
 		String c5=request.getParameter("c5");String cv5=request.getParameter("cv5");
 
-		String[] x=new String[11];
-		String[] xx=new String[11];
+		String[] x=new String[21];
+		String[] xx=new String[21];
 		String tempid="";String tid="";String aid="";String tgtit="";String actit="";
 		for(int i=1;i<21;i++){
 			x[i]=request.getParameter("x"+i);
