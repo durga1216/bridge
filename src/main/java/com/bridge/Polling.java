@@ -112,7 +112,8 @@ public class Polling extends HttpServlet {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 		    final Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);	
-		    //Get all the valid Trigger data
+		    
+		    //Get all the valid polling Trigger data
 		    PreparedStatement st=con.prepareStatement("select t1.tempid,t2.time from trig_all t1 join home t2 on t1.tempid=t2.tempid where t2.state='Active' && t2.type='polling'");
 		    ResultSet rs1=st.executeQuery();
 		    while(rs1.next()){
@@ -120,7 +121,7 @@ public class Polling extends HttpServlet {
 		    	tar.add(Integer.parseInt(rs1.getString("time"))*60*1000);
 		    }
 		    int ttl=ar.size();
-		    session.setAttribute("samp", ar.toString()+"---"+ttl);
+		    
 		    //Create Thread for Every Trigger
 		    Thread[] th =new Thread[ttl];
 			for(int i=0;i<ttl;i++){
@@ -130,8 +131,9 @@ public class Polling extends HttpServlet {
 				ArrayList arr1=new ArrayList();
 			public void run(){
 				while(true){
+					String str="";String check="no error";
 					try{
-						String str="";String eurl="";String resformat="";
+						String eurl="";String resformat="";
 						ArrayList arr=new ArrayList();
 						PreparedStatement st1=con.prepareStatement("select * from trig_all where tempid=?");
 						st1.setString(1, da);
@@ -817,26 +819,28 @@ public class Polling extends HttpServlet {
 						
 		/**   Trigger Block ends   ------  Parsing the trigger response and mapping with action starts    **/
 						
-							 
+							//Parsing nodes
 							String x1="";String x2="";String x3="";String x4="";String x5="";
 							String x6="";String x7="";String x8="";String x9="";String x10="";
 							String x11="";String x12="";String x13="";String x14="";String x15="";
 							String x16="";String x17="";String x18="";String x19="";String x20="";	
 							
-							//TODO For Checking xx value purpose I take null
+							//parsed values
 							String xx1="null";String xx2="null";String xx3="null";String xx4="null";String xx5="null";
 							String xx6="null";String xx7="null";String xx8="null";String xx9="null";String xx10="null";
 							String xx11="null";String xx12="null";String xx13="null";String xx14="null";String xx15="null";
 							String xx16="null";String xx17="null";String xx18="null";String xx19="null";String xx20="null";
 							
+							//parsed objects
 							Object xo1;Object xo2;Object xo3;Object xo4;Object xo5;
 							Object xo6;Object xo7;Object xo8;Object xo9;Object xo10;
 							Object xo11;Object xo12;Object xo13;Object xo14;Object xo15;
 							Object xo16;Object xo17;Object xo18;Object xo19;Object xo20;
-
-							String[] xx=new String[20];String check="null";
+							
+							String[] xx=new String[30];
 							String ptag="";String exres="";String shname="";String parpol="";String unipol="";
 							
+							//Get the elements from database
 							PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
 							st2.setString(1, da);
 							ResultSet rs1=st2.executeQuery();
@@ -855,34 +859,23 @@ public class Polling extends HttpServlet {
 								exres=rs1.getString("exres");shname=rs1.getString("shname");
 								parpol=rs1.getString("parpol");unipol=rs1.getString("unipol");
 							} 
-							//session.setAttribute("samp", x1+x2+x3+x4+x5+parpol+unipol);
+							// Json polling
 							if(resformat.equals("json")){
 								try{
-									ArrayList arx1=new ArrayList();
-									ArrayList arx2=new ArrayList();
-									ArrayList arx3=new ArrayList();
-									ArrayList arx4=new ArrayList();
-									ArrayList arx5=new ArrayList();
-									
-									ArrayList arx6=new ArrayList();
-									ArrayList arx7=new ArrayList();
-									ArrayList arx8=new ArrayList();
-									ArrayList arx9=new ArrayList();
-									ArrayList arx10=new ArrayList();
-									
-									ArrayList arx11=new ArrayList();
-									ArrayList arx12=new ArrayList();
-									ArrayList arx13=new ArrayList();
-									ArrayList arx14=new ArrayList();
-									ArrayList arx15=new ArrayList();
-									
-									ArrayList arx16=new ArrayList();
-									ArrayList arx17=new ArrayList();
-									ArrayList arx18=new ArrayList();
-									ArrayList arx19=new ArrayList();
-									ArrayList arx20=new ArrayList();
+									//inserting every records in each array using jpath
+									ArrayList arx1=new ArrayList();ArrayList arx2=new ArrayList();
+									ArrayList arx3=new ArrayList();ArrayList arx4=new ArrayList();
+									ArrayList arx5=new ArrayList();ArrayList arx6=new ArrayList();
+									ArrayList arx7=new ArrayList();ArrayList arx8=new ArrayList();
+									ArrayList arx9=new ArrayList();ArrayList arx10=new ArrayList();
+									ArrayList arx11=new ArrayList();ArrayList arx12=new ArrayList();
+									ArrayList arx13=new ArrayList();ArrayList arx14=new ArrayList();
+									ArrayList arx15=new ArrayList();ArrayList arx16=new ArrayList();
+									ArrayList arx17=new ArrayList();ArrayList arx18=new ArrayList();
+									ArrayList arx19=new ArrayList();ArrayList arx20=new ArrayList();
 									
 									arr=JsonPath.read(str, unipol);
+									
 								    if(!x1.equals("null")){
 								    	arx1=JsonPath.read(str,x1);
 								    }
@@ -913,7 +906,6 @@ public class Polling extends HttpServlet {
 								    if(!x10.equals("null")){
 								    	arx10=JsonPath.read(str,x10);
 								    }
-								    
 								    if(!x11.equals("null")){
 								    	arx11=JsonPath.read(str,x11);
 								    }
@@ -929,7 +921,6 @@ public class Polling extends HttpServlet {
 								    if(!x15.equals("null")){
 								    	arx15=JsonPath.read(str,x15);
 								    }
-								    
 								    if(!x16.equals("null")){
 								    	arx16=JsonPath.read(str,x16);
 								    }
@@ -945,9 +936,10 @@ public class Polling extends HttpServlet {
 								    if(!x20.equals("null")){
 								    	arx20=JsonPath.read(str,x20);
 								    }
-									session.setAttribute("samp", arx1.toString()+arx2.toString()+arx3.toString()+arx4.toString()+arx5.toString());
+									//check the initial array size
 									if(arr1.size()==0){
 										arr1=arr;
+										//parsing all loop records
 										for(int m=0;m<arr.size();m++){
 											if(!x1.equals("null")){
 											xo1=arx1.get(m);xx1=xo1.toString();}
@@ -989,12 +981,14 @@ public class Polling extends HttpServlet {
 											xo19=arx19.get(m);xx19=xo19.toString();}
 											if(!x20.equals("null")){
 											xo20=arx20.get(m);xx20=xo20.toString();}
-									
+											
+											//insert every records in array for json or xml Rpc's
 											xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
 											xx[6]=xx6;xx[7]=xx7;xx[8]=xx8;xx[9]=xx9;xx[10]=xx10;
 											xx[11]=xx11;xx[12]=xx12;xx[13]=xx13;xx[14]=xx14;xx[15]=xx15;
 											xx[16]=xx16;xx[17]=xx17;xx[18]=xx18;xx[19]=xx19;xx[20]=xx20;
-
+											
+											//Join the parsed elements into valid json or xml
 											String[] slt=exres.split("@@");
 											int nn=slt.length;String orurl="";
 											if(!(nn==0)){
@@ -1003,23 +997,21 @@ public class Polling extends HttpServlet {
 												}
 												for(int k=0;k<nn;k++){
 													orurl=orurl+slt[k];
-												}//for
-											} //if
-											
-						 	 			  ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
-						 	 			  String str1=act.start();
-										} //for
-									} //if
-									System.out.println(arr.toString());
-									System.out.println(arr1.toString());
-									session.setAttribute("samp", str+"\n"+arr.toString()+"\n"+arr1.toString()+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);	
+												}
+											}
+											//Send all the input to action block
+						 	 			  	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+						 	 			  	String str1=act.start();
+										}
+									}
+									//inserting when new element arrives
 									for(int m=0;m<arr.size();m++){
 										boolean find=true;
 										for(int l=0;l<arr1.size();l++){
 											if(arr.get(m).equals(arr1.get(l))){
 												find=false;
-											}//if
-										} //for
+											}
+										}
 										if(find==true){
 											System.out.println(arr.get(m));
 											   if(!x1.equals("null")){
@@ -1052,7 +1044,6 @@ public class Polling extends HttpServlet {
 												xo14=arx14.get(m);xx14=xo14.toString();}
 												if(!x15.equals("null")){
 												xo15=arx15.get(m);xx15=xo15.toString();}
-											
 												if(!x16.equals("null")){
 												xo16=arx16.get(m);xx16=xo16.toString();}
 												if(!x17.equals("null")){
@@ -1074,24 +1065,26 @@ public class Polling extends HttpServlet {
 												if(!(nn==0)){
 													for(int i=1,j=1;i<nn;i=i+2,j++){
 														slt[i]=xx[j];
-													} //for
+													}
 													for(int k=0;k<nn;k++){
 														orurl=orurl+slt[k];
-													} //for
-												} //if
-												//session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);												
+													}
+												}
+												
+												//send all the input to action blocks
 							 	 			  	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
 							 	 			  	String str1=act.start();
-											} //if
-										} // 
-										
+											}
+										} 	
 									}catch(Exception e){
 										check=e.toString();
 									}
 									arr1=arr;
 							}
+							//xml polling
 							else if(resformat.equals("xml")){
 								try{
+									//inserting every records in each array using xpath
 									ArrayList<String> arx1=new ArrayList<String>();
 									ArrayList<String> arx2=new ArrayList<String>();
 									ArrayList<String> arx3=new ArrayList<String>();
@@ -1118,7 +1111,7 @@ public class Polling extends HttpServlet {
 										if(!x5.equals("null")){
 										arx5.add(xPath.evaluate(x5, inputEvent));}
 									}
-									session.setAttribute("samp", arx1.toString()+arx2.toString()+arx3.toString()+arx4.toString()+arx5.toString());
+									//check the initial size of array
 									if(arr1.size()==0){
 										arr1=arr;
 										for(int m=0;m<arr.size();m++){
@@ -1132,86 +1125,83 @@ public class Polling extends HttpServlet {
 											xx4=arx4.get(m);}
 											if(!x5.equals("null")){
 											xx5=arx5.get(m);}
-									
-										xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
-										String[] slt=exres.split("@@");
-										int nn=slt.length;String orurl="";
-										if(!(nn==0)){
-											for(int i=1,j=1;i<nn;i=i+2,j++){
-												slt[i]=xx[j];
-											}
-											for(int k=0;k<nn;k++){
-												orurl=orurl+slt[k];
-											}//for
-										} //if
-										session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);	
-					/**   Parsing and mapping ends  ------ Action block starts from here	  **/
-						 	 			  ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
-										 String str1=act.start();
-										} //for
-									} //if
-									System.out.println(arr.toString());
-									System.out.println(arr1.toString());
-									session.setAttribute("samp", str+"\n"+arr.toString()+"\n"+arr1.toString()+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);	
-									for(int m=0;m<arr.size();m++){
-										boolean find=true;
-										for(int l=0;l<arr1.size();l++){
-											if(arr.get(m).equals(arr1.get(l))){
-												find=false;
-											}//if
-										} //for
-										if(find==true){
-											System.out.println(arr.get(m));
-											if(!x1.equals("null")){
-												xx1=arx1.get(m);}
-												if(!x2.equals("null")){
-												xx2=arx2.get(m);}
-												if(!x3.equals("null")){
-												xx3=arx3.get(m);}
-												if(!x4.equals("null")){
-												xx4=arx4.get(m);}
-												if(!x5.equals("null")){
-												xx5=arx5.get(m);}
-										
+											
+											//constructing xml or json for RPC's
 											xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
 											String[] slt=exres.split("@@");
 											int nn=slt.length;String orurl="";
 											if(!(nn==0)){
 												for(int i=1,j=1;i<nn;i=i+2,j++){
 													slt[i]=xx[j];
-												} //for
+												}
 												for(int k=0;k<nn;k++){
 													orurl=orurl+slt[k];
-												} //for
-											} //if
-											session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);												
-							 	 			  ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
-
+												}
+											}
+											
+											//send all the input to action block
+											ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
 											String str1=act.start();
-											} //if
-										} // resformat xml
-										
+											} 
+									} 
+									//for checking the new element arrives
+									for(int m=0;m<arr.size();m++){
+										boolean find=true;
+										for(int l=0;l<arr1.size();l++){
+											if(arr.get(m).equals(arr1.get(l))){
+												find=false;
+											}
+										}
+										if(find==true){
+											System.out.println(arr.get(m));
+											if(!x1.equals("null")){
+											xx1=arx1.get(m);}
+											if(!x2.equals("null")){
+											xx2=arx2.get(m);}
+											if(!x3.equals("null")){
+											xx3=arx3.get(m);}
+											if(!x4.equals("null")){
+											xx4=arx4.get(m);}
+											if(!x5.equals("null")){
+											xx5=arx5.get(m);}
+											
+											//constructing xml or json for RPC's
+											xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
+											String[] slt=exres.split("@@");
+											int nn=slt.length;String orurl="";
+											if(!(nn==0)){
+												for(int i=1,j=1;i<nn;i=i+2,j++){
+													slt[i]=xx[j];
+												}
+												for(int k=0;k<nn;k++){
+													orurl=orurl+slt[k];
+												}
+											} 
+											
+											//send all the inputs to action class
+							 	 			ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+											String str1=act.start();
+											}
+										}
 									}catch(Exception e){
 										check=e.toString();
 									}
 									arr1=arr;
 								}
-							}//try
-							catch(Exception e)
-							{
-								try {
-									PreparedStatement ps1=con.prepareStatement("insert into testing (data) values('"+e+"')");
-									ps1.executeUpdate();
-								} catch (SQLException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
+							}
+							catch(Exception e){
+								check=e.toString();
 							}
 							try {
+								PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','"+str+"','"+da+"')");
+								ps1.executeUpdate();
 								Thread.sleep(slp);
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
 							}
 						}
 					}//run
