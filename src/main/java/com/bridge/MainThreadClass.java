@@ -34,7 +34,6 @@ public class MainThreadClass implements Runnable{
 	    	  Class.forName("com.mysql.jdbc.Driver").newInstance();
 			  final Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);	
 	    	  String x1="";String x2="";String x3="";String x4="";String x5="";String resf="";
-	    	  //TODO For Checking xx value purpose I take null
 	    	  String xx1="null";String xx2="null";String xx3="null";String xx4="null";String xx5="null";
 	    	  String xx6="null";String xx7="null";String xx8="null";String xx9="null";String xx10="null";
 	    	  String xx11="null";String xx12="null";String xx13="null";String xx14="null";String xx15="null";
