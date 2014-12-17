@@ -834,30 +834,28 @@ public class Polling extends HttpServlet {
 							Object xo11;Object xo12;Object xo13;Object xo14;Object xo15;
 							Object xo16;Object xo17;Object xo18;Object xo19;Object xo20;
 
-							String[] xx=new String[10];String check="null";
+							String[] xx=new String[20];String check="null";
 							String ptag="";String exres="";String shname="";String parpol="";String unipol="";
+							
 							PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
 							st2.setString(1, da);
 							ResultSet rs1=st2.executeQuery();
 							while(rs1.next()){
 								x1=rs1.getString("xx1");x2=rs1.getString("xx2");
 								x3=rs1.getString("xx3");x4=rs1.getString("xx4");
-								x5=rs1.getString("xx5");x6=rs1.getString("xx6");x7=rs1.getString("xx7");
-								x8=rs1.getString("xx8");x9=rs1.getString("xx9");
-								x10=rs1.getString("xx10");x11=rs1.getString("xx11");
-								x12=rs1.getString("xx12"); 
-								x13=rs1.getString("xx13");
-								x14=rs1.getString("xx14");
-								x15=rs1.getString("xx15");
-								x16=rs1.getString("xx16");
-								x17=rs1.getString("xx17");
-								x18=rs1.getString("xx18");
+								x5=rs1.getString("xx5");x6=rs1.getString("xx6");
+								x7=rs1.getString("xx7");x8=rs1.getString("xx8");
+								x9=rs1.getString("xx9");x10=rs1.getString("xx10");
+								x11=rs1.getString("xx11");x12=rs1.getString("xx12"); 
+								x13=rs1.getString("xx13");x14=rs1.getString("xx14");
+								x15=rs1.getString("xx15");x16=rs1.getString("xx16");
+								x17=rs1.getString("xx17");x18=rs1.getString("xx18");
 								x19=rs1.getString("xx19");
 								x20=rs1.getString("xx20");ptag=rs1.getString("ptag");
 								exres=rs1.getString("exres");shname=rs1.getString("shname");
 								parpol=rs1.getString("parpol");unipol=rs1.getString("unipol");
 							} 
-							session.setAttribute("samp", x1+x2+x3+x4+x5+parpol+unipol);
+							//session.setAttribute("samp", x1+x2+x3+x4+x5+parpol+unipol);
 							if(resformat.equals("json")){
 								try{
 									ArrayList arx1=new ArrayList();
