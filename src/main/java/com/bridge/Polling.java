@@ -393,7 +393,6 @@ public class Polling extends HttpServlet {
 					   		}
 					   		else if(authen.equals("Oauth1")){
 					   			String res="";
-					   			//out.println("in Oauth");
 					   			String oauth_signature_method=rs.getString("osmeth");
 					   			String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
 					   			String oauth_token="";
