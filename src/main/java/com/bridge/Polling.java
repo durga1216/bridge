@@ -1085,11 +1085,16 @@ public class Polling extends HttpServlet {
 							else if(resformat.equals("xml")){
 								try{
 									//inserting every records in each array using xpath
-									ArrayList<String> arx1=new ArrayList<String>();
-									ArrayList<String> arx2=new ArrayList<String>();
-									ArrayList<String> arx3=new ArrayList<String>();
-									ArrayList<String> arx4=new ArrayList<String>();
-									ArrayList<String> arx5=new ArrayList<String>();
+									ArrayList<String> arx1=new ArrayList<String>();ArrayList<String> arx11=new ArrayList<String>();
+									ArrayList<String> arx2=new ArrayList<String>();ArrayList<String> arx12=new ArrayList<String>();
+									ArrayList<String> arx3=new ArrayList<String>();ArrayList<String> arx13=new ArrayList<String>();
+									ArrayList<String> arx4=new ArrayList<String>();ArrayList<String> arx14=new ArrayList<String>();
+									ArrayList<String> arx5=new ArrayList<String>();ArrayList<String> arx15=new ArrayList<String>();
+									ArrayList<String> arx6=new ArrayList<String>();ArrayList<String> arx16=new ArrayList<String>();
+									ArrayList<String> arx7=new ArrayList<String>();ArrayList<String> arx17=new ArrayList<String>();
+									ArrayList<String> arx8=new ArrayList<String>();ArrayList<String> arx18=new ArrayList<String>();
+									ArrayList<String> arx9=new ArrayList<String>();ArrayList<String> arx19=new ArrayList<String>();
+									ArrayList<String> arx10=new ArrayList<String>();ArrayList<String> arx20=new ArrayList<String>();
 						       	 	DocumentBuilderFactory domFactory=DocumentBuilderFactory.newInstance();
 						       	 	DocumentBuilder builder=domFactory.newDocumentBuilder();
 									Document doc=builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
@@ -1099,6 +1104,7 @@ public class Polling extends HttpServlet {
 									for(int i=0;i<ln;i++){
 										Node inputEvent=inevent.item(i);
 										String value= xPath.evaluate(unipol, inputEvent);
+										
 										arr.add(value);
 										if(!x1.equals("null")){
 										arx1.add(xPath.evaluate(x1, inputEvent));}
@@ -1110,6 +1116,36 @@ public class Polling extends HttpServlet {
 										arx4.add(xPath.evaluate(x4, inputEvent));}
 										if(!x5.equals("null")){
 										arx5.add(xPath.evaluate(x5, inputEvent));}
+										if(!x6.equals("null")){
+										arx6.add(xPath.evaluate(x6, inputEvent));}
+										if(!x7.equals("null")){
+										arx7.add(xPath.evaluate(x7, inputEvent));}
+										if(!x8.equals("null")){
+										arx8.add(xPath.evaluate(x8, inputEvent));}
+										if(!x9.equals("null")){
+										arx9.add(xPath.evaluate(x9, inputEvent));}
+										if(!x10.equals("null")){
+										arx10.add(xPath.evaluate(x10, inputEvent));}
+										if(!x11.equals("null")){
+										arx11.add(xPath.evaluate(x11, inputEvent));}
+										if(!x12.equals("null")){
+										arx12.add(xPath.evaluate(x12, inputEvent));}
+										if(!x13.equals("null")){
+										arx13.add(xPath.evaluate(x13, inputEvent));}
+										if(!x14.equals("null")){
+										arx14.add(xPath.evaluate(x14, inputEvent));}
+										if(!x15.equals("null")){
+										arx15.add(xPath.evaluate(x15, inputEvent));}
+										if(!x16.equals("null")){
+										arx16.add(xPath.evaluate(x16, inputEvent));}
+										if(!x17.equals("null")){
+										arx17.add(xPath.evaluate(x17, inputEvent));}
+										if(!x18.equals("null")){
+										arx18.add(xPath.evaluate(x18, inputEvent));}
+										if(!x19.equals("null")){
+										arx19.add(xPath.evaluate(x19, inputEvent));}
+										if(!x20.equals("null")){
+										arx20.add(xPath.evaluate(x20, inputEvent));}
 									}
 									//check the initial size of array
 									if(arr1.size()==0){
@@ -1125,9 +1161,43 @@ public class Polling extends HttpServlet {
 											xx4=arx4.get(m);}
 											if(!x5.equals("null")){
 											xx5=arx5.get(m);}
+											if(!x6.equals("null")){
+											xx6=arx6.get(m);}
+											if(!x7.equals("null")){
+											xx7=arx7.get(m);}
+											if(!x8.equals("null")){
+											xx8=arx8.get(m);}
+											if(!x9.equals("null")){
+											xx9=arx9.get(m);}
+											if(!x10.equals("null")){
+											xx10=arx10.get(m);}
+											if(!x11.equals("null")){
+											xx11=arx11.get(m);}
+											if(!x12.equals("null")){
+											xx12=arx12.get(m);}
+											if(!x13.equals("null")){
+											xx13=arx13.get(m);}
+											if(!x14.equals("null")){
+											xx14=arx14.get(m);}
+											if(!x15.equals("null")){
+											xx15=arx15.get(m);}
+											if(!x16.equals("null")){
+											xx16=arx16.get(m);}
+											if(!x17.equals("null")){
+											xx17=arx17.get(m);}
+											if(!x18.equals("null")){
+											xx18=arx18.get(m);}
+											if(!x19.equals("null")){
+											xx19=arx19.get(m);}
+											if(!x20.equals("null")){
+											xx20=arx20.get(m);}
 											
 											//constructing xml or json for RPC's
 											xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
+											xx[6]=xx6;xx[7]=xx7;xx[8]=xx8;xx[9]=xx9;xx[10]=xx10;
+											xx[11]=xx11;xx[12]=xx12;xx[13]=xx13;xx[14]=xx14;xx[15]=xx15;
+											xx[16]=xx16;xx[17]=xx17;xx[18]=xx18;xx[19]=xx19;xx[20]=xx20;
+											
 											String[] slt=exres.split("@@");
 											int nn=slt.length;String orurl="";
 											if(!(nn==0)){
@@ -1153,7 +1223,6 @@ public class Polling extends HttpServlet {
 											}
 										}
 										if(find==true){
-											System.out.println(arr.get(m));
 											if(!x1.equals("null")){
 											xx1=arx1.get(m);}
 											if(!x2.equals("null")){
@@ -1164,9 +1233,43 @@ public class Polling extends HttpServlet {
 											xx4=arx4.get(m);}
 											if(!x5.equals("null")){
 											xx5=arx5.get(m);}
+											if(!x6.equals("null")){
+											xx6=arx6.get(m);}
+											if(!x7.equals("null")){
+											xx7=arx7.get(m);}
+											if(!x8.equals("null")){
+											xx8=arx8.get(m);}
+											if(!x9.equals("null")){
+											xx9=arx9.get(m);}
+											if(!x10.equals("null")){
+											xx10=arx10.get(m);}
+											if(!x11.equals("null")){
+											xx11=arx11.get(m);}
+											if(!x12.equals("null")){
+											xx12=arx12.get(m);}
+											if(!x13.equals("null")){
+											xx13=arx13.get(m);}
+											if(!x14.equals("null")){
+											xx14=arx14.get(m);}
+											if(!x15.equals("null")){
+											xx15=arx15.get(m);}
+											if(!x16.equals("null")){
+											xx16=arx16.get(m);}
+											if(!x17.equals("null")){
+											xx17=arx17.get(m);}
+											if(!x18.equals("null")){
+											xx18=arx18.get(m);}
+											if(!x19.equals("null")){
+											xx19=arx19.get(m);}
+											if(!x20.equals("null")){
+											xx20=arx20.get(m);}
 											
 											//constructing xml or json for RPC's
 											xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
+											xx[6]=xx6;xx[7]=xx7;xx[8]=xx8;xx[9]=xx9;xx[10]=xx10;
+											xx[11]=xx11;xx[12]=xx12;xx[13]=xx13;xx[14]=xx14;xx[15]=xx15;
+											xx[16]=xx16;xx[17]=xx17;xx[18]=xx18;xx[19]=xx19;xx[20]=xx20;
+												
 											String[] slt=exres.split("@@");
 											int nn=slt.length;String orurl="";
 											if(!(nn==0)){

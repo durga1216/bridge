@@ -128,8 +128,9 @@ public class Final extends HttpServlet {
 			th[i]=new Thread(){
 			public void run(){
 				while(true){
+					String check="no error";String str="";
 					try{
-						String str="";String eurl="";String resformat="";
+						String eurl="";String resformat="";
 						PreparedStatement st1=con.prepareStatement("select * from trig_all where tempid=?");
 						st1.setString(1, da);
 						ResultSet rs=st1.executeQuery();
@@ -839,42 +840,36 @@ public class Final extends HttpServlet {
 				   			}//while
 						
 		/**   Trigger Block ends   ------  Parsing the trigger response and mapping with action starts    **/
-		   	 				
-							 
+
 							String x1="";String x2="";String x3="";String x4="";String x5="";
 							String x6="";String x7="";String x8="";String x9="";String x10="";
 							String x11="";String x12="";String x13="";String x14="";String x15="";
 							String x16="";String x17="";String x18="";String x19="";String x20="";
+							
 							//TODO For Checking xx value purpose I take null
 							String xx1="null";String xx2="null";String xx3="null";String xx4="null";String xx5="null";
 							String xx6="null";String xx7="null";String xx8="null";String xx9="null";String xx10="null";
 							String xx11="null";String xx12="null";String xx13="null";String xx14="null";String xx15="null";
 							String xx16="null";String xx17="null";String xx18="null";String xx19="null";String xx20="null";
 
-							String[] xx=new String[20];String check="null";String c1="";String cv1="";
+							String[] xx=new String[30];String c1="";String cv1="";
 							String c2="";String cv2="";String c3="";String cv3="";String c4="";String cv4="";String c5="";String cv5="";
 							String ptag="";String exres="";String shname="";
 							PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
 							st2.setString(1, da);
 							ResultSet rs1=st2.executeQuery();
 							while(rs1.next()){
-								x1=rs1.getString("x1");x2=rs1.getString("x2");
-								x3=rs1.getString("x3");x4=rs1.getString("x4");
-								x5=rs1.getString("x5");x6=rs1.getString("x6");x7=rs1.getString("x7");
-								x8=rs1.getString("x8");x9=rs1.getString("x9");
-								x10=rs1.getString("x10");x11=rs1.getString("x11");
-								x12=rs1.getString("x12"); 
-								x13=rs1.getString("x13");
-								x14=rs1.getString("x14");
-								x15=rs1.getString("x15");
-								x16=rs1.getString("x16");
-								x17=rs1.getString("x17");
-								x18=rs1.getString("x18");
-								x19=rs1.getString("x19");
-								x20=rs1.getString("x20");
-
-
-								ptag=rs1.getString("ptag");
+								x1=rs1.getString("xx1");x2=rs1.getString("xx2");
+								x3=rs1.getString("xx3");x4=rs1.getString("xx4");
+								x5=rs1.getString("xx5");x6=rs1.getString("xx6");
+								x7=rs1.getString("xx7");x8=rs1.getString("xx8");
+								x9=rs1.getString("xx9");x10=rs1.getString("xx10");
+								x11=rs1.getString("xx11");x12=rs1.getString("xx12"); 
+								x13=rs1.getString("xx13");x14=rs1.getString("xx14");
+								x15=rs1.getString("xx15");x16=rs1.getString("xx16");
+								x17=rs1.getString("xx17");x18=rs1.getString("xx18");
+								x19=rs1.getString("xx19");
+								x20=rs1.getString("xx20");ptag=rs1.getString("ptag");
 								exres=rs1.getString("exres");shname=rs1.getString("shname");
 								c1=rs1.getString("c1");cv1=rs1.getString("cv1");
 								c2=rs1.getString("c2");cv2=rs1.getString("cv2");
@@ -883,9 +878,6 @@ public class Final extends HttpServlet {
 								c5=rs1.getString("c5");cv5=rs1.getString("cv5");
 
 							} 
-							
-							
-							
 							if(resformat.equals("json")){
 								try{
 									ScriptEngineManager manager = new ScriptEngineManager();
@@ -901,7 +893,6 @@ public class Final extends HttpServlet {
 										xx4=String.valueOf(engine.eval("x."+x4+";"));}
 									if(!x5.equals("null")){
 										xx5=String.valueOf(engine.eval("x."+x5+";"));}
-									
 									if(!x6.equals("null")){
 										xx6=String.valueOf(engine.eval("x."+x6+";"));}
 									if(!x7.equals("null")){
@@ -912,8 +903,6 @@ public class Final extends HttpServlet {
 										xx9=String.valueOf(engine.eval("x."+x9+";"));}
 									if(!x10.equals("null")){
 										xx10=String.valueOf(engine.eval("x."+x10+";"));}
-									
-									
 									if(!x11.equals("null")){
 										xx11=String.valueOf(engine.eval("x."+x11+";"));}
 									if(!x12.equals("null")){
@@ -924,7 +913,6 @@ public class Final extends HttpServlet {
 										xx14=String.valueOf(engine.eval("x."+x14+";"));}
 									if(!x15.equals("null")){
 										xx15=String.valueOf(engine.eval("x."+x15+";"));}
-									
 									if(!x16.equals("null")){
 										xx16=String.valueOf(engine.eval("x."+x16+";"));}
 									if(!x17.equals("null")){
@@ -936,8 +924,6 @@ public class Final extends HttpServlet {
 									if(!x20.equals("null")){
 										xx20=String.valueOf(engine.eval("x."+x20+";"));}
 									
-									
-									session.setAttribute("da", xx1+xx2);
 								}catch(Exception e){
 									check=e.toString();
 								}
@@ -958,7 +944,6 @@ public class Final extends HttpServlet {
 										xx4=xPath.compile(ptag+"/"+x4).evaluate(doc);}
 									if(!x5.equals("null")){
 										xx5=xPath.compile(ptag+"/"+x5).evaluate(doc);}
-									
 									if(!x6.equals("null")){
 										xx6=xPath.compile(ptag+"/"+x6).evaluate(doc);}
 									if(!x7.equals("null")){
@@ -969,7 +954,6 @@ public class Final extends HttpServlet {
 										xx9=xPath.compile(ptag+"/"+x9).evaluate(doc);}
 									if(!x10.equals("null")){
 										xx10=xPath.compile(ptag+"/"+x10).evaluate(doc);}
-									
 									if(!x11.equals("null")){
 										xx11=xPath.compile(ptag+"/"+x11).evaluate(doc);}
 									if(!x12.equals("null")){
@@ -979,8 +963,7 @@ public class Final extends HttpServlet {
 									if(!x14.equals("null")){
 										xx14=xPath.compile(ptag+"/"+x14).evaluate(doc);}
 									if(!x15.equals("null")){
-										xx15=xPath.compile(ptag+"/"+x15).evaluate(doc);}
-									
+										xx15=xPath.compile(ptag+"/"+x15).evaluate(doc);}	
 									if(!x16.equals("null")){
 										xx16=xPath.compile(ptag+"/"+x16).evaluate(doc);}
 									if(!x17.equals("null")){
@@ -991,20 +974,14 @@ public class Final extends HttpServlet {
 										xx19=xPath.compile(ptag+"/"+x19).evaluate(doc);}
 									if(!x20.equals("null")){
 										xx20=xPath.compile(ptag+"/"+x20).evaluate(doc);}
-									
-									
 								}catch(Exception e){
 									check=e.toString();
 								}
 							}
-							PreparedStatement st31=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+resformat+"','"+da+"')");
-		 	 			   	st31.executeUpdate();
-		 	 			   	st31.close();
 		 	 			   	String orurl="";
 		 	 			   	try{
 								xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
 								xx[6]=xx6;xx[7]=xx7;xx[8]=xx8;xx[9]=xx9;xx[10]=xx10;
-
 								xx[11]=xx11;xx[12]=xx12;xx[13]=xx13;xx[14]=xx14;xx[15]=xx15;
 								xx[16]=xx16;xx[17]=xx17;xx[18]=xx18;xx[19]=xx19;xx[20]=xx20;
 
@@ -1024,32 +1001,30 @@ public class Final extends HttpServlet {
 		 	 			   		check=e.getMessage();
 		 	 			   	}		 	 			   	
 		/**   Parsing and mapping ends  ------ Action block starts from here	  **/
-		 	 			   	      if("null".equals(c1)){
-				 	 			  ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
-				 				  String str1=act.start();}
-		 	 			   	      
-		 	 			   	      else{
-		 	 			   	    	  
-		 	 			   	    	if((JsonPath.read(str,c1)).equals(cv1) && (JsonPath.read(str,c2)).equals(cv2) || (JsonPath.read(str,c3)).equals(cv3) ){
-						 	 			  ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
-					 				String str1=act.start();
-		 	 					    }
-		 	 			   	      }
+		 	 			   	
+		 	 			   	if("null".equals(c1)){
+		 	 			   		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+		 	 			   		String str1=act.start();
+	 	 			   		}
+		 	 			   	else{  
+		 	 			   		if((JsonPath.read(str,c1)).equals(cv1) && (JsonPath.read(str,c2)).equals(cv2) || (JsonPath.read(str,c3)).equals(cv3) ){
+		 	 			   			ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+		 	 			   			String str1=act.start();
+		 	 			   		}
+		 	 			   	}
 							}//try
-							catch(Exception e)
-							{
-								try {
-									PreparedStatement ps1=con.prepareStatement("insert into testing (data) values('"+e+"')");
-									ps1.executeUpdate();
-								} catch (SQLException e1) {
-									e1.printStackTrace();
-								}
+							catch(Exception e){
+								check=e.toString();
 							}
 							try {
+								PreparedStatement ps1=con.prepareStatement("insert into testing (data) values('"+check+"')");
+								ps1.executeUpdate();
 								Thread.sleep(slp);
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
+							} catch (SQLException e1) {
+								e1.printStackTrace();
 							}
 						}
 					}//run
