@@ -846,7 +846,7 @@ public class Polling extends HttpServlet {
 								exres=rs1.getString("exres");shname=rs1.getString("shname");
 								parpol=rs1.getString("parpol");unipol=rs1.getString("unipol");
 							} 
-							// Json polling
+							// Json polling in trigger
 							if(resformat.equals("json")){
 								try{
 									//inserting every records in each array using jpath
