@@ -394,10 +394,8 @@ margin-left:100px;
 <textarea name="txt1" id="txt1" placeholder="Description About Auth"></textarea>
 <textarea name="txt2" id="txt2" placeholder="Description about App"></textarea><br><br>
 <br><div id="others">If Http headers, Please leave username & password fields and add your credentials in header</div>
-<br><br><input type="text" name="b1" value="" placeholder="UserName_Label" >
-<input type="text" name="b2" value="" placeholder="UserName_Value" >
-<br><br><input type="password" name="b3" value="" placeholder="Password_Label">
-<input type="password" name="b4" value="" placeholder="Password_Value"><br><br><br>
+<br><br><input type="text" name="b2" value="" placeholder="UserName" >
+<input type="password" name="b4" value="" placeholder="Password"><br><br><br>
 <a id='pa' href="javascript:addParent();">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Header</a></center><br><br>
 <br><div id="content"></div><br>
 </div>

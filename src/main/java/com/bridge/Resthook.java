@@ -99,7 +99,7 @@ public class Resthook {
     		String x1="";String x2="";String x3="";String x4="";String x5="";
 			//TODO For Checking xx value purpose I take null
 			String xx1="null";String xx2="null";String xx3="null";String xx4="null";String xx5="null";
-			String[] xx=new String[10];String check="null";
+			String[] xx=new String[10];String check="null";String resf="";
 			String ptag="";String exres="";String shname="";
 			PreparedStatement st2=con.prepareStatement("select * from parse where tempid=?");
 			st2.setString(1, id);
@@ -109,6 +109,7 @@ public class Resthook {
 				x3=rs1.getString("x3");x4=rs1.getString("x4");
 				x5=rs1.getString("x5");ptag=rs1.getString("ptag");
 				exres=rs1.getString("exres");shname=rs1.getString("shname");
+				resf=rs1.getString("resf");
 			} 
 			//Json parsing for trigger response
 			if(resformat.equals("json")){
@@ -151,10 +152,11 @@ public class Resthook {
 					check=e.toString();
 				}
 			}
+			String orurl="";
 			//Construct the Json Or Xml String by removing the @@
 			xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
 			String[] slt=exres.split("@@");
-			int nn=slt.length;String orurl="";
+			int nn=slt.length;
 			if(!(nn==0)){
 				for(int i=1,j=1;i<nn;i=i+2,j++){
 					slt[i]=xx[j];
@@ -163,8 +165,9 @@ public class Resthook {
 					orurl=orurl+slt[k];
 				}
 			}
-			session.setAttribute("samp", str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+ptag+"\n"+resformat);
-			
+			else{
+				orurl=exres;
+			}
 	/**Action part for the webhook configuration**/
 			
     		PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");
@@ -231,7 +234,7 @@ public class Resthook {
 					HttpClient httpClient = new DefaultHttpClient();
 					HttpPost postRequest = new HttpPost(endurl1);
 					StringEntity input = new StringEntity(orurl);
-					input.setContentType("application/json");
+					//input.setContentType("application/json");
 					postRequest.setEntity(input);
 					if(!b2.equals("") && !b2.equals("null")){
 						String encoding = new String(
