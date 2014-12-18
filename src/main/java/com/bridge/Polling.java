@@ -1068,7 +1068,7 @@ public class Polling extends HttpServlet {
 									}
 									arr1=arr;
 							}
-							//xml polling878
+							//xml polling878j
 							else if(resformat.equals("xml")){
 								try{
 									//inserting every records in each array using xpath
