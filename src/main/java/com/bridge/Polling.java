@@ -99,9 +99,7 @@ public class Polling extends HttpServlet {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		final PrintWriter out=response.getWriter();
 		final HttpSession session=request.getSession(true);
