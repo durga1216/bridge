@@ -112,7 +112,6 @@ public class Polling extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 		    final Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);	
 		    
-		    //Get all the valid polling Trigger data
 		    PreparedStatement st=con.prepareStatement("select t1.tempid,t2.time from trig_all t1 join home t2 on t1.tempid=t2.tempid where t2.state='Active' && t2.type='polling'");
 		    ResultSet rs1=st.executeQuery();
 		    while(rs1.next()){
