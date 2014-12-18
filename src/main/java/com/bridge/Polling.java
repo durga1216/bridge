@@ -97,7 +97,6 @@ public class Polling extends HttpServlet {
      */
     public Polling() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
