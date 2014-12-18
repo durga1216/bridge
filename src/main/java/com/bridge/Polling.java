@@ -205,17 +205,15 @@ public class Polling extends HttpServlet {
 					   			else if("null".equals(ak1) && "null".equals(apkey))
 					   				eurl=endurl1;	        		
 			        		
-			        			URL eurl1=new URL(eurl);
-			        			URLConnection uconn = eurl1.openConnection();
-			        			HttpURLConnection conn = (HttpURLConnection) uconn;
-			        			conn.connect();
-			        			Object content = conn.getContent();
-			        			InputStream stream = (InputStream) content;
-			        			String line=null;
-			        			BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-			        			while((line=br.readLine())!=null){
-			        				str+=line;
-		    	  	       	 	}
+			        		
+					   			HttpClient cli=new DefaultHttpClient();
+			        			HttpGet get=new HttpGet(eurl);
+				            	HttpResponse res=cli.execute(get);
+				            	BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
+				            	String line="";
+				            	while((line=bf.readLine())!=null){
+				            		str+=line;
+				            	}
 				   			}
 					   		else if(authen.equals("Basic Auth")){
 					   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
