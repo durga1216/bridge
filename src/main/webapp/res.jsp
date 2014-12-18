@@ -121,14 +121,11 @@ if (u != null ) {
 	response.sendRedirect("logout.jsp");
 }
 String respo= (String) request.getSession().getAttribute("xml1");
-//String respo="{\"name\":[{\"sname\":{\"bname\":\"mind\"}},{\"sname\":\"dots\"}]}";
-//String respo="<?xml version=\"1.0\" encoding=\"UTF-8\"?><search><total_items>115</total_items><page_size><page_count11>12</page_count11></page_size><page_count>12</page_count><page_number>1</page_number></search>";
-char chfirst=respo.charAt(0);
+//char chfirst=respo.charAt(0);
 %>
-<script type="text/javascript" src="js/keys.js"></script>
 <script type="text/javascript">
 var respo2='<%=respo%>';
-var chfst='<%=chfirst%>';
+var chfst=respo2.charAt(0);
 function load(){
 	window.open("<%=request.getContextPath()%>/Loadres", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
 }
@@ -153,6 +150,7 @@ function removeCond(){
 	
 }
 </script>
+<script type="text/javascript" src="js/keys.js"></script>
 </head>
 <%@ page import="java.sql.*" %>
 <%@include file="conn.jsp" %>
