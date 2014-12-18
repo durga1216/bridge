@@ -120,7 +120,6 @@ public class Polling extends HttpServlet {
 		    }
 		    int ttl=ar.size();
 		    
-		    //Create Thread for Every Trigger
 		    Thread[] th =new Thread[ttl];
 			for(int i=0;i<ttl;i++){
 		    final String da=ar.get(i);
