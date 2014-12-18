@@ -974,6 +974,7 @@ public class Polling extends HttpServlet {
 													orurl=orurl+slt[k];
 												}
 											}
+											resour=x1+x2+x3+x4+x5+xx1+xx2+xx3+xx4+xx5+orurl;
 											//Send all the input to action block
 						 	 			  	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
 						 	 			  	String str1=act.start();
@@ -989,7 +990,7 @@ public class Polling extends HttpServlet {
 										}
 										if(find==true){
 											System.out.println(arr.get(m));
-											   if(!x1.equals("null")){
+											if(!x1.equals("null")){
 												xo1=arx1.get(m);xx1=xo1.toString();}
 												if(!x2.equals("null")){
 												xo2=arx2.get(m);xx2=xo2.toString();}
@@ -999,7 +1000,7 @@ public class Polling extends HttpServlet {
 												xo4=arx4.get(m);xx4=xo4.toString();}
 												if(!x5.equals("null")){
 												xo5=arx5.get(m);xx5=xo5.toString();}
-												if(!x6.equals("null")){
+											    if(!x6.equals("null")){
 												xo6=arx6.get(m);xx6=xo6.toString();}
 												if(!x7.equals("null")){
 												xo7=arx7.get(m);xx7=xo7.toString();}
@@ -1008,7 +1009,7 @@ public class Polling extends HttpServlet {
 												if(!x9.equals("null")){
 												xo9=arx9.get(m);xx9=xo9.toString();}
 												if(!x10.equals("null")){
-												xo10=arx10.get(m);xx10=xo10.toString();}
+												xo10=arx10.get(m);xx10=xo10.toString();}	
 												if(!x11.equals("null")){
 												xo11=arx11.get(m);xx11=xo11.toString();}
 												if(!x12.equals("null")){
@@ -1018,7 +1019,7 @@ public class Polling extends HttpServlet {
 												if(!x14.equals("null")){
 												xo14=arx14.get(m);xx14=xo14.toString();}
 												if(!x15.equals("null")){
-												xo15=arx15.get(m);xx15=xo15.toString();}
+												xo15=arx15.get(m);xx15=xo15.toString();}	
 												if(!x16.equals("null")){
 												xo16=arx16.get(m);xx16=xo16.toString();}
 												if(!x17.equals("null")){
@@ -1029,12 +1030,14 @@ public class Polling extends HttpServlet {
 												xo19=arx19.get(m);xx19=xo19.toString();}
 												if(!x20.equals("null")){
 												xo20=arx20.get(m);xx20=xo20.toString();}
-										
+												
+												//insert every records in array for json or xml Rpc's
 												xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
 												xx[6]=xx6;xx[7]=xx7;xx[8]=xx8;xx[9]=xx9;xx[10]=xx10;
 												xx[11]=xx11;xx[12]=xx12;xx[13]=xx13;xx[14]=xx14;xx[15]=xx15;
 												xx[16]=xx16;xx[17]=xx17;xx[18]=xx18;xx[19]=xx19;xx[20]=xx20;
-	
+												
+												//Join the parsed elements into valid json or xml
 												String[] slt=exres.split("@@");
 												int nn=slt.length;String orurl="";
 												if(!(nn==0)){
@@ -1045,7 +1048,7 @@ public class Polling extends HttpServlet {
 														orurl=orurl+slt[k];
 													}
 												}
-												
+												resour=x1+x2+x3+x4+x5+xx1+xx2+xx3+xx4+xx5+orurl;
 												//send all the input to 
 							 	 			  	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
 							 	 			  	String str1=act.start();
@@ -1183,7 +1186,7 @@ public class Polling extends HttpServlet {
 													orurl=orurl+slt[k];
 												}
 											}
-											
+											resour=x1+x2+x3+x4+x5+xx1+xx2+xx3+xx4+xx5+orurl;
 											//send all the input to action block
 											ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
 											String str1=act.start();
@@ -1244,7 +1247,7 @@ public class Polling extends HttpServlet {
 											xx[6]=xx6;xx[7]=xx7;xx[8]=xx8;xx[9]=xx9;xx[10]=xx10;
 											xx[11]=xx11;xx[12]=xx12;xx[13]=xx13;xx[14]=xx14;xx[15]=xx15;
 											xx[16]=xx16;xx[17]=xx17;xx[18]=xx18;xx[19]=xx19;xx[20]=xx20;
-												
+											
 											String[] slt=exres.split("@@");
 											int nn=slt.length;String orurl="";
 											if(!(nn==0)){
@@ -1254,7 +1257,7 @@ public class Polling extends HttpServlet {
 												for(int k=0;k<nn;k++){
 													orurl=orurl+slt[k];
 												}
-											} 
+											}
 											resour=x1+x2+x3+x4+x5+xx1+xx2+xx3+xx4+xx5+orurl;
 											//send all the inputs to action class
 							 	 			ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
