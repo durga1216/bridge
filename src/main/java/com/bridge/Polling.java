@@ -110,7 +110,7 @@ public class Polling extends HttpServlet {
 			ArrayList arr1=new ArrayList();
 			public void run(){
 				while(true){
-					String str="";String check="no error";
+					String str="";String check="no error";String resour="";
 					try{
 						String eurl="";String resformat="";
 						ArrayList arr=new ArrayList();
@@ -1255,11 +1255,12 @@ public class Polling extends HttpServlet {
 													orurl=orurl+slt[k];
 												}
 											} 
-											
+											resour=x1+x2+x3+x4+x5+xx1+xx2+xx3+xx4+xx5+orurl;
 											//send all the inputs to action class
 							 	 			ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
 											String str1=act.start();
 											}
+										
 										}
 									}catch(Exception e){
 										check=e.toString();
@@ -1271,7 +1272,7 @@ public class Polling extends HttpServlet {
 								check=e.toString();
 							}
 							try {
-								out.println(da+"\n\n---"+str+"\n\n---"+check);
+								out.println(da+"\n\n---"+str+"\n\n---"+check+"\n\n---"+resour);
 								PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','"+str+"','"+da+"')");
 								ps1.executeUpdate();
 								Thread.sleep(6000000);
