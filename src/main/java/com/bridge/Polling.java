@@ -1293,7 +1293,7 @@ public class Polling extends HttpServlet {
 								e1.printStackTrace();
 							}
 						}
-					}//r
+					}//rn
 				};th[i].start();
 			}//for
 		} catch (Exception e1) {
