@@ -837,12 +837,12 @@ public class Polling extends HttpServlet {
 								x5=rs1.getString("xx5");x6=rs1.getString("xx6");
 								x7=rs1.getString("xx7");x8=rs1.getString("xx8");
 								x9=rs1.getString("xx9");x10=rs1.getString("xx10");
-								x11=rs1.getString("xx11");x12=rs1.getString("xx12"); 
+								/*x11=rs1.getString("xx11");x12=rs1.getString("xx12"); 
 								x13=rs1.getString("xx13");x14=rs1.getString("xx14");
 								x15=rs1.getString("xx15");x16=rs1.getString("xx16");
 								x17=rs1.getString("xx17");x18=rs1.getString("xx18");
 								x19=rs1.getString("xx19");
-								x20=rs1.getString("xx20");ptag=rs1.getString("ptag");
+								x20=rs1.getString("xx20");*/ptag=rs1.getString("ptag");
 								exres=rs1.getString("exres");shname=rs1.getString("shname");
 								parpol=rs1.getString("parpol");unipol=rs1.getString("unipol");
 							} 
@@ -855,11 +855,11 @@ public class Polling extends HttpServlet {
 									ArrayList arx5=new ArrayList();ArrayList arx6=new ArrayList();
 									ArrayList arx7=new ArrayList();ArrayList arx8=new ArrayList();
 									ArrayList arx9=new ArrayList();ArrayList arx10=new ArrayList();
-									ArrayList arx11=new ArrayList();ArrayList arx12=new ArrayList();
+									/*ArrayList arx11=new ArrayList();ArrayList arx12=new ArrayList();
 									ArrayList arx13=new ArrayList();ArrayList arx14=new ArrayList();
 									ArrayList arx15=new ArrayList();ArrayList arx16=new ArrayList();
 									ArrayList arx17=new ArrayList();ArrayList arx18=new ArrayList();
-									ArrayList arx19=new ArrayList();ArrayList arx20=new ArrayList();
+									ArrayList arx19=new ArrayList();ArrayList arx20=new ArrayList();*/
 									
 									arr=JsonPath.read(str, unipol);
 									
@@ -893,7 +893,7 @@ public class Polling extends HttpServlet {
 								    if(!x10.equals("null")){
 								    	arx10=JsonPath.read(str,x10);
 								    }
-								    if(!x11.equals("null")){
+								 /*   if(!x11.equals("null")){
 								    	arx11=JsonPath.read(str,x11);
 								    }
 								    if(!x12.equals("null")){
@@ -922,7 +922,7 @@ public class Polling extends HttpServlet {
 								    }
 								    if(!x20.equals("null")){
 								    	arx20=JsonPath.read(str,x20);
-								    }
+								    }*/
 									//check the initial array size
 									if(arr1.size()==0){
 										arr1=arr;
@@ -949,7 +949,7 @@ public class Polling extends HttpServlet {
 											if(!x10.equals("null")){
 											xo10=arx10.get(m);xx10=xo10.toString();}	
 											if(!x11.equals("null")){
-											xo11=arx11.get(m);xx11=xo11.toString();}
+										/*	xo11=arx11.get(m);xx11=xo11.toString();}
 											if(!x12.equals("null")){
 											xo12=arx12.get(m);xx12=xo12.toString();}
 											if(!x13.equals("null")){
@@ -967,7 +967,7 @@ public class Polling extends HttpServlet {
 											if(!x19.equals("null")){
 											xo19=arx19.get(m);xx19=xo19.toString();}
 											if(!x20.equals("null")){
-											xo20=arx20.get(m);xx20=xo20.toString();}
+											xo20=arx20.get(m);xx20=xo20.toString();}*/
 											
 											//insert every records in array for json or xml Rpc's
 											xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
@@ -1021,7 +1021,7 @@ public class Polling extends HttpServlet {
 												xo9=arx9.get(m);xx9=xo9.toString();}
 												if(!x10.equals("null")){
 												xo10=arx10.get(m);xx10=xo10.toString();}
-												if(!x11.equals("null")){
+												/*if(!x11.equals("null")){
 												xo11=arx11.get(m);xx11=xo11.toString();}
 												if(!x12.equals("null")){
 												xo12=arx12.get(m);xx12=xo12.toString();}
@@ -1040,7 +1040,7 @@ public class Polling extends HttpServlet {
 												if(!x19.equals("null")){
 												xo19=arx19.get(m);xx19=xo19.toString();}
 												if(!x20.equals("null")){
-												xo20=arx20.get(m);xx20=xo20.toString();}
+												xo20=arx20.get(m);xx20=xo20.toString();}*/
 										
 												xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
 												xx[6]=xx6;xx[7]=xx7;xx[8]=xx8;xx[9]=xx9;xx[10]=xx10;
@@ -1062,7 +1062,7 @@ public class Polling extends HttpServlet {
 							 	 			  	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
 							 	 			  	String str1=act.start();
 											}
-										} 	
+										} 	}
 									}catch(Exception e){
 										check=e.toString();
 									}
