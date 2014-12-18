@@ -104,7 +104,6 @@ public class Polling extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		final PrintWriter out=response.getWriter();
 		final HttpSession session=request.getSession(true);
 		ArrayList<String> ar=new ArrayList<String>();
