@@ -1058,7 +1058,7 @@ public class Polling extends HttpServlet {
 													}
 												}
 												
-												//send all the input to action blocks
+												//send all the input to 
 							 	 			  	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
 							 	 			  	String str1=act.start();
 											}
