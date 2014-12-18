@@ -95,9 +95,9 @@ public class Polling extends HttpServlet {
         public Polling() {
         super();
     }
- //polling test151677gghghhjhhbnv n
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		final String da=request.getParameter("temp");
 		final PrintWriter out=response.getWriter();
 		final HttpSession session=request.getSession(true);
 		ArrayList<String> ar=new ArrayList<String>();
@@ -105,21 +105,9 @@ public class Polling extends HttpServlet {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 		    final Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);	
-		    
-		    PreparedStatement st=con.prepareStatement("select t1.tempid,t2.time from trig_all t1 join home t2 on t1.tempid=t2.tempid where t2.state='Active' && t2.type='polling'");
-		    ResultSet rs1=st.executeQuery();
-		    while(rs1.next()){
-		    	ar.add(rs1.getString("tempid"));
-		    	tar.add(Integer.parseInt(rs1.getString("time"))*60*1000);
-		    }
-		    int ttl=ar.size();
-		    
-		    Thread[] th =new Thread[ttl];
-			for(int i=0;i<ttl;i++){
-		    final String da=ar.get(i);
-		    final int slp=tar.get(i);
-			th[i]=new Thread(){
-				ArrayList arr1=new ArrayList();
+		    Thread th =new Thread();
+			th=new Thread(){
+			ArrayList arr1=new ArrayList();
 			public void run(){
 				while(true){
 					String str="";String check="no error";
@@ -1283,9 +1271,10 @@ public class Polling extends HttpServlet {
 								check=e.toString();
 							}
 							try {
+								out.println(da+"\n\n---"+str+"\n\n---"+check);
 								PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','"+str+"','"+da+"')");
 								ps1.executeUpdate();
-								Thread.sleep(slp);
+								Thread.sleep(6000000);
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -1294,12 +1283,10 @@ public class Polling extends HttpServlet {
 							}
 						}
 					}//rnn
-				};th[i].start();
-			}//for
+				};th.start();
 		} catch (Exception e1) {
 			out.println(e1);
 		}
-		response.sendRedirect("final.jsp");
 	}
 
 	/**
