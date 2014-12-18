@@ -948,8 +948,8 @@ public class Polling extends HttpServlet {
 											xo9=arx9.get(m);xx9=xo9.toString();}
 											if(!x10.equals("null")){
 											xo10=arx10.get(m);xx10=xo10.toString();}	
-											if(!x11.equals("null")){
-										/*	xo11=arx11.get(m);xx11=xo11.toString();}
+											/*if(!x11.equals("null")){
+											xo11=arx11.get(m);xx11=xo11.toString();}
 											if(!x12.equals("null")){
 											xo12=arx12.get(m);xx12=xo12.toString();}
 											if(!x13.equals("null")){
@@ -1062,7 +1062,7 @@ public class Polling extends HttpServlet {
 							 	 			  	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
 							 	 			  	String str1=act.start();
 											}
-										} 	}
+										} 	
 									}catch(Exception e){
 										check=e.toString();
 									}
