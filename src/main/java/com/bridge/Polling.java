@@ -824,7 +824,7 @@ public class Polling extends HttpServlet {
 							Object xo11;Object xo12;Object xo13;Object xo14;Object xo15;
 							Object xo16;Object xo17;Object xo18;Object xo19;Object xo20;
 							
-							String[] xx=new String[30];
+							String[] xx=new String[100];
 							String ptag="";String exres="";String shname="";String parpol="";String unipol="";
 							
 							//Get the elements from database
@@ -972,8 +972,8 @@ public class Polling extends HttpServlet {
 											//insert every records in array for json or xml Rpc's
 											xx[1]=xx1;xx[2]=xx2;xx[3]=xx3;xx[4]=xx4;xx[5]=xx5;
 											xx[6]=xx6;xx[7]=xx7;xx[8]=xx8;xx[9]=xx9;xx[10]=xx10;
-											xx[11]=xx11;xx[12]=xx12;xx[13]=xx13;xx[14]=xx14;xx[15]=xx15;
-											xx[16]=xx16;xx[17]=xx17;xx[18]=xx18;xx[19]=xx19;xx[20]=xx20;
+										//	xx[11]=xx11;xx[12]=xx12;xx[13]=xx13;xx[14]=xx14;xx[15]=xx15;
+										//	xx[16]=xx16;xx[17]=xx17;xx[18]=xx18;xx[19]=xx19;xx[20]=xx20;
 											
 											//Join the parsed elements into valid json or xml
 											String[] slt=exres.split("@@");
@@ -1290,7 +1290,6 @@ public class Polling extends HttpServlet {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 						}
