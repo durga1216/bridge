@@ -124,10 +124,9 @@ String respo= (String) request.getSession().getAttribute("xml1");
 //char chfirst=respo.charAt(0);
 %>
 <script type="text/javascript">
-var respo2='<%=respo%>';
-console.log(respo2);
+var respo2=<%=respo%>;
+respo2= JSON.stringify(respo2);
 var chfst=respo2.charAt(0);
-alert(chfst);
 function load(){
 	window.open("<%=request.getContextPath()%>/Loadres", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
 }
