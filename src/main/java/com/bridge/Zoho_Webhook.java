@@ -40,7 +40,6 @@ public class Zoho_Webhook extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
-		out.println("hai");
 		Connection conn=null;
 		String Tid="TMP_110";
 		String zoho=request.getParameter("zoho_webhook");
