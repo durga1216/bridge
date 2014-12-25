@@ -132,6 +132,23 @@ function load(){
 function load1(){
 	window.open("<%=request.getContextPath()%>/Login", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
 }
+var intTextBox=0;
+
+function addCond(){
+	  intTextBox = intTextBox + 1;
+	  var contentID = document.getElementById('condcont');
+	  var newTBDiv = document.createElement('div');
+	  newTBDiv.setAttribute('id','strText'+intTextBox);
+	  newTBDiv.innerHTML = "<input type='text' id='c" + intTextBox + "'    name='c" + intTextBox + "' placeholder='Condition_Name'/> &nbsp;&nbsp;&nbsp; is equals to &nbsp;&nbsp;&nbsp;" + "<input type='text' id='cv"+ intTextBox + " ' name='cv"+intTextBox+"' placeholder='Condition_Value'/>";
+	  contentID.appendChild(newTBDiv);
+}
+
+function removeCond(){
+	var contentID = document.getElementById('condcont');
+    contentID.removeChild(document.getElementById('strText'+intTextBox));
+    intTextBox = intTextBox-1;
+	
+}
 </script>
 </head>
 <%@ page import="java.sql.*" %>
@@ -167,7 +184,10 @@ function load1(){
 <form action="Parse" method="post">
 <br><br><center><div class="head">Mind-Pulpy Mapping</div></center><br>
 <hr><br><center><a id='pa' href="javascript:load()">Sample Trigger response(For XML)</a>&nbsp;&nbsp;&nbsp;
-<a id='pa' href="javascript:load1()">Sample Trigger response(For JSON)</a></center>
+<a id='pa' href="javascript:load1()">Sample Trigger response(For JSON)</a></center><br><br>
+<div id="cond">Check Condition</div>
+	<a id='pa' href="javascript:addCond()">Add Condition</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeCond()">Remove Condition</a>
+  <div id="condcont"></div>
 <div id=ful>
 <div id=para>
 		<br><h3>Action Parameter:</h3>

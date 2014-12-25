@@ -746,6 +746,8 @@ public class Final extends HttpServlet {
 							PreparedStatement st32=con.prepareStatement("insert into test (te,temp) values ('"+str+"\n"+xx1+"\n"+xx2+"\n"+x1+"\n"+x2+"\n"+check+"\n"+resformat+"\n"+orurl+"\n"+exres+"','"+da+"')");
 		 	 			   	st32.executeUpdate();
 		 	 			   	st32.close();
+		 	 			   	
+		 	 			   	
 		/**   Parsing and mapping ends  ------ Action block starts from here	  **/
 							
 							PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");
