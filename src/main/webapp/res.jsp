@@ -47,7 +47,7 @@ font-size:19px;
 color:#FF9900;
 border-radius:5px;
 }
-#para{
+#para,#cond{
 float:left;
 height:100%;
 width:600px;
@@ -186,7 +186,8 @@ function removeCond(){
 <hr><br><center><a id='pa' href="javascript:load()">Sample Trigger response(For XML)</a>&nbsp;&nbsp;&nbsp;
 <a id='pa' href="javascript:load1()">Sample Trigger response(For JSON)</a></center><br><br>
 <div id="cond">Check Condition</div>
-	<a id='pa' href="javascript:addCond()">Add Condition</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeCond()">Remove Condition</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:addCond()">Add Condition</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeCond()">Remove Condition</a><br><br>
+  
   <div id="condcont"></div>
 <div id=ful>
 <div id=para>
