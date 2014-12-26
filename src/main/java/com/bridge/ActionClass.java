@@ -470,6 +470,26 @@ public class ActionClass {
 		   					row.getCustomElements().setValueLocal(ar.get(3), xx4);}
 		   				if(!xx5.equals("null")){
 		   					row.getCustomElements().setValueLocal(ar.get(4), xx5);}
+		   				if(!xx6.equals("null")){
+		   					row.getCustomElements().setValueLocal(ar.get(5), xx6);}
+		   				if(!xx7.equals("null")){
+		   					row.getCustomElements().setValueLocal(ar.get(6), xx7);}
+		   				if(!xx8.equals("null")){
+		   					row.getCustomElements().setValueLocal(ar.get(7), xx8);}
+		   				if(!xx9.equals("null")){
+		   					row.getCustomElements().setValueLocal(ar.get(8), xx9);}
+		   				if(!xx10.equals("null")){
+		   					row.getCustomElements().setValueLocal(ar.get(9), xx10);}
+		   				if(!xx11.equals("null")){
+		   					row.getCustomElements().setValueLocal(ar.get(10), xx11);}
+		   				if(!xx12.equals("null")){
+		   					row.getCustomElements().setValueLocal(ar.get(11), xx12);}
+		   				if(!xx13.equals("null")){
+		   					row.getCustomElements().setValueLocal(ar.get(12), xx13);}
+		   				if(!xx14.equals("null")){
+		   					row.getCustomElements().setValueLocal(ar.get(13), xx14);}
+		   				if(!xx15.equals("null")){
+		   					row.getCustomElements().setValueLocal(ar.get(14), xx15);}
 		   				// 	Sending the new row for insertion into worksheet.
 		   				row = service.insert(listFeedUrl, row);
 		   			}else

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,13 +38,21 @@ public class ThreadHandler extends HttpServlet {
 		String time=request.getParameter("time");
 		String state=request.getParameter("state");
 		String submit=request.getParameter("submit");
-		if(submit.equals("Run Now")){
-			MainThreadClass th=new MainThreadClass(tempid);
-			th.start();
-		}
+		String type="";
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
+			PreparedStatement ps1=con.prepareStatement("select * from home where tempid='"+tempid+"'");
+			ResultSet rs=ps1.executeQuery();
+			while(rs.next()){
+				type=rs.getString("type");
+			}
+			if(submit.equals("Run Now")){
+				if(type.equals("polling"))
+					response.sendRedirect(request.getContextPath()+"/Polling?temp="+tempid);
+				else
+					response.sendRedirect(request.getContextPath()+"/Final?temp="+tempid);
+			}
 			if(state.equals("dummy") && !time.equals("dummy")){
 				PreparedStatement ps=con.prepareStatement("update home set time='"+time+"' where  tempid='"+tempid+"'");
 				ps.executeUpdate();
