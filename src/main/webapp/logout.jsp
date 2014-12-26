@@ -78,9 +78,10 @@ color:#FFFFFF;
 <center>
 <h2>
 Session Signout...!!
-<br><br><br>
+<br><br>
 <a style="color:#fff;" href=login.jsp>Click here to login</a>
 </h2>
+<img alt="" src="images/logout.jpg">
 </center>
 </body>
 </html>

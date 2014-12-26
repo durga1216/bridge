@@ -508,7 +508,7 @@ public class ActionClass {
 		   						
 		   						String pointurl=endurl1+"?"+param;
 		   						PreparedStatement ps=con.prepareStatement("insert into test1 (test) values('"+pointurl+"')");
-		   			   			ps.executeUpdate();
+		   			   			//ps.executeUpdate();
 		   						//String paramString = URLEncodedUtils.format(param, "utf-8");
 		   						HttpGet get=new HttpGet(pointurl);
 		   						HttpResponse response1=client.execute(get);
@@ -582,7 +582,7 @@ public class ActionClass {
 		   				}
 		   			}
 		   			PreparedStatement ps=con.prepareStatement("insert into testing (data,orurl,tempid) values('"+str1+"','"+orurl+"','"+da+"')");
-		   			ps.executeUpdate();
+		   			//ps.executeUpdate();
 		   			//out.println(str);
 				}//while
 			return str1;

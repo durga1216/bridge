@@ -72,9 +72,15 @@ public class MethodStorage extends HttpServlet {
 	           PreparedStatement st=con.prepareStatement("insert into home(userid,tid,aid,tgtit,actit,tgmeth,actmeth,state,time,type) values ('"+id+"','"+tid+"','"+aid+"','"+tgtit+"','"+actit+"','"+tgmeth+"','"+actmeth+"','Active','15','"+type+"')");
 	           st.executeUpdate();
 	           st.close();
+	           PreparedStatement st1=con.prepareStatement("select * from home order by tempid desc limit 1");
+	           ResultSet r=st1.executeQuery();
+	           while(r.next()){
+	        	   String tempid=r.getString("tempid");
+	        	   session.setAttribute("tempid", tempid);
+	           }
 	           request.setAttribute("code1", code1);
 	           request.setAttribute("code", code);
-	               request.getRequestDispatcher("check.jsp").forward(request, response);
+	           request.getRequestDispatcher("check.jsp").forward(request, response);
 	          
 	          
 	           

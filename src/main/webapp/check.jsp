@@ -243,11 +243,12 @@
 <%
 ResultSet r=null;ResultSet rs1 =null;ResultSet rs=null;String authen="";String txt1="";String txt2="";String txt3="";String txt4="";String a1="";String b1="";String b3="";
 String authen1="";String atxt1="";String atxt2="";String atxt3="";String atxt4="";String tgtit="hh";String jstr="";
-String actit="hh";String tid="hh";String aid="hh";int code=0;int code1=0;String tempid="";String sigskey="";String sigckey="";
+String actit="hh";String tid="hh";String aid="hh";int code=0;int code1=0;String sigskey="";String sigckey="";
 String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5];String rformat="";String type="";
 String sigmessage="";	
+String tempid=(String)session.getAttribute("tempid");
 try{
-		PreparedStatement st1=conn.prepareStatement("select * from home order by tempid desc limit 1");
+		PreparedStatement st1=conn.prepareStatement("select * from home where tempid='"+tempid+"'");
      	r=st1.executeQuery();
     	while(r.next()){
 	    	tempid=r.getString("tempid");
@@ -278,10 +279,8 @@ try{
     		atxt1=rs1.getString("txt1");atxt2=rs1.getString("txt2"); atxt3=rs1.getString("txt3");atxt4=rs1.getString("txt4");
       	    
       	}
-     	HttpSession session1=request.getSession();
-     	session1.setAttribute("tid",tid);
-     	session1.setAttribute("aid",aid);
-     	session1.setAttribute("tempid",tempid);     
+     	session.setAttribute("tid",tid);
+     	session.setAttribute("aid",aid);   
 %>
 <div id="blanket" style="display:none;"></div>
     <form action="TriggerAuth" method="post">
