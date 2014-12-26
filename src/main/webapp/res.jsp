@@ -124,9 +124,9 @@ String respo= (String) request.getSession().getAttribute("xml1");
 char chfirst=respo.charAt(0);
 %>
 <script type="text/javascript">
-var chfst=<%=chfirst%>;
+var chfst='<%=chfirst%>';
 if(chfst=='<'){
-	respo2="<%=respo%>";
+	respo2='<%=respo%>';
 }else{
 	var respo2=<%=respo%>;
 	respo2= JSON.stringify(respo2);
