@@ -74,14 +74,12 @@ color:#FFFFFF;
 <body><br>
 <%request.getSession().setAttribute("id", null);%>
 <a href="http://minddotss.com"><img style="margin-left:100px;box-shadow:0px 0px 0px 0px;width:150px;height:70px;" alt="MindDots" src="images/log.png"></a><center><div id="head">Mind-Pulpy Cloud Connectors</div></center><br><hr>
-<br><br>
 <center>
 <h2>
-Session Signout...!!
-<br><br>
+Session Signout...!!&nbsp;&nbsp;&nbsp;&nbsp;
 <a style="color:#fff;" href=login.jsp>Click here to login</a>
 </h2>
-<img alt="" src="images/logout.jpg">
+<img alt="" src="images/cloud.PNG">
 </center>
 </body>
 </html>

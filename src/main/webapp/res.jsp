@@ -124,7 +124,7 @@ String respo= (String) request.getSession().getAttribute("xml1");
 String tempid= (String) request.getSession().getAttribute("tempid");
 %>
 <script type="text/javascript">
-var tmpres=<%=respo%>;
+var tmpres='<%=respo%>';
 var respo2;
 var chfst=tmpres.charAt(0);
 if(chfst=='<'){
