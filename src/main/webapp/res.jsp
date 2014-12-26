@@ -125,10 +125,11 @@ char chfirst=respo.charAt(0);
 %>
 <script type="text/javascript">
 var chfst='<%=chfirst%>';
+var respo2;
 if(chfst=='<'){
 	respo2='<%=respo%>';
 }else{
-	var respo2=<%=respo%>;
+	respo2=<%=respo%>;
 	respo2= JSON.stringify(respo2);
 }
 function load(){
