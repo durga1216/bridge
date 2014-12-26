@@ -55,7 +55,13 @@ function addParam(){
 	else{
 	    hm +="<select name=x"+num+" id=x"+num+">";
 	    hm +="<option value=dummy>Choose Json Node</option>";
-	    var respo1=respo2;
+	    respo2=JSON.stringify(respo2);
+	    var respo1="{}";
+	    try{
+	    	respo1=JSON.parse(respo2);
+	    }catch(e){
+	    	respo1="{}";
+	    }
 		var xml="";
 		if(chfst=="["){
 			xml=respo1[0];

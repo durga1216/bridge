@@ -121,6 +121,7 @@ if (u != null ) {
 	response.sendRedirect("logout.jsp");
 }
 String respo= (String) request.getSession().getAttribute("xml1");
+String tempid= (String) request.getSession().getAttribute("tempid");
 char chfirst=respo.charAt(0);
 if(chfirst=='<'){
 	respo="\""+respo+"\"";
@@ -159,13 +160,13 @@ function removeCond(){
 <%@include file="conn.jsp" %>
 <%
 		ResultSet r=null;ResultSet rs =null; ResultSet rs2 =null; 
-		String actit="";String tgtit="";String tid="";String aid="";String tempid="";
+		String actit="";String tgtit="";String tid="";String aid="";
 		String rformat="";String[] tp=new String[5]; String resformat="";
 		String note="Guide";String type="";
 %>
 <%
 	try{
-	PreparedStatement st1=conn.prepareStatement("select * from home order by tempid desc limit 1");
+	PreparedStatement st1=conn.prepareStatement("select * from home where tempid='"+tempid+"'");
 	r=st1.executeQuery();
 	while(r.next()){
 		tempid=r.getString("tempid");
