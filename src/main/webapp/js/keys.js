@@ -57,7 +57,7 @@ function addParam(){
 	    hm +="<option value=dummy>Choose Json Node</option>";
 	    var respo1="{}";
 	    try{
-	    	respo1=JSON.parse(respo2);
+	    	respo1=respo2;
 	    }catch(e){
 	    	respo1="{}";
 	    }
