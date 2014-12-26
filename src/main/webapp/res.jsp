@@ -253,7 +253,7 @@ Xml Example:
 			out.println(e);
 		}
 %>
-<center><input type="submit" value="Continue"></center>
+<center><input style="margin-right:100px;" type="submit" value="Continue"></center>
 </form>
 </body>
 </html>

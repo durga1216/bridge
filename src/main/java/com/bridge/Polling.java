@@ -477,7 +477,7 @@ public class Polling extends HttpServlet {
 					   				else if("null".equals(p1))
 					   					exhead="null";
 				        		 
-					   				out.println("inside"+exhead);
+					   				//out.println("inside"+exhead);
 					   				String uuid_string = UUID.randomUUID().toString();
 					   				uuid_string = uuid_string.replaceAll("-", "");
 					   				String oauth_nonce = uuid_string; 
@@ -517,7 +517,7 @@ public class Polling extends HttpServlet {
 					                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_access_token=\""+oauthtk+"\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
 					                            oauth_timestamp + "\",oauth_version=\"1.0\"";
 				                    }
-				                    out.println(authorization_header_string);
+				                   // out.println(authorization_header_string);
 				                    HttpClient httpclient = new DefaultHttpClient();
 				                    HttpResponse response1=null;
 				                    HttpPost post = new HttpPost(endurl1);
@@ -1275,9 +1275,9 @@ public class Polling extends HttpServlet {
 								check=e.toString();
 							}
 							try {
-								out.println(da+"\n\n---"+str+"\n\n---"+check+"\n\n---"+resour);
+								//out.println(da+"\n\n---"+str+"\n\n---"+check+"\n\n---"+resour);
 								PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','"+str+"','"+da+"')");
-								//ps1.executeUpdate();
+								ps1.executeUpdate();
 								Thread.sleep(6000000);
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
@@ -1288,8 +1288,9 @@ public class Polling extends HttpServlet {
 						}
 					}//rnn
 				};th.start();
+				response.sendRedirect("final.jsp");
 		} catch (Exception e1) {
-			out.println(e1);
+			//out.println(e1);
 		}
 	}
 

@@ -116,6 +116,7 @@ public class Final extends HttpServlet {
 		    //Get all the valid Trigger data
 		    String check="no error";String str="";
 			String eurl="";String resformat="";
+		    try{
 			PreparedStatement st1=con.prepareStatement("select * from trig_all where tempid=?");
 			st1.setString(1, da);
 			ResultSet rs=st1.executeQuery();
@@ -200,12 +201,8 @@ public class Final extends HttpServlet {
 		            	}
  	 			   	}
 		   			catch(Exception e){
-		   				err=e.toString();
+		   				check=e.toString();
 		   			}
-		   			String uul=str+eurl+"<br>"+err;
-//					   			PreparedStatement st41=con.prepareStatement("insert into test (te,temp) values ('"+str+"','"+tid+"')");
-//			 	 			   	st41.executeUpdate();
-//			 	 			   	st41.close();
 	   			}
 		   		else if(authen.equals("Basic Auth")){
 		   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
@@ -225,12 +222,12 @@ public class Final extends HttpServlet {
 		   			
 		   			
         		 
-		   			   URL url1=null;     		
-        		   if(rmethod.equals("Get")){
-        			   if("null".equals(p1)){
-			   				 url1=new URL(endurl1);}
-        			   else{
-		   			         url1=new URL(endurl1+"?"+eurl);}
+		   			URL url1=null;     		
+		   			if(rmethod.equals("Get")){
+		   				if("null".equals(p1)){
+		   					url1=new URL(endurl1);}
+		   				else{
+		   					url1=new URL(endurl1+"?"+eurl);}
 		   			
         			HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
 		   			connection.setDoOutput(true);
@@ -297,10 +294,7 @@ public class Final extends HttpServlet {
 			   				String lin="";
 	    				while((lin=bf.readLine())!=null){
 	    					str+=lin;
-	    				}
-	    				
-
-        				     
+	    				}     
         		   }
 	   			}
 		   		else if(authen.equals("Signed Auth")){
@@ -547,7 +541,6 @@ public class Final extends HttpServlet {
 	                    }
 	                    str=result.toString();
 		   			} 
-		   			session.setAttribute("samp", str);	  
 		   		}
 		   		else if(authen.equals("Oauth2")){
 		   			
@@ -688,9 +681,6 @@ public class Final extends HttpServlet {
 									str=str+line;
 							}
 						}
-						String ttest=str+"<br>"+endurl1+"<br>"+access_token+"<br>"+tid+exp+eurl;
-		     			PreparedStatement ps=con.prepareStatement("insert into test1 (test) values('"+ttest+"')");
-   			   			ps.executeUpdate();
 		   			}
 		   			else if(rmethod.equals("Get")){ 
 		   				HttpGet get=new HttpGet(endurl1);
@@ -713,12 +703,7 @@ public class Final extends HttpServlet {
 				    		while ((line = rd.readLine()) != null) {
 				    			str+=line;
 				    		}    	
-				    		String ttest=str+"<br>"+endurl1+"<br>"+access_token;
-			     			PreparedStatement ps=con.prepareStatement("insert into test1 (test) values('"+ttest+"')");
-	   			   			ps.executeUpdate();
-			     		}
-		   				
-		   				
+			     		}  				
 		   				else if("QueryString".equals(treplace)){
 		   					String param = null;
 		   					// List<NameValuePair> params = new LinkedList<NameValuePair>();
@@ -997,12 +982,18 @@ public class Final extends HttpServlet {
  			   			String str1=act.start();
  			   		}
  			   	}
-				try {
-					PreparedStatement ps1=con.prepareStatement("insert into testing (data) values('"+check+"')");
-					//ps1.executeUpdate();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}		
+ 				String outpt=da+str+"\n\n"+xx1+xx2+xx3+xx4+xx5+"\n\n"+orurl+"\n\n"+check;
+ 				session.setAttribute("samp", outpt);
+// 				try {
+// 					PreparedStatement ps1=con.prepareStatement("insert into testing (data) values('"+check+"')");
+// 					ps1.executeUpdate();
+// 				} catch (SQLException e1) {
+// 					e1.printStackTrace();
+// 				}		
+			} catch (Exception e1) {
+				out.println(e1);
+			}
+			
 		} catch (Exception e1) {
 			out.println(e1);
 		}

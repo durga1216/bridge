@@ -52,18 +52,19 @@ public class ThreadHandler extends HttpServlet {
 					response.sendRedirect(request.getContextPath()+"/Polling?temp="+tempid);
 				else
 					response.sendRedirect(request.getContextPath()+"/Final?temp="+tempid);
+			}else{
+				if(state.equals("dummy") && !time.equals("dummy")){
+					PreparedStatement ps=con.prepareStatement("update home set time='"+time+"' where  tempid='"+tempid+"'");
+					ps.executeUpdate();
+				}else if(!state.equals("dummy") && time.equals("dummy")){
+					PreparedStatement ps=con.prepareStatement("update home set state='"+state+"' where  tempid='"+tempid+"'");
+					ps.executeUpdate();
+				}else if(!state.equals("dummy") && !time.equals("dummy")){
+					PreparedStatement ps=con.prepareStatement("update home set state='"+state+"',time='"+time+"' where  tempid='"+tempid+"'");
+					ps.executeUpdate();
+				}
+				response.sendRedirect("final.jsp");
 			}
-			if(state.equals("dummy") && !time.equals("dummy")){
-				PreparedStatement ps=con.prepareStatement("update home set time='"+time+"' where  tempid='"+tempid+"'");
-				ps.executeUpdate();
-			}else if(!state.equals("dummy") && time.equals("dummy")){
-				PreparedStatement ps=con.prepareStatement("update home set state='"+state+"' where  tempid='"+tempid+"'");
-				ps.executeUpdate();
-			}else if(!state.equals("dummy") && !time.equals("dummy")){
-				PreparedStatement ps=con.prepareStatement("update home set state='"+state+"',time='"+time+"' where  tempid='"+tempid+"'");
-				ps.executeUpdate();
-			}
-			response.sendRedirect("final.jsp");
 		}catch(Exception e){
 			out.println(e);
 		}
