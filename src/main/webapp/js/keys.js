@@ -55,12 +55,7 @@ function addParam(){
 	else{
 	    hm +="<select name=x"+num+" id=x"+num+">";
 	    hm +="<option value=dummy>Choose Json Node</option>";
-	    var respo1="{}";
-	    try{
-	    	respo1=respo2;
-	    }catch(e){
-	    	respo1="{}";
-	    }
+	    var respo1=respo2;
 		var xml="";
 		if(chfst=="["){
 			xml=respo1[0];

@@ -123,7 +123,7 @@ if (u != null ) {
 String respo= (String) request.getSession().getAttribute("xml1");
 char chfirst=respo.charAt(0);
 if(chfirst=='<'){
-	respo="'"+respo+"'";
+	respo="\""+respo+"\"";
 }
 %>
 <script type="text/javascript">
