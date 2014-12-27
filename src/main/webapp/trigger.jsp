@@ -36,6 +36,12 @@ function addField(){
 		newTBDiv.innerHTML = "<input type='text' id='f" + intTextBox + "'    name='f" + intTextBox + "' placeholder='Field_Label'/>";
 		contentID.appendChild(newTBDiv);
 }
+function removeField()
+{
+	var contentID = document.getElementById('cont'+TextBox);
+    contentID.removeChild(document.getElementById('strText'+intTextBox));
+    intTextBox = intTextBox-1;
+}
 
 
 function addParent(){
@@ -202,9 +208,9 @@ font-family:verdana;
 <div id="bjson" style="display:none">
 <div id="jsnote">Build Sample JSON Structure.Please enclose variables with @@dummy_variable@@ in JSON Structure</div><br><br>
 <textarea id="js" name="js" placeholder="@@Sample JSON Structure@@"></textarea><br><br>
-<a id="field" href="javascript:addField();">Add JSON Field Label</a><br><br>
+<a id="field" href="javascript:addField();">Add JSON Field Label</a><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="trig" href="javascript:removeField();">Remove Field</a><br>
 <div id="content2"></div>
-</div>
+</div><br><br>
 <div id="name">Notes:</div><br>
 <textarea name="note" id="txt1"  placeholder="Add notes for guide the users" required></textarea>
 <br><br><br>
