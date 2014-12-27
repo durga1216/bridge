@@ -53,7 +53,7 @@ function removeParent()
     intTextBox = intTextBox-1;
 }
 
-$(document).ready(function()){
+$(document).ready(function(){
 	$('#rformat').on('change', function() {
 
 	var target = $('#rformat option:selected').val();
@@ -197,7 +197,7 @@ font-family:verdana;
 <option>Choose the Response Format</option>
 <option value="rest">REST</option>
 <option value="xml">XML</option>
-<option value="json">JSON</option>
+<option value="JSON">JSON</option>
 </select><br><br>
 <div id="bjson" style="display:none">
 <div id="jsnote">Build Sample JSON Structure.Please enclose variables with @@dummy_variable@@ in JSON Structure</div><br><br>
