@@ -29,6 +29,14 @@ function removeTrigger(){
     TextBox = TextBox-1;
 }
 
+function addField(){
+	var contentID = document.getElementById('content2');
+		var newTBDiv = document.createElement('div');
+		newTBDiv.setAttribute('id','strText'+TextBox);
+		newTBDiv.innerHTML = "<br><br><input type='text' style='width:400px;margin-left:350px;' id='t" + TextBox + "'    name='t" + TextBox + "' placeholder='Enter the Trigger Method Url here'/>&nbsp;<a id='pa' href='javascript:addParent();'>Add Parameter</a><a id='pa' href='javascript:removeParent();'>Remove Parameter</a><br><br><br><div id='cont"+TextBox+"'></div><br>";
+		contentID.appendChild(newTBDiv);
+}
+
 
 function addParent(){
 	intTextBox = intTextBox + 1;
@@ -44,6 +52,18 @@ function removeParent()
     contentID.removeChild(document.getElementById('strText'+intTextBox));
     intTextBox = intTextBox-1;
 }
+
+$(document).ready(function()){
+	$('#rformat').on('change', function() {
+
+	var target = $('#rformat option:selected').val();
+	if(target == "json"){
+		$('#bjson').show();
+	}
+	
+	});
+
+});
 
 </script>
 <style>
@@ -73,7 +93,7 @@ font-weight:bold;
 font-size:15px;
 color:#FF9900;
 }
-#name{
+#name,#jsnote{
 font-family:verdana;
 font-size:18px;
 margin-left:100px;
@@ -117,7 +137,7 @@ font-size: 16px;
 color:#FFFFFF;
 margin-left:30px;
 }
-#txt1{
+#txt1,#js{
 font-family:verdana;
 font-size:15px;
 margin-left:200px;
@@ -140,7 +160,7 @@ font-weight:bold;
 width:350px;
 height:50px;
 }
-#trig{
+#trig,#field{
 font-family:verdana;
   font-size:18px;
   color:#FFFFFF;
@@ -167,7 +187,7 @@ font-family:verdana;
 <option value="Delete">Delete</option>
 </select><br><br>
 <br><div id="name">Request and Response Format</div>
-<br><select name="rformat" style="margin-left:250px;">
+<br><select name="rformat" id="rformat" style="margin-left:250px;">
 <option>Choose the Request Format</option>
 <option value="rest">REST</option>
 <option value="xml">XML</option>
@@ -179,6 +199,12 @@ font-family:verdana;
 <option value="xml">XML</option>
 <option value="json">JSON</option>
 </select><br><br>
+<div id="bjson" style="display:none">
+<div id="jsnote">Build Sample JSON Structure.Please enclose variables with @@dummy_variable@@ in JSON Structure</div><br><br>
+<textarea id="js" name="js" placeholder="@@Sample JSON Structure@@"></textarea><br><br>
+<a id="field" href="javascript:addField();">Add JSON Field Label</a><br><br>
+<div id="content2"></div>
+</div>
 <div id="name">Notes:</div><br>
 <textarea name="note" id="txt1"  placeholder="Add notes for guide the users" required></textarea>
 <br><br><br>
