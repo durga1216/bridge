@@ -33,7 +33,7 @@ function addField(){
 	var contentID = document.getElementById('content2');
 		var newTBDiv = document.createElement('div');
 		newTBDiv.setAttribute('id','strText'+TextBox);
-		newTBDiv.innerHTML = "<br><br><input type='text' style='width:400px;margin-left:350px;' id='t" + TextBox + "'    name='t" + TextBox + "' placeholder='Enter the Trigger Method Url here'/>&nbsp;<a id='pa' href='javascript:addParent();'>Add Parameter</a><a id='pa' href='javascript:removeParent();'>Remove Parameter</a><br><br><br><div id='cont"+TextBox+"'></div><br>";
+		newTBDiv.innerHTML = "<input type='text' id='f" + intTextBox + "'    name='f" + intTextBox + "' placeholder='Field_Label'/>";
 		contentID.appendChild(newTBDiv);
 }
 
@@ -197,7 +197,7 @@ font-family:verdana;
 <option>Choose the Response Format</option>
 <option value="rest">REST</option>
 <option value="xml">XML</option>
-<option value="JSON">JSON</option>
+<option value="json">JSON</option>
 </select><br><br>
 <div id="bjson" style="display:none">
 <div id="jsnote">Build Sample JSON Structure.Please enclose variables with @@dummy_variable@@ in JSON Structure</div><br><br>
