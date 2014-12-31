@@ -194,44 +194,30 @@ public class ActionClass {
     				}
     				
         		   }// Get
-        		   
         		   else if(rmethod.equals("Post")){
-        			  // String urlparam=eurl;
-			   		   url1=new URL(endurl1);
-        			   HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
-			   			connection.setDoOutput(true);
-			   			connection.setDoInput(true);
-			   			connection.setRequestMethod("POST");
-			   			String encoding=null;
-			   			//if( !"null".equals(b2) && !"null".equals(b4)){
-			   				encoding = new String(org.apache.commons.codec.binary.Base64.encodeBase64   
-	                        		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
-			   				connection.setRequestProperty  ("Authorization", "Basic " + encoding);
-			   			//}
-		   				//connection.setRequestProperty("Content-Type", "application/xml");
-
-
-			   			DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
-				         wr.writeBytes(orurl);
-				         wr.flush();
-				         wr.close();
-			   		    
-			   		    
-			   			if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3)){
-			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
+        			   HttpClient httpClient = new DefaultHttpClient();
+        			   HttpPost get = new HttpPost(endurl1);
+        			   StringEntity stt=new StringEntity(orurl);
+        			   String encoding = new String(org.apache.commons.codec.binary.Base64.encodeBase64   
+        					   (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
+        			   get.addHeader("Authorization", "Basic "+encoding);
+        			   get.setEntity(stt);
+    				  	if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3)){
+    				  		get.addHeader(h1,hv1);get.addHeader(h2,hv2);get.addHeader(h3,hv3);  
 			            }
 			   			else if(!"null".equals(h1) && !"null".equals(h2)){
-			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2);  
+			   				get.addHeader(h1,hv1);get.addHeader(h2,hv2);
 			            }
 			   			else if(!"null".equals(h1)){
-			            	connection.setRequestProperty(h1, hv1);  
+			            	get.addHeader(h1,hv1);
 			            }
-			   				InputStream stream = (InputStream)connection.getInputStream();
-			   				BufferedReader bf=new BufferedReader(new InputStreamReader(stream));
-			   				String lin="";
-	    				while((lin=bf.readLine())!=null){
-	    					str1+=lin;
-	    				}     
+    				  HttpResponse response1 = httpClient.execute(get);
+    				  BufferedReader in = new BufferedReader(
+    			              new InputStreamReader(response1.getEntity().getContent()));
+    				  String line="";
+    				  while((line=in.readLine())!=null){
+    					  str1+=line;
+    				  }
         		   }
 		   		}catch(Exception e){
 		   			check=e.toString();
