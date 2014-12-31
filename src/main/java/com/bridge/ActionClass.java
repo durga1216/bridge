@@ -79,7 +79,7 @@ public class ActionClass {
 	}
 	public String start(){
 		try{
-			String eurl="";
+			String eurl="";String check="noerror";
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 		    final Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
 			PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");
@@ -157,10 +157,9 @@ public class ActionClass {
         		 
 		   			else if(!"null".equals(p1)){
 		   				eurl=p1+"="+pv1;}
-		   			
-		   			
-        		 
-		   			   URL url1=null;     		
+
+		   			   URL url1=null;     	
+		   		try{
         		   if(rmethod.equals("Get")){
         			   if("null".equals(p1)){
 			   				 url1=new URL(endurl1);}
@@ -232,15 +231,12 @@ public class ActionClass {
 			   				String lin="";
 	    				while((lin=bf.readLine())!=null){
 	    					str1+=lin;
-	    				}
-	    				
-
-        				     
+	    				}     
         		   }
+		   		}catch(Exception e){
+		   			check=e.toString();
+		   		}
 	   			}
-
-		   		
-		   		
 		   		else if(authen.equals("Oauth1")){
 		   			String res="";
 		   			String oauth_signature_method=rs2.getString("osmeth");
@@ -601,7 +597,7 @@ public class ActionClass {
 		   					}			 
 		   				}
 		   			}
-		   			PreparedStatement ps=con.prepareStatement("insert into testing (data,orurl,tempid) values('"+str1+"','"+orurl+"','"+da+"')");
+		   			PreparedStatement ps=con.prepareStatement("insert into testing (data,orurl,tempid) values('"+str1+"','"+orurl+check+"','"+da+"')");
 		   			ps.executeUpdate();
 		   			//out.println(str);
 				}//while
