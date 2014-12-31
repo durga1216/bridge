@@ -218,13 +218,13 @@ public class ActionClass {
 				         wr.close();
 			   		    
 			   		    
-			   			if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
+			   			if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3)){
 			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
 			            }
-			   			else if(!"".equals(h1) && !"".equals(h2)){
+			   			else if(!"null".equals(h1) && !"null".equals(h2)){
 			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2);  
 			            }
-			   			else if(!"".equals(h1)){
+			   			else if(!"null".equals(h1)){
 			            	connection.setRequestProperty(h1, hv1);  
 			            }
 			   				InputStream stream = (InputStream)connection.getInputStream();
@@ -602,7 +602,7 @@ public class ActionClass {
 		   				}
 		   			}
 		   			PreparedStatement ps=con.prepareStatement("insert into testing (data,orurl,tempid) values('"+str1+"','"+orurl+"','"+da+"')");
-		   			//ps.executeUpdate();
+		   			ps.executeUpdate();
 		   			//out.println(str);
 				}//while
 			return str1;
