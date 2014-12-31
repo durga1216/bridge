@@ -209,7 +209,7 @@ public class ActionClass {
 	                        		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
 			   				connection.setRequestProperty  ("Authorization", "Basic " + encoding);
 			   			//}
-		   				connection.setRequestProperty("Content-Type", "application/xml");
+		   				//connection.setRequestProperty("Content-Type", "application/xml");
 
 
 			   			DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
@@ -218,7 +218,7 @@ public class ActionClass {
 				         wr.close();
 			   		    
 			   		    
-			   			/*if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
+			   			if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
 			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
 			            }
 			   			else if(!"".equals(h1) && !"".equals(h2)){
@@ -226,7 +226,7 @@ public class ActionClass {
 			            }
 			   			else if(!"".equals(h1)){
 			            	connection.setRequestProperty(h1, hv1);  
-			            }*/
+			            }
 			   				InputStream stream = (InputStream)connection.getInputStream();
 			   				BufferedReader bf=new BufferedReader(new InputStreamReader(stream));
 			   				String lin="";
