@@ -54,14 +54,14 @@ font-family:verdana;
 width:30%;
 float:left;
 margin-left:50px;
-height:350px;
+height:460px;
 overflow-y:auto;
 }
 #act{
 width:30%;
 float:left;
 margin-left:30px;
-height:350px;
+height:460px;
 overflow-y:auto;
 }
 #log{
@@ -98,6 +98,20 @@ box-shadow:1px 1px 2px 1px #000;
 font-family:verdana;
 font-size:16px;
 color:#FFFFFF;
+}
+#naam{
+font-family:verdana;
+font-size:14px;
+color:#FFFFFF;
+width:90px;
+word-wrap:break-word;
+float:left;
+margin-left:7px;
+}
+#naam1{
+width:300px;
+height:35px;
+overflow:hidden;
 }
 </style>
 <script type="text/javascript">
@@ -145,15 +159,18 @@ String id="";String id1="";
 	  	    }
   	    	for(a=0,b=1,c=2;c<k;a=a+3,b=b+3,c=c+3){
   	    		%>
+  	    		<li><div id="naam1"><div id="naam"><%=nam[a] %></div><div id="naam"><%=nam[b] %></div><div id="naam"><%=nam[c] %></div></div></li>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;<img name=nn  src="Title?appid=<%=data[a]%>">&nbsp;&nbsp;&nbsp;<img  src="Title?appid=<%=data[b]%>">&nbsp;&nbsp;&nbsp;<img  src='Title?appid=<%=data[c]%>'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
   	    	} 
   	    	if((b+2)==i){
   	    		%>
+  	    		<li><div id="naam1"><div id="naam"><%=nam[a] %></div><div id="naam"><%=nam[b] %></div></div></li>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;<img name=nn  src="Title?appid=<%=data[a]%>">&nbsp;&nbsp;&nbsp;<img  src="Title?appid=<%=data[b]%>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
   	    	}else if((a+2)==i){
   	    		%>
+  	    		<li><div id="naam1"><div id="naam"><%=nam[a] %></div></div></li>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;<img name=nn  src="Title?appid=<%=data[a]%>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
   	    	}
@@ -186,15 +203,18 @@ String id="";String id1="";
 	  	    }
   	    	for(a=0,b=1,c=2;c<k;a=a+3,b=b+3,c=c+3){
   	    		%>
+  	    		<li><div id="naam1"><div id="naam"><%=nam[a] %></div><div id="naam"><%=nam[b] %></div><div id="naam"><%=nam[c] %></div></div></li>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;<img name=nn  src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<img  src="Title?appid=<%=data[b]%>">&nbsp;&nbsp;&nbsp;<img  src='Title?appid=<%=data[c]%>'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
   	    	}
   	    	if((b+2)==i){
   	    		%>
+  	    		<li><div id="naam1"><div id="naam"><%=nam[a] %></div><div id="naam"><%=nam[b] %></div></div></li>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;<img name=nn  src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<img  src="Title?appid=<%=data[b]%>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
   	    	}else if((a+2)==i){
   	    		%>
+  	    		<li><div id="naam1"><div id="naam"><%=nam[a] %></div><div id="naam"><%=nam[b] %></div></div></li>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;<img name=nn  src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
   	    	}

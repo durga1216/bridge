@@ -1,8 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <title>Mind Connectors</title>
@@ -97,7 +93,21 @@ font-size:15px;
 color:#FFFFFF;
 margin-left:250px;
 }
-
+#naam{
+font-family:verdana;
+font-size:14px;
+color:#FFFFFF;
+width:85px;
+word-wrap:break-word;
+float:left;
+margin-left:10px;
+}
+#naam1{
+width:300px;
+height:40px;
+overflow:hidden;
+margin-bottom:2px;
+}
 
 </style>
 
@@ -185,7 +195,7 @@ String id="";String id1="";
     <span class="caret"></span>
     <span class="sr-only">Toggle Dropdown</span>
   </button>
-  <ul class="dropdown-menu" role="menu"><br>
+  <ul class="dropdown-menu" role="menu">
   	<%
 	  	try{
 	  		int i=1;int k=0;int a,b,c;
@@ -207,15 +217,18 @@ String id="";String id1="";
 	  	    }
   	    	for(a=0,b=1,c=2;c<k;a=a+3,b=b+3,c=c+3){
   	    		%>
+  	    		<li><div id="naam1"><div id="naam" style="margin-left:15px;"><%=nam[a] %></div><div id="naam"><%=nam[b] %></div><div id="naam"><%=nam[c] %></div></div></li>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.jsp?app=<%=data[a] %>"><img name=nn  src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="index.jsp?app=<%=data[b] %>"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;<a href="index.jsp?app=<%=data[c] %>"><img  src='Title?appid=<%=data[c]%>'></a>&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
   	    	} 
   	    	if((b+2)==i){
   	    		%>
+  	    		<li><div id="naam1"><div id="naam" style="margin-left:15px;"><%=nam[a] %></div><div id="naam"><%=nam[b] %></div></div></li>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.jsp?app=<%=data[a] %>"><img name=nn  src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="index.jsp?app=<%=data[b] %>"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
   	    	}else if((a+2)==i){
   	    		%>
+  	    		<li><div id="naam1"><div id="naam" style="margin-left:15px;"><%=nam[a] %></div></div></li>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.jsp?app=<%=data[a] %>"><img name=nn  src="Title?appid=<%=data[a]%>"></a></div><br></li>
 	  	    	<%
   	    	}
@@ -254,15 +267,18 @@ String id="";String id1="";
 	  	    }
   	    	for(a=0,b=1,c=2;c<k;a=a+3,b=b+3,c=c+3){
   	    		%>
+  	    		<li><div id="naam1"><div id="naam" style="margin-left:15px;"><%=nam[a] %></div><div id="naam"><%=nam[b] %></div><div id="naam"><%=nam[c] %></div></div></li>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.jsp?app1=<%=data[a]%>&app=<%=chk%>"><img name=nn  src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="index.jsp?app1=<%=data[b]%>&app=<%=chk%>"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;<a href="index.jsp?app1=<%=data[c]%>&app=<%=chk%>"><img  src='Title?appid=<%=data[c]%>'></a>&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
   	    	}
   	    	if((b+2)==i){
   	    		%>
+  	    		<li><div id="naam1"><div id="naam" style="margin-left:15px;"><%=nam[a] %></div><div id="naam"><%=nam[b] %></div></div></li>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.jsp?app1=<%=data[a]%>&app=<%=chk%>"><img name=nn  src="Title?appid=<%=data[a]%>"></a>&nbsp;&nbsp;&nbsp;<a href="index.jsp?app1=<%=data[b]%>&app=<%=chk%>"><img  src="Title?appid=<%=data[b]%>"></a>&nbsp;&nbsp;&nbsp;</div><br></li>
 	  	    	<%
   	    	}else if((a+2)==i){
   	    		%>
+  	    		<li><div id="naam1"><div id="naam" style="margin-left:15px;"><%=nam[a] %></div></div></li>
 	  	    	<li><div class="row-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.jsp?app1=<%=data[a]%>&app=<%=chk%>"><img name=nn  src="Title?appid=<%=data[a]%>"></a></div><br></li>
 	  	    	<%
   	    	}
