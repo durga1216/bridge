@@ -265,7 +265,7 @@ try{
     		type=rs.getString("hoo");jstr=rs.getString("js");
     		turl=rs.getString("t1");
     		tp[1]=rs.getString("p1");tp[2]=rs.getString("p2");tp[3]=rs.getString("p3");tp[4]=rs.getString("p4");
-    		hd1[1]=rs1.getString("h1");hd1[2]=rs1.getString("h2");hd1[3]=rs1.getString("h3");hd1[4]=rs1.getString("h4");
+    		hd1[1]=rs.getString("h1");hd1[2]=rs.getString("h2");hd1[3]=rs.getString("h3");hd1[4]=rs.getString("h4");
     		txt1=rs.getString("txt1");txt2=rs.getString("txt2"); txt3=rs.getString("txt3");txt4=rs.getString("txt4");
     		sigckey=rs.getString("sigckey");sigskey=rs.getString("sigskey");rformat=rs.getString("rformat");
     		sigmessage=rs.getString("message");
@@ -360,7 +360,7 @@ try{
 		Header:<br><br>
 	<%
 	for(int i=1;i<5;i++){
-		if(!hd[i].equals("null")){
+		if(!hd1[i].equals("null")){
 			out.println("<br>*"+hd1[i]+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style='width:200px;border-radius:5px;'name='hd"+i+"' type='text'><br>");
 		}
 	}
