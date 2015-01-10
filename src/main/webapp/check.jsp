@@ -244,7 +244,7 @@
 ResultSet r=null;ResultSet rs1 =null;ResultSet rs=null;String authen="";String txt1="";String txt2="";String txt3="";String txt4="";String a1="";String b1="";String b3="";
 String authen1="";String atxt1="";String atxt2="";String atxt3="";String atxt4="";String tgtit="hh";String jstr="";
 String actit="hh";String tid="hh";String aid="hh";int code=0;int code1=0;String sigskey="";String sigckey="";
-String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5];String rformat="";String type="";
+String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5];String[] hd1=new String[5];String rformat="";String type="";
 String sigmessage="";	
 String tempid=(String)session.getAttribute("tempid");
 try{
@@ -265,6 +265,7 @@ try{
     		type=rs.getString("hoo");jstr=rs.getString("js");
     		turl=rs.getString("t1");
     		tp[1]=rs.getString("p1");tp[2]=rs.getString("p2");tp[3]=rs.getString("p3");tp[4]=rs.getString("p4");
+    		hd1[1]=rs1.getString("h1");hd1[2]=rs1.getString("h2");hd1[3]=rs1.getString("h3");hd1[4]=rs1.getString("h4");
     		txt1=rs.getString("txt1");txt2=rs.getString("txt2"); txt3=rs.getString("txt3");txt4=rs.getString("txt4");
     		sigckey=rs.getString("sigckey");sigskey=rs.getString("sigskey");rformat=rs.getString("rformat");
     		sigmessage=rs.getString("message");
@@ -360,7 +361,7 @@ try{
 	<%
 	for(int i=1;i<5;i++){
 		if(!hd[i].equals("null")){
-			out.println("<br>*"+hd[i]+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style='width:200px;border-radius:5px;'name='hd"+i+"' type='text'><br>");
+			out.println("<br>*"+hd1[i]+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style='width:200px;border-radius:5px;'name='hd"+i+"' type='text'><br>");
 		}
 	}
 	%>
