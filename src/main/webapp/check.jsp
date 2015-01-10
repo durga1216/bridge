@@ -356,7 +356,15 @@ try{
 	}
 	%>
 		<br><%=txt1 %><br><br><input type="text" name="uname" placeholder="UserName or ApiKey"><br><br><%=txt2 %><br><br><input type="password" name="pwd" placeholder="Password or Secret Key"><br><br><br>
-		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
+		Header:<br><br>
+	<%
+	for(int i=1;i<5;i++){
+		if(!hd[i].equals("null")){
+			out.println("<br>*"+hd[i]+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style='width:200px;border-radius:5px;'name='hd"+i+"' type='text'><br>");
+		}
+	}
+	%>
+		<br><br><input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
 	<%}else if(authen.equals("Oauth2")){
 	%>
 	<div id=inpop><h3>Oauth 2 Authentication:</h3><br>

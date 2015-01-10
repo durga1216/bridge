@@ -584,7 +584,7 @@ public class ActionClass {
 		   				}
 		   			}
 		   			PreparedStatement ps=con.prepareStatement("insert into testing (data,orurl,tempid) values('"+str1+"','"+orurl+check+"','"+da+"')");
-		   			ps.executeUpdate();
+		   			//ps.executeUpdate();
 		   			//out.println(str);
 				}//while
 			return str1;

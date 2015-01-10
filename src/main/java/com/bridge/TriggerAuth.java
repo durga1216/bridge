@@ -272,46 +272,31 @@ public class TriggerAuth extends HttpServlet {
 	   	 					
 	   	 				}
 	   	 				String encoding=null;
-	   	 				if(!"null".equals(b2)&& "null".equals(b4)){
+	   	 				if(!"".equals(b2)&& "".equals(b4)){
 	   	 					encoding = new String(org.apache.commons.codec.binary.Base64.encodeBase64   
 	                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+"")));
 	   	 					connection.setRequestProperty  ("Authorization", "Basic " + encoding);
 
 	   	 				}
-	   	 				else if(!"null".equals(b4) && "null".equals(b2)){encoding = new String(
-	   	 						org.apache.commons.codec.binary.Base64.encodeBase64   
-	   	 						(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(""+":"+b4)));	              
-	   	 				connection.setRequestProperty  ("Authorization", "Basic " + encoding);
-	   	 				}
-	   	 				else if(!"null".equals(b2) && !"null".equals(b4)){
-	   	 					encoding = new String(
-	   	 						org.apache.commons.codec.binary.Base64.encodeBase64   
-	                    	    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
-	   	 					connection.setRequestProperty  ("Authorization", "Basic " + encoding);
-
-            	 		} // else if encoding
-	   	 				else if("null".equals(b2) && "null".equals(b4)){
-	   	 					encoding=null;
-	   	 				}
-   	 					DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
-   	 					wr.writeBytes(eurl);
-   	 					wr.flush();
-   	 					wr.close();
+//   	 					DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
+//   	 					wr.writeBytes(eurl);
+//   	 					wr.flush();
+//   	 					wr.close();
    	 				
-	   	 				if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
-	   	 					connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);connection.setRequestProperty(h5, hv5);  
+	   	 				if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3) && !"null".equals(h4) && !"null".equals(h5)){
+	   	 					connection.setRequestProperty(h1, hd1);connection.setRequestProperty(h2, hd2); connection.setRequestProperty(h3, hd3);connection.setRequestProperty(h4, hd4);connection.setRequestProperty(h5, hd5);  
 	   	 				}
-	   	 				else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4)){
-	   	 					connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);  
+	   	 				else if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3) && !"null".equals(h4)){
+	   	 					connection.setRequestProperty(h1, hd1);connection.setRequestProperty(h2, hd2); connection.setRequestProperty(h3, hd3);connection.setRequestProperty(h4, hd4);  
 	   	 				}
-	   	 				else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
-	   	 					connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
+	   	 				else if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3)){
+	   	 					connection.setRequestProperty(h1, hd1);connection.setRequestProperty(h2, hd2); connection.setRequestProperty(h3, hd3);  
 	   	 				}
-	   	 				else if(!"".equals(h1) && !"".equals(h2)){
-	   	 					connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2);  
+	   	 				else if(!"null".equals(h1) && !"null".equals(h2)){
+	   	 					connection.setRequestProperty(h1, hd1);connection.setRequestProperty(h2, hd2);  
 	   	 				}
-	   	 				else if(!"".equals(h1)){
-	 		            	connection.setRequestProperty(h1, hv1);  
+	   	 				else if(!"null".equals(h1)){
+	 		            	connection.setRequestProperty(h1, hd1);  
 	   	 				}
 	   	 				code = connection.getResponseCode();
 	   	 				out.println(code);

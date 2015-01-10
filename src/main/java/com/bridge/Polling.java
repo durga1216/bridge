@@ -224,21 +224,20 @@ public class Polling extends HttpServlet {
 					   			connection.setDoInput(true);
 					   			connection.setRequestMethod("GET");
 					   			String encoding=null;
-					   			if(!b2.equals("") && !b2.equals("null")){
+					   			if(!b2.equals("") && !b4.equals("")){
 					   				encoding = new String(org.apache.commons.codec.binary.Base64.encodeBase64   
 			                        		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
 					   				connection.setRequestProperty  ("Authorization", "Basic " + encoding);
 					   			}
-					   			if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
+					   			if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3)){
 					            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
 					            }
-					   			else if(!"".equals(h1) && !"".equals(h2)){
+					   			else if(!"null".equals(h1) && !"null".equals(h2)){
 					            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2);  
 					            }
-					   			else if(!"".equals(h1)){
+					   			else if(!"null".equals(h1)){
 					            	connection.setRequestProperty(h1, hv1);  
 					            }
-					   				connection.setRequestProperty("Content-Type", "application/json");
 					   				InputStream stream = (InputStream)connection.getInputStream();
 					   				BufferedReader bf=new BufferedReader(new InputStreamReader(stream));
 					   				String lin="";
