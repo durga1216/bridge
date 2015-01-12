@@ -567,7 +567,22 @@ public class Polling extends HttpServlet {
 						     			while ((line = rd.readLine()) != null) {
 						     				str+=line;		     			
 					     				}
+						     			
+						     			
 					   				}
+					   				
+					   				else if("Authorization:header".equals(treplace)){
+						     			HttpGet get=new HttpGet(pointurl);
+						     			get.addHeader("X-Shopify-Access-Token", access_token);
+
+					   					HttpResponse response1=client.execute(get);
+					   					BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));   
+							    		while ((line = rd.readLine()) != null) {
+							    			str+=line;
+							    		}    	
+
+						     			
+						     		}
 					   				else if("QueryString".equals(treplace)){
 					   					String param = null;
 					   					// List<NameValuePair> params = new LinkedList<NameValuePair>();
@@ -612,18 +627,7 @@ public class Polling extends HttpServlet {
 					     				while ((line = rd.readLine()) != null) {
 					     					str+=line;		     			}
 										}
-						     		else if("Authorization:header".equals(treplace)){
-						     			post.addHeader("X-Shopify-Access-Token", access_token);
-				   						post.setHeader("Accept", "application/json");
-				   						HttpResponse response1=client.execute(post);
-				   						BufferedReader rd = new BufferedReader(
-				   								new InputStreamReader(response1.getEntity().getContent()));
-				   						while ((line = rd.readLine()) != null) {
-				   							str+=line;		     			
-			   							}
-
-						     			
-						     		}
+						     		
 					     			else if("QueryString".equals(treplace)){	
 					     				List <NameValuePair> cod = new ArrayList <NameValuePair>();
 					     				if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5) && !"null".equals(p6)){
