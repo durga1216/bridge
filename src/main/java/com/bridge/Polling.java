@@ -572,7 +572,7 @@ public class Polling extends HttpServlet {
 					   				}
 					   				
 					   				else if("Authorization:header".equals(treplace)){
-						     			HttpGet get=new HttpGet(pointurl);
+						     			HttpGet get=new HttpGet(endurl1);
 						     			get.addHeader("X-Shopify-Access-Token", access_token);
 
 					   					HttpResponse response1=client.execute(get);
