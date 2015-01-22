@@ -260,52 +260,66 @@ public class TriggerAuth extends HttpServlet {
 	   	 					url1 = new URL (t1+"?"+eurl);}
 	   	 				else
 	   	 					url1 =new URL(t1);
-	   	 				HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
-	   	 				connection.setDoOutput(true);
-	   	 	        connection.setDoInput(true);
-	   	         connection.setInstanceFollowRedirects(false); 
 
 	   	 				if(rmethod.equals("Get")){
-	   	 					connection.setRequestMethod("GET");}
+		   	 				HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
+		   	 				connection.setDoOutput(true);
+		   	 				connection.setDoInput(true);
+		   	 				connection.setInstanceFollowRedirects(false); 
+	   	 					connection.setRequestMethod("GET");
+		   	 				if(!"".equals(b2)&& "".equals(b4)){
+		   	 					String encoding = new String(org.apache.commons.codec.binary.Base64.encodeBase64   
+		                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+"")));
+		   	 					connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+	
+		   	 				}
+		   	 				if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3)){
+		   	 					connection.setRequestProperty(h1, hd1);connection.setRequestProperty(h2, hd2); connection.setRequestProperty(h3, hd3);  
+		   	 				}
+		   	 				else if(!"null".equals(h1) && !"null".equals(h2)){
+		   	 					connection.setRequestProperty(h1, hd1);connection.setRequestProperty(h2, hd2);  
+		   	 				}
+		   	 				else if(!"null".equals(h1)){
+		 		            	connection.setRequestProperty(h1, hd1);  
+		   	 				}
+		   	 				code = connection.getResponseCode();
+		   	 				out.println(code);
+		   	 				String line=null;
+		   	 				InputStream content = (InputStream)connection.getInputStream();
+		   	 				BufferedReader in   = new BufferedReader (new InputStreamReader (content));
+		   	 				while((line=in.readLine())!=null){
+		   	 					str+=line;
+	                    	}//while
+	   	 				}
 	   	 				else if(rmethod.equals("Post")){		             
-	   	 					connection.setRequestMethod("POST");
-	   	 					
+		   	 				HttpClient httpClient = new DefaultHttpClient();
+				  			HttpPost postRequest = new HttpPost(t1);
+				  			if(!b2.equals("") && !b2.equals("null")){
+				  				String encoding = new String(
+				  						org.apache.commons.codec.binary.Base64.encodeBase64   
+				  						(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
+				  				postRequest.setHeader("Authorization","Basic " + encoding);
+				  			}
+				  			if(!h1.equals("null") && !h2.equals("null") && !h3.equals("null")){
+				  				postRequest.setHeader(h1, hd1);postRequest.setHeader(h2, hd2);postRequest.setHeader(h3,hd3);
+				  			}
+				  			else if(!h1.equals("null") && !h2.equals("null")){
+				  				postRequest.setHeader(h1, hd1);postRequest.setHeader(h2, hd2);
+				  			}
+				  			else if(!h1.equals("null")){
+				  				postRequest.setHeader(h1, hd1);
+				  			}
+				  			StringEntity stt=new StringEntity(exreq);
+				  			postRequest.setEntity(stt);
+				  			HttpResponse response1 = httpClient.execute(postRequest);
+				  			BufferedReader in   = new BufferedReader (new InputStreamReader (response1.getEntity().getContent()));
+				  			code=response1.getStatusLine().getStatusCode();
+				  			String line="";
+				  			while((line=in.readLine())!=null){
+		   	 					str+=line;
+	                    	}
 	   	 				}
-	   	 				String encoding=null;
-	   	 				if(!"".equals(b2)&& "".equals(b4)){
-	   	 					encoding = new String(org.apache.commons.codec.binary.Base64.encodeBase64   
-	                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+"")));
-	   	 					connection.setRequestProperty  ("Authorization", "Basic " + encoding);
-
-	   	 				}
-//   	 					DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
-//   	 					wr.writeBytes(eurl);
-//   	 					wr.flush();
-//   	 					wr.close();
-   	 				
-	   	 				if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3) && !"null".equals(h4) && !"null".equals(h5)){
-	   	 					connection.setRequestProperty(h1, hd1);connection.setRequestProperty(h2, hd2); connection.setRequestProperty(h3, hd3);connection.setRequestProperty(h4, hd4);connection.setRequestProperty(h5, hd5);  
-	   	 				}
-	   	 				else if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3) && !"null".equals(h4)){
-	   	 					connection.setRequestProperty(h1, hd1);connection.setRequestProperty(h2, hd2); connection.setRequestProperty(h3, hd3);connection.setRequestProperty(h4, hd4);  
-	   	 				}
-	   	 				else if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3)){
-	   	 					connection.setRequestProperty(h1, hd1);connection.setRequestProperty(h2, hd2); connection.setRequestProperty(h3, hd3);  
-	   	 				}
-	   	 				else if(!"null".equals(h1) && !"null".equals(h2)){
-	   	 					connection.setRequestProperty(h1, hd1);connection.setRequestProperty(h2, hd2);  
-	   	 				}
-	   	 				else if(!"null".equals(h1)){
-	 		            	connection.setRequestProperty(h1, hd1);  
-	   	 				}
-	   	 				code = connection.getResponseCode();
-	   	 				out.println(code);
-	   	 				String line=null;
-	   	 				InputStream content = (InputStream)connection.getInputStream();
-	   	 				BufferedReader in   = new BufferedReader (new InputStreamReader (content));
-	   	 				while((line=in.readLine())!=null){
-	   	 					str+=line;
-                    	}//while
+	   	 				
 	   	                String header="";
 	 	                session.setAttribute("xml1", str);
 	 	                PreparedStatement st2=con.prepareStatement("insert into trig_all (userid,tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace,ockey,oskey,osmeth,smessage,sigskey,exreq,sigckey,signature) values ('"+id+"','"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"','"+ockey+"','"+oskey+"','"+osmeth+"','"+sigmsg+"','"+sigskey+"','"+sigckey+"','"+exreq+"','"+header+"')");
