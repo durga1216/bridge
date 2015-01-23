@@ -248,45 +248,31 @@ public class Polling extends HttpServlet {
 			        		   }// Get
 			        		   
 			        		   else if(rmethod.equals("Post")){
-			        			   String urlparam=eurl;
-						   		   url1=new URL(endurl1);
-			        			   HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
-						   			connection.setDoOutput(true);
-						   			connection.setDoInput(true);
-						   			connection.setRequestMethod("POST");
-						   			String encoding=null;
-						   			if(!b2.equals("") && !b2.equals("null")){
-						   				encoding = new String(org.apache.commons.codec.binary.Base64.encodeBase64   
-				                        		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
-						   				connection.setRequestProperty  ("Authorization", "Basic " + encoding);
-						   			}
-						   		    if(!"null".equals(p1)){
-
-						   			DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
-							         wr.writeBytes(urlparam);
-							         wr.flush();
-							         wr.close();}
-						   		    
-						   		    
-						   			if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
-						            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
-						            }
-						   			else if(!"".equals(h1) && !"".equals(h2)){
-						            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2);  
-						            }
-						   			else if(!"".equals(h1)){
-						            	connection.setRequestProperty(h1, hv1);  
-						            }
-						   				connection.setRequestProperty("Content-Type", "application/json");
-						   				InputStream stream = (InputStream)connection.getInputStream();
-						   				BufferedReader bf=new BufferedReader(new InputStreamReader(stream));
-						   				String lin="";
-				    				while((lin=bf.readLine())!=null){
-				    					str+=lin;
-				    				}
-				    				
-
-			        				     
+							   		HttpClient httpClient = new DefaultHttpClient();
+						  			HttpPost postRequest = new HttpPost(endurl1);
+						  			if(!b2.equals("") && !b2.equals("null")){
+						  				String encoding = new String(
+						  						org.apache.commons.codec.binary.Base64.encodeBase64   
+						  						(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
+						  				postRequest.setHeader("Authorization","Basic " + encoding);
+						  			}
+						  			if(!h1.equals("null") && !h2.equals("null") && !h3.equals("null")){
+						  				postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2);postRequest.setHeader(h3,hv3);
+						  			}
+						  			else if(!h1.equals("null") && !h2.equals("null")){
+						  				postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2);
+						  			}
+						  			else if(!h1.equals("null")){
+						  				postRequest.setHeader(h1, hv1);
+						  			}
+						  			StringEntity stt=new StringEntity(exreq);
+						  			postRequest.setEntity(stt);
+						  			HttpResponse response1 = httpClient.execute(postRequest);
+						  			BufferedReader in   = new BufferedReader (new InputStreamReader (response1.getEntity().getContent()));
+						  			String line="";
+						  			while((line=in.readLine())!=null){
+				   	 					str+=line;
+			                    	}
 			        		   }
 				   			}
 
