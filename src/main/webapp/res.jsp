@@ -56,6 +56,12 @@ font-family:verdana;
 color:#fff;
 font-size:18px;
 }
+#condcont{
+margin-left:670px;
+font-family:verdana;
+color:#fff;
+font-size:18px;
+}
 h4{
 font-family:verdana; 
 font-size:19px;
