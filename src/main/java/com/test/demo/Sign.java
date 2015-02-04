@@ -3,8 +3,10 @@ package com.test.demo;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.net.URLEncoder;
 import java.security.GeneralSecurityException;
+import java.util.Arrays;
 
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
@@ -25,11 +27,20 @@ public class Sign {
 		// TODO Auto-generated method stub
 		try {
 			String url = "http://test.api.zepo.in/store/63/orders?page=1&pageSize=10";
-			String bas = "GET%0A%2Fstore%2F63%2Forders%3Fpage%3D1%26pageSize%3D10";
+			String bas = "63";
+			String base="GET\n/store/@@63@@/orders?page=1&pageSize=10";
+			String[] bbs=base.split("@@");
+			bbs[1]=bas;
+			String bas1="";
+			for(int k=0;k<bbs.length;k++){
+					bas1+=bbs[k];
+				}
+			base=URLEncoder.encode(bas1, "UTF-8");
+			System.out.println(base+"\nGET%0A%2Fstore%2F63%2Forders%3Fpage%3D1%26pageSize%3D10\n"+URLEncoder.encode(base, "UTF-8"));
 			String ckey = "D4134D6E225CF52AE2896D8F2DC99";
 			String skey = "17A851B52571CD941516C5C16EB2C";
 			String auth = "Authorization: ZEPO D4134D6E225CF52AE2896D8F2DC99:NDAyYTg1NmM2NWJiNmNkODM4MGU2MzZkNjM0MTY1ZDZmZjVhMzliNw==";
-			String sign = computeSignature(bas, skey);  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
+			String sign = computeSignature(base, skey);  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
 			String auth1 = "Authorization: ZEPO D4134D6E225CF52AE2896D8F2DC99:"+sign;
 			HttpClient cli = new DefaultHttpClient();
 			HttpGet get = new HttpGet(url);

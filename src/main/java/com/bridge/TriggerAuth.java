@@ -363,7 +363,12 @@ public class TriggerAuth extends HttpServlet {
 	 					//My code
 	 					String [] bas=sigmsg.split("@@");
 	 					bas[1]=msg;
-	 					String baseurl=bas.toString();
+	 					String bas1="";
+	 					for(int k=0;k<bas.length;k++){
+	 							bas1+=bas[k];
+ 						}
+	 					String baseurl=URLEncoder.encode(bas1, "UTF-8");
+	 					
 	 					String signa = computeSignature1(baseurl, sigskey);  
 	 					String auth1 = "Authorization: ZEPO "+sigckey+":"+signa;
 	 					
