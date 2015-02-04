@@ -832,6 +832,7 @@ public class Polling extends HttpServlet {
 								exres=rs1.getString("exres");shname=rs1.getString("shname");
 								parpol=rs1.getString("parpol");unipol=rs1.getString("unipol");
 							} 
+							con.close();
 							// Json polling in trigger
 							if(resformat.equals("json")){
 								try{
@@ -1367,15 +1368,13 @@ public class Polling extends HttpServlet {
 							}
 							try {
 								//out.println(da+"\n\n---"+str+"\n\n---"+check+"\n\n---"+resour);
-								PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','"+str+"','"+da+"')");
+								//PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','"+str+"','"+da+"')");
 								//ps1.executeUpdate();
 								Thread.sleep(300000);
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
-							} catch (SQLException e1) {
-								e1.printStackTrace();
-							}
+							} 
 						}
 					}//rnn
 				};th.start();

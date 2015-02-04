@@ -1170,6 +1170,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 				request.getRequestDispatcher("check.jsp").forward(request, response);
 	   	 			} //While
 	   	 		}	  //action
+	   	 	con.close();
         	}		//try 
         	catch(Exception e){
         		out.println(e);

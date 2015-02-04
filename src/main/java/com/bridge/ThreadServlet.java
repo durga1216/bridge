@@ -50,6 +50,7 @@ public class ThreadServlet extends HttpServlet {
 			    while(rs1.next()){
 			    	ar.add(rs1.getString("tempid"));
 			    }
+			    con.close();
 				for(int i=0;i<ar.size();i++){
 					MainThreadClass th=new MainThreadClass(ar.get(i));
 					th.start();
@@ -79,6 +80,7 @@ public class ThreadServlet extends HttpServlet {
 			    while(rs1.next()){
 			    	ar.add(rs1.getString("tempid"));
 			    }
+			    con.close();
 				for(int i=0;i<ar.size();i++){
 					MainThreadClass th=new MainThreadClass(ar.get(i));
 					th.start();
@@ -108,6 +110,7 @@ public class ThreadServlet extends HttpServlet {
 			    while(rs1.next()){
 			    	ar.add(rs1.getString("tempid"));
 			    }
+			    con.close();
 				for(int i=0;i<ar.size();i++){
 					MainThreadClass th=new MainThreadClass(ar.get(i));
 					th.start();

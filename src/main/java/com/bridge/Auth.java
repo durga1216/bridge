@@ -87,6 +87,7 @@ public class Auth extends HttpServlet {
 			   	 	out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 			         		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 			   	 	response.setHeader("Refresh", "1; URL=trigger.jsp");
+			   	 	con.close();
 		    }
 		    catch(Exception e){
 		    	out.println(e);

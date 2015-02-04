@@ -979,6 +979,7 @@ public class Final extends HttpServlet {
  				} catch (SQLException e1) {
  					e1.printStackTrace();
  				}		
+ 				con.close();
 			} catch (Exception e1) {
 				out.println(e1);
 			}

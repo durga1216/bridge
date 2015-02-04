@@ -81,7 +81,7 @@ public class ActionClass {
 		try{
 			String eurl="";String check="noerror";
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-		    final Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
+		    Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
 			PreparedStatement st3=con.prepareStatement("select * from act_all where tempid=?");
 			st3.setString(1, da);
 			ResultSet rs2=st3.executeQuery();
@@ -587,6 +587,7 @@ public class ActionClass {
 		   			//ps.executeUpdate();
 		   			//out.println(str);
 				}//while
+			con.close();
 			return str1;
 		}
 		catch(Exception e){

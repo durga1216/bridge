@@ -348,7 +348,7 @@ String id="";String id1="";
   <br><br><input type="submit" name="con_trig" id="con_trig" value="Continue" style="display:none"><br><br>	
   
    <% 
-       
+ 	conn.close();
     }
         catch(Exception e)
         {

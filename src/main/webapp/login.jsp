@@ -201,6 +201,7 @@ String id="";String id1="";
 	  	    	nam[k]=name;
 	  	    	k++;
 	  	    }
+	      	conn.close();
   	    	for(a=0,b=1,c=2;c<k;a=a+3,b=b+3,c=c+3){
   	    		%>
   	    		<li><div id="naam1"><div id="naam"><%=nam[a] %></div><div id="naam"><%=nam[b] %></div><div id="naam"><%=nam[c] %></div></div></li>

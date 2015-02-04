@@ -47,6 +47,7 @@ public class ThreadHandler extends HttpServlet {
 			while(rs.next()){
 				type=rs.getString("type");
 			}
+			con.close();
 			if(submit.equals("Run Now")){
 				if(type.equals("polling"))
 					response.sendRedirect(request.getContextPath()+"/Polling?temp="+tempid);

@@ -237,6 +237,7 @@ public class OauthCall extends HttpServlet {
 			PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken) values ('"+tempid+"','"+tid+"','"+access_token+"')");
 			st2.executeUpdate();
 			st2.close();
+			con.close();
 			//PreparedStatement ps=con.prepareStatement("insert into testing (data) values('"+access_token+"')");
 			//ps.executeUpdate();
 			if(access_token.equals("")){

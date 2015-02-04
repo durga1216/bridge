@@ -421,8 +421,9 @@ try{
        <input type="password" name="sigskey" value=""><br><br>
      Enter Message(For Eg- <%=sigmessage%>):<br><br> --%>
      Enter Store Id:<br><br>
-       <textarea name="authmsg" id="authmsg" value="" placeholder="You can also copy paste the message from eg,or enter new message"></textarea><br><br>
-       
+     <input type="text" name="authmsg" value=""><br><br>
+<!--        <textarea name="authmsg" id="authmsg" value="" placeholder="You can also copy paste the message from eg,or enter new message"></textarea><br><br>
+ -->       
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
 	<%
 	}else if(type.equals("webhook")){
