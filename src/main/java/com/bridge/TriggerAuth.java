@@ -327,11 +327,11 @@ public class TriggerAuth extends HttpServlet {
 	 	 			   	st2.close();
 	   	 			}//basic auth
 	   	 			else if(authen.equals("Signed Auth")){
-	   	 				String timestamp="";
+	   	 			/*	String timestamp="";
 	   	 				String uuid_string = UUID.randomUUID().toString();
 	 					uuid_string = uuid_string.replaceAll("-", "");
 	 					String nonce = uuid_string; 
-	 				/*	if(tformat.equals("Unix"))
+	 					if(tformat.equals("Unix"))
 	 				      timestamp = String.valueOf((System.currentTimeMillis()/1000) + second);
 	 					else if(tformat.equals("UTC")){
 	 						final Date currentTime = new Date();
@@ -476,8 +476,12 @@ public class TriggerAuth extends HttpServlet {
 	 					
 	 					//Add the store id to base url
 	 					String[] serurl=t1.split("@@");
-	 					t1=serurl.toString();
-	 					
+	 					serurl[1]=msg;
+	 					String bas2="";
+	 					for(int k=0;k<serurl.length;k++){
+	 							bas2+=serurl[k];
+ 						}
+	 					t1=bas2;
 	   	 				HttpClient cli=new DefaultHttpClient();
 	   	 				HttpGet get=new HttpGet(t1);
 	   	 				if(!"null".equals(sh1)){

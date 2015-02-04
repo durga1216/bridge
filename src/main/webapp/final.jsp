@@ -230,6 +230,7 @@ function log1(){
 						<%
 				}
 		}
+		conn.close();
 	}
 	catch(Exception e){
 		out.println(e);

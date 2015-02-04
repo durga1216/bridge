@@ -280,6 +280,7 @@ try{
     		atxt1=rs1.getString("txt1");atxt2=rs1.getString("txt2"); atxt3=rs1.getString("txt3");atxt4=rs1.getString("txt4");
       	    
       	}
+      	conn.close();
      	session.setAttribute("tid",tid);
      	session.setAttribute("aid",aid);   
 %>

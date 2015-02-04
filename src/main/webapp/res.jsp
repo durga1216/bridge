@@ -193,6 +193,7 @@ function removeCond(){
 	 			tp[1]=rs.getString("p1");tp[2]=rs.getString("p2");tp[3]=rs.getString("p3");tp[4]=rs.getString("p4");
 	 			note=rs.getString("note");
 	   }
+	   conn.close();
 %>
 <body>
 <form action="Parse" method="post">
