@@ -36,7 +36,7 @@ public class Sign {
 					bas1+=bbs[k];
 				}
 			base=URLEncoder.encode(bas1, "UTF-8");
-			System.out.println(base+"\nGET%0A%2Fstore%2F63%2Forders%3Fpage%3D1%26pageSize%3D10\n"+URLEncoder.encode(base, "UTF-8"));
+			System.out.println(base+"\nGET%0A%2Fstore%2F63%2Forders%3Fpage%3D1%26pageSize%3D10\n");
 			String ckey = "D4134D6E225CF52AE2896D8F2DC99";
 			String skey = "17A851B52571CD941516C5C16EB2C";
 			String auth = "Authorization: ZEPO D4134D6E225CF52AE2896D8F2DC99:NDAyYTg1NmM2NWJiNmNkODM4MGU2MzZkNjM0MTY1ZDZmZjVhMzliNw==";
