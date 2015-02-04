@@ -83,8 +83,8 @@ public class TriggerAuth extends HttpServlet {
         String[] tdm={"Test",request.getParameter("tdm1"),request.getParameter("tdm2"),request.getParameter("tdm3"),request.getParameter("tdm4"),request.getParameter("tdm5")};
         String[] ndm={"Test",request.getParameter("ndm1"),request.getParameter("ndm2"),request.getParameter("ndm3"),request.getParameter("ndm4"),request.getParameter("ndm5")};
         String[] adm={"Test",request.getParameter("adm1"),request.getParameter("adm2"),request.getParameter("adm3"),request.getParameter("adm4"),request.getParameter("adm5")};
-         String sigckey=request.getParameter("sigckey");String sigskey=request.getParameter("sigskey");
-        String msg=request.getParameter("authmsg");
+/*         String sigckey=request.getParameter("sigckey");String sigskey=request.getParameter("sigskey");
+*/        String msg=request.getParameter("authmsg");
         out.println(action);
         int code=0;int code1=0;
         try{
@@ -123,7 +123,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 			String tlabel1=rs.getString("tlabel");String treplace1=rs.getString("treplace");
 	   	 			String el1=rs.getString("el");String ev1=rs.getString("ev");String rmethod1=rs.getString("select2");
 	   	 			//For signed auth
-	   	 			//String sigckey=rs.getString("sigckey");String sigskey=rs.getString("sigskey");
+	   	 			String sigckey=rs.getString("sigckey");String sigskey=rs.getString("sigskey");
 	   	 			String sigmsg=rs.getString("message");String sig=rs.getString("sig");
 	   	 			String sformat=rs.getString("sformat");String tformat=rs.getString("tformat");
 	   	 			String second=rs.getString("second");String utc=rs.getString("utc");
@@ -359,8 +359,17 @@ public class TriggerAuth extends HttpServlet {
 	 						smessage=orurl;
 	 					}
 	 					out.println("smessage");*/
+	 					
+	 					//My code
+	 					String [] bas=sigmsg.split("@@");
+	 					bas[1]=msg;
+	 					String baseurl=bas.toString();
+	 					String signa = computeSignature1(baseurl, sigskey);  
+	 					String auth1 = "Authorization: ZEPO "+sigckey+":"+signa;
+	 					
+	 					
 	 					//creating signature
-	 					String result="";String signature1="";String sign="";byte[] encoded = null;
+	 					/*String result="";String signature1="";String sign="";byte[] encoded = null;
 	 					if(sig.equals("HMAC-SHA1")){
 		 					
 		 			        if(sformat.equals("URL-Encoded")){
@@ -458,11 +467,16 @@ public class TriggerAuth extends HttpServlet {
 	 							  header=header+head[k];
 	 						  }
 	 						 
-	 					  }
+	 					  }*/
+	 					
+	 					//Add the store id to base url
+	 					String[] serurl=t1.split("@@");
+	 					t1=serurl.toString();
+	 					
 	   	 				HttpClient cli=new DefaultHttpClient();
-	   	 				HttpGet get=new HttpGet(callurl);
+	   	 				HttpGet get=new HttpGet(t1);
 	   	 				if(!"null".equals(sh1)){
-	   	 					get.addHeader(header,"");
+	   	 					get.addHeader(auth1,"");
 	   	 				}
 	   	 				HttpResponse res=cli.execute(get);
 	   	 				BufferedReader bf=new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
@@ -472,7 +486,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 				}
 	   	 				code=200;
 	   	 				session.setAttribute("xml1", str);
-	   	 				PreparedStatement st2=con.prepareStatement("insert into trig_all (userid,tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace,smessage,ockey,oskey,osmeth,sigskey,exreq,sigckey,signature) values ('"+id+"','"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pav1+"','"+p2+"','"+pav2+"','"+p3+"','"+pav3+"','"+p4+"','"+pav4+"','"+p5+"','"+pav5+"','"+p6+"','"+pav6+"','"+p7+"','"+pav7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"','"+ockey+"','"+oskey+"','"+osmeth+"','"+sigmsg+"','"+sigskey+"','"+sigckey+"','"+exreq+"','"+header+"')");
+	   	 				PreparedStatement st2=con.prepareStatement("insert into trig_all (userid,tempid,tid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace,smessage,ockey,oskey,osmeth,sigskey,exreq,sigckey,signature) values ('"+id+"','"+tempid+"','"+tid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pav1+"','"+p2+"','"+pav2+"','"+p3+"','"+pav3+"','"+p4+"','"+pav4+"','"+p5+"','"+pav5+"','"+p6+"','"+pav6+"','"+p7+"','"+pav7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"','"+ockey+"','"+oskey+"','"+osmeth+"','"+sigmsg+"','"+sigskey+"','"+sigckey+"','"+exreq+"','"+auth1+"')");
 	   	 				st2.executeUpdate();
 	   	 				st2.close();
 	   	 			}
@@ -1164,5 +1178,15 @@ public class TriggerAuth extends HttpServlet {
         mac.init(secretKey);
         byte[] text = baseString.getBytes();
         return new String(Base64.encodeBase64(mac.doFinal(text))).trim();
+	}
+	private static String computeSignature1(String baseString, String keyString) throws GeneralSecurityException, UnsupportedEncodingException {
+		SecretKey secretKey = null;
+		byte[] keyBytes = keyString.getBytes();
+        secretKey = new SecretKeySpec(keyBytes, "HmacSHA1");
+        Mac mac = Mac.getInstance("HmacSHA1");
+        mac.init(secretKey);
+        String orig = new String(Hex.encodeHex(mac.doFinal(baseString.getBytes())));
+         byte[] encoded = Base64.encodeBase64(orig.getBytes()); 
+        return new String(encoded);
 	}
 }

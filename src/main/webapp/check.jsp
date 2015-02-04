@@ -415,11 +415,12 @@ try{
 	}else if(authen.equals("Signed Auth")){
 	%>
 	<div id=inpop><h3>Signed Authentication:</h3><br><br>
-     Enter the API key:<br>
+     <%-- Enter the API key:<br>
        <input type="text" name="sigckey" value=""><br><br>
      Enter the Secret Key:<br>
        <input type="password" name="sigskey" value=""><br><br>
-     Enter Message(For Eg- <%=sigmessage%>):<br><br>
+     Enter Message(For Eg- <%=sigmessage%>):<br><br> --%>
+     Enter Store Id:<br><br>
        <textarea name="authmsg" id="authmsg" value="" placeholder="You can also copy paste the message from eg,or enter new message"></textarea><br><br>
        
 		<input type="submit" name="submit" onclick="javascript:sub('dis')" value="Authenticate Trigger" ></div>
