@@ -66,23 +66,32 @@ color:#fff;
 }
 </style>
 <script type="text/javascript" src="js/key1.js"></script>
+<script type="text/javascript" src="js/value.js"></script>
 <script type="text/javascript">
-var respo2={"name1":"name","name2":"name","name3":"name","name4":"name"};
+var respo2={"name1":"name","name2":{"name11":"name","name12":"name"},"name3":"name","name4":"name"};
 respo2= JSON.stringify(respo2);
 var chfst=respo2.charAt(0);
 	$(document).ready(function() {
 		$('#b1').click(function(){
 			var aa=$('#area').val();
-			var myVar=JSON.parse(aa);
-			var cod="";
-			var n=1;
+			if(aa==''){
+				alert("Enter the sample request");
+			}else{
+				var conid = document.getElementById('con1');
+			    conid.removeChild(document.getElementById('map'));
+				var cod=addValue(aa);
+				console.log(cod);
+				$("#con1").append(cod);
+			}
+			/* var n=1;
 			Object.keys(myVar).forEach(function(k) {
-				var tn=''+n;
-				var hn=addParam(tn);
-					cod+=k+"*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div id='map'>"+hn+"<div><br>";
+				var keyval=JSON.stringify(myVar[k]);
+				console.log(keyval);
+				var hn=addParam(n);
+					cod+="<div id='map"+n+"'>"+k+"*<br>"+hn+"<div><br>";
 				n++;
-			});
-			$("#con1").append(cod);
+			}); */
+
 		});
 	});
 	function insertmap(){
@@ -113,7 +122,7 @@ var chfst=respo2.charAt(0);
 <div id="cond">Filter</div><center>
 	<a id='pa' href="javascript:addCond()">Add Condition</a>&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeCond()">Remove Condition</a><br><br>
 	<div id="condcont"></div><br><hr><br></center>
-	<div id="cond">Sample Json Response</div>
+	<div id="cond">Sample Json Request</div>
 	<center>
 	<textarea id="area" rows="7" cols="70" placeholder="Enter the sample json Action response"></textarea>
 	<br>
@@ -123,6 +132,6 @@ var chfst=respo2.charAt(0);
 	<hr>
 	<br>
 	<div id="cond">Mapping Fields</div>
-	<div id=con1></div></div>
+	<div id=con1><div id=map></div></div></div>
 </body>
 </html>
