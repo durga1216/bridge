@@ -1,6 +1,6 @@
 function addValue(){
 	var num=arguments[0];
-	var hm="";var n=0;
+	var hm="";var n=1;
 	    var respo1="{}";
 	    try{
 	    	respo1=JSON.parse(num);

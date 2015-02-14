@@ -950,45 +950,85 @@ public class Polling extends HttpServlet {
 										arr1=arr;
 										//parsing all loop records
 										for(int m=0;m<arr.size();m++){
-											if(!x1.equals("null")){
+											if(x1.equals("dummy")){
+												xx1=xs1;
+											}else if(!x1.equals("null")){
 											xo1=arx1.get(m);xx1=xo1.toString();}
-											if(!x2.equals("null")){
+											if(x2.equals("dummy")){
+												xx2=xs2;
+											}else if(!x2.equals("null")){
 											xo2=arx2.get(m);xx2=xo2.toString();}
-											if(!x3.equals("null")){
+											if(x3.equals("dummy")){
+												xx3=xs3;
+											}else if(!x3.equals("null")){
 											xo3=arx3.get(m);xx3=xo3.toString();}
-											if(!x4.equals("null")){
+											if(x4.equals("dummy")){
+												xx4=xs4;
+											}else if(!x4.equals("null")){
 											xo4=arx4.get(m);xx4=xo4.toString();}
-											if(!x5.equals("null")){
+											if(x5.equals("dummy")){
+												xx5=xs5;
+											}else if(!x5.equals("null")){
 											xo5=arx5.get(m);xx5=xo5.toString();}
-										    if(!x6.equals("null")){
+										    if(x6.equals("dummy")){
+												xx6=xs6;
+											}else if(!x6.equals("null")){
 											xo6=arx6.get(m);xx6=xo6.toString();}
-											if(!x7.equals("null")){
+											if(x7.equals("dummy")){
+												xx7=xs7;
+											}else if(!x7.equals("null")){
 											xo7=arx7.get(m);xx7=xo7.toString();}
-											if(!x8.equals("null")){
+											if(x8.equals("dummy")){
+												xx8=xs8;
+											}else if(!x8.equals("null")){
 											xo8=arx8.get(m);xx8=xo8.toString();}
-											if(!x9.equals("null")){
+											if(x9.equals("dummy")){
+												xx9=xs9;
+											}else if(!x9.equals("null")){
 											xo9=arx9.get(m);xx9=xo9.toString();}
-											if(!x10.equals("null")){
+											if(x10.equals("dummy")){
+												xx10=xs10;
+											}else if(!x10.equals("null")){
 											xo10=arx10.get(m);xx10=xo10.toString();}	
-											if(!x11.equals("null")){
+											if(x11.equals("dummy")){
+												xx11=xs11;
+											}else if(!x11.equals("null")){
 											xo11=arx11.get(m);xx11=xo11.toString();}
-											if(!x12.equals("null")){
+											if(x12.equals("dummy")){
+												xx12=xs12;
+											}else if(!x12.equals("null")){
 											xo12=arx12.get(m);xx12=xo12.toString();}
-											if(!x13.equals("null")){
+											if(x13.equals("dummy")){
+												xx13=xs13;
+											}else if(!x13.equals("null")){
 											xo13=arx13.get(m);xx13=xo13.toString();}
-											if(!x14.equals("null")){
+											if(x14.equals("dummy")){
+												xx14=xs14;
+											}else if(!x14.equals("null")){
 											xo14=arx14.get(m);xx14=xo14.toString();}
-											if(!x15.equals("null")){
+											if(x15.equals("dummy")){
+												xx15=xs15;
+											}else if(!x15.equals("null")){
 											xo15=arx15.get(m);xx15=xo15.toString();}	
-											if(!x16.equals("null")){
+											if(x16.equals("dummy")){
+												xx16=xs16;
+											}else if(!x16.equals("null")){
 											xo16=arx16.get(m);xx16=xo16.toString();}
-											if(!x17.equals("null")){
+											if(x17.equals("dummy")){
+												xx17=xs17;
+											}else if(!x17.equals("null")){
 											xo17=arx17.get(m);xx17=xo17.toString();}
-											if(!x18.equals("null")){
+											if(x18.equals("dummy")){
+												xx18=xs18;
+											}else if(!x18.equals("null")){
 											xo18=arx18.get(m);xx18=xo18.toString();}
-											if(!x19.equals("null")){
+											if(x19.equals("dummy")){
+												xx19=xs19;
+											}else if(!x19.equals("null")){
 											xo19=arx19.get(m);xx19=xo19.toString();}
-											if(!x20.equals("null")){
+											if(x20.equals("dummy")){
+												xx20=xs20;
+											}else if(!x20.equals("null")){
 											xo20=arx20.get(m);xx20=xo20.toString();}
 											if(!c1.equals("null")){
 												co1=arc1.get(m);cx1=co1.toString();}
@@ -1061,46 +1101,86 @@ public class Polling extends HttpServlet {
 										}
 										if(find==true){
 											System.out.println(arr.get(m));
-											if(!x1.equals("null")){
-												xo1=arx1.get(m);xx1=xo1.toString();}
-												if(!x2.equals("null")){
-												xo2=arx2.get(m);xx2=xo2.toString();}
-												if(!x3.equals("null")){
-												xo3=arx3.get(m);xx3=xo3.toString();}
-												if(!x4.equals("null")){
-												xo4=arx4.get(m);xx4=xo4.toString();}
-												if(!x5.equals("null")){
-												xo5=arx5.get(m);xx5=xo5.toString();}
-											    if(!x6.equals("null")){
-												xo6=arx6.get(m);xx6=xo6.toString();}
-												if(!x7.equals("null")){
-												xo7=arx7.get(m);xx7=xo7.toString();}
-												if(!x8.equals("null")){
-												xo8=arx8.get(m);xx8=xo8.toString();}
-												if(!x9.equals("null")){
-												xo9=arx9.get(m);xx9=xo9.toString();}
-												if(!x10.equals("null")){
-												xo10=arx10.get(m);xx10=xo10.toString();}	
-												if(!x11.equals("null")){
-												xo11=arx11.get(m);xx11=xo11.toString();}
-												if(!x12.equals("null")){
-												xo12=arx12.get(m);xx12=xo12.toString();}
-												if(!x13.equals("null")){
-												xo13=arx13.get(m);xx13=xo13.toString();}
-												if(!x14.equals("null")){
-												xo14=arx14.get(m);xx14=xo14.toString();}
-												if(!x15.equals("null")){
-												xo15=arx15.get(m);xx15=xo15.toString();}	
-												if(!x16.equals("null")){
-												xo16=arx16.get(m);xx16=xo16.toString();}
-												if(!x17.equals("null")){
-												xo17=arx17.get(m);xx17=xo17.toString();}
-												if(!x18.equals("null")){
-												xo18=arx18.get(m);xx18=xo18.toString();}
-												if(!x19.equals("null")){
-												xo19=arx19.get(m);xx19=xo19.toString();}
-												if(!x20.equals("null")){
-												xo20=arx20.get(m);xx20=xo20.toString();}
+											if(x1.equals("dummy")){
+												xx1=xs1;
+											}else if(!x1.equals("null")){
+											xo1=arx1.get(m);xx1=xo1.toString();}
+											if(x2.equals("dummy")){
+												xx2=xs2;
+											}else if(!x2.equals("null")){
+											xo2=arx2.get(m);xx2=xo2.toString();}
+											if(x3.equals("dummy")){
+												xx3=xs3;
+											}else if(!x3.equals("null")){
+											xo3=arx3.get(m);xx3=xo3.toString();}
+											if(x4.equals("dummy")){
+												xx4=xs4;
+											}else if(!x4.equals("null")){
+											xo4=arx4.get(m);xx4=xo4.toString();}
+											if(x5.equals("dummy")){
+												xx5=xs5;
+											}else if(!x5.equals("null")){
+											xo5=arx5.get(m);xx5=xo5.toString();}
+										    if(x6.equals("dummy")){
+												xx6=xs6;
+											}else if(!x6.equals("null")){
+											xo6=arx6.get(m);xx6=xo6.toString();}
+											if(x7.equals("dummy")){
+												xx7=xs7;
+											}else if(!x7.equals("null")){
+											xo7=arx7.get(m);xx7=xo7.toString();}
+											if(x8.equals("dummy")){
+												xx8=xs8;
+											}else if(!x8.equals("null")){
+											xo8=arx8.get(m);xx8=xo8.toString();}
+											if(x9.equals("dummy")){
+												xx9=xs9;
+											}else if(!x9.equals("null")){
+											xo9=arx9.get(m);xx9=xo9.toString();}
+											if(x10.equals("dummy")){
+												xx10=xs10;
+											}else if(!x10.equals("null")){
+											xo10=arx10.get(m);xx10=xo10.toString();}	
+											if(x11.equals("dummy")){
+												xx11=xs11;
+											}else if(!x11.equals("null")){
+											xo11=arx11.get(m);xx11=xo11.toString();}
+											if(x12.equals("dummy")){
+												xx12=xs12;
+											}else if(!x12.equals("null")){
+											xo12=arx12.get(m);xx12=xo12.toString();}
+											if(x13.equals("dummy")){
+												xx13=xs13;
+											}else if(!x13.equals("null")){
+											xo13=arx13.get(m);xx13=xo13.toString();}
+											if(x14.equals("dummy")){
+												xx14=xs14;
+											}else if(!x14.equals("null")){
+											xo14=arx14.get(m);xx14=xo14.toString();}
+											if(x15.equals("dummy")){
+												xx15=xs15;
+											}else if(!x15.equals("null")){
+											xo15=arx15.get(m);xx15=xo15.toString();}	
+											if(x16.equals("dummy")){
+												xx16=xs16;
+											}else if(!x16.equals("null")){
+											xo16=arx16.get(m);xx16=xo16.toString();}
+											if(x17.equals("dummy")){
+												xx17=xs17;
+											}else if(!x17.equals("null")){
+											xo17=arx17.get(m);xx17=xo17.toString();}
+											if(x18.equals("dummy")){
+												xx18=xs18;
+											}else if(!x18.equals("null")){
+											xo18=arx18.get(m);xx18=xo18.toString();}
+											if(x19.equals("dummy")){
+												xx19=xs19;
+											}else if(!x19.equals("null")){
+											xo19=arx19.get(m);xx19=xo19.toString();}
+											if(x20.equals("dummy")){
+												xx20=xs20;
+											}else if(!x20.equals("null")){
+											xo20=arx20.get(m);xx20=xo20.toString();}
 												if(!c1.equals("null")){
 													co1=arc1.get(m);cx1=co1.toString();}
 												if(!c2.equals("null")){

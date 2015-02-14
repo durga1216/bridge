@@ -24,7 +24,7 @@ body {
 	font-size: 19px;
 }
 
-input[type='button'] {
+input[type='button'],input[type='submit'] {
 	width: 200px;
 	height: 30px;
 	color: #0099cc;
