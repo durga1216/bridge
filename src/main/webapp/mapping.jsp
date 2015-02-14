@@ -94,7 +94,7 @@ function load(){
 }
 function load1(){
 	window.open("<%=request.getContextPath()%>/Login", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
-}
+	}
 </script>
 <script type="text/javascript">
 	/* 	var respo2 = {
@@ -152,6 +152,23 @@ function load1(){
 		var contentID = document.getElementById('condcont');
 		contentID.removeChild(document.getElementById('strText' + intTextBox));
 		intTextBox = intTextBox - 1;
+
+	}
+	var tem = 0;
+	function addmpar() {
+		tem = tem + 1;
+		var contentID = document.getElementById('con1');
+		var newTBDiv = document.createElement('div');
+		newTBDiv.setAttribute('id', 'strText' + tem);
+		var inhtm = addParam(tem);
+		newTBDiv.innerHTML = inhtm;
+		contentID.appendChild(newTBDiv);
+	}
+
+	function removempar() {
+		var contentID = document.getElementById('con1');
+		contentID.removeChild(document.getElementById('strText' + tem));
+		tem = tem - 1;
 
 	}
 	/* <input id='"+tn+"' type='text'>&nbsp;&nbsp;<input type='button' value='insert field' Onclick=\"insertmap('"+tn+"')\">&nbsp;&nbsp;<div id='conten"+tn+"'></div> */
@@ -231,7 +248,7 @@ function load1(){
 					//String sheet="dssfas@@jhbjhjbhj@@jhbhjbjh@@jhbjhb@@";
 					if (sheet != null) {
 						String[] sh = sheet.split("@@");
-						out.println("<div id='sheet'>Select your spreadsheet:&nbsp;&nbsp;<select name='sheet'>");
+						out.println("<div id='cond'>Select your spreadsheet:&nbsp;&nbsp;<select name='sheet'>");
 						for (int i = 0; i < sh.length; i++) {
 							out.println("<option value='" + sh[i] + "'>" + sh[i]
 									+ "</option>");
@@ -249,6 +266,12 @@ function load1(){
 			<hr>
 			<br>
 			<div id="cond">Mapping Fields</div>
+			<center>
+				<a id='pa' href="javascript:addmpar()">Add Parameter</a>&nbsp;&nbsp;&nbsp;<a
+					id='pa' href="javascript:removempar()">Remove Parameter</a><br>
+				<br><br>
+			</center>
+			<div id=uniq><input type=text name="unipol" placeholder="Enter the Jpath of Unique Id"></div>
 			<div id=con1>
 				<div id=map></div>
 			</div>
