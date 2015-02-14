@@ -784,6 +784,12 @@ public class Polling extends HttpServlet {
 							String x6="";String x7="";String x8="";String x9="";String x10="";
 							String x11="";String x12="";String x13="";String x14="";String x15="";
 							String x16="";String x17="";String x18="";String x19="";String x20="";
+							
+							String xs1="";String xs2="";String xs3="";String xs4="";String xs5="";
+							String xs6="";String xs7="";String xs8="";String xs9="";String xs10="";
+							String xs11="";String xs12="";String xs13="";String xs14="";String xs15="";
+							String xs16="";String xs17="";String xs18="";String xs19="";String xs20="";
+							
 							String c1="";String c2="";String c3="";String c4="";String c5="";
 							String cv1="";String cv2="";String cv3="";String cv4="";String cv5="";
 							
@@ -815,18 +821,28 @@ public class Polling extends HttpServlet {
 								x5=rs1.getString("xx5");x6=rs1.getString("xx6");
 								x7=rs1.getString("xx7");x8=rs1.getString("xx8");
 								x9=rs1.getString("xx9");x10=rs1.getString("xx10");
+								x11=rs1.getString("xx11");x12=rs1.getString("xx12"); 
+								x13=rs1.getString("xx13");x14=rs1.getString("xx14");
+								x15=rs1.getString("xx15");x16=rs1.getString("xx16");
+								x17=rs1.getString("xx17");x18=rs1.getString("xx18");
+								x19=rs1.getString("xx19");x20=rs1.getString("xx20");
+								
+								xs1=rs1.getString("x1");xs2=rs1.getString("x2");
+								xs3=rs1.getString("x3");xs4=rs1.getString("x4");
+								xs5=rs1.getString("x5");xs6=rs1.getString("x6");
+								xs7=rs1.getString("x7");xs8=rs1.getString("x8");
+								xs9=rs1.getString("x9");xs10=rs1.getString("x10");
+								xs11=rs1.getString("x11");xs12=rs1.getString("x12"); 
+								xs13=rs1.getString("x13");xs14=rs1.getString("x14");
+								xs15=rs1.getString("x15");xs16=rs1.getString("x16");
+								xs17=rs1.getString("x17");xs18=rs1.getString("x18");
+								xs19=rs1.getString("x19");xs20=rs1.getString("x20");
 								
 								c1=rs1.getString("c1");c2=rs1.getString("c2");
 								c3=rs1.getString("c3");c4=rs1.getString("c4");
 								c5=rs1.getString("c5");cv1=rs1.getString("cv1");
 								cv2=rs1.getString("cv2");cv3=rs1.getString("cv3");
 								cv4=rs1.getString("cv4");cv5=rs1.getString("cv5");
-								
-								x11=rs1.getString("xx11");x12=rs1.getString("xx12"); 
-								x13=rs1.getString("xx13");x14=rs1.getString("xx14");
-								x15=rs1.getString("xx15");x16=rs1.getString("xx16");
-								x17=rs1.getString("xx17");x18=rs1.getString("xx18");
-								x19=rs1.getString("xx19");x20=rs1.getString("xx20");
 								
 								ptag=rs1.getString("ptag");
 								exres=rs1.getString("exres");shname=rs1.getString("shname");
