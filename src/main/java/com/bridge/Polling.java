@@ -1466,7 +1466,7 @@ public class Polling extends HttpServlet {
 								//out.println(da+"\n\n---"+str+"\n\n---"+check+"\n\n---"+resour);
 								PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','"+str+"','"+da+"')");
 								ps1.executeUpdate();
-								Thread.sleep(300000);
+								Thread.sleep(600000);
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
