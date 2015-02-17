@@ -18,7 +18,7 @@
 <script type="text/javascript" src="js/value.js"></script>
 <style type="text/css">
 body {
-	background-color: #0099cc;
+	background-color: #ff9900;
 	color: #fff;
 	font-family: verdana;
 	font-size: 19px;
@@ -27,7 +27,7 @@ body {
 input[type='button'],input[type='submit'] {
 	width: 200px;
 	height: 30px;
-	color: #0099cc;
+	color: #ff9900;
 	border-color: #fff;
 	border-radius: 5px;
 	background-color: #fff;
@@ -38,7 +38,7 @@ input[type="text"] {
 	height: 25px;
 	font-family: verdana;
 	font-size: 17px;
-	color: #0099cc;
+	color: #ff9900;
 	border-radius: 5px;
 }
 
@@ -48,7 +48,7 @@ select {
 	background-color: #fff;
 	font-family: verdana;
 	font-size: 19px;
-	color: #0099cc;
+	color: #ff9900;
 	border-radius: 5px;
 }
 
