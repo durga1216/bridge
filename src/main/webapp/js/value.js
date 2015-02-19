@@ -18,7 +18,7 @@ function addValue(){
 			var xml1=JSON.parse(sxml1);
 			if(sxml1.charAt(0)=='"'){
 				var hn=addParam(n);
-				hm +="<div id='map'>"+key+"*<br>"+hn+"<div><br>";
+				hm +="<div id='map'>"+key+"*<br>"+hn+"<div>";
 				n++;
 			}else if(sxml1.charAt(0)=='{'){
 				for(var sky1 in xml1){
@@ -27,7 +27,7 @@ function addValue(){
 					if(sxml2.charAt(0)=='"'){
 						//hm +="<option value=" + key + "."+sky1+">" + key + "/"+sky1+"</option>";
 						var hn=addParam(n);
-						hm +="<div id='map'>"+key+"/"+sky1+"*<br>"+hn+"<div><br>";
+						hm +="<div id='map'>"+key+"/"+sky1+"*<br>"+hn+"<div>";
 						n++;
 					}else if(sxml2.charAt(0)=='{'){
 						for(var sky2 in xml2){
@@ -36,12 +36,12 @@ function addValue(){
 							if(sxml3.charAt(0)=='"'){
 								//hm +="<option value=" + key + "."+sky1+"."+sky2+">" + key + "/"+sky1+"/"+sky2+"</option>";
 								var hn=addParam(n);
-								hm +="<div id='map'>"+key+ "/"+sky1+"/"+sky2+"*<br>"+hn+"<div><br>";
+								hm +="<div id='map'>"+key+ "/"+sky1+"/"+sky2+"*<br>"+hn+"<div>";
 								n++;
 							}else if(sxml3.charAt(0)=='{'){
 								for(var sky3 in xml3){
 									var hn=addParam(n);
-									hm +="<div id='map'>"+key+ "/"+sky1+"/"+sky2+"/"+sky3+"*<br>"+hn+"<div><br>";
+									hm +="<div id='map'>"+key+ "/"+sky1+"/"+sky2+"/"+sky3+"*<br>"+hn+"<div>";
 									n++;
 									//hm +="<option value=" + key + "."+sky1+"."+sky2+"."+sky3+">" + key + "/"+sky1+"/"+sky2+"/"+sky3+"</option>";
 								}
@@ -49,13 +49,13 @@ function addValue(){
 								var axml3=xml3[0];
 								for(var aky3 in axml3){
 									var hn=addParam(n);
-									hm +="<div id='map'>"+key+"/"+sky1+"/"+sky2+"/"+aky3+"*<br>"+hn+"<div><br>";
+									hm +="<div id='map'>"+key+"/"+sky1+"/"+sky2+"/"+aky3+"*<br>"+hn+"<div>";
 									n++;
 									//hm +="<option value=" + key + "."+sky1+"."+sky2+"["+(xml3.length-1)+"]."+aky3+">" + key + "/"+sky1+"/"+sky2+"/"+aky3+"</option>";
 								}
 							}else{
 								var hn=addParam(n);
-								hm +="<div id='map'>"+key+"/"+sky1+"/"+sky2+"*<br>"+hn+"<div><br>";
+								hm +="<div id='map'>"+key+"/"+sky1+"/"+sky2+"*<br>"+hn+"<div>";
 								n++;
 								//hm +="<option value=" + key + "."+sky1+"."+sky2+">" + key + "/"+sky1+"/"+sky2+"</option>";			
 							}
@@ -67,13 +67,13 @@ function addValue(){
 							var xml3=JSON.parse(sxml3);
 							if(sxml3.charAt(0)=='"'){
 								var hn=addParam(n);
-								hm +="<div id='map'>"+key+"/"+sky1+"/"+aky2+"*<br>"+hn+"<div><br>";
+								hm +="<div id='map'>"+key+"/"+sky1+"/"+aky2+"*<br>"+hn+"<div>";
 								n++;
 								//hm +="<option value=" + key + "."+sky1+"[0]."+aky2+">" + key + "/"+sky1+"/"+aky2+"</option>";
 							}else if(sxml3.charAt(0)=='{'){
 								for(var sky3 in xml3){
 									var hn=addParam(n);
-									hm +="<div id='map'>"+key+"/"+sky1+"/"+aky2+"/"+sky3+"*<br>"+hn+"<div><br>";
+									hm +="<div id='map'>"+key+"/"+sky1+"/"+aky2+"/"+sky3+"*<br>"+hn+"<div>";
 									n++;
 									//hm +="<option value=" + key + "."+sky1+"[0]."+aky2+"."+sky3+">" + key + "/"+sky1+"/"+aky2+"/"+sky3+"</option>";
 								}
@@ -81,20 +81,20 @@ function addValue(){
 								var axml3=xml3[0];
 								for(var aky3 in axml3){
 									var hn=addParam(n);
-									hm +="<div id='map'>"+key+"/"+sky1+"/"+aky2+"/"+aky3+"*<br>"+hn+"<div><br>";
+									hm +="<div id='map'>"+key+"/"+sky1+"/"+aky2+"/"+aky3+"*<br>"+hn+"<div>";
 									n++;
 									//hm +="<option value=" + key + "."+sky1+"[0]."+aky2+"["+(xml3.length-1)+"]."+aky3+">" + key + "/"+sky1+"/"+aky2+"/"+aky3+"</option>";
 								}
 							}else{
 								var hn=addParam(n);
-								hm +="<div id='map'>"+key+"/"+sky1+"/"+aky2+"*<br>"+hn+"<div><br>";
+								hm +="<div id='map'>"+key+"/"+sky1+"/"+aky2+"*<br>"+hn+"<div>";
 								n++;
 								//hm +="<option value=" + key + "."+sky1+"[0]."+aky2+">" + key + "/"+sky1+"/"+aky2+"</option>";			
 							}
 						}
 					}else{
 						var hn=addParam(n);
-						hm +="<div id='map'>"+key+"/"+sky1+"*<br>"+hn+"<div><br>";
+						hm +="<div id='map'>"+key+"/"+sky1+"*<br>"+hn+"<div>";
 						n++;
 						//hm +="<option value=" + key + "."+sky1+">" + key + "/"+sky1+"</option>";			
 					}
@@ -106,7 +106,7 @@ function addValue(){
 					var xml2=JSON.parse(sxml2);
 					if(sxml2.charAt(0)=='"'){
 						var hn=addParam(n);
-						hm +="<div id='map'>"+key+"/"+aky1+"*<br>"+hn+"<div><br>";
+						hm +="<div id='map'>"+key+"/"+aky1+"*<br>"+hn+"<div>";
 						n++;
 						//hm +="<option value=$." + key + "[*]."+aky1+">" + key + "/"+aky1+"</option>";
 					}else if(sxml2.charAt(0)=='{'){
@@ -115,13 +115,13 @@ function addValue(){
 							var xml3=JSON.parse(sxml3);
 							if(sxml3.charAt(0)=='"'){
 								var hn=addParam(n);
-								hm +="<div id='map'>"+key+"/"+aky1+"/"+sky2+"*<br>"+hn+"<div><br>";
+								hm +="<div id='map'>"+key+"/"+aky1+"/"+sky2+"*<br>"+hn+"<div>";
 								n++;
 								//hm +="<option value=$." + key + "[*]."+aky1+"."+sky2+">" + key + "/"+aky1+"/"+sky2+"</option>";
 							}else if(sxml3.charAt(0)=='{'){
 								for(var sky3 in xml3){
 									var hn=addParam(n);
-									hm +="<div id='map'>"+key+"/"+aky1+"/"+sky2+"/"+sky3+"*<br>"+hn+"<div><br>";
+									hm +="<div id='map'>"+key+"/"+aky1+"/"+sky2+"/"+sky3+"*<br>"+hn+"<div>";
 									n++;
 									//hm +="<option value=$." + key + "[*]."+aky1+"."+sky2+"."+sky3+">" + key + "/"+aky1+"/"+sky2+"/"+sky3+"</option>";
 								}
@@ -129,13 +129,13 @@ function addValue(){
 								var axml3=xml3[0];
 								for(var aky3 in axml3){
 									var hn=addParam(n);
-									hm +="<div id='map'>"+key+"/"+aky1+"/"+sky2+"/"+aky3+"*<br>"+hn+"<div><br>";
+									hm +="<div id='map'>"+key+"/"+aky1+"/"+sky2+"/"+aky3+"*<br>"+hn+"<div>";
 									n++;
 									//hm +="<option value=$." + key + "[*]."+aky1+"."+sky2+"["+(xml3.length-1)+"]."+aky3+">" + key + "/"+aky1+"/"+sky2+"/"+aky3+"</option>";
 								}
 							}else{
 								var hn=addParam(n);
-								hm +="<div id='map'>"+key+"/"+aky1+"/"+sky2+"*<br>"+hn+"<div><br>";
+								hm +="<div id='map'>"+key+"/"+aky1+"/"+sky2+"*<br>"+hn+"<div>";
 								n++;
 								//hm +="<option value=$." + key + "[*]."+aky1+"."+sky2+">" + key + "/"+aky1+"/"+sky2+"</option>";			
 							}
@@ -147,13 +147,13 @@ function addValue(){
 							var xml3=JSON.parse(sxml3);
 							if(sxml3.charAt(0)=='"'){
 								var hn=addParam(n);
-								hm +="<div id='map'>"+key+"/"+aky1+"/"+aky2+"*<br>"+hn+"<div><br>";
+								hm +="<div id='map'>"+key+"/"+aky1+"/"+aky2+"*<br>"+hn+"<div>";
 								n++;
 								//hm +="<option value=$." + key + "[*]."+aky1+"[*]."+aky2+">" + key + "/"+aky1+"/"+aky2+"</option>";
 							}else if(sxml3.charAt(0)=='{'){
 								for(var sky3 in xml3){
 									var hn=addParam(n);
-									hm +="<div id='map'>"+key+"/"+aky1+"/"+aky2+"/"+sky3+"*<br>"+hn+"<div><br>";
+									hm +="<div id='map'>"+key+"/"+aky1+"/"+aky2+"/"+sky3+"*<br>"+hn+"<div>";
 									n++;
 									//hm +="<option value=$." + key + "[*]."+aky1+"[*]."+aky2+"."+sky3+">" + key + "/"+aky1+"/"+aky2+"/"+sky3+"</option>";
 								}
@@ -161,27 +161,27 @@ function addValue(){
 								var axml3=xml3[0];
 								for(var aky3 in axml3){
 									var hn=addParam(n);
-									hm +="<div id='map'>"+key+"/"+aky1+"/"+aky2+"/"+aky3+"*<br>"+hn+"<div><br>";
+									hm +="<div id='map'>"+key+"/"+aky1+"/"+aky2+"/"+aky3+"*<br>"+hn+"<div>";
 									n++;
 									//hm +="<option value=$." + key + "[*]."+aky1+"[*]."+aky2+"["+(xml3.length-1)+"]."+aky3+">" + key + "/"+aky1+"/"+aky2+"/"+aky3+"</option>";
 								}
 							}else{
 								var hn=addParam(n);
-								hm +="<div id='map'>"+key+"/"+aky1+"/"+aky2+"*<br>"+hn+"<div><br>";
+								hm +="<div id='map'>"+key+"/"+aky1+"/"+aky2+"*<br>"+hn+"<div>";
 								n++;
 								//hm +="<option value=$." + key + "[*]."+aky1+"[*]."+aky2+">" + key + "/"+aky1+"/"+aky2+"</option>";		
 							}
 						}
 					}else{
 						var hn=addParam(n);
-						hm +="<div id='map'>"+key+"/"+aky1+"*<br>"+hn+"<div><br>";
+						hm +="<div id='map'>"+key+"/"+aky1+"*<br>"+hn+"<div>";
 						n++;
 						//hm +="<option value=$." + key + "[*]."+aky1+">" + key + "/"+aky1+"</option>";			
 					}
 				}
 			}else{
 				var hn=addParam(n);
-				hm +="<div id='map'>"+key+"*<br>"+hn+"<div><br>";
+				hm +="<div id='map'>"+key+"*<br>"+hn+"<div>";
 				n++;
 				//hm +="<option value="+key+">" + key + "</option>";			
 			}

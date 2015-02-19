@@ -46,7 +46,7 @@ public class Parse extends HttpServlet {
 		String exres=request.getParameter("exres");
 		String sheet=request.getParameter("sheet");
 		String parpol=request.getParameter("parpol");
-		String unipol=request.getParameter("unipol");
+		String unipol=request.getParameter("xx0");
 		String resf=request.getParameter("resf");
 		String c1=request.getParameter("c1");String cv1=request.getParameter("cv1");
 		String c2=request.getParameter("c2");String cv2=request.getParameter("cv2");

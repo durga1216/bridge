@@ -66,9 +66,15 @@ select {
 #cond {
 	margin-left: 100px;
 }
+#map{
+	margin-top:10px;
+}
 
-#con1,#uniq {
+#con1,#con2 {
 	margin-left: 250px;
+}
+#uniq {
+	margin-left: 270px;
 }
 
 hr {
@@ -164,7 +170,7 @@ function load1(){
 	var tem = 0;
 	function addmpar() {
 		tem = tem + 1;
-		var contentID = document.getElementById('con1');
+		var contentID = document.getElementById('con2');
 		var newTBDiv = document.createElement('div');
 		newTBDiv.setAttribute('id', 'strText' + tem);
 		newTBDiv.setAttribute('style', 'margin:10px;');
@@ -174,7 +180,7 @@ function load1(){
 	}
 
 	function removempar() {
-		var contentID = document.getElementById('con1');
+		var contentID = document.getElementById('con2');
 		contentID.removeChild(document.getElementById('strText' + tem));
 		tem = tem - 1;
 
@@ -288,6 +294,8 @@ function load1(){
 			</center>
 			<div id=uniq>
 				Unique Id :<br>
+			</div>
+			<div id=con2>
 			</div>
 			<div id=con1>
 				<div id=map></div>
