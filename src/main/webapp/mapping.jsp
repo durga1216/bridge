@@ -67,7 +67,7 @@ select {
 	margin-left: 100px;
 }
 
-#con1 {
+#con1,#uniq {
 	margin-left: 250px;
 }
 
@@ -93,8 +93,8 @@ function load(){
 	window.open("<%=request.getContextPath()%>/Loadres", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
 }
 function load1(){
-	window.open("<%=request.getContextPath()%>/Login", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
-	}
+	window.open("<%=request.getContextPath()%>/Login", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");	
+}
 </script>
 <script type="text/javascript">
 	/* 	var respo2 = {
@@ -109,6 +109,12 @@ function load1(){
 	 respo2 = JSON.stringify(respo2);
 	 var chfst = respo2.charAt(0); */
 	$(document).ready(function() {
+		var unid = document.getElementById('uniq');
+		var uniq = addParam(0);
+		var newTBU = document.createElement('div');
+		newTBU.setAttribute('id', 'uuni');
+		newTBU.innerHTML = uniq;
+		unid.appendChild(newTBU);
 		$('#b1').click(function() {
 			var aa = $('#area').val();
 			if (aa == '') {
@@ -143,6 +149,7 @@ function load1(){
 		var contentID = document.getElementById('condcont');
 		var newTBDiv = document.createElement('div');
 		newTBDiv.setAttribute('id', 'strText' + intTextBox);
+		newTBDiv.setAttribute('style', 'margin:10px;');
 		newTBDiv.innerHTML = "<input type='text' id='c" + intTextBox + "'    name='c" + intTextBox + "' placeholder='Condition_Name'/> &nbsp;&nbsp;&nbsp;<select name=cs1><option value=equals>equals</option><option value=equals>not equals</option></select>&nbsp;&nbsp;&nbsp;"
 				+ "<input type='text' id='cv"+ intTextBox + " ' name='cv"+intTextBox+"' placeholder='Condition_Value'/>";
 		contentID.appendChild(newTBDiv);
@@ -160,6 +167,7 @@ function load1(){
 		var contentID = document.getElementById('con1');
 		var newTBDiv = document.createElement('div');
 		newTBDiv.setAttribute('id', 'strText' + tem);
+		newTBDiv.setAttribute('style', 'margin:10px;');
 		var inhtm = addParam(tem);
 		newTBDiv.innerHTML = inhtm;
 		contentID.appendChild(newTBDiv);
@@ -232,7 +240,14 @@ function load1(){
 				<h2>Filter and Mapping</h2>
 			</center>
 			<br>
-			<div id="cond">Filter</div>
+			<div id="cond">Response From Trigger :</div>
+			<center>
+				<a id='pa' href="javascript:load()">To Read XML</a>&nbsp;&nbsp;&nbsp;
+				<a id='pa' href="javascript:load1()">To Read JSON</a> <br>
+				<hr>
+				<br>
+			</center>
+			<div id="cond">Filter :</div>
 			<center>
 				<a id='pa' href="javascript:addCond()">Add Condition</a>&nbsp;&nbsp;&nbsp;<a
 					id='pa' href="javascript:removeCond()">Remove Condition</a><br>
@@ -256,7 +271,7 @@ function load1(){
 						out.println("</select></div><br><hr><br>");
 					}
 			%>
-			<div id="cond">Sample Json Request</div>
+			<div id="cond">Sample Json Request :</div>
 			<center>
 				<textarea id="area" rows="7" cols="70"
 					placeholder="Enter the sample json Action response"></textarea>
@@ -265,13 +280,15 @@ function load1(){
 			</center>
 			<hr>
 			<br>
-			<div id="cond">Mapping Fields</div>
+			<div id="cond">Mapping Fields :</div>
 			<center>
 				<a id='pa' href="javascript:addmpar()">Add Parameter</a>&nbsp;&nbsp;&nbsp;<a
 					id='pa' href="javascript:removempar()">Remove Parameter</a><br>
-				<br><br>
+				<br> <br>
 			</center>
-			<div id=uniq><input type=text name="unipol" placeholder="Enter the Jpath of Unique Id"></div>
+			<div id=uniq>
+				Unique Id :<br>
+			</div>
 			<div id=con1>
 				<div id=map></div>
 			</div>
