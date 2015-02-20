@@ -240,7 +240,7 @@ Xml Example:
 	<h3>Trigger Response:</h3>
 	<%if(type.equals("polling")){
 		%><h4>Enter the Polling parent Tag:</h4><input type=text name="parpol">
-		<h4>Enter the Unique Polling Element:</h4><input type=text name="unipol"><br><%
+		<h4>Enter the Unique Polling Element:</h4><input type=text name="xx0"><br><%
 	}%>
 	<input type="text" style="display:none;" id="ptag" name="ptag" placeholder=" parant Tag">
 	<input type="text" style="display:none;" name="resf" value="<%=resformat %>" placeholder=" parant Tag"><br><br>
