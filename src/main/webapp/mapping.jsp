@@ -74,7 +74,7 @@ select {
 	margin-left: 250px;
 }
 #uniq {
-	margin-left: 270px;
+	margin-left: 260px;
 }
 
 hr {
