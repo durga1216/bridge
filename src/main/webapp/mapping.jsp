@@ -88,13 +88,14 @@ hr {
 		response.sendRedirect("logout.jsp");
 	}
 	String respo = (String) request.getSession().getAttribute("xml1");
+	String respfmt=(String) request.getSession().getAttribute("respfmt");
 	String tempid = (String) request.getSession()
 			.getAttribute("tempid");
 %>
 <script type="text/javascript">
 var respo2=<%=respo%>;
+var respf=<%=respfmt%>
 respo2= JSON.stringify(respo2);
-var chfst=respo2.charAt(0);
 function load(){
 	window.open("<%=request.getContextPath()%>/Loadres", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
 }

@@ -1,7 +1,7 @@
 function addParam(){
 	var num=arguments[0];
 	var hm="";
-	if(chfst=='<'){
+	if(respf=="xml"){
 		hm +="<select name=x"+num+" id=x"+num+">";
 		hm +="<option value=dummy>Choose Xml Node</option>";
 		var xmlDoc = new window.DOMParser().parseFromString(respo2,"text/xml");

@@ -132,7 +132,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 			String sh3=rs.getString("sh3");String shv3=rs.getString("shv3");
 	   	 			String sh4=rs.getString("sh4");String shv4=rs.getString("shv4");
 
-	   	 			
+	   	 			session.setAttribute("respfmt", resformat);
 	   	 			out.println(authen);
 	   	 			String str="";
 	   	 			String eurl="null";
