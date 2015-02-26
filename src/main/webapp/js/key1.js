@@ -2,7 +2,7 @@ function addParam(){
 	var num=arguments[0];
 	var hm="";var kkmkm="";
 	if(respf=="xml"){
-		hm +="<select name=x"+num+" id=x"+num+">";
+		hm +="<input type=text placeholder='Enter text or Choose node' id=x"+num+" name=x"+num+">&nbsp;&nbsp;OR&nbsp;&nbsp;<select name=xx"+num+" id=xx"+num+">";
 		hm +="<option value=dummy>Choose Xml Node</option>";
 		var xmlDoc = new window.DOMParser().parseFromString(respo2,"text/xml");
 		var exres=document.getElementById('ptag');
@@ -45,11 +45,10 @@ function addParam(){
 				}
 			}
 		}
-		hm +="</select>&nbsp;&nbsp;&nbsp;<input type=text placeholder=' If Other' id=xx"+num+" name=xx"+num+"><br><br>";
-		newTBDiv.innerHTML = hm;
+		hm +="</select>";
 	}
 	else{
-	    hm +="<input type=text placeholder='Enter text or Choose node' id=x"+num+" name=x"+num+">&nbsp;&nbsp;OR&nbsp;&nbsp;<select name=xx"+num+" id=xx"+num+">";
+		hm +="<input type=text placeholder='Enter text or Choose node' id=x"+num+" name=x"+num+">&nbsp;&nbsp;OR&nbsp;&nbsp;<select name=xx"+num+" id=xx"+num+">";
 	    hm +="<option value=dummy>Choose Json Node</option>";
 	    var respo1="{}";
 	    try{

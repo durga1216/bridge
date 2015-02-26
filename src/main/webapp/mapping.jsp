@@ -259,6 +259,8 @@ function load1(){
 				<a id='pa' href="javascript:load()">To Read XML</a>&nbsp;&nbsp;&nbsp;
 				<a id='pa' href="javascript:load1()">To Read JSON</a> <br>
 				<hr>
+				<input type="text" style="display:none;" id="ptag" name="ptag" placeholder=" parant Tag">
+	<input type="text" style="display:none;" name="resf" value="<%=resformat %>" placeholder=" parant Tag">
 				<br>
 			</center>
 			<div id="cond">Filter :</div>
