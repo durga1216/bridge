@@ -93,10 +93,10 @@ hr {
 			.getAttribute("tempid");
 %>
 <script type="text/javascript">
-var respo2=<%=respo%>;
-var respf=<%=respfmt%>
+var respo2="<%=respo%>";
+var respf="<%=respfmt%>";
 var chfst='<';
-respo2= JSON.stringify(respo2);
+//respo2= JSON.stringify(respo2);
 if(respf=="json"){
 	chfst=respo2.charAt(0);
 }
