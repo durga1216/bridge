@@ -1,6 +1,6 @@
 function addParam(){
 	var num=arguments[0];
-	var hm="";
+	var hm="";var kkmkm="";
 	if(respf=="xml"){
 		hm +="<select name=x"+num+" id=x"+num+">";
 		hm +="<option value=dummy>Choose Xml Node</option>";

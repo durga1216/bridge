@@ -88,6 +88,8 @@ hr {
 		response.sendRedirect("logout.jsp");
 	}
 	String respo = (String) request.getSession().getAttribute("xml1");
+	respo=respo.replaceAll("\"", "'");
+	char chfirst=respo.charAt(0);
 	String respfmt=(String) request.getSession().getAttribute("respfmt");
 	String tempid = (String) request.getSession()
 			.getAttribute("tempid");
@@ -96,6 +98,7 @@ hr {
 var respo2="<%=respo%>";
 var respf="<%=respfmt%>";
 var chfst='<';
+var chh='<%=chfirst%>';
 //respo2= JSON.stringify(respo2);
 if(respf=="json"){
 	chfst=respo2.charAt(0);
