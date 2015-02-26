@@ -95,7 +95,11 @@ hr {
 <script type="text/javascript">
 var respo2=<%=respo%>;
 var respf=<%=respfmt%>
+var chfst='<';
 respo2= JSON.stringify(respo2);
+if(respf=="json"){
+	chfst=respo2.charAt(0);
+}
 function load(){
 	window.open("<%=request.getContextPath()%>/Loadres", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
 }
