@@ -73,7 +73,7 @@ select {
 #con1,#con2 {
 	margin-left: 250px;
 }
-#uniq {
+#uniq,#parpol {
 	margin-left: 260px;
 }
 
@@ -302,6 +302,11 @@ function load1(){
 					id='pa' href="javascript:removempar()">Remove Parameter</a><br>
 				<br> <br>
 			</center>
+			<%
+			if(resformat.equals("xml")){
+				out.println("<div id=parpol><input type=text name='parpol'></div>");
+			}
+			%>
 			<div id=uniq>
 				Unique Id :<br>
 			</div>

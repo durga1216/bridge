@@ -20,9 +20,9 @@ public class Parse {
 		try{
 			HttpClient client=new DefaultHttpClient();
 			String str=" ";String line="";
-			HttpGet post=new HttpGet("https://api.parse.com/1/classes/user");
-			post.addHeader("X-Parse-Application-Id","6B71a7vWFvdhsCBSdT9aPCJLt6bw5t7CpcV1i2r5");
-			post.addHeader("X-Parse-REST-API-Key","Ypljyme6tsZgwwPyScpsMXYl0JwSYQbBu1KNt6I1");
+			HttpGet post=new HttpGet("http://www.pointhacks.com.au/questions/feed/");
+//			post.addHeader("X-Parse-Application-Id","6B71a7vWFvdhsCBSdT9aPCJLt6bw5t7CpcV1i2r5");
+//			post.addHeader("X-Parse-REST-API-Key","Ypljyme6tsZgwwPyScpsMXYl0JwSYQbBu1KNt6I1");
 			HttpResponse response1 = client.execute(post);
 			BufferedReader rd = new BufferedReader(
 					new InputStreamReader(response1.getEntity().getContent()));
