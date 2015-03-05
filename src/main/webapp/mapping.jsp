@@ -12,8 +12,8 @@
 	response.setHeader("Pragma", "no-cache");
 	response.setDateHeader("Expires", 0);
 %>
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-<!-- <script src="js/jquery-latest.js"></script> -->
+<!-- <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script> -->
+<script src="js/jquery-latest.js"></script>
 <script type="text/javascript" src="js/key1.js"></script>
 <script type="text/javascript" src="js/value.js"></script>
 <style type="text/css">
@@ -66,16 +66,19 @@ select {
 #cond {
 	margin-left: 100px;
 }
-#map{
-	margin-top:10px;
+
+#map {
+	margin-top: 10px;
 }
 
 #con1 {
 	margin-left: 260px;
 }
+
 #con2 {
 	margin-left: 250px;
 }
+
 #uniq,#parpol {
 	margin-left: 260px;
 }
@@ -85,17 +88,18 @@ hr {
 }
 </style>
 <%
-    String u = (String) request.getSession().getAttribute("id");
+	String u = (String) request.getSession().getAttribute("id");
 	if (u != null) {
 	} else {
 		response.sendRedirect("logout.jsp");
 	}
-	String respo = (String) request.getSession().getAttribute("xml1"); 
+	String respo = (String) request.getSession().getAttribute("xml1");
 	//String respo="{\"test1\":\"num1\",\"test2\":\"num2\"}";
 	//String respo="<test>nmae</test><test1>nmaesdd</test2>";
-	respo=respo.replaceAll("\"", "'");
+	respo = respo.replaceAll("\"", "'");
 	//char chfirst=respo.charAt(0);
-	String respfmt=(String) request.getSession().getAttribute("respfmt");
+	String respfmt = (String) request.getSession().getAttribute(
+			"respfmt");
 	String tempid = (String) request.getSession()
 			.getAttribute("tempid");
 %>
@@ -264,9 +268,10 @@ function load1(){
 				<a id='pa' href="javascript:load()">To Read XML</a>&nbsp;&nbsp;&nbsp;
 				<a id='pa' href="javascript:load1()">To Read JSON</a> <br>
 				<hr>
-				<input type="text" style="display:none;" id="ptag" name="ptag" placeholder=" parant Tag">
-	<input type="text" style="display:none;" name="resf" value="<%=resformat %>" placeholder=" parant Tag">
-				<br>
+				<input type="text" style="display: none;" id="ptag" name="ptag"
+					placeholder=" parant Tag"> <input type="text"
+					style="display: none;" name="resf" value="<%=resformat%>"
+					placeholder=" parant Tag"> <br>
 			</center>
 			<div id="cond">Filter :</div>
 			<center>
@@ -308,15 +313,14 @@ function load1(){
 				<br> <br>
 			</center>
 			<%
-			if(resformat.equals("xml")){
-				out.println("<div id=parpol><input type=text name='parpol'></div>");
-			}
+				if (resformat.equals("xml")) {
+						out.println("<div id=parpol><input type=text name='parpol'></div>");
+					}
 			%>
 			<div id=uniq>
 				Unique Id :<br>
 			</div>
-			<div id=con2>
-			</div>
+			<div id=con2></div>
 			<div id=con1>
 				<div id=map></div>
 			</div>
