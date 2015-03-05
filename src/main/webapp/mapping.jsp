@@ -299,7 +299,7 @@ function load1(){
 			%>
 			<div id="cond">Sample Json Request :</div>
 			<center>
-				<textarea id="area" rows="7" cols="70"
+				<textarea id="area" rows="7" cols="70" name="exres"
 					placeholder="Enter the sample json Action response"></textarea>
 				<br> <br> <input id="b1" type="button" value=test>
 				<br>
