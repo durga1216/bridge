@@ -12,8 +12,8 @@
 	response.setHeader("Pragma", "no-cache");
 	response.setDateHeader("Expires", 0);
 %>
-<!-- <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script> -->
-<script src="js/jquery-latest.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<!-- <script src="js/jquery-latest.js"></script> -->
 <script type="text/javascript" src="js/key1.js"></script>
 <script type="text/javascript" src="js/value.js"></script>
 <style type="text/css">
@@ -70,7 +70,10 @@ select {
 	margin-top:10px;
 }
 
-#con1,#con2 {
+#con1 {
+	margin-left: 260px;
+}
+#con2 {
 	margin-left: 250px;
 }
 #uniq,#parpol {
@@ -82,24 +85,26 @@ hr {
 }
 </style>
 <%
-	String u = (String) request.getSession().getAttribute("id");
+    String u = (String) request.getSession().getAttribute("id");
 	if (u != null) {
 	} else {
 		response.sendRedirect("logout.jsp");
 	}
-	String respo = (String) request.getSession().getAttribute("xml1");
+	String respo = (String) request.getSession().getAttribute("xml1"); 
+	//String respo="{\"test1\":\"num1\",\"test2\":\"num2\"}";
+	//String respo="<test>nmae</test><test1>nmaesdd</test2>";
 	respo=respo.replaceAll("\"", "'");
-	char chfirst=respo.charAt(0);
+	//char chfirst=respo.charAt(0);
 	String respfmt=(String) request.getSession().getAttribute("respfmt");
 	String tempid = (String) request.getSession()
 			.getAttribute("tempid");
 %>
 <script type="text/javascript">
-var respo2="<%=respo%>";
+var respo2=<%=respo%>;
 var respf="<%=respfmt%>";
-var chfst='{';
-var chh='<%=chfirst%>';
-//respo2= JSON.stringify(respo2);
+var chfst='<';
+<%-- var chh='<%=chfirst%>'; --%>
+respo2= JSON.stringify(respo2);
 if(respf=="json"){
 	chfst=respo2.charAt(0);
 }
