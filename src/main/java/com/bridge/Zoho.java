@@ -33,11 +33,20 @@ public class Zoho extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String XmlString=request.getParameter("data");
+		//String XmlString=request.getParameter("data");
 		try{
+			StringBuffer jb = new StringBuffer();
+			String line = null;
+			BufferedReader reader = request.getReader();
+			while ((line = reader.readLine()) != null){
+				jb.append(line);
+			}
+	    	String res=jb.toString();
+	    	HttpSession session=request.getSession(true);
+	    	session.setAttribute("xml1", res+"\n");
 	    	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    	Connection conn=DriverManager.getConnection(Util.url,Util.user,Util.pass);
-	    	PreparedStatement ps=conn.prepareStatement("insert into hook (str) values ('"+XmlString+"')");
+	    	PreparedStatement ps=conn.prepareStatement("insert into hook (str) values ('"+res+"')");
 	    	ps.executeUpdate();
 		}
 		catch(Exception e){
@@ -49,7 +58,7 @@ public class Zoho extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String XmlString=request.getParameter("data");
+		//String XmlString=request.getParameter("data");
 		try{
 			StringBuffer jb = new StringBuffer();
 			String line = null;
@@ -59,7 +68,7 @@ public class Zoho extends HttpServlet {
 			}
 	    	String res=jb.toString();
 	    	HttpSession session=request.getSession(true);
-	    	session.setAttribute("xml1", res+"\n"+XmlString);
+	    	session.setAttribute("xml1", res+"\n");
 	    	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    	Connection conn=DriverManager.getConnection(Util.url,Util.user,Util.pass);
 	    	PreparedStatement ps=conn.prepareStatement("insert into hook (str) values ('"+res+"')");
