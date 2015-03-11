@@ -426,6 +426,8 @@ public class Polling extends HttpServlet {
 				                    // out.println(actok+"---"+secret+"---"+sec1);
 				                    HttpClient httpclient = new DefaultHttpClient();
 				                    HttpGet get1=new HttpGet(actok);
+				                    if(!h1.equals("null")){
+				                    	get1.setHeader("Accept", "application/json");}
 				                    HttpResponse response1=httpclient.execute(get1);
 				                    BufferedReader rd = new BufferedReader( new InputStreamReader(response1.getEntity().getContent()));
 				                    StringBuffer result = new StringBuffer();
@@ -507,6 +509,8 @@ public class Polling extends HttpServlet {
 				                    HttpResponse response1=null;
 				                    HttpPost post = new HttpPost(endurl1);
 				                    post.setHeader("Authorization", authorization_header_string);
+				                    if(!h1.equals("null")){
+				                    	post.setHeader("Accept", "application/json");}
 				                    response1 = httpclient.execute(post);
 				                    BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 				                    StringBuffer result = new StringBuffer();

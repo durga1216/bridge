@@ -83,6 +83,7 @@ public class Oauth1call extends HttpServlet {
             	 String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
             	 String oreq1=rs.getString("oreq");String rmethod1=rs.getString("select2");
             	 String rmethod=rs.getString("rmethod");String endurl1=rs.getString("t1");
+            	 String h1=rs.getString("h1");String hv1=rs.getString("hv1");
             	 //========initial=========
             	 if(oreq1.equals("GET")){
             		 String uuid_string = UUID.randomUUID().toString();
@@ -246,7 +247,8 @@ public class Oauth1call extends HttpServlet {
 	                    // out.println(actok+"---"+secret+"---"+sec1);
 	                    HttpClient httpclient = new DefaultHttpClient();
 	                    HttpGet get1=new HttpGet(actok);
-	                    get1.setHeader("Accept", "application/json");
+	                    if(!h1.equals("null")){
+	                    	get1.setHeader("Accept", "application/json");}
 	                    HttpResponse response1=httpclient.execute(get1);
 	                    BufferedReader rd = new BufferedReader( new InputStreamReader(response1.getEntity().getContent()));
 	                    StringBuffer result = new StringBuffer();
@@ -311,6 +313,8 @@ public class Oauth1call extends HttpServlet {
 	                    HttpResponse response1=null;
 	                    HttpPost post = new HttpPost(endurl1);
 	                    post.setHeader("Authorization", authorization_header_string);
+	                    if(!h1.equals("null")){
+	                    	post.setHeader("Accept", "application/json");}
 	                    response1 = httpclient.execute(post);
 	                    
 	                    BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
