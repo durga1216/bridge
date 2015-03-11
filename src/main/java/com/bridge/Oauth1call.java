@@ -246,6 +246,7 @@ public class Oauth1call extends HttpServlet {
 	                    // out.println(actok+"---"+secret+"---"+sec1);
 	                    HttpClient httpclient = new DefaultHttpClient();
 	                    HttpGet get1=new HttpGet(actok);
+	                    get1.setHeader("Accept", "application/json");
 	                    HttpResponse response1=httpclient.execute(get1);
 	                    BufferedReader rd = new BufferedReader( new InputStreamReader(response1.getEntity().getContent()));
 	                    StringBuffer result = new StringBuffer();
