@@ -1103,6 +1103,8 @@ public class Polling extends HttpServlet {
 												find=false;
 											}
 										}
+										PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','af"+find+"','"+da+"')");
+										ps1.executeUpdate();
 										if(find==true){
 											System.out.println(arr.get(m));
 											if(x1.equals("dummy")){
