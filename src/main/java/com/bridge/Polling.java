@@ -97,7 +97,7 @@ public class Polling extends HttpServlet {
     }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		final String da=request.getParameter("temp");
+		//final String da=request.getParameter("temp");
 		final PrintWriter out=response.getWriter();
 		final HttpSession session=request.getSession(true);
 		ArrayList<String> ar=new ArrayList<String>();
@@ -853,7 +853,7 @@ public class Polling extends HttpServlet {
 								exres=rs1.getString("exres");shname=rs1.getString("shname");
 								parpol=rs1.getString("parpol");unipol=rs1.getString("unipol");
 							} 
-							con.close();
+							//con.close();
 							// Json polling in trigger
 							if(resformat.equals("json")){
 								try{
@@ -1094,9 +1094,7 @@ public class Polling extends HttpServlet {
 							 	 			  	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
 							 	 			  	String str1=act.start();
 						 	 			  	}
-//											String sizze=arr.size()+"--"+arr1.size();
-//											PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('sfsasfas','"+sizze+"','"+da+"')");
-//											ps1.executeUpdate();
+											
 										}
 										
 									}
@@ -1108,7 +1106,9 @@ public class Polling extends HttpServlet {
 												find=false;
 											}
 										}
-										
+										String sizze=arr.size()+"--"+arr1.size();
+										PreparedStatement paa=con.prepareStatement("insert into testpol (error,str,tempid) values('sfsasfas','"+sizze+find+"','"+da+"')");
+										paa.executeUpdate();
 										if(find==true){
 											System.out.println(arr.get(m));
 											if(x1.equals("dummy")){
@@ -1476,7 +1476,7 @@ public class Polling extends HttpServlet {
 								//out.println(da+"\n\n---"+str+"\n\n---"+check+"\n\n---"+resour);
 //								PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','sucess','"+da+"')");
 //								ps1.executeUpdate();
-								Thread.sleep(300000);
+								Thread.sleep(30000);
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
