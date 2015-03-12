@@ -112,6 +112,7 @@ public class Polling extends HttpServlet {
 				while(true){
 					String str="";String check="no error";String resour="";
 					try{
+						String da="TMP_538";
 						String eurl="";String resformat="";
 						ArrayList arr=new ArrayList();
 						PreparedStatement st1=con.prepareStatement("select * from trig_all where tempid=?");
