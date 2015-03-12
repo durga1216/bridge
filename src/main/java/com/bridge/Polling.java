@@ -1098,13 +1098,14 @@ public class Polling extends HttpServlet {
 									//inserting when new element arrives
 									for(int m=0;m<arr.size();m++){
 										boolean find=true;
+										PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','af','"+da+"')");
+										ps1.executeUpdate();
 										for(int l=0;l<arr1.size();l++){
 											if(arr.get(m).equals(arr1.get(l))){
 												find=false;
 											}
 										}
-										PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','af"+find+"','"+da+"')");
-										ps1.executeUpdate();
+										
 										if(find==true){
 											System.out.println(arr.get(m));
 											if(x1.equals("dummy")){
@@ -1470,9 +1471,9 @@ public class Polling extends HttpServlet {
 							}
 							try {
 								//out.println(da+"\n\n---"+str+"\n\n---"+check+"\n\n---"+resour);
-								PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','sucess','"+da+"')");
-								ps1.executeUpdate();
-								Thread.sleep(600000);
+//								PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','sucess','"+da+"')");
+//								ps1.executeUpdate();
+								Thread.sleep(300000);
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
