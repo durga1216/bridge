@@ -97,7 +97,7 @@ public class Polling extends HttpServlet {
     }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//final String da=request.getParameter("temp");
+		final String da=request.getParameter("temp");
 		final PrintWriter out=response.getWriter();
 		final HttpSession session=request.getSession(true);
 		ArrayList<String> ar=new ArrayList<String>();
@@ -112,7 +112,7 @@ public class Polling extends HttpServlet {
 				while(true){
 					String str="";String check="no error";String resour="";
 					try{
-						String da="TMP_538";
+						//String da="TMP_538";
 						String eurl="";String resformat="";
 						ArrayList arr=new ArrayList();
 						PreparedStatement st1=con.prepareStatement("select * from trig_all where tempid=?");
@@ -1106,9 +1106,9 @@ public class Polling extends HttpServlet {
 												find=false;
 											}
 										}
-										String sizze=arr.size()+"--"+arr1.size();
-										PreparedStatement paa=con.prepareStatement("insert into testpol (error,str,tempid) values('sfsasfas','"+sizze+find+"','"+da+"')");
-										paa.executeUpdate();
+//										String sizze=arr.size()+"--"+arr1.size();
+//										PreparedStatement paa=con.prepareStatement("insert into testpol (error,str,tempid) values('sfsasfas','"+sizze+find+"','"+da+"')");
+//										paa.executeUpdate();
 										if(find==true){
 											System.out.println(arr.get(m));
 											if(x1.equals("dummy")){
@@ -1476,7 +1476,7 @@ public class Polling extends HttpServlet {
 								//out.println(da+"\n\n---"+str+"\n\n---"+check+"\n\n---"+resour);
 //								PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','sucess','"+da+"')");
 //								ps1.executeUpdate();
-								Thread.sleep(30000);
+								Thread.sleep(150000);
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
