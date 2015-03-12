@@ -1093,10 +1093,11 @@ public class Polling extends HttpServlet {
 							 	 			  	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
 							 	 			  	String str1=act.start();
 						 	 			  	}
+											String sizze=arr.size()+"--"+arr1.size();
+											PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('sfsasfas','"+sizze+"','"+da+"')");
+											ps1.executeUpdate();
 										}
-										String sizze=arr.size()+"--"+arr1.size();
-										PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('sfsasfas','"+sizze+"','"+da+"')");
-										ps1.executeUpdate();
+										
 									}
 									//inserting when new element arrives
 									for(int m=0;m<arr.size();m++){
