@@ -57,6 +57,7 @@ public class Oauth1call extends HttpServlet {
 	   	PrintWriter out=response.getWriter();
 		String oauth_verifier=request.getParameter("oauth_verifier");
 		String oauth_token=request.getParameter("oauth_token");
+		String extra1=request.getParameter("realmId");
 		HttpSession session=request.getSession(true);
 	    String appid=(String) session.getAttribute("tid");
 	    String tempid=(String) session.getAttribute("tempid");
@@ -84,7 +85,6 @@ public class Oauth1call extends HttpServlet {
             	 String oreq1=rs.getString("oreq");String rmethod1=rs.getString("select2");
             	 String rmethod=rs.getString("rmethod");String endurl1=rs.getString("t1");
             	 String h1=rs.getString("h1");String hv1=rs.getString("hv1");
-         		 String extra1="null";
             	 //========initial=========
             	 if(oreq1.equals("GET")){
             		 String uuid_string = UUID.randomUUID().toString();
