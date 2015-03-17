@@ -84,6 +84,7 @@ public class Oauth1call extends HttpServlet {
             	 String oreq1=rs.getString("oreq");String rmethod1=rs.getString("select2");
             	 String rmethod=rs.getString("rmethod");String endurl1=rs.getString("t1");
             	 String h1=rs.getString("h1");String hv1=rs.getString("hv1");
+         		 String extra1="null";
             	 //========initial=========
             	 if(oreq1.equals("GET")){
             		 String uuid_string = UUID.randomUUID().toString();
@@ -136,12 +137,14 @@ public class Oauth1call extends HttpServlet {
 	         				 tokn=chk1[i];
 	         			 }else if(stest[0].equals("oauth_token_secret")){
 	         				 secrt=chk1[i];
+	         			 }else if(stest[0].equals("realmId")){
+	         				 extra1=chk1[i];
 	         			 }
 	         		 }
 		         	 session.setAttribute("samp", tok+"\n"+oauth_token+"\n"+sec1+"\n"+signature_base_string+"\n"+actok);
-	         		 session.setAttribute("access_token1", tokn);
-	         		 session.setAttribute("access_secret1", secrt);
-	         		 PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken,secret) values ('"+tempid+"','"+appid+"','"+tokn+"','"+secrt+"')");
+//	         		 session.setAttribute("access_token1", tokn);
+//	         		 session.setAttribute("access_secret1", secrt);
+	         		 PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken,secret,extra1) values ('"+tempid+"','"+appid+"','"+tokn+"','"+secrt+"','"+extra1+"')");
 				   	 st2.executeUpdate();
 				   	 st2.close();
 				   	 oauthtk1=tokn;sectk1=secrt;
@@ -193,18 +196,31 @@ public class Oauth1call extends HttpServlet {
 	         				 tokn=chk1[i];
 	         			 }else if(stest[0].equals("oauth_token_secret")){
 	         				 secrt=chk1[i];
+	         			 }else if(stest[0].equals("realmId")){
+	         				 extra1=chk1[i];
 	         			 }
 	         		 }
 		   		   	 oauthtk1=tokn;sectk1=secrt;
-		       		 session.setAttribute("access_token1", tokn);
-		       		 session.setAttribute("access_secret1", secrt);
-		       		 PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken,secret) values ('"+tempid+"','"+appid+"','"+tokn+"','"+secrt+"')");
+					// session.setAttribute("access_token1", tokn);
+					// session.setAttribute("access_secret1", secrt);
+		       		 PreparedStatement st2=con.prepareStatement("insert into token (tempid,tid,oauthtoken,secret,extra1) values ('"+tempid+"','"+appid+"','"+tokn+"','"+secrt+"','"+extra1+"')");
 				   	 st2.executeUpdate();
 				   	 st2.close();
 		       		 request.setAttribute("code", 200);
 		             request.setAttribute("code1", 200);
 			         request.getRequestDispatcher("check.jsp").forward(request, response);
 	         	 }
+            	 String[] slt1=endurl1.split("@@");
+			  		int nn1=slt1.length;String orurl1="";
+			  		if(!(nn1==0)){
+			  			for(int i=1,j=1;i<nn1;i=i+2,j++){
+			  				slt1[i]=extra1;
+			      		}
+			      		for(int k=0;k<nn1;k++){
+			      			orurl1=orurl1+slt1[k];
+			      		}
+			      		endurl1=orurl1;
+			  		}
             	 if(otyp.equals("trigger")){
 	            	 if(rmethod.equals ("Get")){
 						//========initial=========

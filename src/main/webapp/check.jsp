@@ -245,7 +245,7 @@ ResultSet r=null;ResultSet rs1 =null;ResultSet rs=null;String authen="";String t
 String authen1="";String atxt1="";String atxt2="";String atxt3="";String atxt4="";String tgtit="hh";String jstr="";
 String actit="hh";String tid="hh";String aid="hh";int code=0;int code1=0;String sigskey="";String sigckey="";
 String turl="";String aurl="";String[] tp=new String[5];String[] hd=new String[5];String[] hd1=new String[5];String rformat="";String type="";
-String sigmessage="";	
+String sigmessage="";	String type1="";
 String tempid=(String)session.getAttribute("tempid");
 try{
 		PreparedStatement st1=conn.prepareStatement("select * from home where tempid='"+tempid+"'");
@@ -275,6 +275,7 @@ try{
       	rs1=ps1.executeQuery();
       	while(rs1.next()){
     		authen1=rs1.getString("authen");
+    		type1=rs1.getString("hoo");
     		aurl=rs1.getString("t1");
     		hd[1]=rs1.getString("h1");hd[2]=rs1.getString("h2");hd[3]=rs1.getString("h3");hd[4]=rs1.getString("h4");
     		atxt1=rs1.getString("txt1");atxt2=rs1.getString("txt2"); atxt3=rs1.getString("txt3");atxt4=rs1.getString("txt4");
@@ -501,7 +502,19 @@ try{
 		<input type="submit" name="submit" onclick="javascript:sub1('dis1')" value="Authenticate Action" ></div>
 	
 	<%
-	}
+	}else if(type1.equals("database")){
+		%>
+		<div id=inpop><h3>Mysql Remote Database:</h3><br><br>
+		<input type="text" name="sqlhost" placeholder="Hostname"><br>
+		<input type="text" name="sqlport" value="3306" placeholder="Port"><br>
+		<input type="text" name="sqldb" placeholder="Database"><br>
+		<input type="text" name="sqluser" placeholder="Username"><br>
+		<input type="text" name="sqlpass" placeholder="Password"><br>
+			<br><br><br>
+			<input type="submit" name="submit" onclick="javascript:sub1('dis1')" value="Authenticate Action" ></div>
+		
+		<%
+		}
 	}catch(Exception e){} %>
 	
 	</div></form>

@@ -72,6 +72,13 @@ public class TriggerAuth extends HttpServlet {
         String aid=(String)session.getAttribute("aid");
         String action=request.getParameter("submit");
         String exreq=request.getParameter("exreq");
+        
+        String sqlhost=request.getParameter("sqlhost");
+        String sqlport=request.getParameter("sqlport");
+        String sqldb=request.getParameter("sqldb");
+        String sqluser=request.getParameter("sqluser");
+        String sqlpass=request.getParameter("sqlpass");
+        
         session.setAttribute("jstring",exreq);
         String dn=request.getParameter("dn");String apkey=request.getParameter("apkey");String b2=request.getParameter("uname");String b4=request.getParameter("pwd");
         String dn1=request.getParameter("dn1");
