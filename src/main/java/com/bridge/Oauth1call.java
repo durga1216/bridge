@@ -220,6 +220,9 @@ public class Oauth1call extends HttpServlet {
 			      			orurl1=orurl1+slt1[k];
 			      		}
 			      		endurl1=orurl1;
+			      		PreparedStatement st2=con.prepareStatement("UPDATE triger SET t1='"+endurl1+"' WHERE appid='"+appid+"'");
+					   	 st2.executeUpdate();
+					   	 st2.close();
 			  		}
             	 if(otyp.equals("trigger")){
 	            	 if(rmethod.equals ("Get")){
