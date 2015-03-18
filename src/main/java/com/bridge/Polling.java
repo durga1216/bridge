@@ -664,6 +664,15 @@ public class Polling extends HttpServlet {
 					   				if("Authorization:Bearer".equals(treplace)){
 					   					HttpGet get=new HttpGet(endurl1);
 					   					get.addHeader("Authorization", "Bearer "+access_token);
+					   					if(!h1.equals("null") && !h2.equals("null") && !h3.equals("null")){
+							  				get.setHeader(h1, hv1);get.setHeader(h2, hv2);get.setHeader(h3,hv3);
+							  			}
+							  			else if(!h1.equals("null") && !h2.equals("null")){
+							  				get.setHeader(h1, hv1);get.setHeader(h2, hv2);
+							  			}
+							  			else if(!h1.equals("null")){
+							  				get.setHeader(h1, hv1);
+							  			}
 					   					HttpResponse response1 = client.execute(get);
 					   					BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 						     			while ((line = rd.readLine()) != null) {
@@ -676,7 +685,15 @@ public class Polling extends HttpServlet {
 					   				else if("Authorization:header".equals(treplace)){
 						     			HttpGet get=new HttpGet(endurl1);
 						     			get.addHeader("X-Shopify-Access-Token", access_token);
-
+						     			if(!h1.equals("null") && !h2.equals("null") && !h3.equals("null")){
+							  				get.setHeader(h1, hv1);get.setHeader(h2, hv2);get.setHeader(h3,hv3);
+							  			}
+							  			else if(!h1.equals("null") && !h2.equals("null")){
+							  				get.setHeader(h1, hv1);get.setHeader(h2, hv2);
+							  			}
+							  			else if(!h1.equals("null")){
+							  				get.setHeader(h1, hv1);
+							  			}
 					   					HttpResponse response1=client.execute(get);
 					   					BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));   
 							    		while ((line = rd.readLine()) != null) {
@@ -724,6 +741,15 @@ public class Polling extends HttpServlet {
 						     		HttpPost post=new HttpPost(endurl1);
 						     		if("Authorization:Bearer".equals(treplace)){
 						     			post.addHeader("Authorization", "Bearer "+access_token);
+						     			if(!h1.equals("null") && !h2.equals("null") && !h3.equals("null")){
+							  				post.setHeader(h1, hv1);post.setHeader(h2, hv2);post.setHeader(h3,hv3);
+							  			}
+							  			else if(!h1.equals("null") && !h2.equals("null")){
+							  				post.setHeader(h1, hv1);post.setHeader(h2, hv2);
+							  			}
+							  			else if(!h1.equals("null")){
+							  				post.setHeader(h1, hv1);
+							  			}
 										HttpResponse response1=client.execute(post);
 										BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 					     				while ((line = rd.readLine()) != null) {
@@ -772,6 +798,15 @@ public class Polling extends HttpServlet {
 						     		 		cod.add(new BasicNameValuePair(tlabel,access_token));	
 						     		 	}
 									        post.setEntity(new UrlEncodedFormEntity(cod));
+									        if(!h1.equals("null") && !h2.equals("null") && !h3.equals("null")){
+								  				post.setHeader(h1, hv1);post.setHeader(h2, hv2);post.setHeader(h3,hv3);
+								  			}
+								  			else if(!h1.equals("null") && !h2.equals("null")){
+								  				post.setHeader(h1, hv1);post.setHeader(h2, hv2);
+								  			}
+								  			else if(!h1.equals("null")){
+								  				post.setHeader(h1, hv1);
+								  			}
 									        HttpResponse response1 = client.execute(post);
 									        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 									        while ((line = rd.readLine()) != null) {

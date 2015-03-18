@@ -152,11 +152,24 @@ public class OauthCall extends HttpServlet {
 				String mode=rs.getString("mode");String rmethod=rs.getString("rmethod");
 				String treplace=rs.getString("treplace");
 				String tlabel=rs.getString("tlabel");
+				String h1=rs.getString("h1"); String hv1=rs.getString("hv1");
+   	 			String h2=rs.getString("h2"); String hv2=rs.getString("hv2");
+   	 			String h3=rs.getString("h3"); String hv3=rs.getString("hv3");
+   	 			String h4=rs.getString("h4"); String hv4=rs.getString("hv4");
 				if(mode.equals("Trigger")){
 					if(rmethod.equals("Get")){ 
 	   					if("Authorization:Bearer".equals(treplace)){
 	   						HttpGet get=new HttpGet(endurl1);
 	   						get.addHeader("Authorization", "Bearer "+access_token);
+	   						if(!h1.equals("null") && !h2.equals("null") && !h3.equals("null")){
+				  				get.setHeader(h1, hv1);get.setHeader(h2, hv2);get.setHeader(h3,hv3);
+				  			}
+				  			else if(!h1.equals("null") && !h2.equals("null")){
+				  				get.setHeader(h1, hv1);get.setHeader(h2, hv2);
+				  			}
+				  			else if(!h1.equals("null")){
+				  				get.setHeader(h1, hv1);
+				  			}
 	   						HttpResponse response1 = client.execute(get);
 	   						BufferedReader rd = new BufferedReader(
 	   								new InputStreamReader(response1.getEntity().getContent()));
@@ -170,7 +183,15 @@ public class OauthCall extends HttpServlet {
 	   					else if("Authorization:header".equals(treplace)){
 			     			HttpGet get=new HttpGet(endurl1);
 			     			get.addHeader("X-Shopify-Access-Token", access_token);
-
+			     			if(!h1.equals("null") && !h2.equals("null") && !h3.equals("null")){
+				  				get.setHeader(h1, hv1);get.setHeader(h2, hv2);get.setHeader(h3,hv3);
+				  			}
+				  			else if(!h1.equals("null") && !h2.equals("null")){
+				  				get.setHeader(h1, hv1);get.setHeader(h2, hv2);
+				  			}
+				  			else if(!h1.equals("null")){
+				  				get.setHeader(h1, hv1);
+				  			}
 		   					HttpResponse response1=client.execute(get);
 		   					BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));   
 				    		while ((line = rd.readLine()) != null) {
@@ -185,6 +206,15 @@ public class OauthCall extends HttpServlet {
 	   						String param=tlabel+"="+access_token;	
 	   						String pointurl=endurl1+"?"+param;
 	   						HttpGet get=new HttpGet(pointurl);
+	   						if(!h1.equals("null") && !h2.equals("null") && !h3.equals("null")){
+				  				get.setHeader(h1, hv1);get.setHeader(h2, hv2);get.setHeader(h3,hv3);
+				  			}
+				  			else if(!h1.equals("null") && !h2.equals("null")){
+				  				get.setHeader(h1, hv1);get.setHeader(h2, hv2);
+				  			}
+				  			else if(!h1.equals("null")){
+				  				get.setHeader(h1, hv1);
+				  			}
 	   						HttpResponse response1=client.execute(get);
 	   						BufferedReader rd = new BufferedReader
 	   								(new InputStreamReader(response1.getEntity().getContent())); 
@@ -198,6 +228,15 @@ public class OauthCall extends HttpServlet {
 	   					HttpPost post=new HttpPost(endurl1);
 	   					if("Authorization:Bearer".equals(treplace)){					     			
 	   						post.addHeader("Authorization", "Bearer "+access_token);
+	   						if(!h1.equals("null") && !h2.equals("null") && !h3.equals("null")){
+				  				post.setHeader(h1, hv1);post.setHeader(h2, hv2);post.setHeader(h3,hv3);
+				  			}
+				  			else if(!h1.equals("null") && !h2.equals("null")){
+				  				post.setHeader(h1, hv1);post.setHeader(h2, hv2);
+				  			}
+				  			else if(!h1.equals("null")){
+				  				post.setHeader(h1, hv1);
+				  			}
 	   						HttpResponse response1=client.execute(post);
 	   						BufferedReader rd = new BufferedReader(
 	   								new InputStreamReader(response1.getEntity().getContent()));
@@ -208,6 +247,15 @@ public class OauthCall extends HttpServlet {
 	   					}
 	   					else if("Authorization:header".equals(treplace)){					     			
 	   						post.addHeader("X-Shopify-Access-Token", access_token);
+	   						if(!h1.equals("null") && !h2.equals("null") && !h3.equals("null")){
+				  				post.setHeader(h1, hv1);post.setHeader(h2, hv2);post.setHeader(h3,hv3);
+				  			}
+				  			else if(!h1.equals("null") && !h2.equals("null")){
+				  				post.setHeader(h1, hv1);post.setHeader(h2, hv2);
+				  			}
+				  			else if(!h1.equals("null")){
+				  				post.setHeader(h1, hv1);
+				  			}
 	   						StringEntity st=new StringEntity(jstring);
 	   						st.setContentType("application/json");
 	   						post.setEntity(st);
@@ -223,6 +271,15 @@ public class OauthCall extends HttpServlet {
 	   						List <NameValuePair> cod = new ArrayList <NameValuePair>();
 	   						cod.add(new BasicNameValuePair(tlabel,access_token));
 	   						post.setEntity(new UrlEncodedFormEntity(cod));
+	   						if(!h1.equals("null") && !h2.equals("null") && !h3.equals("null")){
+				  				post.setHeader(h1, hv1);post.setHeader(h2, hv2);post.setHeader(h3,hv3);
+				  			}
+				  			else if(!h1.equals("null") && !h2.equals("null")){
+				  				post.setHeader(h1, hv1);post.setHeader(h2, hv2);
+				  			}
+				  			else if(!h1.equals("null")){
+				  				post.setHeader(h1, hv1);
+				  			}
 	   						HttpResponse response1 = client.execute(post);
 	   						BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 	   						while ((line = rd.readLine()) != null) {

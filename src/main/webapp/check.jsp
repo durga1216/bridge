@@ -504,12 +504,13 @@ try{
 	<%
 	}else if(type1.equals("database")){
 		%>
-		<div id=inpop><h3>Mysql Remote Database:</h3><br><br>
-		<input type="text" name="sqlhost" placeholder="Hostname"><br>
-		<input type="text" name="sqlport" value="3306" placeholder="Port"><br>
-		<input type="text" name="sqldb" placeholder="Database"><br>
-		<input type="text" name="sqluser" placeholder="Username"><br>
-		<input type="text" name="sqlpass" placeholder="Password"><br>
+		<div id=inpop><h3>Mysql Remote Database:</h3><br>
+		*Host Name :<br><input type="text" name="sqlhost" placeholder="Hostname"><br><br>
+		*Port :<br><input type="text" name="sqlport" value="3306" placeholder="Port"><br><br>
+		*Db Name :<br><input type="text" name="sqldb" placeholder="Database"><br><br>
+		*User Name :<br><input type="text" name="sqluser" placeholder="Username"><br><br>
+		*Password :<br><input type="text" name="sqlpass" placeholder="Password"><br><br>
+		Ssl key :<br><input type="text" name="sqlssl" placeholder="Ssl key"><br>
 			<br><br><br>
 			<input type="submit" name="submit" onclick="javascript:sub1('dis1')" value="Authenticate Action" ></div>
 		
