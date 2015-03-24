@@ -97,7 +97,7 @@ public class TriggerAuth extends HttpServlet {
         try{
         	Class.forName("com.mysql.jdbc.Driver").newInstance();
         	con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
-	   	 	if(action.equals("Authenticate Trigger")){
+        	if(action.equals("Authenticate Trigger")){
 	   		   	session.setAttribute("xml1", "null");
 	   	 		PreparedStatement st1=con.prepareStatement("select * from triger t1 JOIN auth t2 on t1.appid=t2.appid where t1.appid=?");
 	   	 		st1.setString(1, tid);
@@ -837,7 +837,14 @@ public class TriggerAuth extends HttpServlet {
 	   	 			String el1=rs.getString("el");String ev1=rs.getString("ev");String rmethod1=rs.getString("select2");
 	   	 			String str="";
 	   	 			String eurl="null";
-	   	 			if(authen.equals("API keys")){  
+	   	 			
+	   	 			if(authen.equals("Mysql")){
+		   	 			PreparedStatement st2=con.prepareStatement("insert into act_all (tempid,aid,authen,rmethod,rformat,resformat,emethod,dn,aplabel,apkey,dn1,b2,b4,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,tlabel,treplace,sqlhost,sqlport,sqldb,sqluser,sqlpass) values ('"+tempid+"','"+aid+"','"+authen+"','"+rmethod+"','"+rformat+"','"+resformat+"','"+t1+"','"+dn+"','"+a1+"','"+apkey+"','"+dn1+"','"+b2+"','"+b4+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+h1+"','"+hd1+"','"+h2+"','"+hd2+"','"+h3+"','"+hd3+"','"+h4+"','"+hd4+"','"+h5+"','"+hd5+"','"+tlabel+"','"+treplace+"','"+sqlhost+"','"+sqlport+"','"+sqldb+"','"+sqluser+"','"+sqlpass+"')");
+		 				st2.executeUpdate();
+		 				st2.close();
+		 				code1=200;
+	   	 			}
+	   	 			else if(authen.equals("API keys")){  
 	   	 				out.println("api inside");
 	   	 				if(rmethod.equals("Get")){
 	   	 					out.println("get inside");

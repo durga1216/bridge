@@ -502,7 +502,7 @@ try{
 		<input type="submit" name="submit" onclick="javascript:sub1('dis1')" value="Authenticate Action" ></div>
 	
 	<%
-	}else if(type1.equals("database")){
+	}else if(authen1.equals("Mysql")){
 		%>
 		<div id=inpop><h3>Mysql Remote Database:</h3><br>
 		*Host Name :<br><input type="text" name="sqlhost" placeholder="Hostname"><br><br>

@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -107,10 +108,46 @@ public class ActionClass {
 		   		String h4=rs2.getString("h4"); String hv4=rs2.getString("hv4");
 		   		String h5=rs2.getString("h5"); String hv5=rs2.getString("hv5");
 		   		String b2=rs2.getString("b2"); String b4=rs2.getString("b4");
-		   		if(authen.equals("API keys")){
+		   		
+		   		String sqlhost=rs2.getString("sqlhost");
+		        String sqlport=rs2.getString("sqlport");
+		        String sqldb=rs2.getString("sqldb");
+		        String sqluser=rs2.getString("sqluser");
+		        String sqlpass=rs2.getString("sqlpass"); 
+		   		
+		   		if(authen.equals("Mysql")){
+		   			Class.forName("com.mysql.jdbc.Driver");
+		   			Connection connection = DriverManager.getConnection("jdbc:mysql://"+sqlhost+":"+sqlport+"/"+sqldb,
+		   					sqluser, sqlpass);
+					Statement stmt = connection.createStatement();
+		   			String sql="";
+		   			if(!xx10.equals("null")){
+		   				sql="insert into mind_data (data1,data2,data3,data4,data5,data6,data7,data8,data9,data10) values('"+xx1+"','"+xx2+"','"+xx3+"','"+xx4+"','"+xx5+"','"+xx6+"','"+xx7+"','"+xx8+"','"+xx9+"','"+xx10+"')";
+		   			}else if(!xx9.equals("null")){
+		   				sql="insert into mind_data (data1,data2,data3,data4,data5,data6,data7,data8,data9) values('"+xx1+"','"+xx2+"','"+xx3+"','"+xx4+"','"+xx5+"','"+xx6+"','"+xx7+"','"+xx8+"','"+xx9+"')";
+		   			}else if(!xx8.equals("null")){
+		   				sql="insert into mind_data (data1,data2,data3,data4,data5,data6,data7,data8) values('"+xx1+"','"+xx2+"','"+xx3+"','"+xx4+"','"+xx5+"','"+xx6+"','"+xx7+"','"+xx8+"')";
+		   			}else if(!xx7.equals("null")){
+		   				sql="insert into mind_data (data1,data2,data3,data4,data5,data6,data7) values('"+xx1+"','"+xx2+"','"+xx3+"','"+xx4+"','"+xx5+"','"+xx6+"','"+xx7+"')";
+		   			}else if(!xx6.equals("null")){
+		   				sql="insert into mind_data (data1,data2,data3,data4,data5,data6) values('"+xx1+"','"+xx2+"','"+xx3+"','"+xx4+"','"+xx5+"','"+xx6+"')";
+		   			}else if(!xx5.equals("null")){
+		   				sql="insert into mind_data (data1,data2,data3,data4,data5) values('"+xx1+"','"+xx2+"','"+xx3+"','"+xx4+"','"+xx5+"')";
+		   			}else if(!xx4.equals("null")){
+		   				sql="insert into mind_data (data1,data2,data3,data4) values('"+xx1+"','"+xx2+"','"+xx3+"','"+xx4+"')";
+		   			}else if(!xx3.equals("null")){
+		   				sql="insert into mind_data (data1,data2,data3) values('"+xx1+"','"+xx2+"','"+xx3+"')";
+		   			}else if(!xx2.equals("null")){
+		   				sql="insert into mind_data (data1,data2) values('"+xx1+"','"+xx2+"')";
+		   			}else if(!xx1.equals("null")){
+		   				sql="insert into mind_data (data1) values('"+xx1+"')";
+		   			}
+		   			stmt.executeUpdate(sql);
+		   		}
+		   		else if(authen.equals("API keys")){
 		   			if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4) && !"null".equals(p5)){
 		   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+xx1+"&"+p2+"="+xx2+"&"+p3+"="+xx3+"&"+p4+"="+xx4+"&"+p5+"="+xx5;}
-	        		 
+	        		
 		   			else if(!"null".equals(p1) && !"null".equals(p2) && !"null".equals(p3) && !"null".equals(p4)){
 		   				eurl=endurl1+"?"+ak1+"="+apkey+"&"+p1+"="+xx1+"&"+p2+"="+xx2+"&"+p3+"="+xx3+"&"+p4+"="+xx4;}
 	        		 

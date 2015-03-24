@@ -49,6 +49,15 @@ $(document).ready(function(){
 		  	$('#oauth2').hide();
 	  		$('#oauth1').hide();
 		}
+	   	else if($('input:radio[name=authen]:checked').val() == "Mysql"){
+			$('#req').show();
+		  	$('#divid').hide();
+		  	$('#apiid').hide();	
+			$('#hook').hide();
+			$('#sign').hide();
+		  	$('#oauth2').hide();
+	  		$('#oauth1').hide();
+		}
 	    else if($('input:radio[name=authen]:checked').val() == "Basic Auth"){
 	 		$('#divid').show();
 		  	$('#apiid').hide();
@@ -384,9 +393,11 @@ margin-left:100px;
 <input type="radio" name="authen"  value="Signed Auth">
 <label for="rd1">Signed Auth</label>
 
+<input type="radio" name="authen"  value="Mysql">
+<label for="rd1">Mysql</label>
 
 <br></div>
-
+<br><br>
 <div id="req" style="display:none">Fine! Go ahead</div>
 
 <div id="divid" style="display:none"><br>
