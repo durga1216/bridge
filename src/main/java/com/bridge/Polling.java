@@ -471,6 +471,22 @@ public class Polling extends HttpServlet {
 					   				String oauth_nonce = uuid_string; 
 					   				String enurl = URLEncoder.encode(endurl1, "UTF-8");
 					   				String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
+					   				String authorization_header_string="";
+									if (oauth_signature_method.equals("PLAINTEXT")) {
+										authorization_header_string = "OAuth oauth_version=\"1.0\",oauth_consumer_key=\""
+												+ oauth_consumer_key
+												+ "\","
+												+ "oauth_nonce=\""
+												+ oauth_nonce
+												+ "\",oauth_token=\""
+												+ oauthtk
+												+ "\",oauth_signature_method=\""
+												+ oauth_signature_method
+												+ "\",oauth_signature=\""
+												+ secret
+												+ "%2526\",oauth_timestamp=\""
+												+ oauth_timestamp + "\"";
+									} else {
 					   				String parameter_string ="";
 					   				if(eurl.equals("null")){
 					   					parameter_string ="oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
@@ -495,7 +511,7 @@ public class Polling extends HttpServlet {
 				                    	// TODO Auto-generated catch block
 				                    	out.println(e);
 				                	}
-				                    String authorization_header_string="";
+				                    authorization_header_string="";
 				                    if(exhead.equals("null")){
 				                    	authorization_header_string = "OAuth oauth_consumer_key=\"" + oauth_consumer_key + "\","
 				                    			+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_token=\""+oauthtk+"\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
@@ -505,6 +521,7 @@ public class Polling extends HttpServlet {
 					                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_access_token=\""+oauthtk+"\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
 					                            oauth_timestamp + "\",oauth_version=\"1.0\"";
 				                    }
+									}
 				                   // out.println(authorization_header_string);
 				                    HttpClient httpclient = new DefaultHttpClient();
 				                    HttpResponse response1=null;

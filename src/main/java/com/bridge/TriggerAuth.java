@@ -47,18 +47,16 @@ import sun.misc.BASE64Encoder;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeRequestUrl;
 
-
 @WebServlet("/TriggerAuth")
 public class TriggerAuth extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
-   
-    public TriggerAuth() {
-        super();
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public TriggerAuth() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -527,6 +525,7 @@ public class TriggerAuth extends HttpServlet {
 			   			
 			   			else if("null".equals(p1))
 			   				eurl="null";
+		   	 		String call="https://bridge-minddotss.rhcloud.com/Oauth1call";
 	   	 				if(oreq.equals("GET")){
 	   	 					String uuid_string = UUID.randomUUID().toString();
 	   	 					uuid_string = uuid_string.replaceAll("-", "");
@@ -534,7 +533,7 @@ public class TriggerAuth extends HttpServlet {
 	   	 					String eurl1 = URLEncoder.encode(ourl1, "UTF-8");
 	   	 					long oauth_timestamp = System.currentTimeMillis()/1000;
 	   	 					String parameter_string="";
-	   	 					String call="https://bridge-minddotss.rhcloud.com/Oauth1call";
+	   	 					
 			   	 			//For checking the callback is required or not
 	   	 					if(rmethod1.equals("DELETE")){
 	   	 						parameter_string = "oauth_callback="+URLEncoder.encode(call, "UTF-8")+"&oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + osmeth + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
@@ -604,6 +603,22 @@ public class TriggerAuth extends HttpServlet {
 	   	 					String oauth_nonce = uuid_string; 
 	   	 					String eurl1 = URLEncoder.encode(ourl1, "UTF-8");
 	   	 					long oauth_timestamp = System.currentTimeMillis()/1000;
+	   	 				String authorization_header_string="";
+						if (osmeth.equals("PLAINTEXT")) {
+							authorization_header_string = "OAuth oauth_version=\"1.0\",oauth_consumer_key=\""
+									+ ockey
+									+ "\","
+									+ "oauth_nonce=\""
+									+ oauth_nonce
+									+ "\",oauth_callback=\""
+									+ URLEncoder.encode(call, "UTF-8")
+									+ "\",oauth_signature_method=\""
+									+ osmeth
+									+ "\",oauth_signature=\""
+									+ oskey
+									+ "%2526\",oauth_timestamp=\""
+									+ oauth_timestamp + "\"";
+						} else {
 	   	 					String parameter_string = "oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + osmeth + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
 	   	 					String signature_base_string = oreq+"&"+eurl1+"&" + URLEncoder.encode(parameter_string, "UTF-8");out.println("signature_base_string=" + signature_base_string);
 	   	 					out.println(signature_base_string);
@@ -615,9 +630,10 @@ public class TriggerAuth extends HttpServlet {
 	   	 						// TODO Auto-generated catch block
 	   	 						e.printStackTrace();
 	   	 					}
-	   	 					String authorization_header_string = "OAuth oauth_consumer_key=\"" + ockey + "\","
+	   	 					authorization_header_string = "OAuth oauth_consumer_key=\"" + ockey + "\","
 	   	 							+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
 	   	 							oauth_timestamp + "\",oauth_version=\"1.0\"";
+						}
 	   	 					out.println(authorization_header_string);
 	   	 					String oauth_token = "";
 	   	 					HttpClient httpclient = new DefaultHttpClient();
@@ -1194,23 +1210,28 @@ public class TriggerAuth extends HttpServlet {
         		out.println(e);
     		}
 	}
-	private static String computeSignature(String baseString, String keyString) throws GeneralSecurityException, UnsupportedEncodingException {
+
+	private static String computeSignature(String baseString, String keyString)
+			throws GeneralSecurityException, UnsupportedEncodingException {
 		SecretKey secretKey = null;
 		byte[] keyBytes = keyString.getBytes();
-        secretKey = new SecretKeySpec(keyBytes, "HmacSHA1");
-        Mac mac = Mac.getInstance("HmacSHA1");
-        mac.init(secretKey);
-        byte[] text = baseString.getBytes();
-        return new String(Base64.encodeBase64(mac.doFinal(text))).trim();
+		secretKey = new SecretKeySpec(keyBytes, "HmacSHA1");
+		Mac mac = Mac.getInstance("HmacSHA1");
+		mac.init(secretKey);
+		byte[] text = baseString.getBytes();
+		return new String(Base64.encodeBase64(mac.doFinal(text))).trim();
 	}
-	private static String computeSignature1(String baseString, String keyString) throws GeneralSecurityException, UnsupportedEncodingException {
+
+	private static String computeSignature1(String baseString, String keyString)
+			throws GeneralSecurityException, UnsupportedEncodingException {
 		SecretKey secretKey = null;
 		byte[] keyBytes = keyString.getBytes();
-        secretKey = new SecretKeySpec(keyBytes, "HmacSHA1");
-        Mac mac = Mac.getInstance("HmacSHA1");
-        mac.init(secretKey);
-        String orig = new String(Hex.encodeHex(mac.doFinal(baseString.getBytes())));
-         byte[] encoded = Base64.encodeBase64(orig.getBytes()); 
-        return new String(encoded);
+		secretKey = new SecretKeySpec(keyBytes, "HmacSHA1");
+		Mac mac = Mac.getInstance("HmacSHA1");
+		mac.init(secretKey);
+		String orig = new String(Hex.encodeHex(mac.doFinal(baseString
+				.getBytes())));
+		byte[] encoded = Base64.encodeBase64(orig.getBytes());
+		return new String(encoded);
 	}
 }
