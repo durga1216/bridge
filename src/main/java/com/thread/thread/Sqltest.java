@@ -14,10 +14,7 @@ import com.bridge.Util;
 public class Sqltest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out
-				.println("-------- MySQL JDBC Connection Testing ------------");
-
+		// TODO Auto-generated method git
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
