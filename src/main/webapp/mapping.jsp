@@ -220,6 +220,7 @@ function load1(){
 	String resformat = "";
 	String note = "Guide";
 	String type = "";
+	String sampjson="";
 %>
 <%
 	try {
@@ -253,6 +254,7 @@ function load1(){
 			tp[3] = rs.getString("p3");
 			tp[4] = rs.getString("p4");
 			note = rs.getString("note");
+			sampjson= rs.getString("js");
 		}
 		conn.close();
 %>
@@ -300,7 +302,7 @@ function load1(){
 			<div id="cond">Sample Json Request :</div>
 			<center>
 				<textarea id="area" rows="7" cols="70" name="exres"
-					placeholder="Enter the sample json Action response"></textarea>
+					placeholder="Enter the sample json Action response"><%=sampjson%></textarea>
 				<br> <br> <input id="b1" type="button" value=test>
 				<br>
 			</center>
