@@ -959,7 +959,7 @@ public class Final extends HttpServlet {
  			   	}		 	 			   	
 /**   Parsing and mapping ends  ------ Action block starts from here	  **/
  			   	
- 			   	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+ 			   	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
  			   	String str1=act.start();
  			   		
  				String outpt=da+str+"\n\n"+xx1+xx2+xx3+xx4+xx5+"\n\n"+orurl+"\n\n"+check;
