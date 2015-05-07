@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="bridge:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="bridge-1.0.war">
+      <element id="artifact" artifact-name="bridge:war exploded" />
+    </root>
+  </artifact>
+</component>

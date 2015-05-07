@@ -315,6 +315,7 @@ public class TriggerAuth extends HttpServlet {
 				  				postRequest.setHeader(h1, hd1);
 				  			}
 				  			StringEntity stt=new StringEntity(exreq);
+							stt.setContentType("application/json");
 				  			postRequest.setEntity(stt);
 				  			HttpResponse response1 = httpClient.execute(postRequest);
 				  			BufferedReader in   = new BufferedReader (new InputStreamReader (response1.getEntity().getContent()));

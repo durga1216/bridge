@@ -52,8 +52,9 @@ public class ActionClass {
 	String xx6;String xx7;String xx8;String xx9;String xx10;
 	String xx11;String xx12;String xx13;String xx14;String xx15;
 	String xx16;String xx17;String xx18;String xx19;String xx20;
+	String fulres;
 
-	public ActionClass(String tempid,String x1,String x2,String x3,String x4,String x5,String x6,String x7,String x8,String x9,String x10,String x11,String x12,String x13,String x14,String x15,String x16,String x17,String x18,String x19,String x20,String exres,String shnm){
+	public ActionClass(String tempid,String x1,String x2,String x3,String x4,String x5,String x6,String x7,String x8,String x9,String x10,String x11,String x12,String x13,String x14,String x15,String x16,String x17,String x18,String x19,String x20,String exres,String shnm,String res){
 		xx1=x1;
 		xx2=x2;
 		xx3=x3;
@@ -77,6 +78,7 @@ public class ActionClass {
 		orurl=exres;
 		da=tempid;
 		shname=shnm;
+		fulres=res;
 	}
 	public String start(){
 		try{
@@ -234,11 +236,16 @@ public class ActionClass {
         		   else if(rmethod.equals("Post")){
         			   HttpClient httpClient = new DefaultHttpClient();
         			   HttpPost get = new HttpPost(endurl1);
-        			   StringEntity stt=new StringEntity(orurl);
-        			   String encoding = new String(org.apache.commons.codec.binary.Base64.encodeBase64   
-        					   (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
-        			   get.addHeader("Authorization", "Basic "+encoding);
-        			   get.setEntity(stt);
+					   if(!orurl.equals("full response")){
+						   StringEntity stt=new StringEntity(orurl);
+						   get.setEntity(stt);
+					   }else {
+						   StringEntity stt=new StringEntity(fulres);
+						   get.setEntity(stt);
+					   }
+					   String encoding = new String(org.apache.commons.codec.binary.Base64.encodeBase64
+        					   (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+ b4)));
+					   get.addHeader("Authorization", "Basic "+encoding);
     				  	if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3)){
     				  		get.addHeader(h1,hv1);get.addHeader(h2,hv2);get.addHeader(h3,hv3);  
 			            }

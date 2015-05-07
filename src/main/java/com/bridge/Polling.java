@@ -267,6 +267,7 @@ public class Polling extends HttpServlet {
 						  				postRequest.setHeader(h1, hv1);
 						  			}
 						  			StringEntity stt=new StringEntity(exreq);
+								   stt.setContentType("application/json");
 						  			postRequest.setEntity(stt);
 						  			HttpResponse response1 = httpClient.execute(postRequest);
 						  			BufferedReader in   = new BufferedReader (new InputStreamReader (response1.getEntity().getContent()));
@@ -1119,31 +1120,31 @@ public class Polling extends HttpServlet {
 											//Send all the input to action block with condition check
 											if(!c1.equals("null") && !c2.equals("null") && !c3.equals("null") && !c4.equals("null") && !c5.equals("null")){
 						 	 			  		if(cx1.equals(cv1) && cx2.equals(cv2) && cx3.equals(cv3) && cx4.equals(cv4) && cx5.equals(cv5)){
-							 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+							 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
 								 	 			  	String str1=act.start();
 						 	 			  		}
 						 	 			  	}else if(!c1.equals("null") && !c2.equals("null") && !c3.equals("null") && !c4.equals("null")){
 						 	 			  		if(cx1.equals(cv1) && cx2.equals(cv2) && cx3.equals(cv3) && cx4.equals(cv4)){
-							 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+							 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
 								 	 			  	String str1=act.start();
 						 	 			  		}
 						 	 			  	}else if(!c1.equals("null") && !c2.equals("null") && !c3.equals("null")){
 						 	 			  		if(cx1.equals(cv1) && cx2.equals(cv2) && cx3.equals(cv3)){
-							 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+							 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
 								 	 			  	String str1=act.start();
 						 	 			  		}
 						 	 			  	}else if(!c1.equals("null") && !c2.equals("null")){
 						 	 			  		if(cx1.equals(cv1) && cx2.equals(cv2)){
-							 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+							 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
 								 	 			  	String str1=act.start();
 						 	 			  		}
 						 	 			  	}else if(!c1.equals("null")){
 						 	 			  		if(cx1.equals(cv1)){
-							 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+							 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
 								 	 			  	String str1=act.start();
 						 	 			  		}
 						 	 			  	}else if(c1.equals("null")){
-							 	 			  	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+							 	 			  	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
 							 	 			  	String str1=act.start();
 						 	 			  	}
 											
@@ -1275,31 +1276,31 @@ public class Polling extends HttpServlet {
 												//send all the input to Action class with condition
 												if(!c1.equals("null") && !c2.equals("null") && !c3.equals("null") && !c4.equals("null") && !c5.equals("null")){
 							 	 			  		if(cx1.equals(cv1) && cx2.equals(cv2) && cx3.equals(cv3) && cx4.equals(cv4) && cx5.equals(cv5)){
-								 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+								 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
 									 	 			  	String str1=act.start();
 							 	 			  		}
 							 	 			  	}else if(!c1.equals("null") && !c2.equals("null") && !c3.equals("null") && !c4.equals("null")){
 							 	 			  		if(cx1.equals(cv1) && cx2.equals(cv2) && cx3.equals(cv3) && cx4.equals(cv4)){
-								 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+								 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
 									 	 			  	String str1=act.start();
 							 	 			  		}
 							 	 			  	}else if(!c1.equals("null") && !c2.equals("null") && !c3.equals("null")){
 							 	 			  		if(cx1.equals(cv1) && cx2.equals(cv2) && cx3.equals(cv3)){
-								 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+								 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
 									 	 			  	String str1=act.start();
 							 	 			  		}
 							 	 			  	}else if(!c1.equals("null") && !c2.equals("null")){
 							 	 			  		if(cx1.equals(cv1) && cx2.equals(cv2)){
-								 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+								 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
 									 	 			  	String str1=act.start();
 							 	 			  		}
 							 	 			  	}else if(!c1.equals("null")){
 							 	 			  		if(cx1.equals(cv1)){
-								 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+								 	 			  		ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
 									 	 			  	String str1=act.start();
 							 	 			  		}
 							 	 			  	}else if(c1.equals("null")){
-								 	 			  	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+								 	 			  	ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
 								 	 			  	String str1=act.start();
 							 	 			  	}
 											}
@@ -1438,7 +1439,7 @@ public class Polling extends HttpServlet {
 											}
 											resour=x1+x2+x3+x4+x5+xx1+xx2+xx3+xx4+xx5+orurl;
 											//send all the input to action block
-											ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+											ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
 											String str1=act.start();
 											} 
 									} 
@@ -1510,7 +1511,7 @@ public class Polling extends HttpServlet {
 											}
 											resour=x1+x2+x3+x4+x5+xx1+xx2+xx3+xx4+xx5+orurl;
 											//send all the inputs to action class
-							 	 			ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname);
+							 	 			ActionClass act=new ActionClass(da,xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,orurl,shname,str);
 											String str1=act.start();
 											}
 										

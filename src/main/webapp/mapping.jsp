@@ -106,6 +106,7 @@ hr {
 <script type="text/javascript">
 var respo2=<%=respo%>;
 var respf="<%=respfmt%>";
+
 var chfst='<';
 <%-- var chh='<%=chfirst%>'; --%>
 respo2= JSON.stringify(respo2);

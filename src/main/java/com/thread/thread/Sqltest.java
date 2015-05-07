@@ -33,15 +33,28 @@ public class Sqltest {
 							"minddots", "4_ujuraG");
 			Statement stmt = connection.createStatement();
 
-			// String sql = "CREATE TABLE mind_data (`data1` VARCHAR( 500 ) NULL DEFAULT NULL , `data2` VARCHAR( 500 ) NULL DEFAULT NULL , `data3` VARCHAR( 500 ) NULL DEFAULT NULL ,`data4` VARCHAR( 500 ) NULL DEFAULT NULL ,`data5` VARCHAR( 500 ) NULL DEFAULT NULL ,`data6` VARCHAR( 500 ) NULL DEFAULT NULL ,`data7` VARCHAR( 500 ) NULL DEFAULT NULL ,`data8` VARCHAR( 500 ) NULL DEFAULT NULL ,`data9` VARCHAR( 500 ) NULL DEFAULT NULL ,`data10` VARCHAR( 500 ) NULL DEFAULT NULL)";
+//			 String sql = "CREATE TABLE IF NOT EXISTS `minddots_qb_company_info` (\n" +
+//					 "  `CompanyName` varchar(500) DEFAULT NULL,\n" +
+//					 "  `CompanyStartDate` varchar(500) DEFAULT NULL,\n" +
+//					 "  `FiscalYearStartMonth` varchar(500) DEFAULT NULL,\n" +
+//					 "  `CompanyAddr` varchar(500) DEFAULT NULL,\n" +
+//					 "  `PrimaryPhone` varchar(500) DEFAULT NULL,\n" +
+//					 "  `Email` varchar(500) DEFAULT NULL,\n" +
+//					 "  `domain` varchar(500) DEFAULT NULL,\n" +
+//					 "  `CreateTime` varchar(500) DEFAULT NULL,\n" +
+//					 "  `Country` varchar(500) DEFAULT NULL,\n" +
+//					 "  `SupportedLanguages` varchar(500) DEFAULT NULL,\n" +
+//					 "  `num` int(50) NOT NULL AUTO_INCREMENT,\n" +
+//					 "  PRIMARY KEY (`num`)\n" +
+//					 ") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 			//String sql="insert into mind_data (data1,data2) values('sample data','sample data')";
 			 // String sql =
 			// "insert into Mdots_test (id,first,last,age) values ('1','susee','minddotss','23')";
-			String sql = "Select * from mind_data";
-		///	stmt.executeUpdate(sql);
+			String sql = "Select * from minddots_qb_company_info";
+			//stmt.executeUpdate(sql);
 			ResultSet rs=stmt.executeQuery(sql);
 			while(rs.next()){
-				System.out.println(rs.getString("data1"));
+				System.out.println(rs.getString("CompanyAddr"));
 			}
 		} catch (SQLException e) {
 			System.out.println("Connection Failed! Check output console");

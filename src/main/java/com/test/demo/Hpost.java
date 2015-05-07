@@ -38,14 +38,20 @@ public class Hpost {
 //			obj.put("steelUsed", "");
 //			obj.put("mobile", 9566);
 			System.out.println(obj);
+			String data="{\"auth\": {\"type\" : \"basic\",\"password\": \"Password1\",\"username\": \"tharper\"},\"requestId\" : 15,\"method\": {\"name\": \"getUnitsAvailabilityAndPricing\",\"params\": {\"propertyId\" : \"105920\",\"availableUnitsOnly\" : \"0\",\"showChildProperties\" : \"0\",\"includeDisabledFloorplans\" : \"0\",\"showUnitSpaces\" : \"0\"}}}";
 			HttpClient client=new DefaultHttpClient();
 			String str=" ";String line="";
 			//HttpPost post=new HttpPost("https://www.mssmbdealhub.com/Services/Service1.svc/GetMobileDashboardP?deviceId=0384741FD8A9C7E851EFA9B218E3F907A8936091");
-			HttpPost post=new HttpPost("https://www.mssmbdealhub.com/Services/Service1.svc/GetNextSetLeadSummariesP?deviceId=0384741FD8A9C7E851EFA9B218E3F907A8936091");
+			HttpPost post=new HttpPost("https://ach.propertysolutions.com/api/propertyunits");
 //			post.addHeader("X-Parse-Application-Id","QRgHJmTvRLIr4FrWuUH83cZ2RyRelm4z9OFvuePR");
 //			post.addHeader("X-Parse-REST-API-Key","vqm5GfSHBJbxLGHLXW50gG40LWO8HILgtPxYg1pP");
-			StringEntity str1=new StringEntity(obj.toString());
-			str1.setContentType("application/json");
+			post.addHeader("Accept","application/json");
+			String encoding = new String(
+					org.apache.commons.codec.binary.Base64.encodeBase64
+							(org.apache.commons.codec.binary.StringUtils.getBytesUtf8("tharper:Password1")));
+			post.setHeader("Authorization","Basic " + encoding);
+			StringEntity str1=new StringEntity(data);
+			//str1.setContentType("application/json");
 			post.setEntity(str1);
 			HttpResponse response1 = client.execute(post);
 			BufferedReader rd = new BufferedReader(
