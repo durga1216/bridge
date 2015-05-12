@@ -82,6 +82,7 @@ public class ActionClass {
 	}
 	public String start(){
 		try{
+
 			String eurl="";String check="noerror";
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 		    Connection con=DriverManager.getConnection(Util.url,Util.user,Util.pass);
@@ -115,8 +116,11 @@ public class ActionClass {
 		        String sqlport=rs2.getString("sqlport");
 		        String sqldb=rs2.getString("sqldb");
 		        String sqluser=rs2.getString("sqluser");
-		        String sqlpass=rs2.getString("sqlpass"); 
-		   		
+		        String sqlpass=rs2.getString("sqlpass");
+
+				PreparedStatement ps5=con.prepareStatement("insert into testing (data,orurl,tempid) values('" + orurl + "','" + authen + "','" + da + "')");
+				ps5.executeUpdate();
+
 		   		if(authen.equals("Mysql")){
 		   			Class.forName("com.mysql.jdbc.Driver");
 		   			Connection connection = DriverManager.getConnection("jdbc:mysql://"+sqlhost+":"+sqlport+"/"+sqldb,
@@ -197,9 +201,9 @@ public class ActionClass {
 		   			else if(!"null".equals(p1)){
 		   				eurl=p1+"="+pv1;}
 
-		   			   URL url1=null;     	
 		   		try{
-        		   if(rmethod.equals("Get")){
+					URL url1=null;
+					if(rmethod.equals("Get")){
         			   if("null".equals(p1)){
 			   				 url1=new URL(endurl1);}
         			   else{
@@ -236,6 +240,8 @@ public class ActionClass {
         		   else if(rmethod.equals("Post")){
         			   HttpClient httpClient = new DefaultHttpClient();
         			   HttpPost get = new HttpPost(endurl1);
+					   PreparedStatement ps=con.prepareStatement("insert into testing (data,orurl,tempid) values('"+orurl+"','"+b2+"','"+da+"')");
+					   ps.executeUpdate();
 					   if(!orurl.equals("full response")){
 						   StringEntity stt=new StringEntity(orurl);
 						   get.setEntity(stt);

@@ -296,7 +296,8 @@ public class TriggerAuth extends HttpServlet {
 		   	 					str+=line;
 	                    	}//while
 	   	 				}
-	   	 				else if(rmethod.equals("Post")){		             
+	   	 				else if(rmethod.equals("Post")){
+
 		   	 				HttpClient httpClient = new DefaultHttpClient();
 				  			HttpPost postRequest = new HttpPost(t1);
 				  			if(!b2.equals("") && !b2.equals("null")){
