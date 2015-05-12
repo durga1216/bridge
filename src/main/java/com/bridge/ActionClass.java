@@ -224,7 +224,7 @@ public class ActionClass {
 		   			else if(!"".equals(h1)){
 		            	connection.setRequestProperty(h1, hv1);  
 		            }
-		   				connection.setRequestProperty("Content-Type", "application/json");
+		   				//connection.setRequestProperty("Content-Type", "application/json");
 		   				InputStream stream = (InputStream)connection.getInputStream();
 		   				BufferedReader bf=new BufferedReader(new InputStreamReader(stream));
 		   				String lin="";
@@ -243,9 +243,11 @@ public class ActionClass {
 						   StringEntity stt=new StringEntity(fulres);
 						   get.setEntity(stt);
 					   }
-					   String encoding = new String(org.apache.commons.codec.binary.Base64.encodeBase64
-        					   (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+ b4)));
-					   get.addHeader("Authorization", "Basic "+encoding);
+					   if(!b2.equals("") && !b2.equals("null")) {
+						   String encoding = new String(org.apache.commons.codec.binary.Base64.encodeBase64
+								   (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2 + ":" + b4)));
+						   get.addHeader("Authorization", "Basic " + encoding);
+					   }
     				  	if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3)){
     				  		get.addHeader(h1,hv1);get.addHeader(h2,hv2);get.addHeader(h3,hv3);  
 			            }
