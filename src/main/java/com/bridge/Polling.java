@@ -1306,7 +1306,7 @@ public class Polling extends HttpServlet {
 											}
 										} 	
 									}catch(Exception e){
-										check=e.toString();
+										check=e.getMessage();
 									}
 									arr1=arr;
 							}
@@ -1517,18 +1517,18 @@ public class Polling extends HttpServlet {
 										
 										}
 									}catch(Exception e){
-										check=e.toString();
+										check=e.getMessage();
 									}
 									arr1=arr;
 								}
 							}
 							catch(Exception e){
-								check=e.toString();
+								check=e.getMessage();
 							}
 							try {
 								//out.println(da+"\n\n---"+str+"\n\n---"+check+"\n\n---"+resour);
-//								PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','sucess','"+da+"')");
-//								ps1.executeUpdate();
+								PreparedStatement ps1=con.prepareStatement("insert into testpol (error,str,tempid) values('"+check+"','sucess','"+da+"')");
+								ps1.executeUpdate();
 								Thread.sleep(150000);
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
